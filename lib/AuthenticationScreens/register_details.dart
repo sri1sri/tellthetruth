@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 //import 'package:tellthetruth/HomeScreens/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gender_selection/gender_selection.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
@@ -14,6 +15,7 @@ import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 import '../landing_page.dart';
 
@@ -122,227 +124,263 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 
   Widget _buildContent(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 80.0, bottom: 20, left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    GestureDetector(
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 40,
-                      ),
-                      onTap: () {
-                        Navigator.pop(context, true);
-                      },
-                    )
+              SizedBox(height: 70,),
+              GradientText(
+                'Register',
+                style: heavyStyle,
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0XffFD8B1F),
+                    Color(0XffD152E0),
+                    Color(0Xff30D0DB),
                   ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
+              SizedBox(height: 15.0,),
+              Text("Please register with your details.",style: mediumStyle,),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Signup", ),
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                   SizedBox(
-                    height: 15.0,
+                    width: 350.0,
+                    height: 350.0,
+                    child: FlareActor("images/welcome.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'Animations'),
                   ),
-                  Text(
-                    "Please Sign Up with your details.",
-                    //style: descriptionDark,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color(0XFFEFF3F6),
-                              borderRadius: BorderRadius.circular(10.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                                    offset: Offset(3, 3),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 2.0),
-                                BoxShadow(
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
-                                    offset: Offset(-6, -2),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 3.0)
-                              ]),
-                          child: TextFormField(
-                            onChanged: (value) => _username = value,
-                            textInputAction: TextInputAction.next,
-                            autocorrect: true,
-                            obscureText: false,
-                            focusNode: _usernameFocusNode,
-                            decoration: new InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.account_circle,
-                                color: subBackgroundColor,
-                              ),
-                              labelText: "Enter username",
-                              border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                borderSide: new BorderSide(),
-                              ),
-                            ),
-                            style: new TextStyle(
-                              fontFamily: "Poppins",
-                            ),
-                            keyboardType: TextInputType.text,
-                            keyboardAppearance: Brightness.dark,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter username';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    GenderSelection(
-                      maleText: "Male", //default Male
-                      femaleText: "Female", //default Female
-                      //linearGradient: pinkRedGradient,
-                      femaleImage: NetworkImage("https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
-                      maleImage: NetworkImage("https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
-                      selectedGenderIconBackgroundColor: Colors.indigo, // default red
-                      checkIconAlignment: Alignment.centerRight,   // default bottomRight
-                      selectedGenderCheckIcon: null, // default Icons.check
-                      onChanged: (Gender gender){
-                        print(gender);
-                      },
-                      equallyAligned: true,
-                      animationDuration: Duration(milliseconds: 400),
-                      isCircular: true, // default : true,
-                      isSelectedGenderIconCircular: true,
-                      opacityOfGradient: 0.6,
-                      padding: const EdgeInsets.all(3),
-                      size: 120, //default : 120
-
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 0, bottom: 10),
-                      child: Container(
-                        child: RaisedButton(
-                          color: Colors.white,
-                          child: Container(
-                            height: 70,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                Text(
-                                  'Select your date of birth.',
-                                  //style: contentDark,
-                                  textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:10.0,right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("User Name",style: mediumStyle,),
+                              SizedBox(height: 20,),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1),
+                                          offset: Offset(3, 3),
+                                          blurRadius: 1.0,
+                                          spreadRadius: 2.0
+                                      ),
+                                      BoxShadow(
+                                          color: Color.fromRGBO(255, 255, 255, 0.9),
+                                          offset: Offset(-2, -2),
+                                          blurRadius: 1.0,
+                                          spreadRadius: 2.0
+                                      )
+                                    ]
                                 ),
-                                SizedBox(
-                                  height: 5,
+                                child: new TextFormField(
+                                  onChanged: (value) => _username = value,
+                                  textInputAction: TextInputAction.next,
+                                  autocorrect: true,
+                                  obscureText: false,
+                                  focusNode: _usernameFocusNode,
+                                  decoration: new InputDecoration(
+                                    prefixIcon: Icon(
+                                      Icons.account_circle,
+                                      color: subBackgroundColor,
+                                    ),
+                                    labelText: "Enter username",
+                                    labelStyle: regularStyle,
+                                    border: new OutlineInputBorder(
+                                      borderRadius: new BorderRadius.circular(5.0),
+                                      borderSide: new BorderSide(),
+                                    ),
+                                  ),
+                                  style: new TextStyle(
+                                    fontFamily: "Poppins",
+                                  ),
+                                  keyboardType: TextInputType.text,
+                                  keyboardAppearance: Brightness.dark,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Please enter username';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(
-                                      child: Row(
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              Text("Date Of Birth",style: mediumStyle,),
+                              SizedBox(height: 20,),
+                              Padding(
+                                padding: EdgeInsets.only(top: 0, bottom: 10),
+                                child: Container(
+                                  child: RaisedButton(
+                                    color: Colors.white,
+                                    child: Container(
+                                      height: 60,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: <Widget>[
-                                          Icon(
-                                            Icons.date_range,
-                                            size: 18.0,
-                                            color: backgroundColor,
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Container(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Icon(
+                                                      Icons.date_range,
+                                                      size: 18.0,
+                                                      color: backgroundColor,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      '${customFormat2.format(selectedDate)}',
+                                                      style: mediumStyle
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              GradientText(
+                                                'Change',
+                                                style: mediumStyle,
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color(0XffFD8B1F),
+                                                    Color(0XffD152E0),
+                                                    Color(0Xff30D0DB),
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(
                                             width: 10,
                                           ),
-                                          Text(
-                                              '${customFormat2.format(selectedDate)}',
-                                             // style: subTitleDark
-                                            ),
                                         ],
                                       ),
                                     ),
-                                    Text('Change',
-                                      //  style: subTitleDark
-                                    ),
-                                  ],
+                                    onPressed: () => showPicker(context),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                              ],
-                            ),
+                              ),
+                              SizedBox(height: 30.0,),
+                              Text("Gender",style: mediumStyle,),
+                              SizedBox(height: 20,),
+                              GenderSelection(
+                                maleText: "Male", //default Male
+                                femaleText: "Female", //default Female
+                                //linearGradient: pinkRedGradient,
+                                femaleImage: NetworkImage("https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
+                                maleImage: NetworkImage("https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
+                                selectedGenderIconBackgroundColor: Colors.indigo, // default red
+                                checkIconAlignment: Alignment.centerRight,   // default bottomRight
+                                selectedGenderCheckIcon: null, // default Icons.check
+                                onChanged: (Gender gender){
+                                  print(gender);
+                                },
+                                equallyAligned: true,
+                                animationDuration: Duration(milliseconds: 400),
+                                isCircular: true, // default : true,
+                                isSelectedGenderIconCircular: true,
+                                opacityOfGradient: 0.6,
+                                padding: const EdgeInsets.all(3),
+                                size: 120, //default : 120
+
+                              ),
+                              SizedBox(
+                                height: 50.0,
+                              ),
+
+                            ],
                           ),
-                          onPressed: () => showPicker(context),
                         ),
+                      )
+
+
+                    ],
+                  ),
+
+                ],
+              ),
+
+              SizedBox(
+                height: 0,
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(child: Text(""),),
+                  GestureDetector(
+                    child: Container(
+                      width: 200,
+                      padding: EdgeInsets.all(15.0),
+                      child: Center(
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(),
+                                GradientText(
+                                  'Signup',
+                                  style: boldStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                Icon(Icons.arrow_forward_ios,color: Colors.blue,size: 30,),
+                                Container(),
+                              ])),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+//                            gradient: LinearGradient(
+//                                colors: <Color>[
+//                                Color(0XffFD8B1F),
+//                            Color(0XffD152E0),
+//                            Color(0Xff30D0DB),
+//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+
+                          borderRadius: BorderRadius.circular(15.0),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(2,1),
+                                blurRadius: 6.0,
+                                spreadRadius: 1.0
+                            ),
+
+                          ]
                       ),
                     ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        GestureDetector(
-                          child: Container(
-                            width: 400,
-                            padding: EdgeInsets.all(15.0),
-                            child: Center(
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                  Container(),
-                                  Text("SignUp",
-                                     // style: titleDark
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                  ),
-                                  Container(),
-                                ])),
-                            decoration: BoxDecoration(
-                                color: backgroundColor,
-                                borderRadius: BorderRadius.circular(15.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: subBackgroundColor,
-                                      offset: Offset(2, 1),
-                                      blurRadius: 1.0,
-                                      spreadRadius: 1.0),
-                                ]),
-                          ),
-                          onTap: () {
-                            _submit();
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                    onTap: (){
+
+                      _submit();
+                    },
+                  ),
+
+                ],
               ),
               SizedBox(
-                height: 20.0,
+                height: 50,
               ),
               Container(
                 child: Padding(
@@ -388,10 +426,302 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
       ),
     );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//      Scaffold(
+//      body: SingleChildScrollView(
+//        child: Padding(
+//          padding:
+//              const EdgeInsets.only(top: 80.0, bottom: 20, left: 20, right: 20),
+//          child: Column(
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            crossAxisAlignment: CrossAxisAlignment.start,
+//            children: <Widget>[
+//              Container(
+//                child: Row(
+//                  children: <Widget>[
+//                    GestureDetector(
+//                      child: Icon(
+//                        Icons.arrow_back,
+//                        size: 40,
+//                      ),
+//                      onTap: () {
+//                        Navigator.pop(context, true);
+//                      },
+//                    )
+//                  ],
+//                ),
+//              ),
+//              Column(
+//                crossAxisAlignment: CrossAxisAlignment.start,
+//                children: <Widget>[
+//                  Text("Signup", ),
+//                  SizedBox(
+//                    height: 15.0,
+//                  ),
+//                  Text(
+//                    "Please Sign Up with your details.",
+//                    //style: descriptionDark,
+//                  ),
+//                ],
+//              ),
+//              SizedBox(
+//                height: 20.0,
+//              ),
+//              Form(
+//                key: _formKey,
+//                child: Column(
+//                  children: <Widget>[
+//
+//                    Column(
+//                      children: <Widget>[
+//                        Container(
+//                          decoration: BoxDecoration(
+//                              color: Color(0XFFEFF3F6),
+//                              borderRadius: BorderRadius.circular(10.0),
+//                              boxShadow: [
+//                                BoxShadow(
+//                                    color: Color.fromRGBO(0, 0, 0, 0.1),
+//                                    offset: Offset(3, 3),
+//                                    blurRadius: 2.0,
+//                                    spreadRadius: 2.0),
+//                                BoxShadow(
+//                                    color: Color.fromRGBO(255, 255, 255, 0.9),
+//                                    offset: Offset(-6, -2),
+//                                    blurRadius: 2.0,
+//                                    spreadRadius: 3.0)
+//                              ]),
+//                          child: TextFormField(
+//                            onChanged: (value) => _username = value,
+//                            textInputAction: TextInputAction.next,
+//                            autocorrect: true,
+//                            obscureText: false,
+//                            focusNode: _usernameFocusNode,
+//                            decoration: new InputDecoration(
+//                              prefixIcon: Icon(
+//                                Icons.account_circle,
+//                                color: subBackgroundColor,
+//                              ),
+//                              labelText: "Enter username",
+//                              border: new OutlineInputBorder(
+//                                borderRadius: new BorderRadius.circular(5.0),
+//                                borderSide: new BorderSide(),
+//                              ),
+//                            ),
+//                            style: new TextStyle(
+//                              fontFamily: "Poppins",
+//                            ),
+//                            keyboardType: TextInputType.text,
+//                            keyboardAppearance: Brightness.dark,
+//                            validator: (value) {
+//                              if (value.isEmpty) {
+//                                return 'Please enter username';
+//                              }
+//                              return null;
+//                            },
+//                          ),
+//                        ),
+//                      ],
+//                    ),
+//
+//                    GenderSelection(
+//                      maleText: "Male", //default Male
+//                      femaleText: "Female", //default Female
+//                      //linearGradient: pinkRedGradient,
+//                      femaleImage: NetworkImage("https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
+//                      maleImage: NetworkImage("https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
+//                      selectedGenderIconBackgroundColor: Colors.indigo, // default red
+//                      checkIconAlignment: Alignment.centerRight,   // default bottomRight
+//                      selectedGenderCheckIcon: null, // default Icons.check
+//                      onChanged: (Gender gender){
+//                        print(gender);
+//                      },
+//                      equallyAligned: true,
+//                      animationDuration: Duration(milliseconds: 400),
+//                      isCircular: true, // default : true,
+//                      isSelectedGenderIconCircular: true,
+//                      opacityOfGradient: 0.6,
+//                      padding: const EdgeInsets.all(3),
+//                      size: 120, //default : 120
+//
+//                    ),
+//                    SizedBox(
+//                      height: 30.0,
+//                    ),
+//                    Padding(
+//                      padding: EdgeInsets.only(top: 0, bottom: 10),
+//                      child: Container(
+//                        child: RaisedButton(
+//                          color: Colors.white,
+//                          child: Container(
+//                            height: 70,
+//                            child: Column(
+//                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                              children: <Widget>[
+//                                Text(
+//                                  'Select your date of birth.',
+//                                  //style: contentDark,
+//                                  textAlign: TextAlign.center,
+//                                ),
+//                                SizedBox(
+//                                  height: 5,
+//                                ),
+//                                Row(
+//                                  mainAxisAlignment:
+//                                      MainAxisAlignment.spaceBetween,
+//                                  children: <Widget>[
+//                                    Container(
+//                                      child: Row(
+//                                        children: <Widget>[
+//                                          Icon(
+//                                            Icons.date_range,
+//                                            size: 18.0,
+//                                            color: backgroundColor,
+//                                          ),
+//                                          SizedBox(
+//                                            width: 10,
+//                                          ),
+//                                          Text(
+//                                              '${customFormat2.format(selectedDate)}',
+//                                             // style: subTitleDark
+//                                            ),
+//                                        ],
+//                                      ),
+//                                    ),
+//                                    Text('Change',
+//                                      //  style: subTitleDark
+//                                    ),
+//                                  ],
+//                                ),
+//                                SizedBox(
+//                                  width: 10,
+//                                ),
+//                              ],
+//                            ),
+//                          ),
+//                          onPressed: () => showPicker(context),
+//                        ),
+//                      ),
+//                    ),
+//                    SizedBox(
+//                      height: 20.0,
+//                    ),
+//                    Column(
+//                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                      children: <Widget>[
+//                        GestureDetector(
+//                          child: Container(
+//                            width: 400,
+//                            padding: EdgeInsets.all(15.0),
+//                            child: Center(
+//                                child: Row(
+//                                    mainAxisAlignment:
+//                                        MainAxisAlignment.spaceBetween,
+//                                    children: <Widget>[
+//                                  Container(),
+//                                  Text("SignUp",
+//                                     // style: titleDark
+//                                  ),
+//                                  Icon(
+//                                    Icons.arrow_forward,
+//                                    color: Colors.white,
+//                                  ),
+//                                  Container(),
+//                                ])),
+//                            decoration: BoxDecoration(
+//                                color: backgroundColor,
+//                                borderRadius: BorderRadius.circular(15.0),
+//                                boxShadow: [
+//                                  BoxShadow(
+//                                      color: subBackgroundColor,
+//                                      offset: Offset(2, 1),
+//                                      blurRadius: 1.0,
+//                                      spreadRadius: 1.0),
+//                                ]),
+//                          ),
+//                          onTap: () {
+//                            _submit();
+//                          },
+//                        ),
+//                      ],
+//                    ),
+//                  ],
+//                ),
+//              ),
+//              SizedBox(
+//                height: 20.0,
+//              ),
+//              Container(
+//                child: Padding(
+//                  padding: const EdgeInsets.only(bottom: 20.0),
+//                  child: RichText(
+//                    textAlign: TextAlign.center,
+//                    text: TextSpan(
+//                      children: [
+//                        TextSpan(
+//                          text: 'By continuing, You accept the Terms & Conditions Of the',
+//                          style: TextStyle(
+//                            color: Colors.black,
+//                            fontSize: 13.0,
+//                            fontWeight: FontWeight.w500,
+//                          ),
+//                        ),
+//                        TextSpan(
+//                          text: ' Terms of use',
+//                          style: TextStyle(
+//                            color: backgroundColor,
+//                            fontSize: 15.0,
+//                            fontWeight: FontWeight.w700,
+//                          ),
+//                        ),
+//                        TextSpan(
+//                          text: ' and',
+//                          style: TextStyle(
+//                            color: Colors.black,
+//                            fontSize: 13.0,
+//                            fontWeight: FontWeight.w500,
+//                          ),
+//                        ),
+//                        TextSpan(
+//                          text: ' Privacy Policies',
+//                          style: TextStyle(
+//                            color: backgroundColor,
+//                            fontSize: 15.0,
+//                            fontWeight: FontWeight.w700,
+//                          ),
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//              ),
+//            ],
+//          ),
+//        ),
+//      ),
+//    );
   }
 }

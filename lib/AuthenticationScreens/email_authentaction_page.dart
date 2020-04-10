@@ -19,7 +19,7 @@ import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_al
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/model/email_sign_in_change_model.dart';
 //import 'package:covidapp/firebase/auth.dart';
-
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/widgets/Style.dart';
 import 'package:tellthetruth/widgets/icon_button.dart';
@@ -155,7 +155,7 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                   clipper: RoundedDiagonalPathClipper(),
                   boxShadow: softUiShadow,
                   child: Container(
-                    height: 450,
+                    height: 550,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(36.0)),
                       color: Colors.white70,
@@ -163,21 +163,26 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(
-                          height: 70,
+                        Positioned(
+                          child: SizedBox(
+                            width: 350.0,
+                            height: 350.0,
+                            child: FlareActor("images/welcome.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'Animations'),
+                          ),
+
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text("Welcome",style: contentDark),
-                              Text("Login",style: bigTitleStyle,),
-                            ],),
-                        ),
-                        SizedBox(
-                          height: 60,
-                        ),
+//                        Padding(
+//                          padding: const EdgeInsets.all(10.0),
+//                          child: Column(
+//                            mainAxisAlignment: MainAxisAlignment.start,
+//                            children: <Widget>[
+//                              Text("Welcome",style: contentDark),
+//                              Text("Login",style: bigTitleStyle,),
+//                            ],),
+//                        ),
+//                        SizedBox(
+//                          height: 60,
+//                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
@@ -308,22 +313,38 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Container(),
-                                  Text("Login",style: titleDark),
+                                  GradientText(
+                                    'Login',
+                                    style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 30.0,decoration: TextDecoration.none),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0XffFD8B1F),
+                                        Color(0XffD152E0),
+                                        Color(0Xff30D0DB),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                  ),
                                   Icon(Icons.arrow_forward,color: Colors.white,),
                                   Container(),
                                 ])),
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: <Color>[
-                                Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                            color: Colors.white70,
+//                            gradient: LinearGradient(
+//                                colors: <Color>[
+//                                Color(0XffFD8B1F),
+//                            Color(0XffD152E0),
+//                            Color(0Xff30D0DB),
+//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
                             borderRadius: BorderRadius.circular(15.0),
                             boxShadow: [
                               BoxShadow(
-                                  color: subBackgroundColor,
+                                  color: Colors.grey,
                                   offset: Offset(2,1),
                                   blurRadius: 6.0,
                                   spreadRadius: 1.0

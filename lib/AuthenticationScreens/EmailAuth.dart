@@ -172,13 +172,13 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                               children: <Widget>[
                                 Container(
                                   decoration: BoxDecoration(
-                                      color: Color(0XFFEFF3F6),
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(10.0),
                                       boxShadow: [
                                         BoxShadow(
                                             color: Color.fromRGBO(0, 0, 0, 0.1),
                                             offset: Offset(3, 3),
-                                            blurRadius: 2.0,
+                                            blurRadius: 1.0,
                                             spreadRadius: 2.0
                                         ),
                                         BoxShadow(
@@ -204,6 +204,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                         color: subBackgroundColor,
                                       ),
                                       labelText: "Enter your email",
+                                      labelStyle: descriptionLight,
                                       errorText: model.emailErrorText,
                                       enabled: model.isLoading == false,
                                       //fillColor: Colors.redAccent,
@@ -220,13 +221,13 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                 SizedBox(height: 30.0,),
                                 Container(
                                   decoration: BoxDecoration(
-                                      color: Color(0XFFEFF3F6),
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(10.0),
                                       boxShadow: [
                                         BoxShadow(
                                             color: Color.fromRGBO(0, 0, 0, 0.1),
                                             offset: Offset(3, 3),
-                                            blurRadius: 2.0,
+                                            blurRadius: 1.0,
                                             spreadRadius: 2.0
                                         ),
                                         BoxShadow(
@@ -252,6 +253,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                         color: subBackgroundColor,
                                       ),
                                       labelText: "Enter your Password",
+                                      labelStyle: descriptionLight,
                                       border: new OutlineInputBorder(
                                         borderRadius: new BorderRadius.circular(5.0),
                                         borderSide: new BorderSide(),

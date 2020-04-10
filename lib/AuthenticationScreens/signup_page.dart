@@ -1,26 +1,18 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/AuthenticationScreens/register_details.dart';
-import 'package:tellthetruth/AuthenticationScreens/email_authentaction_page.dart';
 import 'package:tellthetruth/AuthenticationScreens/register_account_page_model.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
-import 'package:tellthetruth/common_widgets/button_widget/to_do_button.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:tellthetruth/model/email_sign_in_change_model.dart';
-import 'package:tellthetruth/model/validators.dart';
-//import 'package:covidapp/firebase/auth.dart';
-
 import 'package:provider/provider.dart';
-
 import 'EmailAuth.dart';
 
 class SignupPage extends StatelessWidget {
@@ -112,9 +104,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
     return TransparentLoading(
       loading: widget.model.isLoading,
       child: Scaffold(
-          body:Padding(
-            padding: const EdgeInsets.only(top:00.0,bottom: 20,left: 0,right: 0),
-            child: SingleChildScrollView(
+            body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                 child: Column(
@@ -268,14 +258,14 @@ class _F_SignupPageState extends State<F_SignupPage> {
 
 
                     SizedBox(
-                      height: 20,
+                      height: 0,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(child: Text(""),),
                         GestureDetector(
                           child: Container(
-                            width: 250,
+                            width: 200,
                             padding: EdgeInsets.all(15.0),
                             child: Center(
                                 child: Row(
@@ -372,7 +362,6 @@ class _F_SignupPageState extends State<F_SignupPage> {
               ),
             ),
           ),
-      ),
     );
   }
 }

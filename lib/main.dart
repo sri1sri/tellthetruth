@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.pink,
         ),
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: LandingPage(),
         //routes: routes
       ),
     );

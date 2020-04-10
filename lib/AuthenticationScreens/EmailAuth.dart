@@ -5,6 +5,7 @@ import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
@@ -12,6 +13,8 @@ import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/model/email_sign_in_change_model.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:provider/provider.dart';
+
+import '../landing_page.dart';
 
 class EmailAuthentication extends StatelessWidget {
 
@@ -62,8 +65,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
   Future<void> _submit() async {
     try {
       await model.submit();
-      Navigator.of(context).pop();
-      //                        GoToPage(context, LandingPage());
+      GoToPage(context, LandingPage());
     } on PlatformException catch (e) {
       if(_emailController.text != '' && _passwordController.text != ''){
         PlatformExceptionAlertDialog(

@@ -75,7 +75,7 @@ class _F_NoAccessPageState extends State<F_NoAccessPage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: Text("Comming Soon",style: bigTitleStyle,),
+                      child: Text("Comming Soon",style: titleDark,),
                     ),
                     SizedBox(
                       width: 400.0,
@@ -85,7 +85,7 @@ class _F_NoAccessPageState extends State<F_NoAccessPage> {
                     //Splash(),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: Text('This Feature is \nnot yet Implemented....!',style: titleStyle,),
+                      child: Text('This Feature is \nnot yet Implemented....!',style: titleDark,),
                     ),
 
                   ],

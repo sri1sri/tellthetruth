@@ -29,7 +29,7 @@ class SlideItem extends StatelessWidget {
         ),
         Text(
           slideList[index].title,
-          style: titleStyle,
+          style: titleDark,
         ),
         SizedBox(
           height: 10,
@@ -37,7 +37,7 @@ class SlideItem extends StatelessWidget {
         Text(
           slideList[index].description,
           textAlign: TextAlign.center,
-          style: descriptionStyleDarkBlur,
+          style: descriptionDark,
         ),
       ],
     );

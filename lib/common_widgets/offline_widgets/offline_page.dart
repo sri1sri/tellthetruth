@@ -33,7 +33,7 @@ class CustomOfflinePage extends StatelessWidget {
             SizedBox(height: 100,),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Text("Hack Covid",style: bigTitleStyle,),
+              child: Text("Hack Covid",style: titleDark,),
             ),
             SizedBox(
               width: 400.0,
@@ -43,7 +43,7 @@ class CustomOfflinePage extends StatelessWidget {
             //Splash(),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Text('No Internet connection.\nPlease check connection!!!',style: titleStyle,),
+              child: Text('No Internet connection.\nPlease check connection!!!',style: titleDark,),
             ),
 
           ],

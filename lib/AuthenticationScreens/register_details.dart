@@ -163,6 +163,61 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                 child: Column(
                   children: <Widget>[
 
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Color(0XFFEFF3F6),
+                              borderRadius: BorderRadius.circular(10.0),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                                    offset: Offset(3, 3),
+                                    blurRadius: 2.0,
+                                    spreadRadius: 2.0),
+                                BoxShadow(
+                                    color: Color.fromRGBO(255, 255, 255, 0.9),
+                                    offset: Offset(-6, -2),
+                                    blurRadius: 2.0,
+                                    spreadRadius: 3.0)
+                              ]),
+                          child: TextFormField(
+                            onChanged: (value) => _username = value,
+                            textInputAction: TextInputAction.next,
+                            autocorrect: true,
+                            obscureText: false,
+                            focusNode: _usernameFocusNode,
+                          onFieldSubmitted: (value) => value == ''
+                              ? null
+                              : FocusScope.of(context)
+                              .requestFocus(_aadharFocusNode),
+                            decoration: new InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.account_circle,
+                                color: subBackgroundColor,
+                              ),
+                              labelText: "Enter username",
+                              border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(5.0),
+                                borderSide: new BorderSide(),
+                              ),
+                            ),
+                            style: new TextStyle(
+                              fontFamily: "Poppins",
+                            ),
+                            keyboardType: TextInputType.text,
+                            keyboardAppearance: Brightness.dark,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter username';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+
                     GenderSelection(
                       maleText: "Male", //default Male
                       femaleText: "Female", //default Female

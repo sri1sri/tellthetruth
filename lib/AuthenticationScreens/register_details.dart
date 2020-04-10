@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 //import 'package:tellthetruth/HomeScreens/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gender_selection/gender_selection.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
 import 'package:tellthetruth/firebase/firestore_service.dart';
@@ -18,21 +19,15 @@ import '../landing_page.dart';
 
 class RegisterDetails extends StatelessWidget {
 
-  RegisterDetails({@required this.email});
-  String email;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_RegisterDetails(email: email),
+      child: F_RegisterDetails(),
     );
   }
 }
 
 class F_RegisterDetails extends StatefulWidget {
-
-  F_RegisterDetails({@required this.email});
-  String email;
 
   @override
   _F_RegisterDetailsState createState() => _F_RegisterDetailsState();
@@ -48,13 +43,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   var customFormat = DateFormat("dd MMMM yyyy 'at' HH:mm:ss 'UTC+5:30'");
   var customFormat2 = DateFormat("dd MMMM yyyy");
 
-  String _username;
-
-  final FocusNode _usernameFocusNode = FocusNode();
-  final FocusNode _phoneFocusNode = FocusNode();
   final FocusNode _ageFocusNode = FocusNode();
-  final FocusNode _aadharFocusNode = FocusNode();
-  final FocusNode _panCardFocusNode = FocusNode();
+
 
   Future<Null> showPicker(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -73,11 +63,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 
   @override
   void dispose() {
-    _usernameFocusNode.dispose();
     _ageFocusNode.dispose();
-    _aadharFocusNode.dispose();
-    _phoneFocusNode.dispose();
-    _panCardFocusNode.dispose();
 
     super.dispose();
   }
@@ -95,21 +81,13 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
     if (_validateAndSaveForm()) {
       try {
 
-
-        FirebaseUser user = await FirebaseAuth.instance.currentUser();
         final userDetails = UserDetails(
-          username: _username,
-         // phoneNumber: '+91${_phoneNumber}',
           gender: group==1 ? 'male':'female',
           dateOfBirth: Timestamp.fromDate(selectedDate),
-          joinedDate: Timestamp.fromDate(DateTime.now()),
-        //  aadharCard: _aadharNumber,
-         // panCard: _panCardNumber,
-          emailID: widget.email,
         );
 
-        await FirestoreService.instance.setData(
-          path: APIPath.userDetails(user.uid),
+        await FirestoreService.instance.updateData(
+          path: APIPath.userDetails(USER_ID),
           data: userDetails.toMap(),
         );
       //  GoToPage(context, LandingPage());

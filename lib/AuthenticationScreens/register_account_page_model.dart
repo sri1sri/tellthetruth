@@ -9,7 +9,7 @@ class RegisterAccountPageModel with RegisterAccountValidator, ChangeNotifier {
 
     this.email = '',
     this.password = '',
-    this.rePassword = '',
+    this.username = '',
     this.isLoading = false ,
     this.submitted = false
   });
@@ -18,7 +18,7 @@ class RegisterAccountPageModel with RegisterAccountValidator, ChangeNotifier {
 
   String email;
   String password;
-  String rePassword;
+  String username;
   bool isLoading;
   bool submitted;
 
@@ -39,14 +39,18 @@ class RegisterAccountPageModel with RegisterAccountValidator, ChangeNotifier {
 
   void updatePassword(String password) => updateWith(password: password);
 
-  void updateRePassword(String rePassword) => updateWith(rePassword: rePassword);
+  void updateUsername(String username) => updateWith(username: username);
 
   bool get canSubmit{
     return emailValidator.isValid(email)
         && passwordValidator.isValid(password)
-        && rePasswordValidator.isValid(rePassword)
-        && rePassword == password
+        && usernameValidator.isValid(username)
         && !isLoading;
+  }
+
+  String get usernameErrorText {
+    bool showErrorText = submitted && !usernameValidator.isValid(username);
+    return showErrorText ? invalidUsernameErrorText : null;
   }
 
   String get emailErrorText {
@@ -59,15 +63,10 @@ class RegisterAccountPageModel with RegisterAccountValidator, ChangeNotifier {
     return showErrorText ? invalidPasswordErrorText : null;
   }
 
-  String get rePasswordErrorText {
-    bool showErrorText = submitted && !rePasswordValidator.isValid(rePassword);
-    return showErrorText ? invalidRePasswordErrorText : null;
-  }
-
   void updateWith({
     String email,
     String password,
-    String rePassword,
+    String username,
     bool isLoading,
     bool submitted,
 
@@ -75,7 +74,7 @@ class RegisterAccountPageModel with RegisterAccountValidator, ChangeNotifier {
 
     this.email = email ?? this.email;
     this.password = password ?? this.password;
-    this.rePassword = rePassword ?? this.rePassword;
+    this.username = username ?? this.username;
     this.isLoading = isLoading ?? this.isLoading;
     this.submitted = submitted ?? this.submitted;
 

@@ -29,6 +29,6 @@ class RegisterAccountValidator {
   final StringValidator passwordValidator = NonEmptyStringValidator();
   final String invalidPasswordErrorText = 'Password cant be empty';
 
-  final StringValidator rePasswordValidator = NonEmptyStringValidator();
-  final String invalidRePasswordErrorText = 'Re-password cant be empty';
+  final StringValidator usernameValidator = NonEmptyStringValidator();
+  final String invalidUsernameErrorText = 'Username can\'t be empty';
 }

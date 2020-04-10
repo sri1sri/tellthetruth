@@ -48,6 +48,3 @@ var descriptionDark = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w900,
     fontSize: 16.0,decoration: TextDecoration.none);
-
-
-

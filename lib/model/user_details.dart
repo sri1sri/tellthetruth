@@ -53,12 +53,12 @@ class UserDetails{
 
   Map<String, dynamic> toMap(){
     return {
-      username != null ? 'employee_name': 'empty' : username,
-      gender != null ? 'employee_gender': 'empty' : gender,
-      dateOfBirth != null ? 'employee_date_of_birth': 'empty' : dateOfBirth,
-      joinedDate != null ? 'employee_join_date': 'empty' : joinedDate,
-      emailID != null ? 'user_email_id':'empty' :  emailID,
-      password != null ? 'user_email_id':'empty' :  password,
+      username != null ? 'username': 'empty' : username,
+      gender != null ? 'gender': 'empty' : gender,
+      dateOfBirth != null ? 'date_of_birth': 'empty' : dateOfBirth,
+      joinedDate != null ? 'join_date': 'empty' : joinedDate,
+      emailID != null ? 'email_id':'empty' :  emailID,
+      password != null ? 'password':'empty' :  password,
     };
   }
 

@@ -1,4 +1,3 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:clip_shadow/clip_shadow.dart';
 import'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,23 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
-//import 'package:tellthetruth/HomeScreens/home_page.dart';
-//import 'package:covidapp/AuthenticationScreens/Verify_Otp.dart';
-//import 'package:covidapp/Models/phone_number_page_model.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
-import 'package:tellthetruth/common_variables/app_functions.dart';
-import 'package:tellthetruth/common_widgets/button_widget/to_do_button.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/model/email_sign_in_change_model.dart';
-//import 'package:covidapp/firebase/auth.dart';
 
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/widgets/Style.dart';
-import 'package:tellthetruth/widgets/icon_button.dart';
 
 class EmailAuthenticationPage extends StatelessWidget {
 

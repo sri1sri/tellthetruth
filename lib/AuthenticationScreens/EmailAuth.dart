@@ -325,7 +325,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                     FlatButton(
                       child: GradientText(
                         'Sign Up',
-                        style: boldStyle,
+                        style: mediumStyle,
                         gradient: LinearGradient(
                           colors: [
                             Color(0XffFD8B1F),

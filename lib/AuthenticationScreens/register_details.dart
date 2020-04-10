@@ -148,13 +148,13 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Signup", style: titleDark),
+                  Text("Signup", ),
                   SizedBox(
                     height: 15.0,
                   ),
                   Text(
                     "Please Sign Up with your details.",
-                    style: descriptionDark,
+                    //style: descriptionDark,
                   ),
                 ],
               ),
@@ -253,7 +253,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                               children: <Widget>[
                                 Text(
                                   'Select your date of birth.',
-                                  style: contentDark,
+                                  //style: contentDark,
                                   textAlign: TextAlign.center,
                                 ),
                                 SizedBox(
@@ -276,11 +276,14 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                           ),
                                           Text(
                                               '${customFormat2.format(selectedDate)}',
-                                              style: subTitleDark),
+                                             // style: subTitleDark
+                                            ),
                                         ],
                                       ),
                                     ),
-                                    Text('Change', style: subTitleDark),
+                                    Text('Change',
+                                      //  style: subTitleDark
+                                    ),
                                   ],
                                 ),
                                 SizedBox(
@@ -309,7 +312,9 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                   Container(),
-                                  Text("SignUp", style: titleDark),
+                                  Text("SignUp",
+                                     // style: titleDark
+                                  ),
                                   Icon(
                                     Icons.arrow_forward,
                                     color: Colors.white,

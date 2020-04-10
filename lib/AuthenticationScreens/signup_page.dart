@@ -145,7 +145,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                         SizedBox(
                           width: 350.0,
                           height: 350.0,
-                          child: FlareActor("images/welcome.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'Animations'),
+                          child: FlareActor("images/walk.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'Untitled'),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,

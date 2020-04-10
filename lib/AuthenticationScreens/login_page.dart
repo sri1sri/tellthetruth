@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                               Center(
                                 child: Text(
                                   "Sign Up",
-                                  style: subTitleDark,
+                                  style: boldStyle,
                                 ),
                               )
                             ],
@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                               Center(
                                 child: Text(
                                   "Log In",
-                                  style: subTitleDark,
+                                  style: boldStyle,
                                 ),
                               )
                             ],

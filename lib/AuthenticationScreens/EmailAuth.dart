@@ -313,7 +313,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                   Container(),
                                 ])),
                         decoration: BoxDecoration(
-                            color: Colors.white70,
+                            color: Colors.white,
 //                            gradient: LinearGradient(
 //                                colors: <Color>[
 //                                Color(0XffFD8B1F),

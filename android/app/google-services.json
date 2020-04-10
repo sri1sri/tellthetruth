@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "629544029308",
+    "firebase_url": "https://telltheturth-795f4.firebaseio.com",
+    "project_id": "telltheturth-795f4",
+    "storage_bucket": "telltheturth-795f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629544029308:android:72181cad113cd4498c0df9",
+        "android_client_info": {
+          "package_name": "com.kondasri.tellthetruth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629544029308-2of42ste0gfm2d8rdhjijfserj964r9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kondasri.tellthetruth",
+            "certificate_hash": "f5fee4d035029e63dd033fdb8e147be38a7a2f88"
+          }
+        },
+        {
+          "client_id": "629544029308-joqnddtpqp389gah2km229s8tiu6v949.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJfu2SGsHEKuTwgLCFjMZihDIxcZrsxoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629544029308-joqnddtpqp389gah2km229s8tiu6v949.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "629544029308-klkf4jc5hj2hhm4k26v3iva6m02f6opm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kondasri.tellthetruth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

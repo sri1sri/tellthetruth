@@ -25,7 +25,7 @@ var contentLight = TextStyle(
 var descriptionLight = TextStyle(
     color: Color(0xFF253949),
     fontFamily: 'Montserrat',
-    fontWeight: FontWeight.w900,
+    fontWeight: FontWeight.w700,
     fontSize: 16.0,decoration: TextDecoration.none);
 
 var titleDark = TextStyle(

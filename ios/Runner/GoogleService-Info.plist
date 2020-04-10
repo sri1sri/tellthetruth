@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>629544029308-klkf4jc5hj2hhm4k26v3iva6m02f6opm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.629544029308-klkf4jc5hj2hhm4k26v3iva6m02f6opm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCkeF2CWjyRYBfKS9ZrOux5ywEHDETZDoE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>629544029308</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kondasri.tellthetruth</string>
+	<key>PROJECT_ID</key>
+	<string>telltheturth-795f4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>telltheturth-795f4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:629544029308:ios:f170c275280286928c0df9</string>
+	<key>DATABASE_URL</key>
+	<string>https://telltheturth-795f4.firebaseio.com</string>
+</dict>
+</plist>

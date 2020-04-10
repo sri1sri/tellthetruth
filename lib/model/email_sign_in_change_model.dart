@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
-//import 'package:tellthetruth/firebase/auth.dart';
+import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/model/validators.dart';
 
 class EmailSignInChangeModel with EmailAndPasswordValidator, ChangeNotifier {
   EmailSignInChangeModel({
-   // @required this.auth,
+    @required this.auth,
       this.email = '',
       this.password = '',
       this.isLoading = false,
       this.submitted = false
       });
 
-  //final AuthBase auth;
+  final AuthBase auth;
 
    String email;
    String password;
@@ -21,7 +21,7 @@ class EmailSignInChangeModel with EmailAndPasswordValidator, ChangeNotifier {
   Future<void> submit() async {
     updateWith(submitted: true, isLoading: true);
     try {
-      //await auth.signInWithEmail(email, password);
+      await auth.signInWithEmail(email, password);
     } catch (e) {
       updateWith(isLoading: false);
       rethrow;

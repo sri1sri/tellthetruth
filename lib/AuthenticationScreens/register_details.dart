@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //import 'package:tellthetruth/HomeScreens/dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gender_selection/gender_selection.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
 import 'package:tellthetruth/firebase/firestore_service.dart';
@@ -42,15 +43,12 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   final _formKey = GlobalKey<FormState>();
 
   int group = 1;
-
+  String selectedGender;
   DateTime selectedDate = DateTime.now();
   var customFormat = DateFormat("dd MMMM yyyy 'at' HH:mm:ss 'UTC+5:30'");
   var customFormat2 = DateFormat("dd MMMM yyyy");
 
   String _username;
-  String _phoneNumber;
-  String _aadharNumber;
-  String _panCardNumber;
 
   final FocusNode _usernameFocusNode = FocusNode();
   final FocusNode _phoneFocusNode = FocusNode();
@@ -186,275 +184,30 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color(0XFFEFF3F6),
-                              borderRadius: BorderRadius.circular(10.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                                    offset: Offset(3, 3),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 2.0),
-                                BoxShadow(
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
-                                    offset: Offset(-6, -2),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 3.0)
-                              ]),
-                          child: TextFormField(
-                            onChanged: (value) => _username = value,
-                            textInputAction: TextInputAction.next,
-                            autocorrect: true,
-                            obscureText: false,
-                            focusNode: _usernameFocusNode,
-                            onFieldSubmitted: (value) => value == ''
-                                ? null
-                                : FocusScope.of(context)
-                                    .requestFocus(_aadharFocusNode),
-                            decoration: new InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.account_circle,
-                                color: subBackgroundColor,
-                              ),
-                              labelText: "Enter username",
-                              border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                borderSide: new BorderSide(),
-                              ),
-                            ),
-                            style: new TextStyle(
-                              fontFamily: "Poppins",
-                            ),
-                            keyboardType: TextInputType.text,
-                            keyboardAppearance: Brightness.dark,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter username';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
+
+                    GenderSelection(
+                      maleText: "Male", //default Male
+                      femaleText: "Female", //default Female
+                      //linearGradient: pinkRedGradient,
+                      femaleImage: NetworkImage("https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
+                      maleImage: NetworkImage("https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
+                      selectedGenderIconBackgroundColor: Colors.indigo, // default red
+                      checkIconAlignment: Alignment.centerRight,   // default bottomRight
+                      selectedGenderCheckIcon: null, // default Icons.check
+                      onChanged: (Gender gender){
+                        print(gender);
+                      },
+                      equallyAligned: true,
+                      animationDuration: Duration(milliseconds: 400),
+                      isCircular: true, // default : true,
+                      isSelectedGenderIconCircular: true,
+                      opacityOfGradient: 0.6,
+                      padding: const EdgeInsets.all(3),
+                      size: 120, //default : 120
+
                     ),
                     SizedBox(
-                      height: 20.0,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color(0XFFEFF3F6),
-                              borderRadius: BorderRadius.circular(10.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                                    offset: Offset(3, 3),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 2.0),
-                                BoxShadow(
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
-                                    offset: Offset(-6, -2),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 3.0)
-                              ]),
-                          child: TextFormField(
-                            onChanged: (value) => _aadharNumber = value,
-                            textInputAction: TextInputAction.next,
-                            autocorrect: true,
-                            obscureText: false,
-                            focusNode: _aadharFocusNode,
-                            onFieldSubmitted: (value) => value == ''
-                                ? null
-                                : FocusScope.of(context)
-                                    .requestFocus(_phoneFocusNode),
-                            decoration: new InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.credit_card,
-                                color: subBackgroundColor,
-                              ),
-                              labelText: "Enter Aadhar number",
-                              border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                borderSide: new BorderSide(),
-                              ),
-                            ),
-                            style: new TextStyle(
-                              fontFamily: "Poppins",
-                            ),
-                            keyboardType: TextInputType.number,
-                            keyboardAppearance: Brightness.dark,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter Aadhar number';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color(0XFFEFF3F6),
-                              borderRadius: BorderRadius.circular(10.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                                    offset: Offset(3, 3),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 2.0),
-                                BoxShadow(
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
-                                    offset: Offset(-6, -2),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 3.0)
-                              ]),
-                          child: TextFormField(
-                            onChanged: (value) => _phoneNumber = value,
-                            textInputAction: TextInputAction.next,
-                            autocorrect: true,
-                            obscureText: false,
-                            focusNode: _phoneFocusNode,
-                            onFieldSubmitted: (value) => value == ''
-                                ? null
-                                : FocusScope.of(context)
-                                    .requestFocus(_panCardFocusNode),
-                            decoration: new InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.phone,
-                                color: subBackgroundColor,
-                              ),
-                              labelText: "Enter phone number",
-                              border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                borderSide: new BorderSide(),
-                              ),
-                            ),
-                            style: new TextStyle(
-                              fontFamily: "Poppins",
-                            ),
-                            keyboardType: TextInputType.number,
-                            keyboardAppearance: Brightness.dark,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter phone number';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Color(0XFFEFF3F6),
-                              borderRadius: BorderRadius.circular(10.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                                    offset: Offset(3, 3),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 2.0),
-                                BoxShadow(
-                                    color: Color.fromRGBO(255, 255, 255, 0.9),
-                                    offset: Offset(-6, -2),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 3.0)
-                              ]),
-                          child: TextFormField(
-                            onChanged: (value) => _panCardNumber = value,
-                            textInputAction: TextInputAction.done,
-                            autocorrect: true,
-                            obscureText: false,
-                            focusNode: _panCardFocusNode,
-                            onEditingComplete: () => _submit(),
-                            decoration: new InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.credit_card,
-                                color: subBackgroundColor,
-                              ),
-                              errorText: _panCardNumber == ''
-                                  ? 'Please enter PAN card number'
-                                  : null,
-                              labelText: "Enter PAN card number",
-                              border: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(5.0),
-                                borderSide: new BorderSide(),
-                              ),
-                            ),
-                            style: new TextStyle(
-                              fontFamily: "Poppins",
-                            ),
-                            keyboardType: TextInputType.number,
-                            keyboardAppearance: Brightness.dark,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Please enter PAN card number';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Gender",
-                          style: subTitleDark,
-                        ),
-                        Radio(
-                          value: 1,
-                          groupValue: group,
-                          onChanged: (T){
-                            print(T);
-                            setState(() {
-                              group=T;
-                            });
-                          },
-                        ),
-                        Text(
-                          "Male",
-                          style: descriptionDark,
-                        ),
-                        Radio(
-                          value: 2,
-                          groupValue: group,
-                          onChanged: (T){
-                            print(T);
-                            setState(() {
-                              group=T;
-                            });
-                          },
-                        ),
-                        Text(
-                          "Female",
-                          style: descriptionDark,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10.0,
+                      height: 30.0,
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 0, bottom: 10),
@@ -468,7 +221,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                               children: <Widget>[
                                 Text(
                                   'Select your date of birth.',
-                                  style: subTitleDark,
+                                  style: contentDark,
                                   textAlign: TextAlign.center,
                                 ),
                                 SizedBox(
@@ -511,15 +264,12 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Container(
-                          child: Text(""),
-                        ),
                         GestureDetector(
                           child: Container(
-                            width: 200,
+                            width: 400,
                             padding: EdgeInsets.all(15.0),
                             child: Center(
                                 child: Row(
@@ -536,7 +286,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                 ])),
                             decoration: BoxDecoration(
                                 color: backgroundColor,
-                                borderRadius: BorderRadius.circular(100.0),
+                                borderRadius: BorderRadius.circular(15.0),
                                 boxShadow: [
                                   BoxShadow(
                                       color: subBackgroundColor,

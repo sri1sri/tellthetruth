@@ -48,7 +48,9 @@ class F_SignupPage extends StatefulWidget {
 }
 
 class _F_SignupPageState extends State<F_SignupPage> {
-  
+  String _username;
+
+  final FocusNode _usernameFocusNode = FocusNode();
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
   final TextEditingController _rePasswordController = TextEditingController();
@@ -157,6 +159,61 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                   color: Color.fromRGBO(0, 0, 0, 0.1),
                                   offset: Offset(3, 3),
                                   blurRadius: 2.0,
+                                  spreadRadius: 2.0),
+                              BoxShadow(
+                                  color: Color.fromRGBO(255, 255, 255, 0.9),
+                                  offset: Offset(-6, -2),
+                                  blurRadius: 2.0,
+                                  spreadRadius: 3.0)
+                            ]),
+                        child: TextFormField(
+                          onChanged: (value) => _username = value,
+                          textInputAction: TextInputAction.next,
+                          autocorrect: true,
+                          obscureText: false,
+                          focusNode: _usernameFocusNode,
+//                          onFieldSubmitted: (value) => value == ''
+//                              ? null
+//                              : FocusScope.of(context)
+//                              .requestFocus(_aadharFocusNode),
+                          decoration: new InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.account_circle,
+                              color: subBackgroundColor,
+                            ),
+                            labelText: "Enter username",
+                            border: new OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(5.0),
+                              borderSide: new BorderSide(),
+                            ),
+                          ),
+                          style: new TextStyle(
+                            fontFamily: "Poppins",
+                          ),
+                          keyboardType: TextInputType.text,
+                          keyboardAppearance: Brightness.dark,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter username';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Color(0XFFEFF3F6),
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.1),
+                                  offset: Offset(3, 3),
+                                  blurRadius: 2.0,
                                   spreadRadius: 2.0
                               ),
                               BoxShadow(
@@ -251,61 +308,60 @@ class _F_SignupPageState extends State<F_SignupPage> {
                         ),
                       ),
                       SizedBox(height: 30.0,),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Color(0XFFEFF3F6),
-                            borderRadius: BorderRadius.circular(10.0),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(0, 0, 0, 0.1),
-                                  offset: Offset(3, 3),
-                                  blurRadius: 2.0,
-                                  spreadRadius: 2.0
-                              ),
-                              BoxShadow(
-                                  color: Color.fromRGBO(255, 255, 255, 0.9),
-                                  offset: Offset(-6, -2),
-                                  blurRadius: 2.0,
-                                  spreadRadius: 3.0
-                              )
-                            ]
-                        ),
-                        child: new TextFormField(
-                          controller: _rePasswordController,
-                          focusNode: _rePasswordFocusNode,
-                          obscureText: true,
-                          textInputAction: TextInputAction.done,
-                          onEditingComplete: _submit,
-                          onChanged: model.updateRePassword,
-                          decoration: new InputDecoration(
-                            errorText: model.rePasswordErrorText,
-                            enabled: model.isLoading == false,
-                            prefixIcon: Icon(
-                              Icons.lock_outline,
-                              color: subBackgroundColor,
-                            ),
-                            labelText: "Confirm Password",
-                            border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(5.0),
-                              borderSide: new BorderSide(),
-                            ),
-                          ),
-                          keyboardType: TextInputType.text,
-                          style: new TextStyle(
-                            fontFamily: "Poppins",
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 30.0,),
+//                      Container(
+//                        decoration: BoxDecoration(
+//                            color: Color(0XFFEFF3F6),
+//                            borderRadius: BorderRadius.circular(10.0),
+//                            boxShadow: [
+//                              BoxShadow(
+//                                  color: Color.fromRGBO(0, 0, 0, 0.1),
+//                                  offset: Offset(3, 3),
+//                                  blurRadius: 2.0,
+//                                  spreadRadius: 2.0
+//                              ),
+//                              BoxShadow(
+//                                  color: Color.fromRGBO(255, 255, 255, 0.9),
+//                                  offset: Offset(-6, -2),
+//                                  blurRadius: 2.0,
+//                                  spreadRadius: 3.0
+//                              )
+//                            ]
+//                        ),
+//                        child: new TextFormField(
+//                          controller: _rePasswordController,
+//                          focusNode: _rePasswordFocusNode,
+//                          obscureText: true,
+//                          textInputAction: TextInputAction.done,
+//                          onEditingComplete: _submit,
+//                          onChanged: model.updateRePassword,
+//                          decoration: new InputDecoration(
+//                            errorText: model.rePasswordErrorText,
+//                            enabled: model.isLoading == false,
+//                            prefixIcon: Icon(
+//                              Icons.lock_outline,
+//                              color: subBackgroundColor,
+//                            ),
+//                            labelText: "Confirm Password",
+//                            border: new OutlineInputBorder(
+//                              borderRadius: new BorderRadius.circular(5.0),
+//                              borderSide: new BorderSide(),
+//                            ),
+//                          ),
+//                          keyboardType: TextInputType.text,
+//                          style: new TextStyle(
+//                            fontFamily: "Poppins",
+//                          ),
+//                        ),
+//                      ),
+//                      SizedBox(height: 30.0,),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Row(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(child: Text(""),),
                             GestureDetector(
                               child: Container(
-                                width: 200,
+                                width: 400,
                                 padding: EdgeInsets.all(15.0),
                                 child: Center(
                                     child: Row(
@@ -318,7 +374,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                         ])),
                                 decoration: BoxDecoration(
                                     color: backgroundColor,
-                                    borderRadius: BorderRadius.circular(100.0),
+                                    borderRadius: BorderRadius.circular(15.0),
                                     boxShadow: [
                                       BoxShadow(
                                           color: subBackgroundColor,

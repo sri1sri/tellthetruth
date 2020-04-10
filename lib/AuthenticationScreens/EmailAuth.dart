@@ -111,26 +111,10 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 50,
-                ),
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        child: Icon(Icons.arrow_back_ios,size: 40,color: Colors.black54,),
-                        onTap: (){Navigator.pop(context, true);},
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20.0,),
+                SizedBox(height: 70,),
                 GradientText(
                   'LogIn',
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 50.0,decoration: TextDecoration.none),
+                  style: heavyStyle,
                   gradient: LinearGradient(
                     colors: [
                       Color(0XffFD8B1F),
@@ -142,7 +126,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                   ),
                 ),
                 SizedBox(height: 15.0,),
-                Text("Please enter your Email Id and Password to continue.",style: descriptionDark,),
+                Text("Please enter your login details.",style: mediumStyle,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -193,7 +177,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                         color: subBackgroundColor,
                                       ),
                                       labelText: "Enter your email",
-                                      labelStyle: descriptionLight,
+                                      labelStyle: regularStyle,
                                       errorText: model.emailErrorText,
                                       enabled: model.isLoading == false,
                                       //fillColor: Colors.redAccent,
@@ -242,7 +226,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                         color: subBackgroundColor,
                                       ),
                                       labelText: "Enter your Password",
-                                      labelStyle: descriptionLight,
+                                      labelStyle: regularStyle,
                                       border: new OutlineInputBorder(
                                         borderRadius: new BorderRadius.circular(5.0),
                                         borderSide: new BorderSide(),
@@ -268,9 +252,8 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                   ],
                 ),
 
-
                 SizedBox(
-                  height: 20,
+                  height: 0,
                 ),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -286,10 +269,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                   Container(),
                                   GradientText(
                                     'Login',
-                                    style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 30.0,decoration: TextDecoration.none),
+                                    style: boldStyle,
                                     gradient: LinearGradient(
                                       colors: [
                                         Color(0XffFD8B1F),
@@ -339,17 +319,13 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                        "Don't have an account?",
-                        style: descriptionDark
+                    Text("Don't have an account?",
+                        style: mediumStyle
                     ),
                     FlatButton(
                       child: GradientText(
                         'Sign Up',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 25.0,decoration: TextDecoration.none),
+                        style: boldStyle,
                         gradient: LinearGradient(
                           colors: [
                             Color(0XffFD8B1F),
@@ -374,7 +350,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
               ],
             ),

@@ -21,6 +21,8 @@ import 'package:tellthetruth/model/validators.dart';
 
 import 'package:provider/provider.dart';
 
+import 'EmailAuth.dart';
+
 class SignupPage extends StatelessWidget {
 
   @override
@@ -50,13 +52,9 @@ class F_SignupPage extends StatefulWidget {
 }
 
 class _F_SignupPageState extends State<F_SignupPage> {
-  String _username;
 
-  final FocusNode _usernameFocusNode = FocusNode();
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
-  final TextEditingController _rePasswordController = TextEditingController();
-  final FocusNode _rePasswordFocusNode = FocusNode();
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _passwordFocusNode = FocusNode();
   
@@ -66,9 +64,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
   void dispose() {
     _emailController.dispose();
     _emailController.dispose();
-    _rePasswordController.dispose();
     _passwordController.dispose();
-    _rePasswordFocusNode.dispose();
     _passwordFocusNode.dispose();
     super.dispose();
   }
@@ -76,9 +72,9 @@ class _F_SignupPageState extends State<F_SignupPage> {
   Future<void> _submit() async {
     try {
       await model.submit();
-      GoToPage(context, RegisterDetails(email: _emailController.text,));
+      GoToPage(context, RegisterDetails());
     } on PlatformException catch (e) {
-      if(_emailController.text != '' && _passwordController.text != '' && _rePasswordController.text != '') {
+      if(_emailController.text != '' && _passwordController.text != '') {
         PlatformExceptionAlertDialog(
           title: 'SignUp Failed',
           exception: e,
@@ -91,14 +87,6 @@ class _F_SignupPageState extends State<F_SignupPage> {
     final newFocus = model.emailValidator.isValid(model.email)
         ? _passwordFocusNode
         : _emailFocusNode;
-
-    FocusScope.of(context).requestFocus(newFocus);
-  }
-
-  void _passwordEditingComplete() {
-    final newFocus = model.passwordValidator.isValid(model.password)
-        ? _rePasswordFocusNode
-        : _passwordFocusNode;
 
     FocusScope.of(context).requestFocus(newFocus);
   }
@@ -134,25 +122,11 @@ class _F_SignupPageState extends State<F_SignupPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(
-                      height: 50,
+                      height: 70,
                     ),
-                    Container(
-                      child: Row(
-                        children: <Widget>[
-                          GestureDetector(
-                            child: Icon(Icons.arrow_back_ios,size: 40,color: Colors.black54,),
-                            onTap: (){Navigator.pop(context, true);},
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20.0,),
                     GradientText(
-                      'Signup',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 50.0,decoration: TextDecoration.none),
+                      'Sign Up',
+                      style: heavyStyle,
                       gradient: LinearGradient(
                         colors: [
                           Color(0XffFD8B1F),
@@ -164,7 +138,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                       ),
                     ),
                     SizedBox(height: 15.0,),
-                    Text("Please enter your Email Id and Password to continue.",style: descriptionDark,),
+                    Text("Please register with your details.",style: mediumStyle,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -214,8 +188,8 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                             Icons.mail,
                                             color: subBackgroundColor,
                                           ),
-                                          labelText: "Enter your email",
-                                          labelStyle: descriptionLight,
+                                          labelText: "Register your email",
+                                          labelStyle: regularStyle,
                                           errorText: model.emailErrorText,
                                           enabled: model.isLoading == false,
                                           //fillColor: Colors.redAccent,
@@ -251,12 +225,12 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                       ),
                                       child: new TextFormField(
                                         controller: _passwordController,
-                                        textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.done,
                                         obscureText: true,
                                         focusNode: _passwordFocusNode,
                                         autocorrect: false,
                                         keyboardType: TextInputType.emailAddress,
-                                        onEditingComplete: () => _passwordEditingComplete(),
+                                        onEditingComplete: () => _submit(),
                                         onChanged: model.updatePassword,
                                         decoration: new InputDecoration(
                                           prefixIcon: Icon(
@@ -264,7 +238,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                             color: subBackgroundColor,
                                           ),
                                           labelText: "Enter your Password",
-                                          labelStyle: descriptionLight,
+                                          labelStyle: regularStyle,
                                           errorText: model.passwordErrorText,
                                           enabled: model.isLoading == false,
                                           //fillColor: Colors.redAccent,
@@ -310,10 +284,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                       Container(),
                                       GradientText(
                                         'Continue',
-                                        style: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 30.0,decoration: TextDecoration.none),
+                                        style: boldStyle,
                                         gradient: LinearGradient(
                                           colors: [
                                             Color(0XffFD8B1F),
@@ -365,15 +336,12 @@ class _F_SignupPageState extends State<F_SignupPage> {
                       children: <Widget>[
                         Text(
                             "Already have an account?",
-                            style: descriptionDark
+                            style: mediumStyle
                         ),
                         FlatButton(
                           child: GradientText(
-                            'Sign In',
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 25.0,decoration: TextDecoration.none),
+                            'Login',
+                            style: boldStyle,
                             gradient: LinearGradient(
                               colors: [
                                 Color(0XffFD8B1F),
@@ -389,8 +357,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    EmailAuthenticationPage(
-                                    ),
+                                    EmailAuthentication(),
                               ),
                             );
                           },
@@ -398,7 +365,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                       ],
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 20,
                     ),
                   ],
                 ),

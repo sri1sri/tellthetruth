@@ -37,6 +37,9 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 
   final _formKey = GlobalKey<FormState>();
 
+  String _username;
+  final FocusNode _usernameFocusNode = FocusNode();
+
   int group = 1;
   String selectedGender;
   DateTime selectedDate = DateTime.now();
@@ -187,10 +190,6 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                             autocorrect: true,
                             obscureText: false,
                             focusNode: _usernameFocusNode,
-                          onFieldSubmitted: (value) => value == ''
-                              ? null
-                              : FocusScope.of(context)
-                              .requestFocus(_aadharFocusNode),
                             decoration: new InputDecoration(
                               prefixIcon: Icon(
                                 Icons.account_circle,

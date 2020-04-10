@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/AuthenticationScreens/EmailAuth.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
@@ -150,9 +151,18 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Center(
-                                child: Text(
-                                  "Sign Up",
+                                child: GradientText(
+                                  'Sign Up',
                                   style: boldStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
                                 ),
                               )
                             ],
@@ -173,7 +183,13 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: backgroundColor,
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft, end: Alignment.bottomRight,
+                                  colors: [
+                                    Color(0XffFD8B1F),
+                                    Color(0XffD152E0),
+                                    Color(0Xff30D0DB),
+                                  ]),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Row(
@@ -182,7 +198,11 @@ class _LoginPageState extends State<LoginPage> {
                               Center(
                                 child: Text(
                                   "Log In",
-                                  style: boldStyle,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 26.0,decoration: TextDecoration.none),
                                 ),
                               )
                             ],

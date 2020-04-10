@@ -64,7 +64,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
   Future<void> _submit() async {
     try {
       await model.submit();
-      GoToPage(context, RegisterDetails());
+      GoToPage(context, RegisterDetails(email: _emailController.text, password: _passwordController.text,));
     } on PlatformException catch (e) {
       if(_emailController.text != '' && _passwordController.text != '') {
         PlatformExceptionAlertDialog(

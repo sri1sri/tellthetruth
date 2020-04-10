@@ -6,8 +6,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gender_selection/gender_selection.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
+import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
+import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/firebase/firestore_service.dart';
 import 'package:tellthetruth/model/user_details.dart';
 import 'package:intl/intl.dart';
@@ -50,8 +52,11 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   final FocusNode _usernameFocusNode = FocusNode();
 
   String selectedGender;
+
   DateTime selectedDate = DateTime.now();
   var customFormat2 = DateFormat("dd MMMM yyyy");
+
+  bool isLoading = false;
 
   Future<Null> showPicker(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -62,7 +67,6 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
     );
     if (picked != null) {
       setState(() {
-        // print(customFormat.format(picked));
         selectedDate = picked;
       });
     }
@@ -82,42 +86,73 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
     return false;
   }
 
-  Future<void> _submit() async {
+  Future<void> _saveData() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    print(Timestamp.fromDate(DateTime.now()));
-    print(Timestamp.fromDate(selectedDate));
-    print(user.uid);
+
+    final userDetails = UserDetails(
+      emailID: widget.email,
+      password: widget.password,
+      joinedDate: Timestamp.fromDate(DateTime.now()),
+      username: _username,
+      gender: selectedGender,
+      dateOfBirth: Timestamp.fromDate(selectedDate),
+    );
+
+    await FirestoreService.instance.setData(
+    path: APIPath.userDetails(user.uid),
+    data: userDetails.toMap(),
+    );
+    GoToPage(context, LandingPage());
+
+  }
+
+  Future<void> _submit() async {
+
+    setState(() {
+      isLoading = true;
+    });
 
     if (_validateAndSaveForm()) {
       if (selectedGender != null &&
           customFormat2.format(selectedDate) !=
               customFormat2.format(DateTime.now())) {
         try {
-
-          final userDetails = UserDetails(
-            emailID: widget.email,
-            password: widget.password,
-            joinedDate: Timestamp.fromDate(DateTime.now()),
-            username: _username,
-            gender: selectedGender,
-            dateOfBirth: Timestamp.fromDate(selectedDate),
-          );
-
-          await FirestoreService.instance.setData(
-            path: APIPath.userDetails(user.uid),
-            data: userDetails.toMap(),
-          );
-           GoToPage(context, LandingPage());
+          await Firestore.instance
+              .collection('${API_SUFFIX}users')
+              .where('username',
+              isEqualTo: _username)
+              .snapshots()
+              .listen((data) => {
+          if (data.documents.length == 0){
+            _saveData(),
+          }else{
+              setState(() {
+            isLoading = false;
+          }),
+        print('username already taken'),
+          }
+          });
         } on PlatformException catch (e) {
           PlatformExceptionAlertDialog(
             title: 'Operation failed',
             exception: e,
           ).show(context);
+          setState(() {
+            isLoading = false;
+          });
         }
       } else {
         print('please fill details corretly');
+        setState(() {
+          isLoading = false;
+        });
       }
+    }else{
+      setState(() {
+        isLoading = false;
+      });
     }
+
   }
 
   @override
@@ -137,271 +172,276 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 70,
-              ),
-              GradientText(
-                'Register',
-                style: heavyStyle,
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0XffFD8B1F),
-                    Color(0XffD152E0),
-                    Color(0Xff30D0DB),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+    return TransparentLoading(
+      loading: isLoading,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 70,
                 ),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              Text(
-                "Please register with your details.",
-                style: mediumStyle,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 300.0,
-                    height: 300.0,
-                    child: FlareActor("images/welcome.flr",
-                        alignment: Alignment.center,
-                        fit: BoxFit.contain,
-                        animation: 'Animations'),
+                GradientText(
+                  'Register',
+                  style: heavyStyle,
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0XffFD8B1F),
+                      Color(0XffD152E0),
+                      Color(0Xff30D0DB),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                  Form(
-                    key: _formKey,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 10.0, right: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                //  Text("Username",style: mediumStyle,),
-                                // SizedBox(height: 20,),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Color.fromRGBO(0, 0, 0, 0.1),
-                                            offset: Offset(3, 3),
-                                            blurRadius: 1.0,
-                                            spreadRadius: 2.0),
-                                        BoxShadow(
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0.9),
-                                            offset: Offset(-2, -2),
-                                            blurRadius: 1.0,
-                                            spreadRadius: 2.0)
-                                      ]),
-                                  child: new TextFormField(
-                                    onChanged: (value) => _username = value,
-                                    textInputAction: TextInputAction.next,
-                                    autocorrect: true,
-                                    obscureText: false,
-                                    focusNode: _usernameFocusNode,
-                                    decoration: new InputDecoration(
-                                      prefixIcon: Icon(
-                                        Icons.account_circle,
-                                        color: subBackgroundColor,
-                                      ),
-                                      labelText: "Enter username",
-                                      labelStyle: regularStyle,
-                                      border: new OutlineInputBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(5.0),
-                                        borderSide: new BorderSide(),
-                                      ),
-                                    ),
-                                    style: new TextStyle(
-                                      fontFamily: "Poppins",
-                                    ),
-                                    keyboardType: TextInputType.text,
-                                    keyboardAppearance: Brightness.dark,
-                                    validator: (value) {
-                                      print(value);
-                                      if (value.isEmpty) {
-                                        return 'Please enter username';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                ),
-                                Text(
-                                  "Date Of Birth",
-                                  style: mediumStyle,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 0, bottom: 10),
-                                  child: Container(
-                                    child: RaisedButton(
-                                      color: Colors.white,
-                                      child: Container(
-                                        height: 60,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: <Widget>[
-                                                Container(
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Icon(
-                                                        Icons.date_range,
-                                                        size: 18.0,
-                                                        color: backgroundColor,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Text(
-                                                          customFormat2.format(
-                                                                      selectedDate) ==
-                                                                  customFormat2
-                                                                      .format(DateTime
-                                                                          .now())
-                                                              ? 'Add birthday'
-                                                              : '${customFormat2.format(selectedDate)}',
-                                                          style: regularStyle),
-                                                    ],
-                                                  ),
-                                                ),
-                                                GradientText(
-                                                  'Change',
-                                                  style: mediumStyle,
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0XffFD8B1F),
-                                                      Color(0XffD152E0),
-                                                      Color(0Xff30D0DB),
-                                                    ],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                          ],
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Text(
+                  "Please register with your details.",
+                  style: mediumStyle,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 300.0,
+                      height: 300.0,
+                      child: FlareActor("images/welcome.flr",
+                          alignment: Alignment.center,
+                          fit: BoxFit.contain,
+                          animation: 'Animations'),
+                    ),
+                    Form(
+                      key: _formKey,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10.0, right: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  //  Text("Username",style: mediumStyle,),
+                                  // SizedBox(height: 20,),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Color.fromRGBO(0, 0, 0, 0.1),
+                                              offset: Offset(3, 3),
+                                              blurRadius: 1.0,
+                                              spreadRadius: 2.0),
+                                          BoxShadow(
+                                              color: Color.fromRGBO(
+                                                  255, 255, 255, 0.9),
+                                              offset: Offset(-2, -2),
+                                              blurRadius: 1.0,
+                                              spreadRadius: 2.0)
+                                        ]),
+                                    child: new TextFormField(
+                                      onChanged: (value) => _username = value,
+                                      textInputAction: TextInputAction.next,
+                                      autocorrect: true,
+                                      obscureText: false,
+                                      focusNode: _usernameFocusNode,
+                                      decoration: new InputDecoration(
+                                        prefixIcon: Icon(
+                                          Icons.account_circle,
+                                          color: subBackgroundColor,
+                                        ),
+                                        labelText: "Enter username",
+                                        labelStyle: regularStyle,
+                                        border: new OutlineInputBorder(
+                                          borderRadius:
+                                              new BorderRadius.circular(5.0),
+                                          borderSide: new BorderSide(),
                                         ),
                                       ),
-                                      onPressed: () => showPicker(context),
+                                      style: new TextStyle(
+                                        fontFamily: "Poppins",
+                                      ),
+                                      keyboardType: TextInputType.text,
+                                      keyboardAppearance: Brightness.dark,
+                                      validator: (value) {
+                                        print(value);
+                                        if (value.isEmpty) {
+                                          return 'Please enter username';
+                                        }
+                                        return null;
+                                      },
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                ),
-                                Text(
-                                  "Gender",
-                                  style: mediumStyle,
-                                ),
+                                  SizedBox(
+                                    height: 30.0,
+                                  ),
+                                  Text(
+                                    "Date Of Birth",
+                                    style: mediumStyle,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 0, bottom: 10),
+                                    child: Container(
+                                      child: RaisedButton(
+                                        color: Colors.white,
+                                        child: Container(
+                                          height: 60,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: <Widget>[
+                                                  Container(
+                                                    child: Row(
+                                                      children: <Widget>[
+                                                        Icon(
+                                                          Icons.date_range,
+                                                          size: 18.0,
+                                                          color: backgroundColor,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                            customFormat2.format(
+                                                                        selectedDate) ==
+                                                                    customFormat2
+                                                                        .format(DateTime
+                                                                            .now())
+                                                                ? 'Add birthday'
+                                                                : '${customFormat2.format(selectedDate)}',
+                                                            style: regularStyle),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  GradientText(
+                                                    'Change',
+                                                    style: mediumStyle,
+                                                    gradient: LinearGradient(
+                                                      colors: [
+                                                        Color(0XffFD8B1F),
+                                                        Color(0XffD152E0),
+                                                        Color(0Xff30D0DB),
+                                                      ],
+                                                      begin: Alignment.topLeft,
+                                                      end: Alignment.bottomRight,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          FocusScope.of(context).unfocus();
+                                          showPicker(context);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30.0,
+                                  ),
+                                  Text(
+                                    "Gender",
+                                    style: mediumStyle,
+                                  ),
 //                              SizedBox(height: 20,),
-                                GenderSelection(
-                                  maleText: "Male", //default Male
-                                  femaleText: "Female", //default Female
-                                  //linearGradient: pinkRedGradient,
-                                  femaleImage: NetworkImage(
-                                      "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
-                                  maleImage: NetworkImage(
-                                      "https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
-                                  selectedGenderIconBackgroundColor:
-                                      Colors.green, // default red
-                                  checkIconAlignment: Alignment
-                                      .centerRight, // default bottomRight
-                                  selectedGenderCheckIcon:
-                                      null, // default Icons.check
-                                  onChanged: (gender) {
-                                    selectedGender =
-                                        gender.toString().substring(7);
-                                  },
-                                  equallyAligned: true,
-                                  animationDuration:
-                                      Duration(milliseconds: 400),
-                                  isCircular: true, // default : true,
-                                  isSelectedGenderIconCircular: true,
-                                  opacityOfGradient: 0.4,
-                                  padding: const EdgeInsets.all(3),
-                                  size: 120, //default : 120
-                                ),
-                                SizedBox(
-                                  height: 30.0,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    child: Text(""),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      width: 200,
-                      padding: EdgeInsets.all(15.0),
-                      child: Center(
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                            Container(),
-                            GradientText(
-                              'Submit',
-                              style: boldStyle,
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0XffFD8B1F),
-                                  Color(0XffD152E0),
-                                  Color(0Xff30D0DB),
+                                  GenderSelection(
+                                    maleText: "Male", //default Male
+                                    femaleText: "Female", //default Female
+                                    //linearGradient: pinkRedGradient,
+                                    femaleImage: NetworkImage(
+                                        "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
+                                    maleImage: NetworkImage(
+                                        "https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
+                                    selectedGenderIconBackgroundColor:
+                                        Colors.green, // default red
+                                    checkIconAlignment: Alignment
+                                        .centerRight, // default bottomRight
+                                    selectedGenderCheckIcon:
+                                        null, // default Icons.check
+                                    onChanged: (gender) {
+                                      selectedGender =
+                                          gender.toString().substring(7);
+                                    },
+                                    equallyAligned: true,
+                                    animationDuration:
+                                        Duration(milliseconds: 400),
+                                    isCircular: true, // default : true,
+                                    isSelectedGenderIconCircular: true,
+                                    opacityOfGradient: 0.4,
+                                    padding: const EdgeInsets.all(3),
+                                    size: 120, //default : 120
+                                  ),
+                                  SizedBox(
+                                    height: 30.0,
+                                  ),
                                 ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.blue,
-                              size: 30,
-                            ),
-                            Container(),
-                          ])),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Text(""),
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 200,
+                        padding: EdgeInsets.all(15.0),
+                        child: Center(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                              Container(),
+                              GradientText(
+                                'Submit',
+                                style: boldStyle,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0XffFD8B1F),
+                                    Color(0XffD152E0),
+                                    Color(0Xff30D0DB),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.blue,
+                                size: 30,
+                              ),
+                              Container(),
+                            ])),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
 //                            gradient: LinearGradient(
 //                                colors: <Color>[
 //                                Color(0XffFD8B1F),
@@ -409,73 +449,74 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 //                            Color(0Xff30D0DB),
 //                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
-                          borderRadius: BorderRadius.circular(15.0),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(2, 1),
-                                blurRadius: 6.0,
-                                spreadRadius: 1.0),
-                          ]),
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(2, 1),
+                                  blurRadius: 6.0,
+                                  spreadRadius: 1.0),
+                            ]),
+                      ),
+                      onTap: () {
+                        _submit();
+                      },
                     ),
-                    onTap: () {
-                      _submit();
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text:
-                              'By continuing, You accept the Terms & Conditions Of the',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w500,
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text:
+                                'By continuing, You accept the Terms & Conditions Of the',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' Terms of use',
-                          style: TextStyle(
-                            color: backgroundColor,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w700,
+                          TextSpan(
+                            text: ' Terms of use',
+                            style: TextStyle(
+                              color: backgroundColor,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' and',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w500,
+                          TextSpan(
+                            text: ' and',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: ' Privacy Policies',
-                          style: TextStyle(
-                            color: backgroundColor,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w700,
+                          TextSpan(
+                            text: ' Privacy Policies',
+                            style: TextStyle(
+                              color: backgroundColor,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
       ),

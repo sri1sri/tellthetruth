@@ -46,23 +46,20 @@ class _F_ProfilePageState extends State<F_ProfilePage> {
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new Scaffold(
-          backgroundColor:Colors.white,
-          body: SingleChildScrollView(
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 200,),
-                    Text("profile"),
-
-                  ],
-                ),
-              ),
-            ),
-          ),
-        )
+            backgroundColor:Colors.white,
+            body: Container(
+              decoration: new BoxDecoration(
+                  gradient: new LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0XffFD8B1F),
+                      Color(0XffD152E0),
+                      Color(0Xff30D0DB),
+                    ],
+                  )),
+            )
+        ),
     );
 
   }

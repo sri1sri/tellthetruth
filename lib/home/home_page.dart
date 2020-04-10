@@ -12,7 +12,11 @@ import 'package:tellthetruth/home/Profile.dart';
 import 'package:tellthetruth/home/Settings.dart';
 
 import '../landing_page.dart';
-
+const backgroundGradient = LinearGradient(colors: <Color>[
+  Color(0XffFD8B1F),
+  Color(0XffD152E0),
+  Color(0Xff30D0DB),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
 class HomePage extends StatelessWidget {
 
   @override
@@ -72,15 +76,14 @@ class _F_HomePageState extends State<F_HomePage> {
               index: pageIndex,
               height: 70.0,
               items: <Widget>[
+                Icon(Icons.dashboard, size: 30),
                 Icon(Icons.add, size: 30),
-                Icon(Icons.list, size: 30),
-                Icon(Icons.compare_arrows, size: 30),
-                Icon(Icons.call_split, size: 30),
-                Icon(Icons.perm_identity, size: 30),
+                Icon(Icons.account_circle, size: 30),
+                Icon(Icons.settings, size: 30),
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: Color(0Xff30D0DB),
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (int tappedIndex) {
@@ -90,7 +93,16 @@ class _F_HomePageState extends State<F_HomePage> {
               },
             ),
             body: Container(
-              color: Colors.blueAccent,
+              decoration: new BoxDecoration(
+                  gradient: new LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0XffFD8B1F),
+                      Color(0XffD152E0),
+                      Color(0Xff30D0DB),
+                    ],
+                  )),
               child: Center(
                 child: _showPage,
 

@@ -1,7 +1,10 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:clip_shadow/clip_shadow.dart';
 import'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
 //import 'package:tellthetruth/HomeScreens/home_page.dart';
 //import 'package:covidapp/AuthenticationScreens/Verify_Otp.dart';
@@ -18,6 +21,8 @@ import 'package:tellthetruth/model/email_sign_in_change_model.dart';
 //import 'package:covidapp/firebase/auth.dart';
 
 import 'package:provider/provider.dart';
+import 'package:tellthetruth/widgets/Style.dart';
+import 'package:tellthetruth/widgets/icon_button.dart';
 
 class EmailAuthenticationPage extends StatelessWidget {
 
@@ -109,231 +114,259 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
     return TransparentLoading(
       loading: widget.model.isLoading,
       child:Scaffold(
-        body:Padding(
-          padding: const EdgeInsets.only(top:80.0,bottom: 20,left: 15,right: 15),
-          child: SingleChildScrollView(
+        backgroundColor: Color(0XffCDDEEC),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        child: Icon(Icons.arrow_back,size: 40,),
-                        onTap: (){Navigator.pop(context, true);},
-                      )
-                    ],
-                  ),
+                SizedBox(
+                  height: 50,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text("Login",style: titleDark,),
-                    SizedBox(height: 15.0,),
-                    Text("Please enter your Email Id and Password to continue.",style: descriptionDark,),
-                  ],
-                ),
+                GestureDetector(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey, //                   <--- border color
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                        color: Color(0xFFEFF4F8),
+                        boxShadow: softUiShadow,
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          size: 25,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
 
-                Column(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Color(0XFFEFF3F6),
-                          borderRadius: BorderRadius.circular(10.0),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, 0.1),
-                                offset: Offset(3, 3),
-                                blurRadius: 2.0,
-                                spreadRadius: 2.0
-                            ),
-                            BoxShadow(
-                                color: Color.fromRGBO(255, 255, 255, 0.9),
-                                offset: Offset(-6, -2),
-                                blurRadius: 2.0,
-                                spreadRadius: 3.0
-                            )
-                          ]
-                      ),
-                      child: new TextFormField(
-                        controller: _emailController,
-                        textInputAction: TextInputAction.next,
-                        obscureText: false,
-                        focusNode: _emailFocusNode,
-                        autocorrect: false,
-                        keyboardType: TextInputType.emailAddress,
-                        onEditingComplete: () => _emailEditingComplete(),
-                        onChanged: model.updateEmail,
-                        decoration: new InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.mail,
-                            color: subBackgroundColor,
-                          ),
-                          labelText: "Enter your email",
-                          errorText: model.emailErrorText,
-                          enabled: model.isLoading == false,
-                          //fillColor: Colors.redAccent,
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            borderSide: new BorderSide(),
-                          ),
-                        ),
-                        style: new TextStyle(
-                          fontFamily: "Poppins",
-                        ),
-                      ),
+
+                    //CustomIconButton(iconName: Icons.arrow_back_ios,),
+                  onTap:() {Navigator.pop(context, true);},
+                ),
+                ClipShadow(
+                  clipper: RoundedDiagonalPathClipper(),
+                  boxShadow: softUiShadow,
+                  child: Container(
+                    height: 450,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(36.0)),
+                      color: Colors.white70,
                     ),
-                    SizedBox(height: 30.0,),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Color(0XFFEFF3F6),
-                          borderRadius: BorderRadius.circular(10.0),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, 0.1),
-                                offset: Offset(3, 3),
-                                blurRadius: 2.0,
-                                spreadRadius: 2.0
-                            ),
-                            BoxShadow(
-                                color: Color.fromRGBO(255, 255, 255, 0.9),
-                                offset: Offset(-6, -2),
-                                blurRadius: 2.0,
-                                spreadRadius: 3.0
-                            )
-                          ]
-                      ),
-                      child: new TextFormField(
-                        controller: _passwordController,
-                        focusNode: _passwordFocusNode,
-                        obscureText: true,
-                        textInputAction: TextInputAction.done,
-                        onEditingComplete: _submit,
-                        onChanged: model.updatePassword,
-                        decoration: new InputDecoration(
-                          errorText: model.passwordErrorText,
-                          enabled: model.isLoading == false,
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: subBackgroundColor,
-                          ),
-                          labelText: "Enter your Password",
-                          border: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(5.0),
-                            borderSide: new BorderSide(),
-                          ),
-                        ),
-                        keyboardType: TextInputType.text,
-                        style: new TextStyle(
-                          fontFamily: "Poppins",
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 30.0,),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Container(child: Text(""),),
-                        GestureDetector(
-                          child: Container(
-                            width: 200,
-                            padding: EdgeInsets.all(15.0),
-                            child: Center(
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Container(),
-                                      Text("Login",style: titleDark),
-                                      Icon(Icons.arrow_forward,color: Colors.white,),
-                                      Container(),
-                                    ])),
-                            decoration: BoxDecoration(
-                                color: backgroundColor,
-                                borderRadius: BorderRadius.circular(100.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: subBackgroundColor,
-                                      offset: Offset(2,1),
-                                      blurRadius: 6.0,
-                                      spreadRadius: 1.0
-                                  ),
-
-                                ]
-                            ),
-                          ),
-                          onTap: (){
-
-                            _submit();
-                          },
+                        SizedBox(
+                          height: 70,
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Welcome",style: contentDark),
+                              Text("Login",style: bigTitleStyle,),
+                            ],),
+                        ),
+                        SizedBox(
+                          height: 60,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                           Expanded(
+                             child: Padding(
+                               padding: const EdgeInsets.only(left:20.0,right: 20),
+                               child: Column(
+                                 children: <Widget>[
+                                   Container(
+                                     decoration: BoxDecoration(
+                                         color: Color(0XFFEFF3F6),
+                                         borderRadius: BorderRadius.circular(10.0),
+                                         boxShadow: [
+                                           BoxShadow(
+                                               color: Color.fromRGBO(0, 0, 0, 0.1),
+                                               offset: Offset(3, 3),
+                                               blurRadius: 2.0,
+                                               spreadRadius: 2.0
+                                           ),
+                                           BoxShadow(
+                                               color: Color.fromRGBO(255, 255, 255, 0.9),
+                                               offset: Offset(-2, -2),
+                                               blurRadius: 1.0,
+                                               spreadRadius: 2.0
+                                           )
+                                         ]
+                                     ),
+                                     child: new TextFormField(
+                                       controller: _emailController,
+                                       textInputAction: TextInputAction.next,
+                                       obscureText: false,
+                                       focusNode: _emailFocusNode,
+                                       autocorrect: false,
+                                       keyboardType: TextInputType.emailAddress,
+                                       onEditingComplete: () => _emailEditingComplete(),
+                                       onChanged: model.updateEmail,
+                                       decoration: new InputDecoration(
+                                         prefixIcon: Icon(
+                                           Icons.mail,
+                                           color: subBackgroundColor,
+                                         ),
+                                         labelText: "Enter your email",
+                                         errorText: model.emailErrorText,
+                                         enabled: model.isLoading == false,
+                                         //fillColor: Colors.redAccent,
+                                         border: new OutlineInputBorder(
+                                           borderRadius: new BorderRadius.circular(5.0),
+                                           borderSide: new BorderSide(),
+                                         ),
+                                       ),
+                                       style: new TextStyle(
+                                         fontFamily: "Poppins",
+                                       ),
+                                     ),
+                                   ),
+                                   SizedBox(height: 30.0,),
+                                   Container(
+                                     decoration: BoxDecoration(
+                                         color: Color(0XFFEFF3F6),
+                                         borderRadius: BorderRadius.circular(10.0),
+                                         boxShadow: [
+                                           BoxShadow(
+                                               color: Color.fromRGBO(0, 0, 0, 0.1),
+                                               offset: Offset(3, 3),
+                                               blurRadius: 2.0,
+                                               spreadRadius: 2.0
+                                           ),
+                                           BoxShadow(
+                                               color: Color.fromRGBO(255, 255, 255, 0.9),
+                                               offset: Offset(-2, -2),
+                                               blurRadius: 1.0,
+                                               spreadRadius: 2.0
+                                           )
+                                         ]
+                                     ),
+                                     child: new TextFormField(
+                                       controller: _passwordController,
+                                       focusNode: _passwordFocusNode,
+                                       obscureText: true,
+                                       textInputAction: TextInputAction.done,
+                                       onEditingComplete: _submit,
+                                       onChanged: model.updatePassword,
+                                       decoration: new InputDecoration(
+                                         errorText: model.passwordErrorText,
+                                         enabled: model.isLoading == false,
+                                         prefixIcon: Icon(
+                                           Icons.lock,
+                                           color: subBackgroundColor,
+                                         ),
+                                         labelText: "Enter your Password",
+                                         border: new OutlineInputBorder(
+                                           borderRadius: new BorderRadius.circular(5.0),
+                                           borderSide: new BorderSide(),
+                                         ),
+                                       ),
+                                       keyboardType: TextInputType.text,
+                                       style: new TextStyle(
+                                         fontFamily: "Poppins",
+                                       ),
+                                     ),
+                                   ),
+                                   SizedBox(height: 30.0,),
 
+                                 ],
+                               ),
+                             ),
+                           )
+
+
+                          ],
+                        ),
                       ],
                     ),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-
-                  SizedBox(height: 40,)
-                  ],
-                ),
-
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom:10.0),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text:
-                            'By continuing, You accept the Terms & Conditions Of the',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' Terms of use',
-                            style: TextStyle(
-                              color: backgroundColor,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' and',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' Privacy Policies',
-                            style: TextStyle(
-                              color: backgroundColor,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
-                Row(
+                SizedBox(
+                  height: 30,
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(child: Text(""),),
+                    GestureDetector(
+                      child: Container(
+                        width: 200,
+                        padding: EdgeInsets.all(15.0),
+                        child: Center(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(),
+                                  Text("Login",style: titleDark),
+                                  Icon(Icons.arrow_forward,color: Colors.white,),
+                                  Container(),
+                                ])),
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: <Color>[
+                                Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: subBackgroundColor,
+                                  offset: Offset(2,1),
+                                  blurRadius: 6.0,
+                                  spreadRadius: 1.0
+                              ),
+
+                            ]
+                        ),
+                      ),
+                      onTap: (){
+
+                        _submit();
+                      },
+                    ),
+
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
                         "Don't have an account?",
                         style: descriptionDark
                     ),
                     FlatButton(
-                      child: Text(
+                      child: GradientText(
                         'Sign Up',
-                        style: titleLight,
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 25.0,decoration: TextDecoration.none),
+                          gradient: LinearGradient(
+                          colors: [
+                            Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                          ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                        ),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -347,6 +380,9 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                       },
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 50,
                 ),
               ],
             ),

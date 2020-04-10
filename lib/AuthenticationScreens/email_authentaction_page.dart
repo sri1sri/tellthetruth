@@ -155,7 +155,7 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                   clipper: RoundedDiagonalPathClipper(),
                   boxShadow: softUiShadow,
                   child: Container(
-                    height: 550,
+                    height: 610,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(36.0)),
                       color: Colors.white70,
@@ -167,7 +167,7 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                           child: SizedBox(
                             width: 350.0,
                             height: 350.0,
-                            child: FlareActor("images/welcome.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'Animations'),
+                            child: FlareActor("images/welcome.flr", alignment:Alignment.bottomCenter, fit:BoxFit.contain, animation:'Animations'),
                           ),
 
                         ),
@@ -183,6 +183,23 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
 //                        SizedBox(
 //                          height: 60,
 //                        ),
+                        GradientText(
+                          'LogIn',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w700,
+                              fontSize: 40.0,decoration: TextDecoration.none),
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0XffFD8B1F),
+                              Color(0XffD152E0),
+                              Color(0Xff30D0DB),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                        SizedBox(height: 30.0,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
@@ -329,7 +346,7 @@ class _F_EmailAuthenticationPageState extends State<F_EmailAuthenticationPage> {
                                       end: Alignment.bottomRight,
                                     ),
                                   ),
-                                  Icon(Icons.arrow_forward,color: Colors.white,),
+                                  Icon(Icons.arrow_forward_ios,color: Colors.blue,size: 30,),
                                   Container(),
                                 ])),
                         decoration: BoxDecoration(

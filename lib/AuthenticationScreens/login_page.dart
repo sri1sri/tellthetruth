@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:tellthetruth/AuthenticationScreens/EmailAuth.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
 import 'package:tellthetruth/AuthenticationScreens/email_authentaction_page.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
@@ -168,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => EmailAuthenticationPage(),),
+                            MaterialPageRoute(builder: (context) => EmailAuthentication(),),
                           );
                         },
                         child: Container(

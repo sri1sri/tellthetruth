@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Tell The Truth',
         theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
+          primarySwatch: Colors.pink,
         ),
         debugShowCheckedModeBanner: false,
         home: LoginPage(),

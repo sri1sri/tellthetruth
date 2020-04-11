@@ -157,49 +157,55 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
     return Container(
       child: Column(
         children: [
-          LinearPercentIndicator(
-                  animation: true,
-                  lineHeight: 55.0,
-                  animationDuration: 2500,
-                  backgroundColor: Colors.white70,
-                  percent: 0.4,
-                  center: Padding(
-                    padding: const EdgeInsets.only(left:15.0,right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GradientText(
-                          "Vasanthakumar - 1996",
-                          style: answerStyle,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: LinearPercentIndicator(
+                    animation: true,
+                    lineHeight: 55.0,
+                    animationDuration: 2500,
+                    backgroundColor: Colors.grey,
+                    percent: 0.4,
+                    center: Padding(
+                      padding: const EdgeInsets.only(left:15.0,right: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GradientText(
+                            "Vasanthakumar - 1996",
+                            style: answerStyle,
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0XffFD8B1F),
+                                Color(0XffD152E0),
+                                Color(0Xff30D0DB),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                           ),
-                        ),
-                        GradientText(
-                          "40%",
-                          style: answerStyle,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                          GradientText(
+                            "40%",
+                            style: answerStyle,
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0XffFD8B1F),
+                                Color(0XffD152E0),
+                                Color(0Xff30D0DB),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                    linearStrokeCap: LinearStrokeCap.butt,
+                    progressColor: Colors.white,
                   ),
-                  linearStrokeCap: LinearStrokeCap.butt,
-                  progressColor: Colors.white,
-                ),
+          ),
           SizedBox(height: 10,),
           LinearPercentIndicator(
             animation: true,

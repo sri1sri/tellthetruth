@@ -1,4 +1,9 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
@@ -43,25 +48,69 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return new MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: new Scaffold(
-            backgroundColor:Colors.white,
-            body: Container(
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0XffFD8B1F),
-                      Color(0XffD152E0),
-                      Color(0Xff30D0DB),
-                    ],
-                  )),
-            )
-        ),
-    );
-
+    return Container(height: 0, width: 0,);
   }
-
 }
+
+
+
+//
+//////////
+//////////////
+     //Please dont clear this
+//////////////
+/////////
+//
+
+
+//ScreenshotController screenshotController = ScreenshotController();
+//File _imageFile;
+//
+//
+//@override
+//Widget build(BuildContext context) {
+//  return Screenshot(child: offlineWidget(context), controller: screenshotController,);
+//}
+
+//Widget _buildContent(BuildContext context) {
+//  return new MaterialApp(
+//    debugShowCheckedModeBanner: false,
+//    home: new Scaffold(
+//        backgroundColor:Colors.white,
+//        body: Row(
+//          children: <Widget>[
+//            Container(
+//              decoration: new BoxDecoration(
+//                  gradient: new LinearGradient(
+//                    begin: Alignment.topCenter,
+//                    end: Alignment.bottomCenter,
+//                    colors: [
+//                      Color(0XffFD8B1F),
+//                      Color(0XffD152E0),
+//                      Color(0Xff30D0DB),
+//                    ],
+//                  )),
+//            ),
+//            InkWell(onTap: (){
+//              screenshotController.capture().then((File image) {
+//                //Capture Done
+//                setState(() {
+//                  print(_imageFile);
+//                  _imageFile = image;
+//                  print(_imageFile);
+//                  final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+//                  print(result);
+//                });
+//              }).catchError((onError) {
+//                print(onError);
+//              });
+//            },
+//              child: Text('take screenshot'),),
+//
+//            _imageFile != null ? Image.file(_imageFile) : Container(height: 10,width: 10,color: Colors.red,),
+//
+//          ],
+//        )
+//    ),
+//  );
+//}

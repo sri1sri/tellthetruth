@@ -37,7 +37,7 @@ class _F_HomePageState extends State<F_HomePage> {
   final DashboardPage _dashboardPage = DashboardPage();
   final AddItemPage _addItemPage = AddItemPage();
   final ProfilePage _profilePage = ProfilePage();
-  final SettingsPage _settingsPage = SettingsPage();
+//  final SettingsPage _settingsPage = SettingsPage();
 
   Widget _showPage = new DashboardPage();
   Widget _pageChooser(int page){
@@ -51,9 +51,9 @@ class _F_HomePageState extends State<F_HomePage> {
       case 2:
         return _profilePage;
         break;
-      case 3:
-        return _settingsPage;
-        break;
+//      case 3:
+//        return _settingsPage;
+//        break;
       default:
         return Container(
           child: Text("No Page"),
@@ -79,7 +79,7 @@ class _F_HomePageState extends State<F_HomePage> {
                 Icon(Icons.dashboard, size: 30),
                 Icon(Icons.add, size: 30),
                 Icon(Icons.account_circle, size: 30),
-                Icon(Icons.settings, size: 30),
+             //   Icon(Icons.settings, size: 30),
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,

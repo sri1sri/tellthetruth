@@ -7,7 +7,7 @@ import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart'
 import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/home/AddItem.dart';
-import 'package:tellthetruth/home/Dashboard.dart';
+import 'package:tellthetruth/home/dashboard1.dart';
 import 'package:tellthetruth/home/Profile.dart';
 import 'package:tellthetruth/home/Settings.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:slimy_card/slimy_card.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
@@ -77,8 +78,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                     Color(0Xff12c2e9),
                   ],
                 )),
-            child:   SingleChildScrollView(
-              child: Column(
+            child: Column(
                 children: <Widget>[
 
                   Padding(
@@ -90,7 +90,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                       topCardWidget: topCardWidget("images/male.png"),
                       width: MediaQuery.of(context).size.width,
                       bottomCardWidget: bottomCardWidget(),
-                      bottomCardHeight: 500,
+                      bottomCardHeight: 300,
                       topCardHeight: 350,
                     ),
                   ),
@@ -98,7 +98,6 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
 
                 ],
               ),
-            ),
           )
       ),
     );
@@ -158,150 +157,92 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
     return Container(
       child: Column(
         children: [
-          Card(
-            color: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                GradientText(
-                      "Vasanthakumar - 1996",
-                      style: answerStyle,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0XffFD8B1F),
-                          Color(0XffD152E0),
-                          Color(0Xff30D0DB),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
+          LinearPercentIndicator(
+                  animation: true,
+                  lineHeight: 55.0,
+                  animationDuration: 2500,
+                  percent: 0.4,
+                  center: GradientText(
+                    "Vasanthakumar - 1996",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                  ],
+                  ),
+                  linearStrokeCap: LinearStrokeCap.butt,
+                  progressColor: Colors.white,
                 ),
-              )
+          SizedBox(height: 10,),
+          LinearPercentIndicator(
+            animation: true,
+            lineHeight: 55.0,
+            animationDuration: 2500,
+            percent: 0.2,
+            center: GradientText(
+              "SrivatsavKonda - 1974",
+              style: answerStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0XffFD8B1F),
+                  Color(0XffD152E0),
+                  Color(0Xff30D0DB),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
+            linearStrokeCap: LinearStrokeCap.butt,
+            progressColor: Colors.white,
           ),
-          Card(
-            color: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
+          SizedBox(height: 10,),
+          LinearPercentIndicator(
+            animation: true,
+            lineHeight: 55.0,
+            animationDuration: 2500,
+            percent: 0.1,
+            center: GradientText(
+              "VamsiPesalaa - 1974",
+              style: answerStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0XffFD8B1F),
+                  Color(0XffD152E0),
+                  Color(0Xff30D0DB),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-            child: Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    SizedBox(width: 15,),
-
-              GradientText(
-                        "SrivatsavKonda - 1974",
-                        style: answerStyle,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-            ),
+            linearStrokeCap: LinearStrokeCap.butt,
+            progressColor: Colors.white,
           ),
-          Card(
-            color: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
+          SizedBox(height: 10,),
+          LinearPercentIndicator(
+            animation: true,
+            lineHeight: 55.0,
+            animationDuration: 2500,
+            percent: 0.3,
+            center: GradientText(
+              "RockstarUmesh - 1932",
+              style: answerStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0XffFD8B1F),
+                  Color(0XffD152E0),
+                  Color(0Xff30D0DB),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-            child: Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    SizedBox(width: 15,),
-
-              GradientText(
-                        "VamsiPesalaa - 1974",
-                        style: answerStyle,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-            ),
-          ),
-          Card(
-            color: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(width: 15),
-                      GradientText(
-                        "RockstarUmesh - 1932",
-                        style: answerStyle,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-            ),
+            linearStrokeCap: LinearStrokeCap.butt,
+            progressColor: Colors.white,
           ),
         ],
       ),

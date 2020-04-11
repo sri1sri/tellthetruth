@@ -68,15 +68,15 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                       child: Column(
                         children: [
                           Container(
-                              height: MediaQuery.of(context).size.height/1.5,
-                              width: 350,
+                              height: 480.0,
+                              width: MediaQuery.of(context).size.width,
                               padding: EdgeInsets.only(top: 10.0),
                               child: GridView.count(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 1,
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 0,
                                   mainAxisSpacing: 0,
-                                  childAspectRatio: 0.5,
-                                  scrollDirection: Axis.vertical,
+                                  childAspectRatio: 1.5,
+                                  scrollDirection: Axis.horizontal,
                                   children: [
                                     _buildImage("images/car-insurance.png","vasanth","231"),
                                     _buildImage("images/co2.png","vasanth","231"),
@@ -112,31 +112,26 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
         child: Column(children: <Widget>[
           Stack(children: [
             Container(
-              height: 200.0,
+              height: 230.0,
               width: 180,
             ),
             Positioned(
                 left: 5.0,
                 right: 5.0,
-                top: 15.0,
-                bottom: 3.0,
+                top: 5.0,
+                bottom: 0.0,
                 child: Container(
                     padding: EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 145.0, bottom: 0.0),
-                    height: 205.0,
+                    height: 145.0,
                     width: 180.0,
                     decoration: BoxDecoration(
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.black54,
-                            blurRadius: 10.0,
-                          ),
-                        ],
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white.withOpacity(0.9)),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
+                          SizedBox(height: 20,),
                           Text(
                             name,
                             style: TextStyle(
@@ -159,10 +154,10 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
             Positioned(
                 left: 15.0,
                 right: 15.0,
-                top: 20.0,
-                bottom: 40.0,
+                top: 5.0,
+                bottom: 60.0,
                 child: Container(
-                    height:500.0,
+                    height: 30.0,
                     width: 85.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(

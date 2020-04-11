@@ -46,7 +46,6 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Container(
-
           child: new Scaffold(
               backgroundColor:Colors.white,
               body: Container(
@@ -61,12 +60,24 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                       ],
                     )),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SizedBox(height: 200,),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            "My gangs / squads",
+                            style: TextStyle(
+                          color: Colors.white,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w800,
+                        fontSize: 17.0,decoration: TextDecoration.none),
+                          ),
+                          SizedBox(height: 10,),
+
                           Container(
                               height: 480.0,
                               width: MediaQuery.of(context).size.width,
@@ -75,23 +86,23 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 0,
                                   mainAxisSpacing: 0,
-                                  childAspectRatio: 1.5,
+                                  childAspectRatio: 1.45,
                                   scrollDirection: Axis.horizontal,
                                   children: [
-                                    _buildImage("images/car-insurance.png","vasanth","231"),
-                                    _buildImage("images/co2.png","vasanth","231"),
-                                    _buildImage("images/garage.png","vasanth","231"),
-                                    _buildImage("images/helpline.png","vasanth","231"),
-                                    _buildImage("images/motorcycle-2.png","vasanth","231"),
-                                    _buildImage("images/parking.png","vasanth","231"),
-                                    _buildImage("images/sos.png","vasanth","231"),
-                                    _buildImage("images/travel-insurance.png","vasanth","231"),
+                                    _buildImage("images/car-insurance.png","vasanth","1"),
+                                    _buildImage("images/co2.png","vasanth","2"),
+                                    _buildImage("images/garage.png","vasanth","3"),
+                                    _buildImage("images/helpline.png","vasanth","4"),
+                                    _buildImage("images/motorcycle-2.png","vasanth","5"),
+                                    _buildImage("images/parking.png","vasanth","6"),
+                                    _buildImage("images/sos.png","vasanth","7"),
+                                    _buildImage("images/travel-insurance.png","vasanth","8"),
 
                                   ])),
                         ],
                       ),
                     ),
-
+                    SizedBox(height: 40,),
                   ],
                 ),
               )
@@ -126,7 +137,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                     height: 145.0,
                     width: 180.0,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(5.0),
                         color: Colors.white.withOpacity(0.9)),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,

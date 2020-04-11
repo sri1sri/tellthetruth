@@ -48,7 +48,18 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Container(height: 0, width: 0,);
+    return Container(
+      decoration: new BoxDecoration(
+          gradient: new LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0XffFD8B1F),
+              Color(0XffD152E0),
+              Color(0Xff30D0DB),
+              Color(0Xff12c2e9),
+            ],
+          )),);
   }
 }
 

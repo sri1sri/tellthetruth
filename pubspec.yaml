@@ -101,6 +101,8 @@ flutter:
     - images/parking.png
     - images/sos.png
     - images/travel-insurance.png
+    - images/male.png
+    - images/female.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

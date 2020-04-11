@@ -83,7 +83,7 @@ class _F_HomePageState extends State<F_HomePage> {
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Color(0Xff30D0DB),
+              backgroundColor: Color(0Xff12c2e9),
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (int tappedIndex) {
@@ -101,21 +101,12 @@ class _F_HomePageState extends State<F_HomePage> {
                       Color(0XffFD8B1F),
                       Color(0XffD152E0),
                       Color(0Xff30D0DB),
+                      Color(0Xff12c2e9),
                     ],
                   )),
               child: Center(
                 child: _showPage,
 
-//                Column(
-//                  children: <Widget>[
-//                    SizedBox(height: 100,),
-//                    Center(
-//                      child: InkWell(onTap: (){
-//                        _confirmSignOut(context);
-//                      },child: Text('logout')),
-//                    ),
-//                  ],
-//                ),
               ),
             )
         ),

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
-import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 
 

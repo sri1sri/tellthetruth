@@ -56,8 +56,9 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Color(0Xfff64f59),
-                        Color(0Xffc471ed),
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
                         Color(0Xff12c2e9),
                       ],
                     )),

@@ -57,6 +57,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                     colors: [
                       Colors.white,
                       Color(0Xff30D0DB),
+                      Color(0Xff12c2e9),
                     ],
                   )),
               child: Column(

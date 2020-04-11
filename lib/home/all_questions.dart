@@ -113,16 +113,16 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                     childAspectRatio: 0.6,
                                     children: [
 
-                                      _QuestionListCard(backgroundGradient, "who is our father of our nation"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation"),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","383","230"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","5","30"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","36","830"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","5","200"),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","56","340"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","64","210"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","5756","850"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","432","400"),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","423","420"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","3423","700"),
 
 
                                     ]
@@ -142,7 +142,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
     );
 
   }
-  Widget _QuestionListCard(LinearGradient Gradiant, String Question) {
+  Widget _QuestionListCard(LinearGradient Gradiant, String Question,String imgPath,String views,String response) {
     return FlatButton(
         disabledColor: Colors.white,
         onPressed: () {
@@ -170,24 +170,55 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                   borderRadius: BorderRadius.circular(8.0),
                                   gradient: Gradiant,
                               ),
-                              child: Column(
-
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Text(
-                                        Question,
-                                        style: questionStyle,
-                                        textAlign: TextAlign.center,
-
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(),
+                                          Row(
+                                            children: [
+                                          CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              imgPath),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                    SizedBox(height: 10.0),
 
-                                  ]
+                                     Text(
+                                          Question,
+                                          style: questionStyle,
+                                          textAlign: TextAlign.center,
+
+                                        ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Icon(Icons.remove_red_eye,color: Colors.white,),
+                                                  SizedBox(width: 5,),
+                                                  Text(views,style: mediumStyle,),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Icon(Icons.poll,color: Colors.white,),
+                                                  SizedBox(width: 5,),
+                                                  Text(response,style: mediumStyle,),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+
+                                    ]
+                                ),
                               )
                           ),
                         ),

@@ -176,22 +176,27 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
 
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Text(
-                                        Question,
-                                        style: TextStyle(
-                                          fontFamily: 'nunito',
-                                          fontSize: 18.0,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,shadows: <Shadow>[
-                                          Shadow(
-                                            offset: Offset(3.0, 3.0),
-                                            blurRadius: 2.0,
-                                            color: Colors.black87,
-                                          ),
-
-                                        ],),
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                          Question,
+                                          style: questionStyle,
+//                                        TextStyle(
+//                                          fontFamily: 'nunito',
+//                                          fontSize: 18.0,
+//                                          fontWeight: FontWeight.bold,
+//                                          color: Colors.white,
+////                                          shadows: <Shadow>[
+////                                          Shadow(
+////                                            offset: Offset(3.0, 3.0),
+////                                            blurRadius: 2.0,
+////                                            color: Colors.black87,
+////                                          ),
+////
+////                                        ],
+//                                        ),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(height: 10.0),

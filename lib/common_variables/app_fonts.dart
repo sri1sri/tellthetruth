@@ -26,3 +26,9 @@ var regularStyle = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w400,
     fontSize: 17.0,decoration: TextDecoration.none);
+
+var questionStyle = TextStyle(
+    color: Colors.white,
+    fontFamily: 'Montserrat',
+    fontWeight: FontWeight.w800,
+    fontSize: 24.0,decoration: TextDecoration.none);

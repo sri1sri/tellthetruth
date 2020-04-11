@@ -64,7 +64,7 @@ class CustomAppBar extends StatelessWidget {
                   padding: const EdgeInsets.only(top:65.0),
                   child: GradientText(
                     primaryText,
-                    style: mediumStyle,
+                    style: boldStyle,
                     gradient: LinearGradient(
                       colors: [
                         Color(0XffFD8B1F),

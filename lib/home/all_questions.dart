@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/home/Question.dart';
 
 
 const backgroundGradient = LinearGradient(colors: <Color>[
   Color(0XffFD8B1F),
+  Color(0XffD152E0),
   Color(0Xff30D0DB),
 ], begin: Alignment.topLeft, end: Alignment.bottomRight);
 const activeGradient = LinearGradient(
   colors: <Color>[
-    Colors.white,
+    Color(0XffD152E0),
     Color(0Xff30D0DB),
     Color(0XffFD8B1F),
   ],
@@ -146,7 +149,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
     return FlatButton(
         disabledColor: Colors.white,
         onPressed: () {
-
+          GoToPage(context, QuestionDetailPage());
           },
         padding: EdgeInsets.only(left: 0.0, right: 0.0),
         child: Container(

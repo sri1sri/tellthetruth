@@ -49,8 +49,7 @@ dependencies:
   percent_indicator: ^2.1.1+1
   dropdownfield: ^1.0.3
   dropdown_formfield: ^0.1.1
-  flare_splash_screen: ^3.0.1
-  flare_flutter: ^2.0.2
+  flare_flutter: ^1.5.9
   gender_selection: ^1.0.0
   flutter_custom_clippers: ^1.1.0
   clip_shadow: ^0.2.1
@@ -58,6 +57,7 @@ dependencies:
   curved_navigation_bar: ^0.3.2
   screenshot: ^0.1.1
   image_gallery_saver: ^1.2.2
+  slimy_card: ^1.0.2
 
 dev_dependencies:
   flutter_test:

@@ -108,44 +108,47 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(5),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(image: AssetImage(imagePath)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 20,
-                  spreadRadius: 1,
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(image: AssetImage(imagePath)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 20,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 15),
-          GradientText(
-            "Who invented the macBook Air and in which year?",
-            textAlign: TextAlign.center,
-            style: boldStyle,
-            gradient: LinearGradient(
-              colors: [
-                Color(0XffFD8B1F),
-                Color(0XffD152E0),
-                Color(0Xff30D0DB),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+            SizedBox(height: 15),
+            GradientText(
+              "Who invented the mac Book Air and in which year Book Air and in which year?",
+              textAlign: TextAlign.center,
+              style: boldStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0XffFD8B1F),
+                  Color(0XffD152E0),
+                  Color(0Xff30D0DB),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-        ],
+            SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
@@ -159,31 +162,34 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             color: Colors.white,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Container(
               height: 60,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GradientText(
-                    "Vasanthakumar - 1996",
-                    style: mediumStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0XffFD8B1F),
-                        Color(0XffD152E0),
-                        Color(0Xff30D0DB),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                borderRadius: BorderRadius.circular(5),),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                GradientText(
+                      "Vasanthakumar - 1996",
+                      style: answerStyle,
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0XffFD8B1F),
+                          Color(0XffD152E0),
+                          Color(0Xff30D0DB),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             ),
           ),
@@ -191,31 +197,36 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             color: Colors.white,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Container(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GradientText(
-                      "SrivatsavKonda - 1974",
-                      style: mediumStyle,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0XffFD8B1F),
-                          Color(0XffD152E0),
-                          Color(0Xff30D0DB),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                  borderRadius: BorderRadius.circular(5),),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    SizedBox(width: 15,),
+
+              GradientText(
+                        "SrivatsavKonda - 1974",
+                        style: answerStyle,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
             ),
           ),
@@ -223,31 +234,36 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             color: Colors.white,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Container(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GradientText(
-                      "VamsiPesalaa - 1974",
-                      style: mediumStyle,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0XffFD8B1F),
-                          Color(0XffD152E0),
-                          Color(0Xff30D0DB),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                  borderRadius: BorderRadius.circular(5),),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                    SizedBox(width: 15,),
+
+              GradientText(
+                        "VamsiPesalaa - 1974",
+                        style: answerStyle,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
             ),
           ),
@@ -255,31 +271,35 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             color: Colors.white,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Container(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GradientText(
-                      "RockstarUmesh - 1932",
-                      style: mediumStyle,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0XffFD8B1F),
-                          Color(0XffD152E0),
-                          Color(0Xff30D0DB),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                  borderRadius: BorderRadius.circular(5),),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(width: 15),
+                      GradientText(
+                        "RockstarUmesh - 1932",
+                        style: answerStyle,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
             ),
           ),

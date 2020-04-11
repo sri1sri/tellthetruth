@@ -32,3 +32,9 @@ var questionStyle = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w800,
     fontSize: 24.0,decoration: TextDecoration.none);
+
+var countStyle = TextStyle(
+color: Colors.white,
+fontFamily: 'Montserrat',
+fontWeight: FontWeight.w600,
+fontSize: 13.0,decoration: TextDecoration.none);

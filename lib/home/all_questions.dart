@@ -113,16 +113,16 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                     childAspectRatio: 0.6,
                                     children: [
 
-                                      _QuestionListCard(backgroundGradient, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","383","230"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","5","30"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","36","830"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","5","200"),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","56","340"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","64","210"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","5756","850"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","432","400"),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg","423","420"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png","3423","700"),
+                                      _QuestionListCard(backgroundGradient, "who is our father of our nation","images/boy.png","383","230"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/boy.png","5","30"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","36","830"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5","200"),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","56","340"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","64","210"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5756","850"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","432","400"),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","423","420"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/boy.png","3423","700"),
 
 
                                     ]
@@ -182,8 +182,10 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                           Row(
                                             children: [
                                           CircleAvatar(
-                                          backgroundImage: NetworkImage(
+                                            backgroundColor: Colors.transparent,
+                                          backgroundImage: AssetImage(
                                               imgPath),
+                                            radius: 15,
                                               ),
                                             ],
                                           ),
@@ -198,20 +200,32 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                         ),
 
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.end,
                                             children: [
                                               Row(
                                                 children: [
-                                                  Icon(Icons.remove_red_eye,color: Colors.white,),
+                                                  CircleAvatar(
+                                                    backgroundColor: Colors.transparent,
+                                                    backgroundImage: AssetImage(
+                                                        'images/seen.png'),
+                                                    radius: 14,
+                                                  ),
                                                   SizedBox(width: 5,),
-                                                  Text(views,style: mediumStyle,),
+                                                  Text(views,style: countStyle,),
                                                 ],
                                               ),
+                                              SizedBox(width: 20,),
+
                                               Row(
                                                 children: [
-                                                  Icon(Icons.poll,color: Colors.white,),
+                                                  CircleAvatar(
+                                                    backgroundColor: Colors.transparent,
+                                                    backgroundImage: AssetImage(
+                                                        'images/poll.png'),
+                                                    radius: 12,
+                                                  ),
                                                   SizedBox(width: 5,),
-                                                  Text(response,style: mediumStyle,),
+                                                  Text(response,style: countStyle,),
                                                 ],
                                               ),
                                             ],

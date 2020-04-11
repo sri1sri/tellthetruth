@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-const backgroundGradient = LinearGradient(colors: <Color>[
+const backgroundGradient = LinearGradient( colors: <Color>[
   Color(0XffFD8B1F),
   Color(0XffD152E0),
   Color(0Xff30D0DB),
@@ -24,7 +24,7 @@ List<BoxShadow> softUiShadow = [
 
 const activeGradient = LinearGradient(
   colors: <Color>[
-    Color(0XffFD8B1F),
+    Colors.white,
     Color(0XffD152E0),
     Color(0Xff30D0DB),
   ],

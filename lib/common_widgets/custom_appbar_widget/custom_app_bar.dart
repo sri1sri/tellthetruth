@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 
@@ -61,7 +62,19 @@ class CustomAppBar extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top:65.0),
-                  child: Text(primaryText,style: mediumStyle,),
+                  child: GradientText(
+                    primaryText,
+                    style: mediumStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(

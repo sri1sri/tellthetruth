@@ -4,6 +4,31 @@ import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 
+
+const backgroundGradient = LinearGradient(colors: <Color>[
+  Color(0XffFD8B1F),
+  Color(0Xff30D0DB),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
+const activeGradient = LinearGradient(
+  colors: <Color>[
+    Colors.white,
+    Color(0Xff30D0DB),
+    Color(0XffFD8B1F),
+  ],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
+const backgroundGradient1 = LinearGradient(colors: <Color>[
+  Color(0XffD152E0),
+  Color(0Xff30D0DB),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
+const backgroundGradient2 = LinearGradient(colors: <Color>[
+  Color(0XffFD8B1F),
+  Color(0XffD152E0),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
+
+
+
 class QuestionsPage extends StatelessWidget {
   //ProfilePage({@required this.database});
   //Database database;
@@ -70,7 +95,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
             child: Container(
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: <Widget>[
                     SafeArea(
@@ -84,20 +109,20 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                 child: GridView.count(
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 10,
-                                    mainAxisSpacing: 5,
+                                    mainAxisSpacing: 0,
                                     childAspectRatio: 0.6,
                                     children: [
 
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
-                                      _QuestionListCard("", "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient, "who is our father of our nation"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation"),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation"),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation"),
 
 
                                     ]
@@ -117,7 +142,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
     );
 
   }
-  Widget _QuestionListCard(String imgPath, String Question) {
+  Widget _QuestionListCard(LinearGradient Gradiant, String Question) {
     return FlatButton(
         disabledColor: Colors.white,
         onPressed: () {
@@ -140,45 +165,34 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                         child:  Container(
                           height: 300.0,
                           width: 200.0,
-
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              image: DecorationImage(
-                                image: AssetImage(imgPath),
-                                fit: BoxFit.fitHeight,
-                              )
-                          ),
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.bottomRight,
-                                      colors: [
-                                        Colors.black87.withOpacity(1.0),
-                                        Colors.black54.withOpacity(.1),
-                                      ]
-                                  )
+                                  gradient: Gradiant,
                               ),
                               child: Column(
 
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
 
-                                    Text(
-                                      Question,
-                                      style: TextStyle(
-                                        fontFamily: 'nunito',
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,shadows: <Shadow>[
-                                        Shadow(
-                                          offset: Offset(3.0, 3.0),
-                                          blurRadius: 2.0,
-                                          color: Colors.black87,
-                                        ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Text(
+                                        Question,
+                                        style: TextStyle(
+                                          fontFamily: 'nunito',
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,shadows: <Shadow>[
+                                          Shadow(
+                                            offset: Offset(3.0, 3.0),
+                                            blurRadius: 2.0,
+                                            color: Colors.black87,
+                                          ),
 
-                                      ],),
+                                        ],),
+                                      ),
                                     ),
                                     SizedBox(height: 10.0),
 

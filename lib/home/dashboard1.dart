@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/home/ViewGroup.dart';
+import 'package:tellthetruth/home/all_questions.dart';
 
 class DashboardPage extends StatelessWidget {
   //ProfilePage({@required this.database});
@@ -55,9 +56,9 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Color(0XffFD8B1F),
-                        Color(0XffD152E0),
-                        Color(0Xff30D0DB),
+                        Color(0Xfff64f59),
+                        Color(0Xffc471ed),
+                        Color(0Xff12c2e9),
                       ],
                     )),
                 child: Column(
@@ -70,14 +71,14 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
                             child: Text(
                               "My gangs / squads",
                               style: TextStyle(
                             color: Colors.white,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w800,
-                        fontSize: 22.0,decoration: TextDecoration.none),
+                        fontSize: 17.0,decoration: TextDecoration.none),
                             ),
                           ),
                           Container(
@@ -116,11 +117,9 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 
   Widget _buildImage(String imgPath, String name, String description) {
     return GestureDetector(
+
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => GroupPage()),
-          );
+          GoToPage(context, QuestionsPage());
         },
         child: Column(children: <Widget>[
           Stack(children: [
@@ -160,7 +159,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                 fontFamily: 'nunito',
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.w700,
-                                color: Color(0xFF1F4B6E).withOpacity(0.75)),
+                                color: Color(0Xff12c2e9).withOpacity(0.75)),
                           ),
 
                         ]))),

@@ -5,12 +5,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 void GoToPage(BuildContext context, Widget page) {
-  Navigator.of(context).push(
-    MaterialPageRoute<void>(
-      fullscreenDialog: true,
-      builder: (context) => page,
-    ),
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => page),
   );
+
+//  Navigator.of(context).push(
+//    MaterialPageRoute<void>(
+//      fullscreenDialog: true,
+//      builder: (context) => page,
+//    ),
+//  );
 }
 
 String USER_ID;

@@ -4,27 +4,27 @@ import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 
-class GroupPage extends StatelessWidget {
+class QuestionsPage extends StatelessWidget {
   //ProfilePage({@required this.database});
   //Database database;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_GroupPage(),
+      child: F_QuestionsPage(),
     );
   }
 }
 
-class F_GroupPage extends StatefulWidget {
+class F_QuestionsPage extends StatefulWidget {
   // F_ProfilePage({@required this.database});
   // Database database;
 
   @override
-  _F_GroupPageState createState() => _F_GroupPageState();
+  _F_QuestionsPageState createState() => _F_QuestionsPageState();
 }
 
-class _F_GroupPageState extends State<F_GroupPage> {
+class _F_QuestionsPageState extends State<F_QuestionsPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +60,9 @@ class _F_GroupPageState extends State<F_GroupPage> {
                 child: Icon(Icons.list,color: subBackgroundColor,),
               ),
               rightAction: () {
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(
-//                      builder: (context) => SettingsPage() ),
-//                );
+
               },
-              primaryText: 'Group',
+              primaryText: 'Tell truth',
               secondaryText: null,
             ),
           ),
@@ -91,6 +87,7 @@ class _F_GroupPageState extends State<F_GroupPage> {
                                     mainAxisSpacing: 5,
                                     childAspectRatio: 0.6,
                                     children: [
+
                                       _QuestionListCard("", "who is our father of our nation"),
                                       _QuestionListCard("", "who is our father of our nation"),
                                       _QuestionListCard("", "who is our father of our nation"),
@@ -124,12 +121,8 @@ class _F_GroupPageState extends State<F_GroupPage> {
     return FlatButton(
         disabledColor: Colors.white,
         onPressed: () {
-//          Navigator.push(
-//          context,
-//          MaterialPageRoute(builder: (context) => DetailScreen()),
-//        );
-          },
 
+          },
         padding: EdgeInsets.only(left: 0.0, right: 0.0),
         child: Container(
             height: 300.0,

@@ -3,6 +3,7 @@ import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/home/ViewGroup.dart';
 
 class DashboardPage extends StatelessWidget {
   //ProfilePage({@required this.database});
@@ -68,16 +69,17 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "My gangs / squads",
-                            style: TextStyle(
-                          color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              "My gangs / squads",
+                              style: TextStyle(
+                            color: Colors.white,
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w800,
-                        fontSize: 17.0,decoration: TextDecoration.none),
+                        fontSize: 22.0,decoration: TextDecoration.none),
+                            ),
                           ),
-                          SizedBox(height: 10,),
-
                           Container(
                               height: 480.0,
                               width: MediaQuery.of(context).size.width,
@@ -89,14 +91,14 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                   childAspectRatio: 1.45,
                                   scrollDirection: Axis.horizontal,
                                   children: [
-                                    _buildImage("images/car-insurance.png","vasanth","1"),
-                                    _buildImage("images/co2.png","vasanth","2"),
-                                    _buildImage("images/garage.png","vasanth","3"),
-                                    _buildImage("images/helpline.png","vasanth","4"),
-                                    _buildImage("images/motorcycle-2.png","vasanth","5"),
-                                    _buildImage("images/parking.png","vasanth","6"),
-                                    _buildImage("images/sos.png","vasanth","7"),
-                                    _buildImage("images/travel-insurance.png","vasanth","8"),
+                                    _buildImage("images/car-insurance.png","vasanth","the best one"),
+                                    _buildImage("images/co2.png","srivatsav","the good one"),
+                                    _buildImage("images/garage.png","vamsi","the great one"),
+                                    _buildImage("images/helpline.png","jake","the worst one"),
+                                    _buildImage("images/motorcycle-2.png","rajaa","the greatest one"),
+                                    _buildImage("images/parking.png","eldooo","the great one"),
+                                    _buildImage("images/sos.png","sainath","the naughty one"),
+                                    _buildImage("images/travel-insurance.png","nanditha","the perfect one"),
 
                                   ])),
                         ],
@@ -115,10 +117,10 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
   Widget _buildImage(String imgPath, String name, String description) {
     return GestureDetector(
         onTap: () {
-//          Navigator.push(
-//            context,
-//            MaterialPageRoute(builder: (context) => ),
-//          );
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => GroupPage()),
+          );
         },
         child: Column(children: <Widget>[
           Stack(children: [
@@ -138,7 +140,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                     width: 180.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.white.withOpacity(0.9)),
+                        color: Colors.white),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[

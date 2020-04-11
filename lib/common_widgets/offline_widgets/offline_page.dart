@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
@@ -33,7 +34,19 @@ class CustomOfflinePage extends StatelessWidget {
             SizedBox(height: 100,),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Text("Tell The Truth",style: heavyStyle,),
+              child: GradientText(
+                'Tell The Truth',
+                style: heavyStyle,
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0XffFD8B1F),
+                    Color(0XffD152E0),
+                    Color(0Xff30D0DB),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
             ),
             SizedBox(
               width: 400.0,

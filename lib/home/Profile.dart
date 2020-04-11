@@ -53,8 +53,7 @@ class _F_ProfilePageState extends State<F_ProfilePage> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0XffFD8B1F),
-                      Color(0XffD152E0),
+                      Colors.white,
                       Color(0Xff30D0DB),
                     ],
                   )),

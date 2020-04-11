@@ -54,24 +54,14 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(MediaQuery.of(context).size.width/7),
-            child: CustomAppBar(
-              leftActionBar: Container(
-                child: Icon(Icons.arrow_back_ios,color: subBackgroundColor,),
-              ),
-              leftAction: () {
+          appBar: AppBar(
+            leading: GestureDetector(child: Icon(Icons.arrow_back_ios,),
+              onTap: (){
                 Navigator.pop(context, true);
               },
-              rightActionBar: Container(
-                child: Icon(Icons.list,color: subBackgroundColor,),
-              ),
-              rightAction: () {
-
-              },
-              primaryText: "",
-              secondaryText: null,
             ),
+            backgroundColor: Color(0XffFD8B1F),
+            elevation: 0,
           ),
           body: Container(
             width: MediaQuery.of(context).size.width,

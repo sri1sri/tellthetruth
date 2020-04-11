@@ -161,9 +161,59 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                   animation: true,
                   lineHeight: 55.0,
                   animationDuration: 2500,
+                  backgroundColor: Colors.white70,
                   percent: 0.4,
-                  center: GradientText(
-                    "Vasanthakumar - 1996",
+                  center: Padding(
+                    padding: const EdgeInsets.only(left:15.0,right: 15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GradientText(
+                          "Vasanthakumar - 1996",
+                          style: answerStyle,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0XffFD8B1F),
+                              Color(0XffD152E0),
+                              Color(0Xff30D0DB),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                        GradientText(
+                          "40%",
+                          style: answerStyle,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0XffFD8B1F),
+                              Color(0XffD152E0),
+                              Color(0Xff30D0DB),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  linearStrokeCap: LinearStrokeCap.butt,
+                  progressColor: Colors.white,
+                ),
+          SizedBox(height: 10,),
+          LinearPercentIndicator(
+            animation: true,
+            lineHeight: 55.0,
+            animationDuration: 2500,
+            backgroundColor: Colors.white70,
+            percent: 0.3,
+            center: Padding(
+              padding: const EdgeInsets.only(left:15.0,right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GradientText(
+                    "SrivatsavKonda - 1974",
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -175,26 +225,64 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                       end: Alignment.bottomRight,
                     ),
                   ),
-                  linearStrokeCap: LinearStrokeCap.butt,
-                  progressColor: Colors.white,
-                ),
+                  GradientText(
+                    "30%",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            linearStrokeCap: LinearStrokeCap.butt,
+            progressColor: Colors.white,
+          ),
           SizedBox(height: 10,),
           LinearPercentIndicator(
             animation: true,
             lineHeight: 55.0,
             animationDuration: 2500,
+            backgroundColor: Colors.white70,
             percent: 0.2,
-            center: GradientText(
-              "SrivatsavKonda - 1974",
-              style: answerStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color(0XffFD8B1F),
-                  Color(0XffD152E0),
-                  Color(0Xff30D0DB),
+            center: Padding(
+              padding: const EdgeInsets.only(left:15.0,right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GradientText(
+                    "VamsiPesalaa - 1974",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  GradientText(
+                    "20%",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
                 ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
               ),
             ),
             linearStrokeCap: LinearStrokeCap.butt,
@@ -205,40 +293,40 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             animation: true,
             lineHeight: 55.0,
             animationDuration: 2500,
+            backgroundColor: Colors.white70,
             percent: 0.1,
-            center: GradientText(
-              "VamsiPesalaa - 1974",
-              style: answerStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color(0XffFD8B1F),
-                  Color(0XffD152E0),
-                  Color(0Xff30D0DB),
+            center: Padding(
+              padding: const EdgeInsets.only(left:15.0,right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GradientText(
+                    "RockstarUmesh - 1932",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  GradientText(
+                    "10%",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
                 ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            linearStrokeCap: LinearStrokeCap.butt,
-            progressColor: Colors.white,
-          ),
-          SizedBox(height: 10,),
-          LinearPercentIndicator(
-            animation: true,
-            lineHeight: 55.0,
-            animationDuration: 2500,
-            percent: 0.3,
-            center: GradientText(
-              "RockstarUmesh - 1932",
-              style: answerStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color(0XffFD8B1F),
-                  Color(0XffD152E0),
-                  Color(0Xff30D0DB),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
               ),
             ),
             linearStrokeCap: LinearStrokeCap.butt,

@@ -1,5 +1,7 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -147,62 +149,66 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
 
   }
   Widget _QuestionListCard(LinearGradient Gradiant, String Question,String imgPath,String views,String response) {
-    return FlatButton(
-        disabledColor: Colors.white,
-        onPressed: () {
-          Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 1), child: QuestionDetailPage()));
-          //GoToPage(context, QuestionDetailPage());
-          },
-        padding: EdgeInsets.only(left: 0.0, right: 0.0),
-        child: Container(
-            height: 300.0,
-            width: 200.0,
-            child: Column(
-              children: <Widget>[
-                Stack(
-                    children: [
-                      Container(
+    return ExpandPageTransition(
 
-                          height: 300.0
-                      ),
-                      Positioned(
+      navigateToPage: QuestionDetailPage(),
+      transitionType: ContainerTransitionType.fade,
 
-                        child:  Container(
-                          height: 300.0,
-                          width: 200.0,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  gradient: Gradiant,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Row(
+      closedBuilder: (BuildContext _, VoidCallback openContainer) {
+
+       return FlatButton(
+            disabledColor: Colors.white,
+            onPressed: openContainer,
+            padding: EdgeInsets.only(left: 0.0, right: 0.0),
+            child: Container(
+                height: 300.0,
+                width: 200.0,
+                child: Column(
+                  children: <Widget>[
+                    Stack(
+                        children: [
+                          Container(
+
+                              height: 300.0
+                          ),
+                          Positioned(
+
+                            child:  Container(
+                              height: 300.0,
+                              width: 200.0,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    gradient: Gradiant,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(),
+                                        children: <Widget>[
                                           Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
-                                          CircleAvatar(
-                                            backgroundColor: Colors.transparent,
-                                          backgroundImage: AssetImage(
-                                              imgPath),
-                                            radius: 15,
+                                              Container(),
+                                              Row(
+                                                children: [
+                                                  CircleAvatar(
+                                                    backgroundColor: Colors.transparent,
+                                                    backgroundImage: AssetImage(
+                                                        imgPath),
+                                                    radius: 15,
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
-                                        ],
-                                      ),
 
-                                     Text(
-                                          Question,
-                                          style: questionStyle,
-                                          textAlign: TextAlign.center,
+                                          Text(
+                                            Question,
+                                            style: questionStyle,
+                                            textAlign: TextAlign.center,
 
-                                        ),
+                                          ),
 
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.end,
@@ -236,19 +242,22 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                             ],
                                           ),
 
-                                    ]
-                                ),
-                              )
-                          ),
-                        ),
+                                        ]
+                                    ),
+                                  )
+                              ),
+                            ),
 
-                      ),
-                    ]
-                ),
-              ],
+                          ),
+                        ]
+                    ),
+                  ],
+                )
             )
-        )
-    );
+        );
+
+      }
+      );
   }
 
 }

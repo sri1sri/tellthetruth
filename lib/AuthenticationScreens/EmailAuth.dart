@@ -122,7 +122,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: dynamicHeight(30),
+                        height: dynamicHeight(50),
                       ),
                       GradientText(
                         'LogIn',

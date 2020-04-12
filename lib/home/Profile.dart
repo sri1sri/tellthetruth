@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
@@ -7,7 +8,7 @@ import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
 import 'package:tellthetruth/firebase/auth.dart';
-
+import '../common_widgets/ExpandPageTransition.dart';
 import '../landing_page.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -78,7 +79,6 @@ class _F_ProfilePageState extends State<F_ProfilePage> {
             )
         ),
     );
-
   }
 
   Future<void> _signOut(BuildContext context) async {

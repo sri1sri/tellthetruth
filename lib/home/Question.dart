@@ -82,8 +82,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
-          body: SingleChildScrollView(
-            child: Container(
+          body: Container(
               width: MediaQuery
                   .of( context )
                   .size
@@ -103,9 +102,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                       Color( 0Xff12c2e9 ),
                     ],
                   ) ),
-              child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 // mainAxisAlignment: MainAxisAlignment.spaceAr,
                   children: <Widget>[
                     Center(
                       child: Column(
@@ -123,28 +121,28 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                                     Navigator.pop( context, true );
                                   },
                                 ),
-                                Container( )
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    LabelText(
+                                        label: 'HRS',
+                                        value: hours.toString( ).padLeft( 2, '0' ) ),
+                                    LabelText(
+                                        label: 'MIN',
+                                        value: minutes.toString( ).padLeft(
+                                            2, '0' ) ),
+                                    LabelText(
+                                        label: 'SEC',
+                                        value: seconds.toString( ).padLeft(
+                                            2, '0' ) ),
+                                  ],
+                                ),
+                                Container(
+                                  child: Text(".....",style: TextStyle(color: Colors.transparent),),
+                                )
                               ],
                             ),
                           ),
-                          SizedBox( height: 20 ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              LabelText(
-                                  label: 'HRS',
-                                  value: hours.toString( ).padLeft( 2, '0' ) ),
-                              LabelText(
-                                  label: 'MIN',
-                                  value: minutes.toString( ).padLeft(
-                                      2, '0' ) ),
-                              LabelText(
-                                  label: 'SEC',
-                                  value: seconds.toString( ).padLeft(
-                                      2, '0' ) ),
-                            ],
-                          ),
-                          SizedBox( height: 20 ),
                         ],
                       ),
                     ),
@@ -160,11 +158,10 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                             .size
                             .width,
                         bottomCardWidget: bottomCardWidget( ),
-                        bottomCardHeight: 300,
-                        topCardHeight: 350,
+                        bottomCardHeight: 270,
+                        topCardHeight: 250,
                       ),
                     ),
-                    SizedBox( height: 20 ),
                     Padding(
                       padding: const EdgeInsets.all( 15.0 ),
                       child: Row(
@@ -217,9 +214,9 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
 
                   ],
                 ),
-              ),
+
             ),
-          )
+
       ),
     );
   }
@@ -236,8 +233,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 70,
-              width: 70,
+              height: 60,
+              width: 60,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular( 5 ),
@@ -255,7 +252,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             GradientText(
               "Who invented the mac Book Air and in which year Book Air and in which year?",
               textAlign: TextAlign.center,
-              style: boldStyle,
+              style: mediumStyle,
               gradient: LinearGradient(
                 colors: [
                   Color( 0XffFD8B1F ),
@@ -475,25 +472,39 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
     Widget build(BuildContext context) {
       return Container(
         margin: EdgeInsets.symmetric( horizontal: 5 ),
-        padding: EdgeInsets.all( 20 ),
+        padding: EdgeInsets.all( 10 ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular( 25 ),
-          color: Colors.teal,
+          borderRadius: BorderRadius.circular( 15 ),
+          color: Colors.white,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(
+            GradientText(
               '$value',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 55,
-                  fontWeight: FontWeight.bold ),
+              textAlign: TextAlign.center,
+              style: boldStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color( 0XffFD8B1F ),
+                  Color( 0XffD152E0 ),
+                  Color( 0Xff30D0DB ),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-            Text(
+            GradientText(
               '$label',
-              style: TextStyle(
-                color: Colors.white70,
+              style: answerStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color( 0XffFD8B1F ),
+                  Color( 0XffD152E0 ),
+                  Color( 0Xff30D0DB ),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
             ),
           ],
@@ -548,7 +559,7 @@ void showFancyCustomDialog(BuildContext context) {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Image.asset('images/whatsapp.png',height: 65,width: 65,),
+                                  Image.asset('images/whatsapp.png',height: 70,width: 70,),
                                   Image.asset('images/fb.png',height: 60,width: 60,),
                                   Image.asset('images/insta.png',height: 60,width: 60,),
                                 ],

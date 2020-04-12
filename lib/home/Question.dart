@@ -40,7 +40,7 @@ class F_QuestionDetailPage extends StatefulWidget {
 class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   static const duration = const Duration( seconds: 1 );
 
-  int secondsPassed = 5000;
+  int secondsPassed = 3610;
   bool isActive = true;
 
   Timer timer;
@@ -76,9 +76,9 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
         handleTick( );
       } );
     }
-    int seconds = secondsPassed % 60;
-    int minutes = secondsPassed ~/ 60;
-    int hours = secondsPassed ~/ (60 * 60);
+//    int seconds = secondsPassed % 60;
+//    int minutes = secondsPassed ~/ 60;
+//    int hours = secondsPassed ~/ (60 * 60);
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
@@ -126,14 +126,14 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                                   children: <Widget>[
                                     LabelText(
                                         label: 'HRS',
-                                        value: hours.toString( ).padLeft( 2, '0' ) ),
+                                        value: convertSeconds(secondsPassed)[0].toString( ).padLeft( 2, '0' ) ),
                                     LabelText(
                                         label: 'MIN',
-                                        value: minutes.toString( ).padLeft(
+                                        value: convertSeconds(secondsPassed)[1].toString( ).padLeft(
                                             2, '0' ) ),
                                     LabelText(
                                         label: 'SEC',
-                                        value: seconds.toString( ).padLeft(
+                                        value: convertSeconds(secondsPassed)[2].toString( ).padLeft(
                                             2, '0' ) ),
                                   ],
                                 ),

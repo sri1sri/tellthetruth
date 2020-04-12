@@ -41,6 +41,26 @@ String getTime(int timestamp) {
   return timestamp == 0 ? '--' : format.format(date);
 }
 
+List<int> convertSeconds(int seconds) {
+  double sec = seconds.toDouble();
+  double min;
+  double hours;
+  double secondsAfterHours;
+  double secondsAfterMinutes;
+
+  secondsAfterHours = sec%3600;
+
+  hours = (sec - secondsAfterHours)/3600;
+
+  secondsAfterMinutes = secondsAfterHours%60;
+
+  min = (secondsAfterHours - secondsAfterMinutes)/60;
+
+  sec = secondsAfterMinutes;
+
+  return [hours.toInt(), min.toInt(), sec.toInt() ];
+}
+
 List<String> CONTACT_NUMBERS = new List();
 
   getAllContacts() async {

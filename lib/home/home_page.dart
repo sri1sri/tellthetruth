@@ -115,28 +115,28 @@ class _F_HomePageState extends State<F_HomePage> {
       ),
     );
   }
-
-  Future<void> _signOut(BuildContext context) async {
-    try {
-      final auth = Provider.of<AuthBase>(context, listen: false);
-      await auth.signOut();
-      GoToPage(context, LandingPage());
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  Future<void> _confirmSignOut(BuildContext context) async {
-    final didRequestSignOut = await PlatformAlertDialog(
-      title: 'Logout',
-      content: 'Are you sure that you want to logout?',
-      defaultActionText: 'Logout',
-      cancelActionText: 'Cancel',
-    ).show(context);
-    if (didRequestSignOut == true) {
-      _signOut(context);
-    }
-  }
+//
+//  Future<void> _signOut(BuildContext context) async {
+//    try {
+//      final auth = Provider.of<AuthBase>(context, listen: false);
+//      await auth.signOut();
+//      GoToPage(context, LandingPage());
+//    } catch (e) {
+//      print(e.toString());
+//    }
+//  }
+//
+//  Future<void> _confirmSignOut(BuildContext context) async {
+//    final didRequestSignOut = await PlatformAlertDialog(
+//      title: 'Logout',
+//      content: 'Are you sure that you want to logout?',
+//      defaultActionText: 'Logout',
+//      cancelActionText: 'Cancel',
+//    ).show(context);
+//    if (didRequestSignOut == true) {
+//      _signOut(context);
+//    }
+//  }
 }
 
 

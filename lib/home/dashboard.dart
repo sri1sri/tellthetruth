@@ -132,6 +132,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
       navigateToPage: QuestionsPage(),
       transitionType: ContainerTransitionType.fade,
       closedBuilder: (BuildContext _, VoidCallback openContainer) {
+
       return GestureDetector(
           onTap: openContainer,
           child: Column(children: <Widget>[

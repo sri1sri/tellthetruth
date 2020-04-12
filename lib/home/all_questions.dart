@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -149,7 +150,8 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
     return FlatButton(
         disabledColor: Colors.white,
         onPressed: () {
-          GoToPage(context, QuestionDetailPage());
+          Navigator.push(context, PageTransition(type: PageTransitionType.fade,duration: Duration(seconds: 1), child: QuestionDetailPage()));
+          //GoToPage(context, QuestionDetailPage());
           },
         padding: EdgeInsets.only(left: 0.0, right: 0.0),
         child: Container(

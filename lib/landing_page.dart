@@ -12,6 +12,8 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthBase>(context, listen: false);
+    SCREEN_SIZE = MediaQuery.of(context).size;
+
 
     return StreamBuilder<User>(
       stream: auth.onAuthStateChanges,

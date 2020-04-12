@@ -5,6 +5,7 @@ import 'package:tellthetruth/AuthenticationScreens/EmailAuth.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/button_widget/to_do_button.dart';
 import 'package:flutter/material.dart';
 import 'package:tellthetruth/firebase/auth.dart';
@@ -81,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         color: Colors.white,

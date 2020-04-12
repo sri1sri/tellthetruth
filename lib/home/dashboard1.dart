@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
+import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/home/all_questions.dart';
@@ -65,9 +66,9 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SizedBox(height: 200,),
+                    SizedBox(height: SizeConfig.safeBlockVertical * 200,),
                     Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: SizeConfig.safeBlockHorizontal * MediaQuery.of(context).size.width,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -83,8 +84,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             ),
                           ),
                           Container(
-                              height: 480.0,
-                              width: MediaQuery.of(context).size.width,
+                              height: SizeConfig.safeBlockVertical * 480.0,
+                              width: SizeConfig.safeBlockHorizontal * MediaQuery.of(context).size.width,
                               padding: EdgeInsets.only(top: 10.0),
                               child: GridView.count(
                                   crossAxisCount: 2,
@@ -106,7 +107,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 40,),
+                    SizedBox(height: SizeConfig.safeBlockVertical * 40,),
                   ],
                 ),
               )
@@ -125,8 +126,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
         child: Column(children: <Widget>[
           Stack(children: [
             Container(
-              height: 230.0,
-              width: 180,
+              height: SizeConfig.safeBlockVertical * 230.0,
+              width: SizeConfig.safeBlockHorizontal * 180,
             ),
             Positioned(
                 left: 5.0,
@@ -136,15 +137,15 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                 child: Container(
                     padding: EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 145.0, bottom: 0.0),
-                    height: 145.0,
-                    width: 180.0,
+                    height: SizeConfig.safeBlockVertical * 145.0,
+                    width: SizeConfig.safeBlockHorizontal * 180.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
                         color: Colors.white),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: 20,),
+                          SizedBox(height: SizeConfig.safeBlockVertical * 20,),
                           Text(
                             name,
                             style: TextStyle(
@@ -153,7 +154,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                 fontWeight: FontWeight.w900,
                                 color: Color(0xFF1F4B6E)),
                           ),
-                          SizedBox(height: 5.0),
+                          SizedBox(height: SizeConfig.safeBlockVertical * 5.0),
                           Text(
                             description,
                             style: TextStyle(
@@ -170,8 +171,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                 top: 5.0,
                 bottom: 60.0,
                 child: Container(
-                    height: 30.0,
-                    width: 85.0,
+                    height: SizeConfig.safeBlockVertical * 30.0,
+                    width: SizeConfig.safeBlockHorizontal * 85.0,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: const Radius.circular(10.0),

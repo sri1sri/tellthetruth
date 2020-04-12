@@ -6,6 +6,7 @@ import 'package:slimy_card/slimy_card.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
+import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
@@ -65,8 +66,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             elevation: 0,
           ),
           body: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: SizeConfig.safeBlockHorizontal * MediaQuery.of(context).size.width,
+            height: SizeConfig.safeBlockVertical * MediaQuery.of(context).size.height,
             decoration: new BoxDecoration(
                 gradient: new LinearGradient(
                   begin: Alignment.topCenter,
@@ -90,8 +91,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                       topCardWidget: topCardWidget("images/male.png"),
                       width: MediaQuery.of(context).size.width,
                       bottomCardWidget: bottomCardWidget(),
-                      bottomCardHeight: 300,
-                      topCardHeight: 350,
+                      bottomCardHeight: SizeConfig.safeBlockVertical * 300,
+                      topCardHeight: SizeConfig.safeBlockVertical * 350,
                     ),
                   ),
 
@@ -115,8 +116,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 70,
-              width: 70,
+              height: SizeConfig.safeBlockVertical * 70,
+              width: SizeConfig.safeBlockHorizontal * 70,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
@@ -130,7 +131,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: SizeConfig.safeBlockVertical * 15),
             GradientText(
               "Who invented the mac Book Air and in which year Book Air and in which year?",
               textAlign: TextAlign.center,
@@ -145,7 +146,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                 end: Alignment.bottomRight,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: SizeConfig.safeBlockVertical * 10),
           ],
         ),
       ),
@@ -160,7 +161,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(0),
             ),
             child: LinearPercentIndicator(
                     animation: true,
@@ -206,7 +207,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                     progressColor: Colors.white,
                   ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: SizeConfig.safeBlockVertical * 10,),
           LinearPercentIndicator(
             animation: true,
             lineHeight: 55.0,
@@ -250,7 +251,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             linearStrokeCap: LinearStrokeCap.butt,
             progressColor: Colors.white,
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: SizeConfig.safeBlockVertical * 10,),
           LinearPercentIndicator(
             animation: true,
             lineHeight: 55.0,
@@ -294,7 +295,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
             linearStrokeCap: LinearStrokeCap.butt,
             progressColor: Colors.white,
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: SizeConfig.safeBlockVertical * 10,),
           LinearPercentIndicator(
             animation: true,
             lineHeight: 55.0,

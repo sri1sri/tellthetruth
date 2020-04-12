@@ -19,8 +19,8 @@ void GoToPage(BuildContext context, Widget page) {
 }
 
 String USER_ID;
-String FIREBASE_STORAGE_URL = 'gs://knowitmaster.appspot.com';
 ImageSource IMAGE_SOURCE = ImageSource.gallery;
+Size SCREEN_SIZE;
 
 String getDateTime(int timestamp) {
   var format = new DateFormat('dd MMM yyyy, hh:mm a');

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'AuthenticationScreens/login_page.dart';
 import 'firebase/auth.dart';
 import 'landing_page.dart';

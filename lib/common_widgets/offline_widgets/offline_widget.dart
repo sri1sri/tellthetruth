@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:tellthetruth/common_variables/sizeConfig.dart';
 
 import 'offline_page.dart';
 

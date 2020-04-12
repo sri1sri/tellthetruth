@@ -40,7 +40,7 @@ class F_QuestionDetailPage extends StatefulWidget {
 class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   static const duration = const Duration( seconds: 1 );
 
-  int secondsPassed = 3610;
+  int secondsPassed = 10;
   bool isActive = true;
 
   Timer timer;
@@ -48,7 +48,10 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   void handleTick() {
     if (isActive) {
       setState( () {
-        secondsPassed = secondsPassed - 1;
+        if(secondsPassed>0){
+          secondsPassed = secondsPassed - 1;
+        }
+
       } );
     }
   }

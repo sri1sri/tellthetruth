@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
+import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
 import 'package:tellthetruth/firebase/auth.dart';
@@ -63,6 +64,7 @@ class _F_HomePageState extends State<F_HomePage> {
   GlobalKey _bottomNavigationKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return offlineWidget(context);
   }
 

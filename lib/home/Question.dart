@@ -39,15 +39,15 @@ class F_QuestionDetailPage extends StatefulWidget {
 class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   static const duration = const Duration(seconds: 1);
 
-  int secondsPassed = 0;
-  bool isActive = false;
+  int secondsPassed = 300;
+  bool isActive = true;
 
   Timer timer;
 
   void handleTick() {
     if (isActive) {
       setState(() {
-        secondsPassed = secondsPassed + 1;
+        secondsPassed = secondsPassed - 1;
       });
     }
   }
@@ -92,86 +92,71 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
               backgroundColor: Color( 0XffFD8B1F ),
               elevation: 0,
             ),
-            body: Container(
-              width: MediaQuery
-                  .of( context )
-                  .size
-                  .width,
-              height: MediaQuery
-                  .of( context )
-                  .size
-                  .height,
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color( 0XffFD8B1F ),
-                      Color( 0XffD152E0 ),
-                      Color( 0Xff30D0DB ),
-                      Color( 0Xff12c2e9 ),
-                    ],
-                  ) ),
-              child: Column(
-                children: <Widget>[
-              Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      LabelText(
-                          label: 'HRS', value: hours.toString().padLeft(2, '0')),
-                      LabelText(
-                          label: 'MIN',
-                          value: minutes.toString().padLeft(2, '0')),
-                      LabelText(
-                          label: 'SEC',
-                          value: seconds.toString().padLeft(2, '0')),
-                    ],
-                  ),
-                  SizedBox(height: 60),
-                  Container(
-                    width: 200,
-                    height: 47,
-                    margin: EdgeInsets.only(top: 30),
-                    child: RaisedButton(
-                      color: Colors.pink[200],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Text(isActive ? 'STOP' : 'START'),
-                      onPressed: () {
-                        setState(() {
-                          isActive = !isActive;
-                        });
-                      },
+            body: SingleChildScrollView(
+              child: Container(
+                width: MediaQuery
+                    .of( context )
+                    .size
+                    .width,
+                height: MediaQuery
+                    .of( context )
+                    .size
+                    .height,
+                decoration: new BoxDecoration(
+                    gradient: new LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color( 0XffFD8B1F ),
+                        Color( 0XffD152E0 ),
+                        Color( 0Xff30D0DB ),
+                        Color( 0Xff12c2e9 ),
+                      ],
+                    ) ),
+                child: Column(
+                  children: <Widget>[
+                Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        LabelText(
+                            label: 'HRS', value: hours.toString().padLeft(2, '0')),
+                        LabelText(
+                            label: 'MIN', value: minutes.toString().padLeft(2, '0')),
+                        LabelText(
+                            label: 'SEC', value: seconds.toString().padLeft(2, '0')),
+                      ],
                     ),
-                  )
-                ],
+                    SizedBox(height: 20),
+                  ],
+                ),
               ),
-            ),
 
 
-                  Padding(
-                    padding: const EdgeInsets.all( 10.0 ),
-                    child: SlimyCard(
-                      color: Colors.transparent,
-                      borderRadius: 30,
-                      slimeEnabled: true,
-                      topCardWidget: topCardWidget( "images/male.png" ),
-                      width: MediaQuery
-                          .of( context )
-                          .size
-                          .width,
-                      bottomCardWidget: bottomCardWidget( ),
-                      bottomCardHeight: 300,
-                      topCardHeight: 350,
+                    Padding(
+                      padding: const EdgeInsets.all( 10.0 ),
+                      child: SlimyCard(
+                        color: Colors.transparent,
+                        borderRadius: 30,
+                        slimeEnabled: true,
+                        topCardWidget: topCardWidget( "images/male.png" ),
+                        width: MediaQuery
+                            .of( context )
+                            .size
+                            .width,
+                        bottomCardWidget: bottomCardWidget( ),
+                        bottomCardHeight: 300,
+                        topCardHeight: 350,
+                      ),
                     ),
-                  ),
 
 
-                ],
+                  ],
+                ),
               ),
             )
         ),

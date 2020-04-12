@@ -66,9 +66,9 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SizedBox(height: SizeConfig.safeBlockVertical * 200,),
+                    SizedBox(height: dynamicHeight(200)),
                     Container(
-                      width: SizeConfig.safeBlockHorizontal * MediaQuery.of(context).size.width,
+                      width: dynamicWidth(MediaQuery.of(context).size.width,) ,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -84,8 +84,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             ),
                           ),
                           Container(
-                              height: SizeConfig.safeBlockVertical * 480.0,
-                              width: SizeConfig.safeBlockHorizontal * MediaQuery.of(context).size.width,
+                              height: dynamicHeight(480.0) ,
+                              width: dynamicWidth(MediaQuery.of(context).size.width) ,
                               padding: EdgeInsets.only(top: 10.0),
                               child: GridView.count(
                                   crossAxisCount: 2,
@@ -107,7 +107,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: SizeConfig.safeBlockVertical * 40,),
+                    SizedBox(height: dynamicHeight(40),),
                   ],
                 ),
               )
@@ -126,8 +126,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
         child: Column(children: <Widget>[
           Stack(children: [
             Container(
-              height: SizeConfig.safeBlockVertical * 230.0,
-              width: SizeConfig.safeBlockHorizontal * 180,
+              height: dynamicHeight(230.0) ,
+              width: dynamicWidth(180) ,
             ),
             Positioned(
                 left: 5.0,
@@ -137,15 +137,15 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                 child: Container(
                     padding: EdgeInsets.only(
                         left: 0.0, right: 0.0, top: 145.0, bottom: 0.0),
-                    height: SizeConfig.safeBlockVertical * 145.0,
-                    width: SizeConfig.safeBlockHorizontal * 180.0,
+                    height: dynamicHeight(145.0) ,
+                    width: dynamicWidth(180.0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
                         color: Colors.white),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(height: SizeConfig.safeBlockVertical * 20,),
+                          SizedBox(height: dynamicHeight(20) ,),
                           Text(
                             name,
                             style: TextStyle(
@@ -154,7 +154,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                 fontWeight: FontWeight.w900,
                                 color: Color(0xFF1F4B6E)),
                           ),
-                          SizedBox(height: SizeConfig.safeBlockVertical * 5.0),
+                          SizedBox(height: dynamicHeight(5.0) ),
                           Text(
                             description,
                             style: TextStyle(
@@ -171,8 +171,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                 top: 5.0,
                 bottom: 60.0,
                 child: Container(
-                    height: SizeConfig.safeBlockVertical * 30.0,
-                    width: SizeConfig.safeBlockHorizontal * 85.0,
+                    height: dynamicHeight(30.0) ,
+                    width: dynamicWidth(85.0) ,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: const Radius.circular(10.0),

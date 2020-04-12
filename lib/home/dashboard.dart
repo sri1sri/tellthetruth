@@ -69,7 +69,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SizedBox(height: dynamicHeight(400) , child: Container(color: Colors.transparent,),),
+                      //  SizedBox(height: dynamicHeight(400) , child: Container(color: Colors.transparent,),),
 
                         Container(
                           color: Colors.transparent,
@@ -135,7 +135,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
           child: Column(children: <Widget>[
             Stack(children: [
               Container(
-                height: dynamicHeight(240.0) ,
+                height: dynamicHeight(230.0) ,
                 width: dynamicWidth(180) ,
               ),
               Positioned(

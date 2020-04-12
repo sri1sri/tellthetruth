@@ -87,27 +87,30 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                       fontSize: 17.0,decoration: TextDecoration.none),
                                 ),
                               ),
-                              Container(
-                                  height: dynamicHeight(480.0) ,
-                                  width: dynamicWidth(MediaQuery.of(context).size.width) ,
-                                  padding: EdgeInsets.only(top: 10.0),
-                                  child: GridView.count(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 0,
-                                      mainAxisSpacing: 0,
-                                      childAspectRatio: 1.45,
-                                      scrollDirection: Axis.horizontal,
-                                      children: [
-                                        _buildImage("images/car-insurance.png","vasanth","the best one"),
-                                        _buildImage("images/co2.png","srivatsav","the good one"),
-                                        _buildImage("images/garage.png","vamsi","the great one"),
-                                        _buildImage("images/helpline.png","jake","the worst one"),
-                                        _buildImage("images/motorcycle-2.png","rajaa","the greatest one"),
-                                        _buildImage("images/parking.png","eldooo","the great one"),
-                                        _buildImage("images/sos.png","sainath","the naughty one"),
-                                        _buildImage("images/travel-insurance.png","nanditha","the perfect one"),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 40),
+                                child: Container(
+                                    height: dynamicHeight(480.0) ,
+                                    width: dynamicWidth(MediaQuery.of(context).size.width) ,
+                                    padding: EdgeInsets.only(top: 10.0),
+                                    child: GridView.count(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 6,
+                                        mainAxisSpacing: 6,
+                                        childAspectRatio: 1.45,
+                                        scrollDirection: Axis.horizontal,
+                                        children: [
+                                          _buildImage("images/car-insurance.png","vasanth","the best one"),
+                                          _buildImage("images/co2.png","srivatsav","the good one"),
+                                          _buildImage("images/garage.png","vamsi","the great one"),
+                                          _buildImage("images/helpline.png","jake","the worst one"),
+                                          _buildImage("images/motorcycle-2.png","rajaa","the greatest one"),
+                                          _buildImage("images/parking.png","eldooo","the great one"),
+                                          _buildImage("images/sos.png","sainath","the naughty one"),
+                                          _buildImage("images/travel-insurance.png","nanditha","the perfect one"),
 
-                                      ])),
+                                        ])),
+                              ),
                             ],
                           ),
                         ),
@@ -136,7 +139,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
             Stack(children: [
               Container(
                 height: dynamicHeight(230.0) ,
-                width: dynamicWidth(180) ,
+                width: dynamicWidth(170) ,
               ),
               Positioned(
                   left: 5.0,

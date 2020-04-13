@@ -120,7 +120,6 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                     mainAxisSpacing: 0,
                                     childAspectRatio: 0.6,
                                     children: [
-
                                       _QuestionListCard(backgroundGradient, "who is our father of our nation","images/boy.png","383","230",true),
                                       _QuestionListCard(activeGradient, "who is our father of our nation","images/boy.png","5","30",false),
                                       _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","36","830",false),
@@ -131,8 +130,6 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                       _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","432","400",true),
                                       _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","423","420",false),
                                       _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/boy.png","3423","700",true),
-
-
                                     ]
                                 )
                             )

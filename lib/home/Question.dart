@@ -111,7 +111,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    SizedBox( height: 40 ),
+//                    SizedBox( height: getDynamicHeight(40) ),
                     Padding(
                       padding: const EdgeInsets.all( 15.0 ),
                       child: Row(
@@ -160,8 +160,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                       .size
                       .width,
                   bottomCardWidget: bottomCardWidget(),
-                  bottomCardHeight: dynamicHeight(270),
-                  topCardHeight: dynamicHeight(250),
+                  bottomCardHeight: getDynamicHeight(280),
+                  topCardHeight: getDynamicHeight(250),
                 ),
               ),
               Padding(
@@ -177,7 +177,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                               'images/seen.png' ),
                           radius: 14,
                         ),
-                        SizedBox( width: 5, ),
+                        SizedBox( width: getDynamicWidth(5), ),
                         Text( "200", style: countStyle, ),
                       ],
                     ),
@@ -189,7 +189,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                               'images/poll.png' ),
                           radius: 12,
                         ),
-                        SizedBox( width: 5, ),
+                        SizedBox( width: getDynamicWidth(5), ),
                         Text( "150", style: countStyle, ),
                       ],
                     ),
@@ -199,7 +199,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                           backgroundColor: Colors.transparent,
                           radius: 14,
                         ),
-                        SizedBox( width: 5, ),
+                        SizedBox( width: getDynamicWidth(5), ),
                       ],
                     ),
                     GestureDetector(
@@ -213,7 +213,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                             child: Icon(
                               Icons.share, color: Colors.white, ),
                           ),
-                          SizedBox( width: 5, ),
+                          SizedBox( width: getDynamicWidth(5), ),
                           Text( "Share", style: countStyle, ),
                         ],
                       ),
@@ -242,8 +242,8 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Lottie.network(lottieFilePath,height: 60,width: 60),
-            SizedBox( height: 15 ),
+            Lottie.network(lottieFilePath,height: getDynamicHeight(60),width: getDynamicWidth(60)),
+            SizedBox( height: getDynamicHeight(15) ),
             GradientText(
               "Who invented the mac Book Air and in which year Book Air and in which year?",
               textAlign: TextAlign.center,
@@ -258,7 +258,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                 end: Alignment.bottomRight,
               ),
             ),
-            SizedBox( height: 10 ),
+            SizedBox( height: getDynamicHeight(10)),
           ],
         ),
       ),
@@ -271,7 +271,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
       child: Column(
         children: [
           Container(
-            height: dynamicHeight(55),
+            height: getDynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -311,9 +311,9 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
               ),
             ),
           ),
-          SizedBox( height: 10, ),
+          SizedBox( height: getDynamicHeight(10), ),
           Container(
-            height: dynamicHeight(55),
+            height: getDynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -353,9 +353,9 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
               ),
             ),
           ),
-          SizedBox( height: 10, ),
+          SizedBox( height: getDynamicHeight(10), ),
           Container(
-            height: dynamicHeight(55),
+            height: getDynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -395,9 +395,9 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
               ),
             ),
           ),
-          SizedBox( height: 10, ),
+          SizedBox( height: getDynamicHeight(10), ),
           Container(
-            height: dynamicHeight(55),
+            height: getDynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -444,15 +444,15 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   }
 
 
-  Future<T> showGeneralDialog<T>({
-    @required BuildContext context,
-    @required RoutePageBuilder pageBuilder,
-    bool barrierDismissible,
-    String barrierLabel,
-    Color barrierColor,
-    Duration transitionDuration,
-    RouteTransitionsBuilder transitionBuilder,
-  }){}
+//  Future<T> showGeneralDialog<T>({
+//    @required BuildContext context,
+//    @required RoutePageBuilder pageBuilder,
+//    bool barrierDismissible,
+//    String barrierLabel,
+//    Color barrierColor,
+//    Duration transitionDuration,
+//    RouteTransitionsBuilder transitionBuilder,
+//  }){}
 
 
 }
@@ -534,13 +534,13 @@ void showFancyCustomDialog(BuildContext context) {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: dynamicHeight(300.0),
-                width: dynamicWidth(300.0),
+                height: getDynamicHeight(300.0),
+                width: getDynamicWidth(300.0),
                 child: Stack(
                   children: <Widget>[
                     Container(
                       width: double.infinity,
-                      height: dynamicHeight(300),
+                      height: getDynamicHeight(300),
                       decoration: BoxDecoration(
                         color: Colors.grey[100],
                         borderRadius: BorderRadius.circular(12.0),
@@ -548,15 +548,15 @@ void showFancyCustomDialog(BuildContext context) {
                       child: Container(
                         child: Column(
                           children: [
-                            SizedBox(height: 100,),
+                            SizedBox(height: getDynamicHeight(100),),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Image.asset('images/whatsapp.png',height: 70,width: 70,),
-                                  Image.asset('images/fb.png',height: 60,width: 60,),
-                                  Image.asset('images/insta.png',height: 60,width: 60,),
+                                  Image.asset('images/whatsapp.png',height: getDynamicHeight(70),width: getDynamicWidth(70),),
+                                  Image.asset('images/fb.png',height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                                  Image.asset('images/insta.png',height: getDynamicHeight(60),width: getDynamicWidth(60),),
                                 ],
                               ),
                             )
@@ -566,7 +566,7 @@ void showFancyCustomDialog(BuildContext context) {
                     ),
                     Container(
                       width: double.infinity,
-                      height: 50,
+                      height: getDynamicHeight(50),
                       alignment: Alignment.bottomCenter,
                       decoration: BoxDecoration(
                         color: Colors.greenAccent,
@@ -591,7 +591,7 @@ void showFancyCustomDialog(BuildContext context) {
                         },
                         child: Container(
                           width: double.infinity,
-                          height: 50,
+                          height: getDynamicHeight(50),
                           decoration: BoxDecoration(
                             color: Colors.blue[300],
                             borderRadius: BorderRadius.only(

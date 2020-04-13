@@ -89,10 +89,10 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 40),
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
                                 child: Container(
-                                    height: dynamicHeight(480.0) ,
-                                    width: dynamicWidth(MediaQuery.of(context).size.width) ,
+                                    height: getDynamicHeight(490.0) ,
+                                    width: MediaQuery.of(context).size.width ,
                                     padding: EdgeInsets.only(top: 10.0),
                                     child: GridView.count(
                                         crossAxisCount: 2,
@@ -141,26 +141,26 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
           child: Column(children: <Widget>[
             Stack(children: [
               Container(
-                height: dynamicHeight(230.0) ,
-                width: dynamicWidth(170) ,
+                height: getDynamicHeight(230.0) ,
+                width: getDynamicWidth(170) ,
               ),
               Positioned(
                   left: 5.0,
                   right: 5.0,
                   top: 5.0,
-                  bottom: 0.0,
+                  bottom: 10.0,
                   child: Container(
                       padding: EdgeInsets.only(
-                          left: 0.0, right: 0.0, top: 145.0, bottom: 0.0),
-                      height: dynamicHeight(145.0) ,
-                      width: dynamicWidth(180.0),
+                          left: 0.0, right: 0.0, top: 135.0, bottom: 0.0),
+                      height: getDynamicHeight(145.0) ,
+                      width: getDynamicWidth(180.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
                           color: Colors.white),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            SizedBox(height: dynamicHeight(20) ,),
+                            SizedBox(height: getDynamicHeight(20) ,),
                             Text(
                               name,
                               style: TextStyle(
@@ -169,7 +169,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                   fontWeight: FontWeight.w900,
                                   color: Color(0xFF1F4B6E)),
                             ),
-                            SizedBox(height: dynamicHeight(5.0) ),
+                            SizedBox(height: getDynamicHeight(5.0) ),
                             Text(
                               description,
                               style: TextStyle(
@@ -185,8 +185,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                   left: 15.0,
                   right: 15.0,
                   top: 5.0,
-                  bottom: 60.0,
-                  child: Lottie.network(lottiePath,height: dynamicHeight(30),width: dynamicWidth(85)))
+                  bottom: 50.0,
+                  child: Lottie.network(lottiePath,height: getDynamicHeight(30),width: getDynamicWidth(85)))
             ]),
           ]));},
     );

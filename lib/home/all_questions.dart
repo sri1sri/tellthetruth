@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
@@ -80,24 +82,27 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
         debugShowCheckedModeBanner: false,
         home: new Scaffold(
           backgroundColor:Colors.white,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(MediaQuery.of(context).size.width/7),
-            child: CustomAppBar(
-              leftActionBar: Container(
-                child: Icon(Icons.arrow_back_ios,color: subBackgroundColor,),
-              ),
-              leftAction: () {
-                Navigator.pop(context, true);
-              },
-              rightActionBar: Container(
-                child: Icon(Icons.list,color: subBackgroundColor,),
-              ),
-              rightAction: () {
-
-              },
-              primaryText: 'Tell truth',
-              secondaryText: null,
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+              color: Colors.white,
+              onPressed: () {Navigator.pop(context, true);},
             ),
+            title: GradientText(
+              'Tell Truth',
+              style: boldStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0XffFD8B1F),
+                  Color(0XffD152E0),
+                  Color(0Xff30D0DB),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            elevation: 0,
+            backgroundColor: Colors.white,
           ),
           body: SingleChildScrollView(
             child: Container(
@@ -118,7 +123,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 10,
                                     mainAxisSpacing: 0,
-                                    childAspectRatio: 0.6,
+                                    childAspectRatio: 0.57,
                                     children: [
                                       _QuestionListCard(backgroundGradient, "who is our father of our nation","images/boy.png","383","230",true),
                                       _QuestionListCard(activeGradient, "who is our father of our nation","images/boy.png","5","30",false),
@@ -161,20 +166,20 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
             padding: EdgeInsets.only(left: 0.0, right: 0.0),
             child: Container(
                 height: 300.0,
-                width: 200.0,
+                width: getDynamicWidth(200.0),
                 child: Column(
                   children: <Widget>[
                     Stack(
                         children: [
                           Container(
 
-                              height: 300.0
+                              height: getDynamicHeight(300.0)
                           ),
                           Positioned(
 
                             child:  Container(
                               height: 300.0,
-                              width: 200.0,
+                              width: getDynamicWidth(200.0),
                               child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -216,8 +221,8 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                               sigmaY: 5,
                                             ),
                                             child: Container(
-                                              height: 1,
-                                              width: 1,
+                                              height: getDynamicHeight(1),
+                                              width: getDynamicWidth(1),
                                               color: Colors.black.withOpacity(0.0),
                                             ),
                                           ) : Container(
@@ -236,11 +241,11 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                                         'images/seen.png'),
                                                     radius: 14,
                                                   ),
-                                                  SizedBox(width: 5,),
+                                                  SizedBox(width: getDynamicWidth(5),),
                                                   Text(views,style: countStyle,),
                                                 ],
                                               ),
-                                              SizedBox(width: 20,),
+                                              SizedBox(width: dynamicWidth(20),),
 
                                               Row(
                                                 children: [
@@ -250,7 +255,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                                         'images/poll.png'),
                                                     radius: 12,
                                                   ),
-                                                  SizedBox(width: 5,),
+                                                  SizedBox(width: getDynamicWidth(5),),
                                                   Text(response,style: countStyle,),
                                                 ],
                                               ),

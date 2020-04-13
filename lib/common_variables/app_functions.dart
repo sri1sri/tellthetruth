@@ -21,6 +21,8 @@ void GoToPage(BuildContext context, Widget page) {
 String USER_ID;
 ImageSource IMAGE_SOURCE = ImageSource.gallery;
 Size SCREEN_SIZE;
+double IPHONE_11_PRO_MAX_HEIGHT = 896;
+double IPHONE_11_PRO_MAX_Width = 414;
 
 String getDateTime(int timestamp) {
   var format = new DateFormat('dd MMM yyyy, hh:mm a');
@@ -39,6 +41,21 @@ String getTime(int timestamp) {
   var date = new DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
 
   return timestamp == 0 ? '--' : format.format(date);
+}
+
+
+double getDynamicHeight(double height){
+  double actualHeightPercentage = height/IPHONE_11_PRO_MAX_HEIGHT;
+  double dynamicHeight = actualHeightPercentage * SCREEN_SIZE.height;
+
+  return dynamicHeight;
+}
+
+double getDynamicWidth(double width){
+  double actualHeightPercentage = width/IPHONE_11_PRO_MAX_Width;
+  double dynamicWidth = actualHeightPercentage * SCREEN_SIZE.width;
+
+  return dynamicWidth;
 }
 
 List<int> convertSeconds(int seconds) {

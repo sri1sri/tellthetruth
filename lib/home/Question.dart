@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -40,7 +42,7 @@ class F_QuestionDetailPage extends StatefulWidget {
 class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   static const duration = const Duration( seconds: 1 );
 
-  int secondsPassed = 10;
+  int secondsPassed = 5000;
   bool isActive = true;
 
   Timer timer;
@@ -48,10 +50,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
   void handleTick() {
     if (isActive) {
       setState( () {
-        if(secondsPassed>0){
-          secondsPassed = secondsPassed - 1;
-        }
-
+        secondsPassed = secondsPassed - 1;
       } );
     }
   }
@@ -79,152 +78,160 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
         handleTick( );
       } );
     }
-//    int seconds = secondsPassed % 60;
-//    int minutes = secondsPassed ~/ 60;
-//    int hours = secondsPassed ~/ (60 * 60);
+    int seconds = secondsPassed % 60;
+    int minutes = secondsPassed ~/ 60;
+    int hours = secondsPassed ~/ (60 * 60);
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
-          body: Container(
-              width: MediaQuery
-                  .of( context )
-                  .size
-                  .width,
-              height: MediaQuery
-                  .of( context )
-                  .size
-                  .height,
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color( 0XffFD8B1F ),
-                      Color( 0XffD152E0 ),
-                      Color( 0Xff30D0DB ),
-                      Color( 0Xff12c2e9 ),
-                    ],
-                  ) ),
+        body: Container(
+          width: MediaQuery
+              .of( context )
+              .size
+              .width,
+          height: MediaQuery
+              .of( context )
+              .size
+              .height,
+          decoration: new BoxDecoration(
+              gradient: new LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color( 0XffFD8B1F ),
+                  Color( 0XffD152E0 ),
+                  Color( 0Xff30D0DB ),
+                  Color( 0Xff12c2e9 ),
+                ],
+              ) ),
+          child: Column(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Center(
                 child: Column(
-                 // mainAxisAlignment: MainAxisAlignment.spaceAr,
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          SizedBox( height: 40 ),
-                          Padding(
-                            padding: const EdgeInsets.all( 15.0 ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector( child: Icon(
-                                  Icons.arrow_back_ios, color: Colors.white, ),
-                                  onTap: () {
-                                    Navigator.pop( context, true );
-                                  },
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    LabelText(
-                                        label: 'HRS',
-                                        value: convertSeconds(secondsPassed)[0].toString( ).padLeft( 2, '0' ) ),
-                                    LabelText(
-                                        label: 'MIN',
-                                        value: convertSeconds(secondsPassed)[1].toString( ).padLeft(
-                                            2, '0' ) ),
-                                    LabelText(
-                                        label: 'SEC',
-                                        value: convertSeconds(secondsPassed)[2].toString( ).padLeft(
-                                            2, '0' ) ),
-                                  ],
-                                ),
-                                Container(
-                                  child: Text(".....",style: TextStyle(color: Colors.transparent),),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all( 10.0 ),
-                      child: SlimyCard(
-                        color: Colors.transparent,
-                        borderRadius: 30,
-                        slimeEnabled: true,
-                        topCardWidget: topCardWidget( "images/male.png" ),
-                        width: MediaQuery
-                            .of( context )
-                            .size
-                            .width,
-                        bottomCardWidget: bottomCardWidget( ),
-                        bottomCardHeight: 270,
-                        topCardHeight: 250,
-                      ),
-                    ),
+                    SizedBox( height: 40 ),
                     Padding(
                       padding: const EdgeInsets.all( 15.0 ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: AssetImage(
-                                    'images/seen.png' ),
-                                radius: 14,
-                              ),
-                              SizedBox( width: 5, ),
-                              Text( "200", style: countStyle, ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: AssetImage(
-                                    'images/poll.png' ),
-                                radius: 12,
-                              ),
-                              SizedBox( width: 5, ),
-                              Text( "150", style: countStyle, ),
-                            ],
-                          ),
-                          GestureDetector(
+                          GestureDetector( child: Icon(
+                            Icons.arrow_back_ios, color: Colors.white, ),
                             onTap: () {
-                              showFancyCustomDialog( context );
+                              Navigator.pop( context, true );
                             },
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: Icon(
-                                    Icons.share, color: Colors.white, ),
-                                ),
-                                SizedBox( width: 5, ),
-                                Text( "Share", style: countStyle, ),
-                              ],
-                            ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              LabelText(
+                                  label: 'HRS',
+                                  value: hours.toString( ).padLeft( 2, '0' ) ),
+                              LabelText(
+                                  label: 'MIN',
+                                  value: minutes.toString( ).padLeft(
+                                      2, '0' ) ),
+                              LabelText(
+                                  label: 'SEC',
+                                  value: seconds.toString( ).padLeft(
+                                      2, '0' ) ),
+                            ],
+                          ),
+                          Container(
+                            child: Text(".....",style: TextStyle(color: Colors.transparent),),
+                          )
                         ],
                       ),
                     ),
-
-
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0 ),
+                child: SlimyCard(
+                  color: Colors.transparent,
+                  borderRadius: 30,
+                  slimeEnabled: true,
+                  topCardWidget: topCardWidget( 'https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json' ),
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  bottomCardWidget: bottomCardWidget(),
+                  bottomCardHeight: dynamicHeight(270),
+                  topCardHeight: dynamicHeight(250),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all( 15.0 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                              'images/seen.png' ),
+                          radius: 14,
+                        ),
+                        SizedBox( width: 5, ),
+                        Text( "200", style: countStyle, ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                              'images/poll.png' ),
+                          radius: 12,
+                        ),
+                        SizedBox( width: 5, ),
+                        Text( "150", style: countStyle, ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          radius: 14,
+                        ),
+                        SizedBox( width: 5, ),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showFancyCustomDialog( context );
+                      },
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            child: Icon(
+                              Icons.share, color: Colors.white, ),
+                          ),
+                          SizedBox( width: 5, ),
+                          Text( "Share", style: countStyle, ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
-            ),
+            ],
+          ),
+
+        ),
 
       ),
     );
   }
 
-  Widget topCardWidget(String imagePath) {
+  Widget topCardWidget(String lottieFilePath) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -235,22 +242,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular( 5 ),
-                image: DecorationImage( image: AssetImage( imagePath ) ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity( 0.2 ),
-                    blurRadius: 20,
-                    spreadRadius: 1,
-                  ),
-                ],
-              ),
-            ),
+            Lottie.network(lottieFilePath,height: 60,width: 60),
             SizedBox( height: 15 ),
             GradientText(
               "Who invented the mac Book Air and in which year Book Air and in which year?",
@@ -279,7 +271,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
       child: Column(
         children: [
           Container(
-            height: 55,
+            height: dynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -321,7 +313,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
           ),
           SizedBox( height: 10, ),
           Container(
-            height: 55,
+            height: dynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -363,7 +355,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
           ),
           SizedBox( height: 10, ),
           Container(
-            height: 55,
+            height: dynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -405,7 +397,7 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
           ),
           SizedBox( height: 10, ),
           Container(
-            height: 55,
+            height: dynamicHeight(55),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular( 5 ),
@@ -465,57 +457,57 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
 
 }
 
-  class LabelText extends StatelessWidget {
-    LabelText({this.label, this.value});
+class LabelText extends StatelessWidget {
+  LabelText({this.label, this.value});
 
-    final String label;
-    final String value;
+  final String label;
+  final String value;
 
-    @override
-    Widget build(BuildContext context) {
-      return Container(
-        margin: EdgeInsets.symmetric( horizontal: 5 ),
-        padding: EdgeInsets.all( 10 ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular( 15 ),
-          color: Colors.white,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            GradientText(
-              '$value',
-              textAlign: TextAlign.center,
-              style: boldStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric( horizontal: 5 ),
+      padding: EdgeInsets.all( 10 ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular( 15 ),
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          GradientText(
+            '$value',
+            textAlign: TextAlign.center,
+            style: boldStyle,
+            gradient: LinearGradient(
+              colors: [
+                Color( 0XffFD8B1F ),
+                Color( 0XffD152E0 ),
+                Color( 0Xff30D0DB ),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-            GradientText(
-              '$label',
-              style: answerStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
+          ),
+          GradientText(
+            '$label',
+            style: answerStyle,
+            gradient: LinearGradient(
+              colors: [
+                Color( 0XffFD8B1F ),
+                Color( 0XffD152E0 ),
+                Color( 0Xff30D0DB ),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-          ],
-        ),
-      );
-    }
-
+          ),
+        ],
+      ),
+    );
   }
+
+}
 
 
 
@@ -542,13 +534,13 @@ void showFancyCustomDialog(BuildContext context) {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: 300.0,
-                width: 300.0,
+                height: dynamicHeight(300.0),
+                width: dynamicWidth(300.0),
                 child: Stack(
                   children: <Widget>[
                     Container(
                       width: double.infinity,
-                      height: 300,
+                      height: dynamicHeight(300),
                       decoration: BoxDecoration(
                         color: Colors.grey[100],
                         borderRadius: BorderRadius.circular(12.0),
@@ -586,8 +578,8 @@ void showFancyCustomDialog(BuildContext context) {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          "Share",
-                          style: questionStyle
+                            "Share",
+                            style: questionStyle
                         ),
                       ),
                     ),

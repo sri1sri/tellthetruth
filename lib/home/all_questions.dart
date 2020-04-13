@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -119,16 +121,16 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                     childAspectRatio: 0.6,
                                     children: [
 
-                                      _QuestionListCard(backgroundGradient, "who is our father of our nation","images/boy.png","383","230"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/boy.png","5","30"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","36","830"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5","200"),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","56","340"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","64","210"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5756","850"),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","432","400"),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","423","420"),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/boy.png","3423","700"),
+                                      _QuestionListCard(backgroundGradient, "who is our father of our nation","images/boy.png","383","230",true),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/boy.png","5","30",false),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","36","830",false),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5","200",false),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","56","340",true),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","64","210",false),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5756","850",false),
+                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","432","400",true),
+                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","423","420",false),
+                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/boy.png","3423","700",true),
 
 
                                     ]
@@ -148,7 +150,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
     );
 
   }
-  Widget _QuestionListCard(LinearGradient Gradiant, String Question,String imgPath,String views,String response) {
+  Widget _QuestionListCard(LinearGradient Gradiant, String Question,String imgPath,String views,String response, bool isBlur) {
     return ExpandPageTransition(
 
       navigateToPage: QuestionDetailPage(),
@@ -189,9 +191,12 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
+
                                               Container(),
+
                                               Row(
                                                 children: [
+
                                                   CircleAvatar(
                                                     backgroundColor: Colors.transparent,
                                                     backgroundImage: AssetImage(
@@ -207,7 +212,20 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                             Question,
                                             style: questionStyle,
                                             textAlign: TextAlign.center,
-
+                                          ),
+                                          isBlur == true ? BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                              sigmaX: 5,
+                                              sigmaY: 5,
+                                            ),
+                                            child: Container(
+                                              height: 1,
+                                              width: 1,
+                                              color: Colors.black.withOpacity(0.0),
+                                            ),
+                                          ) : Container(
+                                            height: 0,
+                                            width: 0,
                                           ),
 
                                           Row(

@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
@@ -100,14 +101,14 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                         childAspectRatio: 1.45,
                                         scrollDirection: Axis.horizontal,
                                         children: [
-                                          _buildImage("images/car-insurance.png","vasanth","the best one"),
-                                          _buildImage("images/co2.png","srivatsav","the good one"),
-                                          _buildImage("images/garage.png","vamsi","the great one"),
-                                          _buildImage("images/helpline.png","jake","the worst one"),
-                                          _buildImage("images/motorcycle-2.png","rajaa","the greatest one"),
-                                          _buildImage("images/parking.png","eldooo","the great one"),
-                                          _buildImage("images/sos.png","sainath","the naughty one"),
-                                          _buildImage("images/travel-insurance.png","nanditha","the perfect one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"vasanth","the best one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
 
                                         ])),
                               ),
@@ -127,14 +128,16 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 
   }
 
-  Widget _buildImage(String imgPath, String name, String description) {
+  Widget _buildImage(String lottiePath, String name, String description) {
     return ExpandPageTransition(
       navigateToPage: QuestionsPage(),
       transitionType: ContainerTransitionType.fade,
       closedBuilder: (BuildContext _, VoidCallback openContainer) {
 
       return GestureDetector(
-          onTap: openContainer,
+          onTap: (){
+            GoToPage(context, QuestionsPage());
+          },
           child: Column(children: <Widget>[
             Stack(children: [
               Container(
@@ -177,20 +180,13 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             ),
 
                           ]))),
+
               Positioned(
                   left: 15.0,
                   right: 15.0,
                   top: 5.0,
                   bottom: 60.0,
-                  child: Container(
-                      height: dynamicHeight(30.0) ,
-                      width: dynamicWidth(85.0) ,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: const Radius.circular(10.0),
-                              topRight: const Radius.circular(10.0)),
-                          image: DecorationImage(
-                              image: AssetImage(imgPath), fit: BoxFit.contain))))
+                  child: Lottie.network(lottiePath,height: dynamicHeight(30),width: dynamicWidth(85)))
             ]),
           ]));},
     );

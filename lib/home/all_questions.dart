@@ -12,6 +12,7 @@ import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/home/Question.dart';
+import 'package:tellthetruth/home/groupMembers.dart';
 
 
 const backgroundGradient = LinearGradient(colors: <Color>[
@@ -101,6 +102,16 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                 end: Alignment.bottomRight,
               ),
             ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.list,color: Colors.black,),
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.push(context, PageTransition(type: PageTransitionType.rotate, duration: Duration(seconds: 1), child: ViewMembersPage()));
+                  },
+              ),
+
+            ],
             elevation: 0,
             backgroundColor: Colors.white,
           ),

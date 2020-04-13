@@ -76,7 +76,7 @@ class _F_HomePageState extends State<F_HomePage> {
             bottomNavigationBar: CurvedNavigationBar(
               key: _bottomNavigationKey,
               index: pageIndex,
-              height: dynamicHeight(70),
+              height: getDynamicHeight(70),
               items: <Widget>[
                 Icon(Icons.dashboard, size: 30),
                 Icon(Icons.add, size: 30),

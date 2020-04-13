@@ -122,7 +122,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: dynamicHeight(50),
+                        height: getDynamicHeight(70),
                       ),
                       GradientText(
                         'LogIn',
@@ -141,8 +141,8 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
 //                        Text("Please enter your login details.",style: mediumStyle,),
                       Center(
                         child: SizedBox(
-                          width: dynamicWidth(300),
-                          height: dynamicHeight(300),
+                          width: getDynamicWidth(300),
+                          height: getDynamicHeight(300),
                           child: Container(
                               child: FlareActor("images/welcome.flr",
                                   alignment: Alignment.center,
@@ -216,7 +216,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: dynamicHeight(20),
+                                  height: getDynamicHeight(20),
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
@@ -264,7 +264,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: dynamicHeight(20.0),
+                                  height: getDynamicHeight(20.0),
                                 ),
                               ],
                             ),
@@ -275,7 +275,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                   ],
                 ),
 
-                SizedBox(height: dynamicHeight(45)),
+                SizedBox(height: getDynamicHeight(45)),
 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -288,7 +288,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                         ),
                         GestureDetector(
                           child: Container(
-                            width: dynamicWidth(200.0),
+                            width: getDynamicWidth(200.0),
                             padding: EdgeInsets.all(15.0),
                             child: Center(
                                 child: Row(
@@ -312,7 +312,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                   Icon(
                                     Icons.arrow_forward_ios,
                                     color: Colors.blue,
-                                    size: 30,
+                                    size: getDynamicTextSize(30),
                                   ),
                                   Container(),
                                 ])),
@@ -341,13 +341,13 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                       ],
                     ),
                     SizedBox(
-                      height: dynamicHeight(15.0),
+                      height: getDynamicHeight(15.0),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text("Don't have an account?", style: regularStyle),
+                        Text("Don't have an account?", style: mediumStyle),
                         FlatButton(
                           child: GradientText(
                             'Sign Up',

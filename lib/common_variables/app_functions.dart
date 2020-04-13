@@ -44,14 +44,14 @@ String getTime(int timestamp) {
 }
 
 
-double getDynamicHeight(double height){
+double getDynamicHeight( double height,){
   double actualHeightPercentage = height/IPHONE_11_PRO_MAX_HEIGHT;
   double dynamicHeight = actualHeightPercentage * SCREEN_SIZE.height;
 
   return dynamicHeight;
 }
 
-double getDynamicWidth(double width){
+double getDynamicWidth( double width){
   double actualHeightPercentage = width/IPHONE_11_PRO_MAX_Width;
   double dynamicWidth = actualHeightPercentage * SCREEN_SIZE.width;
 

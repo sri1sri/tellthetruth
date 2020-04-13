@@ -185,7 +185,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: dynamicHeight(50),
+                  height: getDynamicHeight(50),
                 ),
                 GradientText(
                   'Register',
@@ -204,8 +204,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: dynamicWidth(250),
-                      height: dynamicHeight(250),
+                      width: getDynamicWidth(250),
+                      height: getDynamicHeight(250),
                       child: FlareActor("images/welcome.flr",
                           alignment: Alignment.center,
                           fit: BoxFit.contain,
@@ -276,14 +276,14 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: dynamicHeight(30),
+                                    height: getDynamicHeight(30),
                                   ),
                                   Text(
                                     "Date Of Birth",
                                     style: mediumStyle,
                                   ),
                                   SizedBox(
-                                    height: dynamicHeight(10),
+                                    height: getDynamicHeight(10),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 0, bottom: 10),
@@ -291,7 +291,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                       child: RaisedButton(
                                         color: Colors.white,
                                         child: Container(
-                                          height: dynamicHeight(60),
+                                          height: getDynamicHeight(60),
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -310,7 +310,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                           color: backgroundColor,
                                                         ),
                                                         SizedBox(
-                                                          width: dynamicWidth(10),
+                                                          width: getDynamicWidth(10),
                                                         ),
                                                         Text(
                                                             customFormat2.format(
@@ -340,7 +340,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                 ],
                                               ),
                                               SizedBox(
-                                                width: dynamicWidth(10),
+                                                width: getDynamicWidth(10),
                                               ),
                                             ],
                                           ),
@@ -353,7 +353,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: dynamicHeight(30),
+                                    height: getDynamicHeight(30),
                                   ),
                                   Text(
                                     "Gender",
@@ -388,7 +388,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                     size: 120, //default : 120
                                   ),
                                   SizedBox(
-                                    height: dynamicHeight(30),
+                                    height: getDynamicHeight(30),
                                   ),
                                 ],
                               ),
@@ -407,7 +407,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                     ),
                     GestureDetector(
                       child: Container(
-                        width: dynamicWidth(200),
+                        width: getDynamicWidth(200),
                         padding: EdgeInsets.all(15.0),
                         child: Center(
                             child: Row(
@@ -459,7 +459,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                   ],
                 ),
                 SizedBox(
-                  height: dynamicHeight(30),
+                  height: getDynamicHeight(30),
                 ),
                 Container(
                   child: Padding(
@@ -507,7 +507,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                   ),
                 ),
                 SizedBox(
-                  height: dynamicHeight(20),
+                  height: getDynamicHeight(20),
                 ),
               ],
             ),

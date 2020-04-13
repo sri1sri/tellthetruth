@@ -356,6 +356,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
+  flutter_page_transition:
+    dependency: "direct main"
+    description:
+      name: flutter_page_transition
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

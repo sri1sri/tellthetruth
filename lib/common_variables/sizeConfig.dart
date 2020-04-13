@@ -32,11 +32,3 @@ class SizeConfig {
   }
 }
 
-double dynamicHeight( double height,){
-  return (SizeConfig.blockSizeVertical * (height/SCREEN_SIZE.height)*100);
-}
-
-double dynamicWidth( double width){
-  return (SizeConfig.blockSizeHorizontal * (width/SCREEN_SIZE.width)*100);
-}
-

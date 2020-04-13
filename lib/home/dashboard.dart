@@ -1,5 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_page_transition/flutter_page_transition.dart';
+import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -85,7 +87,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w800,
-                                      fontSize: 17.0,decoration: TextDecoration.none),
+                                      fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),
                                 ),
                               ),
                               Padding(
@@ -128,7 +130,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 
   }
 
-  Widget _buildImage(String lottiePath, String name, String description) {
+  Widget _buildImage(String lottiePath, String groupName, String description) {
     return ExpandPageTransition(
       navigateToPage: QuestionsPage(),
       transitionType: ContainerTransitionType.fade,
@@ -136,7 +138,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 
       return GestureDetector(
           onTap: (){
-            GoToPage(context, QuestionsPage());
+            Navigator.of(context).push(PageTransition(type: PageTransitionType.slideUp, child: QuestionsPage()));
+            //GoToPage(context, QuestionsPage());
           },
           child: Column(children: <Widget>[
             Stack(children: [
@@ -151,8 +154,8 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                   bottom: 10.0,
                   child: Container(
                       padding: EdgeInsets.only(
-                          left: 0.0, right: 0.0, top: 135.0, bottom: 0.0),
-                      height: getDynamicHeight(145.0) ,
+                          left: 0.0, right: 0.0, top: getDynamicHeight(160), bottom: 0.0),
+                      height: getDynamicHeight(175.0) ,
                       width: getDynamicWidth(180.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5.0),
@@ -162,30 +165,30 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                           children: <Widget>[
                             SizedBox(height: getDynamicHeight(20) ,),
                             Text(
-                              name,
+                              groupName,
                               style: TextStyle(
                                   fontFamily: 'nunito',
-                                  fontSize: 14.0,
+                                  fontSize: getDynamicTextSize(14),
                                   fontWeight: FontWeight.w900,
                                   color: Color(0xFF1F4B6E)),
                             ),
                             SizedBox(height: getDynamicHeight(5.0) ),
-                            Text(
-                              description,
-                              style: TextStyle(
-                                  fontFamily: 'nunito',
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w700,
-                                  color: Color(0Xff12c2e9).withOpacity(0.75)),
-                            ),
+//                            Text(
+//                              description,
+//                              style: TextStyle(
+//                                  fontFamily: 'nunito',
+//                                  fontSize: getDynamicTextSize(12),
+//                                  fontWeight: FontWeight.w700,
+//                                  color: Color(0Xff12c2e9).withOpacity(0.75)),
+//                            ),
 
                           ]))),
 
               Positioned(
-                  left: 15.0,
-                  right: 15.0,
-                  top: 5.0,
-                  bottom: 50.0,
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
                   child: Lottie.network(lottiePath,height: getDynamicHeight(30),width: getDynamicWidth(85)))
             ]),
           ]));},

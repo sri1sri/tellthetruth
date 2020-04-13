@@ -256,7 +256,7 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                                   Text(views,style: countStyle,),
                                                 ],
                                               ),
-                                              SizedBox(width: dynamicWidth(20),),
+                                              SizedBox(width: getDynamicWidth(20),),
 
                                               Row(
                                                 children: [

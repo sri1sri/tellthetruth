@@ -119,7 +119,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: dynamicHeight(50),
+                        height: getDynamicHeight(70),
                       ),
                       GradientText(
                         'Sign Up',
@@ -140,8 +140,8 @@ class _F_SignupPageState extends State<F_SignupPage> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
-                              width: dynamicWidth(300),
-                              height: dynamicHeight(300),
+                              width: getDynamicWidth(300),
+                              height: getDynamicHeight(300),
                               child: FlareActor("images/walk.flr",
                                   alignment: Alignment.center,
                                   fit: BoxFit.contain,
@@ -214,7 +214,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: dynamicHeight(30),
+                                    height: getDynamicHeight(30),
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
@@ -266,7 +266,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: dynamicHeight(30),
+                                    height: getDynamicHeight(30),
                                   ),
                                 ],
                               ),
@@ -275,7 +275,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                         ],
                       ),
                     ]),
-                SizedBox(height: dynamicHeight(45)),
+                SizedBox(height: getDynamicHeight(45)),
 
 
                 Column(
@@ -290,7 +290,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                         ),
                         GestureDetector(
                           child: Container(
-                            width: dynamicWidth(200.0),
+                            width: getDynamicHeight(200.0),
                             padding: EdgeInsets.all(15.0),
                             child: Center(
                                 child: Row(
@@ -299,7 +299,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                                     children: <Widget>[
                                   Container(),
                                   GradientText(
-                                    'Continue',
+                                    'Next',
                                     style: boldStyle,
                                     gradient: LinearGradient(
                                       colors: [
@@ -337,13 +337,13 @@ class _F_SignupPageState extends State<F_SignupPage> {
                       ],
                     ),
                     SizedBox(
-                      height: dynamicHeight(15.0),
+                      height: getDynamicHeight(15.0),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text("Already have an account?", style: regularStyle),
+                        Text("Already have an account?", style: mediumStyle),
                         FlatButton(
                           child: GradientText(
                             'Login',

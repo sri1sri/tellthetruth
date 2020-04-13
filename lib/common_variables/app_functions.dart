@@ -58,6 +58,13 @@ double getDynamicWidth(double width){
   return dynamicWidth;
 }
 
+double getDynamicTextSize(double size){
+  double actualSizePercentage = size/IPHONE_11_PRO_MAX_Width;
+  double dynamicTextSize = actualSizePercentage * SCREEN_SIZE.width;
+
+  return dynamicTextSize;
+}
+
 List<int> convertSeconds(int seconds) {
   double sec = seconds.toDouble();
   double min;

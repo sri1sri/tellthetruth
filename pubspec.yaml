@@ -67,6 +67,7 @@ dependencies:
   swipe_up_menu: ^0.1.3
   interactive_add_button_layout: ^1.0.0
   fab_circular_menu: ^1.0.0
+  animated_text_kit: 2.0.0
 
 
 dev_dependencies:

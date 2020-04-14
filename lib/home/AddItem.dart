@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
@@ -85,12 +86,28 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                       animation: 'Animations')),
             ),
           ),
-           Text("Good evening Vasanth, ready to create something new ?",style: questionStyleThin,textAlign: TextAlign.center,),
+          TyperAnimatedTextKit(
+              onTap: () {
+                print("Tap Event");
+              },
+              text: [
+                "Good evening Vasanth,",
+                "Ready to create something new ?",
+                "Good evening Vasanth, ready to create something new ?",
+              ],
+              textStyle: questionStyleThin,
+              textAlign: TextAlign.center,
+              alignment: AlignmentDirectional.topCenter,
+              isRepeatingAnimation: false,// or Alignment.topLeft
+          ),
+           //Text("Good evening Vasanth, ready to create something new ?",style: questionStyleThin,textAlign: TextAlign.center,),
            SizedBox(height: getDynamicHeight(100),),
            Column(
              children: [
                GestureDetector(
-                 onTap: (){},
+                 onTap: (){
+                   print("Tap Event");
+                 },
                  child: Stack(
                    alignment: Alignment.center,
                    children: [
@@ -99,7 +116,13 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                      ),
                      Positioned(
                        top: 15,
-                       child:Text("Question",style: backgroundText,),
+                       child:FadeAnimatedTextKit(
+                           text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                           textStyle: backgroundText,
+                           textAlign: TextAlign.center,
+                           alignment: AlignmentDirectional.center // or Alignment.topLeft
+                       ),
+                       //Text("Question",style: backgroundText,),
                      ),
                      Positioned(
                        child: Text("Wanna ask a question?",style: questionStyle1,),
@@ -117,7 +140,12 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                      ),
                      Positioned(
                        top: 15,
-                       child:Text("Gang",style: backgroundText,),
+                       child:FadeAnimatedTextKit(
+                           text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
+                           textStyle: backgroundText,
+                           textAlign: TextAlign.center,
+                           alignment: AlignmentDirectional.center // or Alignment.topLeft
+                       ),
                      ),
                      Positioned(
                        child: Text("Create a new gang & have fun.",style: questionStyle1,),

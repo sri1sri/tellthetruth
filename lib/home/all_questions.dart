@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -221,10 +222,20 @@ class _F_QuestionsPageState extends State<F_QuestionsPage> {
                                             ],
                                           ),
 
-                                          Text(
-                                            Question,
-                                            style: questionStyle,
+                                          TyperAnimatedTextKit(
+                                            onTap: () {
+                                              print("Tap Event");
+                                            },
+                                            text: [
+                                              "Ready",
+                                              "Set",
+                                              "Your Question",
+                                              Question,
+                                            ],
+                                            textStyle: questionStyle,
                                             textAlign: TextAlign.center,
+                                            alignment: AlignmentDirectional.topCenter,
+                                            isRepeatingAnimation: false,// or Alignment.topLeft
                                           ),
                                           isBlur == true ? BackdropFilter(
                                             filter: ImageFilter.blur(

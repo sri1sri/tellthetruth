@@ -47,8 +47,13 @@ fontFamily: 'Montserrat',
 fontWeight: FontWeight.w600,
 fontSize: getDynamicTextSize(13),decoration: TextDecoration.none);
 
-var titleStyle = TextStyle(
+var logoStyle1 = TextStyle(
     color: Colors.white,
     fontFamily: 'FingerPaint',
     fontWeight: FontWeight.w700,
-    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none);
+    fontSize: getDynamicTextSize(40),decoration: TextDecoration.none);
+var logoStyle2 = TextStyle(
+    color: Colors.white,
+    fontFamily: 'FingerPaint',
+    fontWeight: FontWeight.w700,
+    fontSize: getDynamicTextSize(22),decoration: TextDecoration.none);

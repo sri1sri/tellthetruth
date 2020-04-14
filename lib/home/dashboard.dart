@@ -72,21 +72,24 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                   children: <Widget>[
                         Column(
                           children: <Widget>[
-                            SizedBox(height: 60,),
+                            SizedBox(height: 50,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("........",style: TextStyle(color: Colors.transparent),),
+                                IconButton(
+                                  icon: Icon(Icons.notifications,color: Colors.transparent,),
+                                  color: Colors.transparent,
+                                ),
                                 Row(
                                   children: [
-                                    Text("T",style: titleStyle,),
-                                    Text("ell",style: titleStyle,),
-                                    SizedBox(width: 5,),
-                                    Text("T",style: titleStyle,),
-                                    Text("he",style: titleStyle,),
-                                    SizedBox(width: 5,),
-                                    Text("T",style: titleStyle,),
-                                    Text("ruth",style: titleStyle,),
+                                    Text("T",style: logoStyle1,),
+                                    Text("ell",style: logoStyle2),
+                                    SizedBox(width: 10,),
+                                    Text("T",style: logoStyle1,),
+                                    Text("he",style: logoStyle2,),
+                                    SizedBox(width: 10,),
+                                    Text("T",style: logoStyle1,),
+                                    Text("ruth",style: logoStyle2,),
                                   ],
                                 ),
                                 IconButton(

@@ -72,38 +72,55 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                      //  SizedBox(height: dynamicHeight(400) , child: Container(color: Colors.transparent,),),
-
                         Container(
                           color: Colors.transparent,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                                child: Text(
-                                  "My gangs / squads",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                                    child: Text(
+                                      "My gangs",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                    child: GestureDetector(
+                                      child: Text(
+                                        "Show all",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
                                 child: Container(
-                                    height: getDynamicHeight(490.0) ,
+                                    height: getDynamicHeight(350.0) ,
                                     width: MediaQuery.of(context).size.width ,
                                     padding: EdgeInsets.only(top: 10.0),
                                     child: GridView.count(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 6,
-                                        mainAxisSpacing: 6,
+                                        crossAxisCount: 1,
+                                        crossAxisSpacing: 1,
+                                        mainAxisSpacing: 20,
                                         childAspectRatio: 1.45,
                                         scrollDirection: Axis.horizontal,
                                         children: [
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"vasanth","the best one"),
+//                                          Container(width: 10, color: Colors.transparent,),
+                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"Winner winner winn","6 new questions"),
                                           _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
                                           _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
                                           _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
@@ -117,7 +134,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             ],
                           ),
                         ),
-                        // SizedBox(height: dynamicHeight(30)),
+                         SizedBox(height: getDynamicHeight(30)),
 
                       ],
                     ),
@@ -141,38 +158,62 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
             Navigator.of(context).push(PageTransition(type: PageTransitionType.slideUp, child: QuestionsPage()));
             //GoToPage(context, QuestionsPage());
           },
-          child: Column(children: <Widget>[
-            Stack(children: [
-              Container(
-                height: getDynamicHeight(230.0) ,
-                width: getDynamicWidth(170) ,
-              ),
-              Positioned(
-                  left: 5.0,
-                  right: 5.0,
-                  top: 5.0,
-                  bottom: 10.0,
-                  child: Container(
-                      padding: EdgeInsets.only(
-                          left: 0.0, right: 0.0, top: getDynamicHeight(160), bottom: 0.0),
-                      height: getDynamicHeight(175.0) ,
-                      width: getDynamicWidth(180.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: Colors.white),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(height: getDynamicHeight(20) ,),
-                            Text(
-                              groupName,
-                              style: TextStyle(
-                                  fontFamily: 'nunito',
-                                  fontSize: getDynamicTextSize(14),
-                                  fontWeight: FontWeight.w900,
-                                  color: Color(0xFF1F4B6E)),
-                            ),
-                            SizedBox(height: getDynamicHeight(5.0) ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+
+                Lottie.network(lottiePath,height: getDynamicHeight(150),width: getDynamicWidth(150)),
+
+                SizedBox(height: 20,),
+
+                Text(
+                  description,
+                  style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                      fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),
+                ),
+                Text(
+                  groupName,
+                  style: TextStyle(
+                      color: Color(0xFF1F4B6E),
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w700,
+                      fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),
+                ),
+
+//            Stack(children: [
+//              Container(
+//                height: getDynamicHeight(230.0) ,
+//                width: getDynamicWidth(170) ,
+//              ),
+//              Positioned(
+//                  left: 5.0,
+//                  right: 5.0,
+//                  top: 5.0,
+//                  bottom: 10.0,
+//                  child: Container(
+//                      padding: EdgeInsets.only(
+//                          left: 0.0, right: 0.0, top: getDynamicHeight(160), bottom: 0.0),
+//                      height: getDynamicHeight(175.0) ,
+//                      width: getDynamicWidth(180.0),
+//                      decoration: BoxDecoration(
+//                          borderRadius: BorderRadius.circular(5.0),
+//                          color: Colors.white),
+//                      child: Column(
+//                          crossAxisAlignment: CrossAxisAlignment.center,
+//                          children: <Widget>[
+//                            SizedBox(height: getDynamicHeight(20) ,),
+//                            Text(
+//                              groupName,
+//                              style: TextStyle(
+//                                  fontFamily: 'nunito',
+//                                  fontSize: getDynamicTextSize(14),
+//                                  fontWeight: FontWeight.w900,
+//                                  color: Color(0xFF1F4B6E)),
+//                            ),
+//                            SizedBox(height: getDynamicHeight(5.0) ),
 //                            Text(
 //                              description,
 //                              style: TextStyle(
@@ -181,16 +222,18 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 //                                  fontWeight: FontWeight.w700,
 //                                  color: Color(0Xff12c2e9).withOpacity(0.75)),
 //                            ),
-
-                          ]))),
-
-              Positioned(
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: Lottie.network(lottiePath,height: getDynamicHeight(30),width: getDynamicWidth(85)))
-            ]),
+//
+//                          ]))),
+//
+//              Positioned(
+//                  left: 0,
+//                  right: 0,
+//                  top: 0,
+//                  bottom: 0,
+//                  child: Lottie.network(lottiePath,height: getDynamicHeight(30),width: getDynamicWidth(85)))
+//            ]
+//
+//            ),
           ]));},
     );
   }

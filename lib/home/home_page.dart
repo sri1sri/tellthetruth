@@ -71,7 +71,7 @@ class _F_HomePageState extends State<F_HomePage> {
   Widget offlineWidget (BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
-        padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0 ),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               key: _bottomNavigationKey,
@@ -81,7 +81,7 @@ class _F_HomePageState extends State<F_HomePage> {
                 Icon(Icons.dashboard, size: 30),
                 Icon(Icons.add, size: 30),
                 Icon(Icons.account_circle, size: 30),
-             //   Icon(Icons.settings, size: 30),
+                //   Icon(Icons.settings, size: 30),
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,
@@ -108,35 +108,12 @@ class _F_HomePageState extends State<F_HomePage> {
                   )),
               child: Center(
                 child: _showPage,
-
               ),
             )
         ),
       ),
     );
   }
-//
-//  Future<void> _signOut(BuildContext context) async {
-//    try {
-//      final auth = Provider.of<AuthBase>(context, listen: false);
-//      await auth.signOut();
-//      GoToPage(context, LandingPage());
-//    } catch (e) {
-//      print(e.toString());
-//    }
-//  }
-//
-//  Future<void> _confirmSignOut(BuildContext context) async {
-//    final didRequestSignOut = await PlatformAlertDialog(
-//      title: 'Logout',
-//      content: 'Are you sure that you want to logout?',
-//      defaultActionText: 'Logout',
-//      cancelActionText: 'Cancel',
-//    ).show(context);
-//    if (didRequestSignOut == true) {
-//      _signOut(context);
-//    }
-//  }
 }
 
 

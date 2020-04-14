@@ -136,18 +136,18 @@ class _F_SignupPageState extends State<F_SignupPage> {
                       ),
 //                    SizedBox(height: 15.0,),
 //                    Text("Please register with your details.",style: mediumStyle,),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: getDynamicWidth(300),
-                              height: getDynamicHeight(300),
+
+                      Center(
+                        child: SizedBox(
+                          width: getDynamicWidth(300),
+                          height: getDynamicHeight(300),
+                          child: Container(
                               child: FlareActor("images/walk.flr",
                                   alignment: Alignment.center,
                                   fit: BoxFit.contain,
-                                  animation: 'Untitled'),
-                            ),
-                          ]),
+                                  animation: 'Animations')),
+                        ),
+                      ),
                     ]),
 
                 Column(

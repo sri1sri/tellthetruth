@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
@@ -49,34 +50,93 @@ class _F_ProfilePageState extends State<F_ProfilePage> {
     );
   }
 
+  final PageController ctrl = PageController(viewportFraction: 0.2,);
+
   Widget _buildContent(BuildContext context) {
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new Scaffold(
             backgroundColor:Colors.white,
-            body: Container(
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0XffFD8B1F),
-                      Color(0XffD152E0),
-                      Color(0Xff30D0DB),
-                      Color(0Xff12c2e9),
-                    ],
-                  )),
-              child:   Column(
-                  children: <Widget>[
-                    SizedBox(height: 100,),
-                    Center(
-                      child: InkWell(onTap: (){
-                        _confirmSignOut(context);
-                      },child: Text('logout')),
-                    ),
-                  ],
-                ),
-            )
+body: Center(
+  child:   Container(
+    height: 150,
+    child:   PageView(scrollDirection: Axis.horizontal,
+    controller: ctrl,
+    children: [
+      Column(
+        children: <Widget>[
+          Container(color: Colors.greenAccent,height: 50, width: 50,),
+          Container(color: Colors.redAccent,height: 50, width: 50),
+          Container(color: Colors.blueAccent,height: 50, width: 50),
+        ],
+      ),
+      SizedBox(width: 50,),
+      Column(
+        children: <Widget>[
+          Container(color: Colors.redAccent,height: 50, width: 50,),
+          Container(color: Colors.blueAccent,height: 50, width: 50,),
+          Container(color: Colors.greenAccent,height: 50, width: 50,),
+        ],
+      ),
+      SizedBox(width: 50,),
+      Column(
+        children: <Widget>[
+          Container(color: Colors.blueAccent,height: 50, width: 50,),
+          Container(color: Colors.greenAccent,height: 50, width: 50,),
+          Container(color: Colors.redAccent,height: 50, width: 50,),
+        ],
+      ),
+      SizedBox(width: 50,),
+      Column(
+        children: <Widget>[
+          Container(color: Colors.blueAccent,height: 50, width: 50,),
+          Container(color: Colors.greenAccent,height: 50, width: 50,),
+          Container(color: Colors.redAccent,height: 50, width: 50,),
+        ],
+      ),
+      SizedBox(width: 50,),
+      Column(
+        children: <Widget>[
+          Container(color: Colors.blueAccent,height: 50, width: 50,),
+          Container(color: Colors.greenAccent,height: 50, width: 50,),
+          Container(color: Colors.redAccent,height: 50, width: 50,),
+        ],
+      ),
+      SizedBox(width: 50,),
+      Column(
+        children: <Widget>[
+          Container(color: Colors.blueAccent,height: 50, width: 50,),
+          Container(color: Colors.greenAccent,height: 50, width: 50,),
+          Container(color: Colors.redAccent,height: 50, width: 50,),
+        ],
+      ),
+
+    ],),
+  ),
+),
+//            body: Container(
+//              decoration: new BoxDecoration(
+//                  gradient: new LinearGradient(
+//                    begin: Alignment.topCenter,
+//                    end: Alignment.bottomCenter,
+//                    colors: [
+//                      Color(0XffFD8B1F),
+//                      Color(0XffD152E0),
+//                      Color(0Xff30D0DB),
+//                      Color(0Xff12c2e9),
+//                    ],
+//                  )),
+//              child:   Column(
+//                  children: <Widget>[
+//                    SizedBox(height: 100,),
+//                    Center(
+//                      child: InkWell(onTap: (){
+//                        _confirmSignOut(context);
+//                      },child: Text('logout')),
+//                    ),
+//                  ],
+//                ),
+//            )
         ),
     );
   }

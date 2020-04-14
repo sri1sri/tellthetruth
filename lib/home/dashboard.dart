@@ -91,14 +91,14 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             Text("........",style: TextStyle(color: Colors.transparent),),
                             Row(
                               children: [
-                                Text("T",style: titleStyle,),
-                                Text("ell",style: titleStyle,),
+                                Text("T",style: logoStyle1,),
+                                Text("ell",style: logoStyle2,),
                                 SizedBox(width: 5,),
-                                Text("T",style: titleStyle,),
-                                Text("he",style: titleStyle,),
+                                Text("T",style: logoStyle1,),
+                                Text("he",style: logoStyle2,),
                                 SizedBox(width: 5,),
-                                Text("T",style: titleStyle,),
-                                Text("ruth",style: titleStyle,),
+                                Text("T",style: logoStyle1,),
+                                Text("ruth",style: logoStyle2,),
                               ],
                             ),
                             IconButton(

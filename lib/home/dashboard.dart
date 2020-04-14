@@ -15,6 +15,7 @@ import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart'
 import 'package:tellthetruth/home/all_questions.dart';
 import 'package:tellthetruth/home/groupMembers.dart';
 
+
 class DashboardPage extends StatelessWidget {
   //ProfilePage({@required this.database});
   //Database database;
@@ -105,7 +106,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                               icon: Icon(Icons.notifications,color: Colors.white,),
                               color: Colors.white,
                               onPressed: () {
-                                Navigator.push(context, PageTransition(type: PageTransitionType.slideZoomUp, duration: Duration(seconds: 1), child: ViewMembersPage()));
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
                               },
                             ),
 
@@ -122,6 +123,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                           CircleAvatar(
                             backgroundImage: AssetImage("images/boy.png"),
                             radius: 35,
+
                           ),
                           SizedBox(height: 20,),
                           Text("Hello, Vasanthakumar",style: boldStyleLight,),

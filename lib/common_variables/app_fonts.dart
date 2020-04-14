@@ -30,7 +30,7 @@ var regularStyle = TextStyle(
     fontSize: getDynamicTextSize(17),decoration: TextDecoration.none);
 
 var boldStyleLight = TextStyle(
-    color: Colors.white,
+    color: Color(0xFF253949),
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w700,
     fontSize: getDynamicTextSize(26),decoration: TextDecoration.none);
@@ -52,7 +52,6 @@ var answerStyleBlur = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w600,
     fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);
-
 
 var countStyle = TextStyle(
 color: Colors.white,

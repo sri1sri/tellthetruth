@@ -1,8 +1,12 @@
+import 'dart:math';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:lottie/lottie.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -50,128 +54,290 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return new MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Container(
+    final tween = MultiTrackTween([
+      Track("color1").add(Duration(seconds: 3),
+          ColorTween(begin: Color(0xffD38312), end: Color(0XffD152E0))),
+      Track("color2").add(Duration(seconds: 3),
+          ColorTween(begin: Color(0XffD152E0), end: Color(0Xff30D0DB))),
+      Track("color3").add(Duration(seconds: 3),
+          ColorTween(begin: Color(0Xff30D0DB), end: Color(0Xff12c2e9))),
+      Track("color4").add(Duration(seconds: 3),
+          ColorTween(begin: Color(0Xff12c2e9), end: Color(0xffD38312))),
+    ]);
+
+    return ControlledAnimation(
+      playback: Playback.MIRROR,
+      tween: tween,
+      duration: tween.duration,
+      builder: (context, animation) {
+        return Container(
           child: new Scaffold(
-              backgroundColor:Colors.white,
               body: Container(
-                decoration: new BoxDecoration(
-                    gradient: new LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0XffFD8B1F),
-                        Color(0XffD152E0),
-                        Color(0Xff30D0DB),
-                        Color(0Xff12c2e9),
-                      ],
-                    )),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            SizedBox(height: 50,),
+                    Column(
+                      children: <Widget>[
+                        SizedBox(height: 60,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("........",style: TextStyle(color: Colors.transparent),),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                IconButton(
-                                  icon: Icon(Icons.notifications,color: Colors.transparent,),
-                                  color: Colors.transparent,
-                                ),
-                                Row(
-                                  children: [
-                                    Text("T",style: logoStyle1,),
-                                    Text("ell",style: logoStyle2),
-                                    SizedBox(width: 10,),
-                                    Text("T",style: logoStyle1,),
-                                    Text("he",style: logoStyle2,),
-                                    SizedBox(width: 10,),
-                                    Text("T",style: logoStyle1,),
-                                    Text("ruth",style: logoStyle2,),
-                                  ],
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.notifications,color: Colors.white,),
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    Navigator.push(context, PageTransition(type: PageTransitionType.slideZoomUp, duration: Duration(seconds: 1), child: ViewMembersPage()));
-                                  },
-                                ),
-
+                                Text("T",style: titleStyle,),
+                                Text("ell",style: titleStyle,),
+                                SizedBox(width: 5,),
+                                Text("T",style: titleStyle,),
+                                Text("he",style: titleStyle,),
+                                SizedBox(width: 5,),
+                                Text("T",style: titleStyle,),
+                                Text("ruth",style: titleStyle,),
                               ],
                             ),
+                            IconButton(
+                              icon: Icon(Icons.notifications,color: Colors.white,),
+                              color: Colors.white,
+                              onPressed: () {
+                                Navigator.push(context, PageTransition(type: PageTransitionType.slideZoomUp, duration: Duration(seconds: 1), child: ViewMembersPage()));
+                              },
+                            ),
+
                           ],
                         ),
-                        Container(
-                          color: Colors.transparent,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                                    child: Text(
-                                      "My gangs",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                                    child: GestureDetector(
-                                      child: Text(
-                                        "Show all",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left:20.0,right: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: AssetImage("images/boy.png"),
+                            radius: 35,
+                          ),
+                          SizedBox(height: 20,),
+                          Text("Hello, Vasanthakumar",style: boldStyleLight,),
+                          SizedBox(height: 10,),
+                          Text("Hey today you got 3 more questions to\n answer in your groups.",style: answerStyleBlur,)
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: Colors.transparent,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                                child: Text(
+                                  "My gangs",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
+                                ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
-                                child: Container(
-                                    height: getDynamicHeight(350.0) ,
-                                    width: MediaQuery.of(context).size.width ,
-                                    padding: EdgeInsets.only(top: 10.0),
-                                    child: GridView.count(
-                                        crossAxisCount: 1,
-                                        crossAxisSpacing: 1,
-                                        mainAxisSpacing: 20,
-                                        childAspectRatio: 1.45,
-                                        scrollDirection: Axis.horizontal,
-                                        children: [
-//                                          Container(width: 10, color: Colors.transparent,),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"Winner winner winn","6 new questions"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
-                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
-
-                                        ])),
+                                padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+                                child: GestureDetector(
+                                  child: Text(
+                                    "Show all",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
+                            child: Container(
+                                height: getDynamicHeight(350.0) ,
+                                width: MediaQuery.of(context).size.width ,
+                                padding: EdgeInsets.only(top: 10.0),
+                                child: GridView.count(
+                                    crossAxisCount: 1,
+                                    crossAxisSpacing: 1,
+                                    mainAxisSpacing: 20,
+                                    childAspectRatio: 1.45,
+                                    scrollDirection: Axis.horizontal,
+                                    children: [
+//                                          Container(width: 10, color: Colors.transparent,),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"Winner winner winn","6 new questions"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
+
+                                    ])),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               )
           ),
-        )
+        );
+      },
     );
+
+
+//      new MaterialApp(
+//        debugShowCheckedModeBanner: false,
+//        home: Container(
+//          child: new Scaffold(
+//              backgroundColor:Colors.white,
+//              body: Container(
+//                decoration: new BoxDecoration(
+//                    gradient: new LinearGradient(
+//                      begin: Alignment.topCenter,
+//                      end: Alignment.bottomCenter,
+//                      colors: [
+//                        Color(0XffFD8B1F),
+//                        Color(0XffD152E0),
+//                        Color(0Xff30D0DB),
+//                        Color(0Xff12c2e9),
+//                      ],
+//                    )),
+//                child: Column(
+//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                  crossAxisAlignment: CrossAxisAlignment.start,
+//                  children: <Widget>[
+//                        Column(
+//                          children: <Widget>[
+//                            SizedBox(height: 60,),
+//                            Row(
+//                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                              children: [
+//                                Text("........",style: TextStyle(color: Colors.transparent),),
+//                                Row(
+//                                  children: [
+//                                    Text("T",style: titleStyle,),
+//                                    Text("ell",style: titleStyle,),
+//                                    SizedBox(width: 5,),
+//                                    Text("T",style: titleStyle,),
+//                                    Text("he",style: titleStyle,),
+//                                    SizedBox(width: 5,),
+//                                    Text("T",style: titleStyle,),
+//                                    Text("ruth",style: titleStyle,),
+//                                  ],
+//                                ),
+//                                IconButton(
+//                                  icon: Icon(Icons.notifications,color: Colors.white,),
+//                                  color: Colors.white,
+//                                  onPressed: () {
+//                                    Navigator.push(context, PageTransition(type: PageTransitionType.slideZoomUp, duration: Duration(seconds: 1), child: ViewMembersPage()));
+//                                  },
+//                                ),
+//
+//                              ],
+//                            ),
+//                          ],
+//                        ),
+//                        Padding(
+//                          padding: const EdgeInsets.only(left:20.0,right: 20),
+//                          child: Column(
+//                            crossAxisAlignment: CrossAxisAlignment.start,
+//                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                            children: [
+//                              CircleAvatar(
+//                                backgroundImage: AssetImage("images/boy.png"),
+//                                radius: 35,
+//                              ),
+//                              SizedBox(height: 20,),
+//                              Text("Hello, Vasanthakumar",style: boldStyleLight,),
+//                              SizedBox(height: 10,),
+//                              Text("Hey today you got 3 more questions to\n answer in your groups.",style: answerStyleBlur,)
+//                            ],
+//                          ),
+//                        ),
+//                        Container(
+//                          color: Colors.transparent,
+//                          child: Column(
+//                            crossAxisAlignment: CrossAxisAlignment.start,
+//                            children: [
+//                              Row(
+//                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                                children: <Widget>[
+//                                  Padding(
+//                                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+//                                    child: Text(
+//                                      "My gangs",
+//                                      style: TextStyle(
+//                                          color: Colors.white,
+//                                          fontFamily: 'Montserrat',
+//                                          fontWeight: FontWeight.w800,
+//                                          fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
+//                                    child: GestureDetector(
+//                                      child: Text(
+//                                        "Show all",
+//                                        style: TextStyle(
+//                                            color: Colors.white,
+//                                            fontFamily: 'Montserrat',
+//                                            fontWeight: FontWeight.w600,
+//                                            fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                ],
+//                              ),
+//                              Padding(
+//                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
+//                                child: Container(
+//                                    height: getDynamicHeight(350.0) ,
+//                                    width: MediaQuery.of(context).size.width ,
+//                                    padding: EdgeInsets.only(top: 10.0),
+//                                    child: GridView.count(
+//                                        crossAxisCount: 1,
+//                                        crossAxisSpacing: 1,
+//                                        mainAxisSpacing: 20,
+//                                        childAspectRatio: 1.45,
+//                                        scrollDirection: Axis.horizontal,
+//                                        children: [
+////                                          Container(width: 10, color: Colors.transparent,),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"Winner winner winn","6 new questions"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
+//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
+//
+//                                        ])),
+//                              ),
+//                            ],
+//                          ),
+//                        ),
+//                  ],
+//                ),
+//              )
+//          ),
+//        )
+//    );
 
   }
 

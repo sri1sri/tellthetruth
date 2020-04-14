@@ -29,6 +29,12 @@ var regularStyle = TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: getDynamicTextSize(17),decoration: TextDecoration.none);
 
+var boldStyleLight = TextStyle(
+    color: Colors.white,
+    fontFamily: 'Montserrat',
+    fontWeight: FontWeight.w700,
+    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none);
+
 var questionStyle = TextStyle(
     color: Colors.white,
     fontFamily: 'Montserrat',
@@ -40,6 +46,13 @@ var answerStyle = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w600,
     fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);
+
+var answerStyleBlur = TextStyle(
+    color: Colors.white.withOpacity(0.7),
+    fontFamily: 'Montserrat',
+    fontWeight: FontWeight.w600,
+    fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);
+
 
 var countStyle = TextStyle(
 color: Colors.white,

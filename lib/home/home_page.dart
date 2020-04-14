@@ -85,7 +85,7 @@ class _F_HomePageState extends State<F_HomePage> {
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Color(0Xff12c2e9),
+              backgroundColor: Colors.black,
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (int tappedIndex) {

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/home/all_questions.dart';
+import 'package:tellthetruth/home/groupMembers.dart';
 
 class DashboardPage extends StatelessWidget {
   //ProfilePage({@required this.database});
@@ -66,12 +68,39 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                       ],
                     )),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-//
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                        Column(
+                          children: <Widget>[
+                            SizedBox(height: 60,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("........",style: TextStyle(color: Colors.transparent),),
+                                Row(
+                                  children: [
+                                    Text("T",style: titleStyle,),
+                                    Text("ell",style: titleStyle,),
+                                    SizedBox(width: 5,),
+                                    Text("T",style: titleStyle,),
+                                    Text("he",style: titleStyle,),
+                                    SizedBox(width: 5,),
+                                    Text("T",style: titleStyle,),
+                                    Text("ruth",style: titleStyle,),
+                                  ],
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.notifications,color: Colors.white,),
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    Navigator.push(context, PageTransition(type: PageTransitionType.slideZoomUp, duration: Duration(seconds: 1), child: ViewMembersPage()));
+                                  },
+                                ),
+
+                              ],
+                            ),
+                          ],
+                        ),
                         Container(
                           color: Colors.transparent,
                           child: Column(
@@ -134,10 +163,6 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             ],
                           ),
                         ),
-                         SizedBox(height: getDynamicHeight(30)),
-
-                      ],
-                    ),
                   ],
                 ),
               )

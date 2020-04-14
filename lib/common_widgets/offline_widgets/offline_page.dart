@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 
 
 
@@ -31,7 +32,7 @@ class CustomOfflinePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 100,),
+            SizedBox(height: getDynamicHeight(100.0),),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: GradientText(
@@ -49,8 +50,8 @@ class CustomOfflinePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 400.0,
-              height: 500.0,
+              width: getDynamicWidth(400.0),
+              height: getDynamicHeight(500.0),
               child: FlareActor("images/no internet.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'no_netwrok'),
             ),
             //Splash(),

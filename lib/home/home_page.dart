@@ -117,9 +117,9 @@ class _F_HomePageState extends State<F_HomePage> {
                 Icon(Icons.account_circle, size: 30),
                 //   Icon(Icons.settings, size: 30),
               ],
-              color: Colors.white,
+              color: Colors.black12,
               buttonBackgroundColor: Colors.white,
-//              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.white,
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (int tappedIndex) {

@@ -2,12 +2,16 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_animations/simple_animations.dart';
+import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
-import 'package:tellthetruth/home/AddItem.dart';
+import 'package:tellthetruth/Add/AddItem.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/home/dashboard.dart';
 import 'package:tellthetruth/home/Profile.dart';
 import 'package:tellthetruth/home/Settings.dart';
@@ -62,17 +66,47 @@ class _F_HomePageState extends State<F_HomePage> {
     }
   }
   GlobalKey _bottomNavigationKey = GlobalKey();
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final database = Provider.of<Database>(context, listen: false);
+      DBreference = database;
+  }
+  
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return offlineWidget(context);
+    return StreamBuilder<UserDetails>(
+        stream: DBreference.getUserDetails(),
+        builder: (context, snapshot) {
+          final userDetails = snapshot.data;
+          USER_NAME = userDetails != null ? userDetails.username : 'fetching...';
+          USER_GENDER = userDetails != null ? userDetails.gender : 'fetching...';
+
+        return offlineWidget(context);
+      }
+    );
   }
 
   Widget offlineWidget (BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: ControlledAnimation(
+          playback: Playback.MIRROR,
+          tween: tween,
+          duration: tween.duration,
+    builder: (context, animation) {
+      return Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
         child: Scaffold(
+            backgroundColor: Colors.transparent,
             bottomNavigationBar: CurvedNavigationBar(
               key: _bottomNavigationKey,
               index: pageIndex,
@@ -85,7 +119,7 @@ class _F_HomePageState extends State<F_HomePage> {
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Colors.black,
+              backgroundColor: Colors.transparent,
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (int tappedIndex) {
@@ -111,10 +145,11 @@ class _F_HomePageState extends State<F_HomePage> {
               ),
             )
         ),
+      );
+    }
+
+        ),
       ),
     );
   }
 }
-
-
-

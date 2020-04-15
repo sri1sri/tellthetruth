@@ -7,6 +7,7 @@ import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
+import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -55,16 +56,6 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    final tween = MultiTrackTween([
-      Track("color1").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0xffD38312), end: Color(0XffD152E0))),
-      Track("color2").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0XffD152E0), end: Color(0Xff30D0DB))),
-      Track("color3").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0Xff30D0DB), end: Color(0Xff12c2e9))),
-      Track("color4").add(Duration(seconds: 3),
-          ColorTween(begin: Color(0Xff12c2e9), end: Color(0xffD38312))),
-    ]);
 
     return ControlledAnimation(
       playback: Playback.MIRROR,
@@ -126,7 +117,7 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 
                           ),
                           SizedBox(height: 20,),
-                          Text("Hello, Vasanthakumar",style: boldStyleLight,),
+                          Text("Hello, $USER_NAME",style: boldStyleLight,),
                           SizedBox(height: 10,),
                           Text("Hey today you got 3 more questions to\n answer in your groups.",style: answerStyleBlur,)
                         ],

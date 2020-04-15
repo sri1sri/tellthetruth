@@ -15,8 +15,10 @@ import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/home/AddGroup.dart';
+import 'package:tellthetruth/Add/add_gang_name.dart';
 import 'package:tellthetruth/home/groupMembers.dart';
+
+import 'join_gang.dart';
 
 class AddItemPage extends StatelessWidget {
   //ProfilePage({@required this.database});
@@ -77,8 +79,8 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
         children: [
            Center(
             child: SizedBox(
-              width: getDynamicWidth(300),
-              height: getDynamicHeight(300),
+              width: getDynamicWidth(200),
+              height: getDynamicHeight(200),
               child: Container(
                   child: FlareActor("images/welcome.flr",
                       alignment: Alignment.center,
@@ -91,9 +93,9 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                 print("Tap Event");
               },
               text: [
-                "Good evening Vasanth,",
-                "Ready to create something new ?",
-                "Good evening Vasanth, ready to create something new ?",
+//                "Good evening Vasanth,",
+//                "Ready to create something exiciting ?",
+                "Good evening $USER_NAME, ready to do something exiciting ?",
               ],
               textStyle: questionStyleThin,
               textAlign: TextAlign.center,
@@ -106,6 +108,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
              children: [
                GestureDetector(
                  onTap: (){
+                   GoToPage(context, JoinGang());
                    print("Tap Event");
                  },
                  child: Stack(
@@ -115,7 +118,33 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                        height: getDynamicHeight(150),
                      ),
                      Positioned(
-                       top: 15,
+                       top: 12,
+                       child:FadeAnimatedTextKit(
+                           text: ["Gang..", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                           textStyle: backgroundText,
+                           textAlign: TextAlign.center,
+                           alignment: AlignmentDirectional.center // or Alignment.topLeft
+                       ),
+                       //Text("Question",style: backgroundText,),
+                     ),
+                     Positioned(
+                       child: Text("Join your gang...",style: questionStyle1,),
+                     )
+                   ],
+                 ),
+               ),
+               GestureDetector(
+                 onTap: (){
+                   print("Tap Event");
+                 },
+                 child: Stack(
+                   alignment: Alignment.center,
+                   children: [
+                     Container(
+                       height: getDynamicHeight(150),
+                     ),
+                     Positioned(
+                       top: 12,
                        child:FadeAnimatedTextKit(
                            text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                            textStyle: backgroundText,
@@ -131,7 +160,9 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                  ),
                ),
                GestureDetector(
-                 onTap: (){},
+                 onTap: (){
+                   GoToPage(context, AddGangName());
+                 },
                  child: Stack(
                    alignment: Alignment.center,
                    children: [
@@ -139,7 +170,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                        height: getDynamicHeight(150),
                      ),
                      Positioned(
-                       top: 15,
+                       top: 12,
                        child:FadeAnimatedTextKit(
                            text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
                            textStyle: backgroundText,
@@ -159,8 +190,6 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
       ),
     );
   }
-
-
 }
 
 

@@ -19,6 +19,9 @@ void GoToPage(BuildContext context, Widget page) {
 }
 
 String USER_ID;
+String USER_NAME;
+String USER_GENDER;
+
 ImageSource IMAGE_SOURCE = ImageSource.gallery;
 Size SCREEN_SIZE;
 double IPHONE_11_PRO_MAX_HEIGHT = 896;

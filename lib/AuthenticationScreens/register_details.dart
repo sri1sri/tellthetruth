@@ -12,7 +12,7 @@ import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_al
 import 'package:tellthetruth/firebase/api_path.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/firebase/firestore_service.dart';
-import 'package:tellthetruth/model/user_details.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:intl/intl.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';

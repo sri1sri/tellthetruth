@@ -118,9 +118,9 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 height: getDynamicHeight(150),
                               ),
                               Positioned(
-                                top: 12,
+                                top: 25,
                                 child:FadeAnimatedTextKit(
-                                    text: ["Gang..", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                                    text: ["6",],
                                     textStyle: backgroundText,
                                     textAlign: TextAlign.center,
                                     alignment: AlignmentDirectional.center // or Alignment.topLeft
@@ -156,7 +156,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 height: getDynamicHeight(150),
                               ),
                               Positioned(
-                                top: 12,
+                                top: 25,
                                 child:FadeAnimatedTextKit(
                                     text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                                     textStyle: backgroundText,
@@ -194,7 +194,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 height: getDynamicHeight(150),
                               ),
                               Positioned(
-                                top: 12,
+                                top: 25,
                                 child:FadeAnimatedTextKit(
                                     text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
                                     textStyle: backgroundText,

@@ -45,7 +45,7 @@ class _F_HomePageState extends State<F_HomePage> {
   final ProfilePage _profilePage = ProfilePage();
 //  final SettingsPage _settingsPage = SettingsPage();
 
-  Widget _showPage = new DashboardPage();
+  Widget _showPage = new Dashboard1Page();
   Widget _pageChooser(int page){
     switch(page){
       case 0:
@@ -101,11 +101,11 @@ class _F_HomePageState extends State<F_HomePage> {
           duration: tween.duration,
     builder: (context, animation) {
       return Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+//        decoration: BoxDecoration(
+//            gradient: LinearGradient(
+//                begin: Alignment.topCenter,
+//                end: Alignment.bottomCenter,
+//                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
         child: Scaffold(
             backgroundColor: Colors.transparent,
             bottomNavigationBar: CurvedNavigationBar(
@@ -130,17 +130,17 @@ class _F_HomePageState extends State<F_HomePage> {
               },
             ),
             body: Container(
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0XffFD8B1F),
-                      Color(0XffD152E0),
-                      Color(0Xff30D0DB),
-                      Color(0Xff12c2e9),
-                    ],
-                  )),
+//              decoration: new BoxDecoration(
+//                  gradient: new LinearGradient(
+//                    begin: Alignment.topCenter,
+//                    end: Alignment.bottomCenter,
+//                    colors: [
+//                      Color(0XffFD8B1F),
+//                      Color(0XffD152E0),
+//                      Color(0Xff30D0DB),
+//                      Color(0Xff12c2e9),
+//                    ],
+//                  )),
               child: Center(
                 child: _showPage,
               ),

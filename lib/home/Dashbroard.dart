@@ -73,7 +73,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 //                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+//                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Column(
                       children: <Widget>[
@@ -152,43 +152,50 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
                           ],
                         ),
+                       // SizedBox(height: 30,),
+
+
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left:20.0,right: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: AssetImage("images/boy.png"),
-                            radius: 35,
 
-                          ),
-                          SizedBox(height: 20,),
-                          GradientText(
-                            'Good Morning',
-                            style: boldStyleLight,
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0XffFD8B1F),
-                                Color(0XffD152E0),
-                                Color(0Xff30D0DB),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          Text("$USER_NAME",style: boldStyleLight,),
-                        ],
-                      ),
-                    ),
                     Container(
                       color: Colors.transparent,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+//                          CircleAvatar(
+//                            backgroundImage: AssetImage("images/boy.png"),
+//                            radius: 35,
+//
+//                          ),
+//                          SizedBox(height: 20,),
+                              Text('Good Morning',style: TextStyle(
+                                  color: Colors.black12,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
+                              ),
+
+                              SizedBox(height: 10,),
+                              GradientText(
+                                "$USER_NAME",
+                                style: boldStyleLight,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0XffFD8B1F),
+                                    Color(0XffD152E0),
+                                    Color(0Xff30D0DB),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                              ),
+                            ],
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
@@ -228,10 +235,10 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                 child: SingleChildScrollView(
                                   child:Column(
                                     children: [
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"Vasanth","6 new questions"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',".Net 791","6 new questions"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"Family","the good one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"LTI Pune","the great one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"Caseu Gang","the worst one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
@@ -421,7 +428,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                             width: getDynamicWidth(250) ,
                           ),
                           Positioned(
-                            top: 12,
+                            top: 25,
                             child:Text(groupName,style: backgroundText,)
                             //Text("Question",style: backgroundText,),
                           ),

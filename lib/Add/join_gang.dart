@@ -48,6 +48,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
               (data) => {
             if(data.documents.length == 1){
 
+             // var gangCode = data.documents[0].documentID,
 
 
             }else{

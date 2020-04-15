@@ -73,88 +73,83 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                         end: Alignment.bottomCenter,
                         colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
-
-//                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        SizedBox(height: 60,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("........",style: TextStyle(color: Colors.transparent),),
+                     Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          children: <Widget>[
+                            SizedBox(height: 60,),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text( 'T',
-                                  style: logoStyle1,),
-                                Text( 'ell',
-                                  style: logoStyle2),
+                                Text("........",style: TextStyle(color: Colors.transparent),),
+                                Row(
+                                  children: [
+                                    Text( 'T',
+                                      style: logoStyle1,),
+                                    Text( 'ell',
+                                        style: logoStyle2),
 
-                                SizedBox(width: 5,),
-                                Text( 'T',
-                                  style: logoStyle1,),
-                                Text( 'he',
-                                  style: logoStyle2,),
+                                    SizedBox(width: 5,),
+                                    Text( 'T',
+                                      style: logoStyle1,),
+                                    Text( 'he',
+                                      style: logoStyle2,),
 
-                                SizedBox(width: 5,),
-                                Text( 'T',
-                                  style: logoStyle1,),
-                                Text( 'ruth',
-                                  style: logoStyle2,),
+                                    SizedBox(width: 5,),
+                                    Text( 'T',
+                                      style: logoStyle1,),
+                                    Text( 'ruth',
+                                      style: logoStyle2,),
+                                  ],
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.notifications,color: Colors.grey,),
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
+                                  },
+                                ),
+
                               ],
                             ),
-                            IconButton(
-                              icon: Icon(Icons.notifications,color: Colors.grey,),
-                              color: Colors.white,
-                              onPressed: () {
-                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
-                              },
-                            ),
+                            // SizedBox(height: 30,),
+
 
                           ],
                         ),
-                       // SizedBox(height: 30,),
-
-
+                        SizedBox(height: getDynamicHeight(10),),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Good Morning',style: TextStyle(
+                                  color: Colors.white38,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
+                              ),
+                              SizedBox(height: getDynamicHeight(10),),
+                              Text("$USER_NAME",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: getDynamicHeight(20),),
                       ],
                     ),
-                    SizedBox(height: getDynamicHeight(10),),
                      Column(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-//                          CircleAvatar(
-//                            backgroundImage: AssetImage("images/boy.png"),
-//                            radius: 35,
-//
-//                          ),
-//                          SizedBox(height: 20,),
-                                Text('Good Morning',style: TextStyle(
-                                    color: Colors.white38,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
-                                ),
-
-                                SizedBox(height: getDynamicHeight(10),),
-                                Text("$USER_NAME",
-                                  style: TextStyle(
-                                    color: Colors.white,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w700,
-              fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),),
-
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: getDynamicHeight(20),),
-
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Container(
@@ -331,7 +326,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
   Widget _buildImage(String lottiePath, String groupName, String description) {
     return GestureDetector(
       onTap: (){
-        Navigator.of(context).push(PageTransition(type: PageTransitionType.slideUp, child: QuestionsPage()));
+        Navigator.of(context).push(PageTransition(type: PageTransitionType.rippleMiddle, child: QuestionsPage()));
         //GoToPage(context, QuestionsPage());
       },
       child: ExpandPageTransition(
@@ -343,7 +338,6 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
 
             Card(
-
                 elevation: 0,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -355,13 +349,14 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Stack(
-                              alignment: Alignment.center,
+                              alignment: Alignment.centerLeft,
                               children: [
                                 Container(
-                                  height: getDynamicHeight(150),
+                                  height: getDynamicHeight(120),
+                                  width: getDynamicWidth(250),
                                 ),
                                 Positioned(
-                                  top: 25,
+                                  top: 10,
                                   child:Text(groupName,style: backgroundText,),
                                   //Text("Question",style: backgroundText,),
                                 ),
@@ -382,57 +377,9 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                 )
                               ],
                             ),
-//                            Text(groupName,style: backgroundText,),
-//                            GradientText(
-//                                description,
-//                                style: questionStyle1,
-//                                gradient: LinearGradient(
-//                                  colors: [
-//                                    Color(0XffFD8B1F),
-//                                    Color(0XffD152E0),
-//                                    Color(0Xff30D0DB),
-//                                  ],
-//                                  begin: Alignment.topLeft,
-//                                  end: Alignment.bottomRight,
-//                                ),
-//                              ),
                           ],
 
                         ),
-
-//                      Stack(
-//                          alignment: Alignment.centerLeft,
-//                          children: [
-//                            Container(
-//                              height: getDynamicHeight(140),
-//                              width: getDynamicWidth(250) ,
-//                            ),
-//                            Positioned(
-//                              top: 15,
-//                              child:Text(groupName,style: backgroundText,)
-//                              //Text("Question",style: backgroundText,),
-//                            ),
-//                            Padding(
-//                              padding: const EdgeInsets.only(right:50.0),
-//                              child: Positioned(
-//                                bottom: 5,
-//                                child: GradientText(
-//                                  description,
-//                                  style: questionStyle1,
-//                                  gradient: LinearGradient(
-//                                    colors: [
-//                                      Color(0XffFD8B1F),
-//                                      Color(0XffD152E0),
-//                                      Color(0Xff30D0DB),
-//                                    ],
-//                                    begin: Alignment.topLeft,
-//                                    end: Alignment.bottomRight,
-//                                  ),
-//                                ),
-//                              ),
-//                            )
-//                          ],
-//                      ),
                         Lottie.network(lottiePath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
                       ]),
                 ),

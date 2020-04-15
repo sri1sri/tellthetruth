@@ -12,7 +12,7 @@ var heavyStyle = TextStyle(
     fontSize: getDynamicTextSize(50),decoration: TextDecoration.none);
 
 var backgroundText = TextStyle(
-    color: Colors.black.withOpacity(0.3),
+    color: Colors.black.withOpacity(0.4),
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w900,
     fontSize: getDynamicTextSize(50),decoration: TextDecoration.none);

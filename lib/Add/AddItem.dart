@@ -9,6 +9,7 @@ import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:interactive_add_button_layout/interactive_add_button_layout.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:swipe_up_menu/swipe_up_menu.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
@@ -61,133 +62,137 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
 
   Widget _buildContent(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    return Container(
-      decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0XffC60000),
-              Color(0XffCF1129),
-              Color(0XffD42863),
-              Color(0XffD93D9D),
-              Color(0XffDE4EC7),
-            ],
-          )),
-      child: Column(
-       // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-           Center(
-            child: SizedBox(
-              width: getDynamicWidth(200),
-              height: getDynamicHeight(200),
-              child: Container(
-                  child: FlareActor("images/welcome.flr",
-                      alignment: Alignment.center,
-                      fit: BoxFit.contain,
-                      animation: 'Animations')),
-            ),
-          ),
-          TyperAnimatedTextKit(
-              onTap: () {
-                print("Tap Event");
-              },
-              text: [
+    return ControlledAnimation(
+      playback: Playback.MIRROR,
+      tween: tween,
+      duration: tween.duration,
+      builder: (context, animation) {
+        return Container(
+          child: new Scaffold(
+              body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Center(
+                      child: SizedBox(
+                        width: getDynamicWidth(200),
+                        height: getDynamicHeight(200),
+                        child: Container(
+                            child: FlareActor("images/welcome.flr",
+                                alignment: Alignment.center,
+                                fit: BoxFit.contain,
+                                animation: 'Animations')),
+                      ),
+                    ),
+                    TyperAnimatedTextKit(
+                      onTap: () {
+                        print("Tap Event");
+                      },
+                      text: [
 //                "Good evening Vasanth,",
 //                "Ready to create something exiciting ?",
-                "Good evening $USER_NAME, ready to do something exiciting ?",
-              ],
-              textStyle: questionStyleThin,
-              textAlign: TextAlign.center,
-              alignment: AlignmentDirectional.topCenter,
-              isRepeatingAnimation: false,// or Alignment.topLeft
+                        "Good evening $USER_NAME, ready to do something exiciting ?",
+                      ],
+                      textStyle: questionStyleThin,
+                      textAlign: TextAlign.center,
+                      alignment: AlignmentDirectional.topCenter,
+                      isRepeatingAnimation: false,// or Alignment.topLeft
+                    ),
+                    //Text("Good evening Vasanth, ready to create something new ?",style: questionStyleThin,textAlign: TextAlign.center,),
+                    SizedBox(height: getDynamicHeight(100),),
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            GoToPage(context, JoinGang());
+                            print("Tap Event");
+                          },
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                height: getDynamicHeight(150),
+                              ),
+                              Positioned(
+                                top: 12,
+                                child:FadeAnimatedTextKit(
+                                    text: ["Gang..", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                                    textStyle: backgroundText,
+                                    textAlign: TextAlign.center,
+                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
+                                ),
+                                //Text("Question",style: backgroundText,),
+                              ),
+                              Positioned(
+                                child: Text("Join your gang...",style: questionStyle1,),
+                              )
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            print("Tap Event");
+                          },
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                height: getDynamicHeight(150),
+                              ),
+                              Positioned(
+                                top: 12,
+                                child:FadeAnimatedTextKit(
+                                    text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                                    textStyle: backgroundText,
+                                    textAlign: TextAlign.center,
+                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
+                                ),
+                                //Text("Question",style: backgroundText,),
+                              ),
+                              Positioned(
+                                child: Text("Wanna ask a question?",style: questionStyle1,),
+                              )
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            GoToPage(context, AddGangName());
+                          },
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                height: getDynamicHeight(150),
+                              ),
+                              Positioned(
+                                top: 12,
+                                child:FadeAnimatedTextKit(
+                                    text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
+                                    textStyle: backgroundText,
+                                    textAlign: TextAlign.center,
+                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
+                                ),
+                              ),
+                              Positioned(
+                                child: Text("Create a new gang & have fun.",style: questionStyle1,),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              )
           ),
-           //Text("Good evening Vasanth, ready to create something new ?",style: questionStyleThin,textAlign: TextAlign.center,),
-           SizedBox(height: getDynamicHeight(100),),
-           Column(
-             children: [
-               GestureDetector(
-                 onTap: (){
-                   GoToPage(context, JoinGang());
-                   print("Tap Event");
-                 },
-                 child: Stack(
-                   alignment: Alignment.center,
-                   children: [
-                     Container(
-                       height: getDynamicHeight(150),
-                     ),
-                     Positioned(
-                       top: 12,
-                       child:FadeAnimatedTextKit(
-                           text: ["Gang..", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                           textStyle: backgroundText,
-                           textAlign: TextAlign.center,
-                           alignment: AlignmentDirectional.center // or Alignment.topLeft
-                       ),
-                       //Text("Question",style: backgroundText,),
-                     ),
-                     Positioned(
-                       child: Text("Join your gang...",style: questionStyle1,),
-                     )
-                   ],
-                 ),
-               ),
-               GestureDetector(
-                 onTap: (){
-                   print("Tap Event");
-                 },
-                 child: Stack(
-                   alignment: Alignment.center,
-                   children: [
-                     Container(
-                       height: getDynamicHeight(150),
-                     ),
-                     Positioned(
-                       top: 12,
-                       child:FadeAnimatedTextKit(
-                           text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                           textStyle: backgroundText,
-                           textAlign: TextAlign.center,
-                           alignment: AlignmentDirectional.center // or Alignment.topLeft
-                       ),
-                       //Text("Question",style: backgroundText,),
-                     ),
-                     Positioned(
-                       child: Text("Wanna ask a question?",style: questionStyle1,),
-                     )
-                   ],
-                 ),
-               ),
-               GestureDetector(
-                 onTap: (){
-                   GoToPage(context, AddGangName());
-                 },
-                 child: Stack(
-                   alignment: Alignment.center,
-                   children: [
-                     Container(
-                       height: getDynamicHeight(150),
-                     ),
-                     Positioned(
-                       top: 12,
-                       child:FadeAnimatedTextKit(
-                           text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
-                           textStyle: backgroundText,
-                           textAlign: TextAlign.center,
-                           alignment: AlignmentDirectional.center // or Alignment.topLeft
-                       ),
-                     ),
-                     Positioned(
-                       child: Text("Create a new gang & have fun.",style: questionStyle1,),
-                     )
-                   ],
-                 ),
-               ),
-             ],
-           )
-        ],
-      ),
+        );
+      },
     );
   }
 }

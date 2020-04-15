@@ -1,8 +1,14 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //import 'package:page_transition/page_transition.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
+import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/Add/add_gang_icon.dart';
+import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/button_widget/to_do_button.dart';
@@ -91,127 +97,187 @@ class _F_AddGangNameState extends State<F_AddGangName> {
           final groupID = snapshot.data;
         return TransparentLoading(
           loading: isLoading,
-          child: Container(
-            color: Color(0xFF7E7ED5),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.brown,
-                          ),
+          child: ControlledAnimation(
+            playback: Playback.MIRROR,
+            tween: tween,
+            duration: tween.duration,
+            builder: (context, animation) {
+              return Container(
+                child: new Scaffold(
+                    body: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 50, 20, 40),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(),
+                                        IconButton(
+                                          icon: Icon(Icons.clear,color: Colors.white,size: 30,),
+                                          color: Colors.white,
+                                          onPressed: () {Navigator.pop(context, true);},
+                                        ),
+                                      ],
+                                    ),
+                                    CircleAvatar(
+                                      backgroundImage: AssetImage("images/male.png"),
+                                      radius: 40,
+                                      backgroundColor: Colors.transparent,
 
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          'Good morning sri,\nCreate a new gang.',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Montserrat',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    TyperAnimatedTextKit(
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
+                                      text: [
+//                "Good evening Vasanth,",
+//                "Ready to create something exiciting ?",
+                                        "Good evening $USER_NAME, Create a new gang.",
+                                      ],
+                                      textStyle: questionStyleThin,
+                                      textAlign: TextAlign.start,
+                                      alignment: AlignmentDirectional.topStart,
+                                      isRepeatingAnimation: false,// or Alignment.topLeft
+                                    ),
+                                  ],
+                                ),
+                              ),
 
-                  Form(
-                    key: _formKey,
-                    child: TextFormField(
-                      onChanged: (value) => _gangName = value,
-                      textInputAction: TextInputAction.done,
-                      autocorrect: true,
-                      obscureText: false,
-                      keyboardType: TextInputType.text,
-                      keyboardAppearance: Brightness.dark,
-                      autofocus: true,
-                      cursorColor: Colors.white,
-                      maxLength: 15,
-                      onEditingComplete: _submit,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 26,decoration: TextDecoration.none),
-                      decoration: const InputDecoration(
-                        counterStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white),
-                        ),
-                        hintText: 'Add gang name',
-                        hintStyle: TextStyle(
-                            color: Colors.white30,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 26,decoration: TextDecoration.none),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide:
-                          const BorderSide(color: Colors.transparent, width: 0.0),
+                              Form(
+                                key: _formKey,
+                                child: TextFormField(
+                                  onChanged: (value) => _gangName = value,
+                                  textInputAction: TextInputAction.done,
+                                  autocorrect: true,
+                                  obscureText: false,
+                                  keyboardType: TextInputType.text,
+                                  keyboardAppearance: Brightness.dark,
+                                  autofocus: true,
+                                  cursorColor: Colors.white,
+                                  maxLength: 15,
+                                  onEditingComplete: _submit,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 26,decoration: TextDecoration.none),
+                                  decoration: const InputDecoration(
+                                    counterStyle: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.white),
+                                    ),
+                                    hintText: 'Add gang name',
+                                    hintStyle: TextStyle(
+                                        color: Colors.white30,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 26,decoration: TextDecoration.none),
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide:
+                                      const BorderSide(color: Colors.transparent, width: 0.0),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    print(value);
+                                    if (value.isEmpty) {
+                                      return 'Please enter gangname';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    child: Text(""),
+                                  ),
+                                  GestureDetector(
+                                    child: Container(
+                                      width: getDynamicWidth(200.0),
+                                      padding: EdgeInsets.all(15.0),
+                                      child: Center(
+                                          child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                              children: <Widget>[
+                                                Container(),
+                                                GradientText(
+                                                  'Continue',
+                                                  style: boldStyle,
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Color(0XffFD8B1F),
+                                                      Color(0XffD152E0),
+                                                      Color(0Xff30D0DB),
+                                                    ],
+                                                    begin: Alignment.topLeft,
+                                                    end: Alignment.bottomRight,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  color: Colors.blue,
+                                                  size: getDynamicTextSize(30),
+                                                ),
+                                                Container(),
+                                              ])),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.7),
+//                            gradient: LinearGradient(
+//                                colors: <Color>[
+//                                Color(0XffFD8B1F),
+//                            Color(0XffD152E0),
+//                            Color(0Xff30D0DB),
+//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+
+                                          borderRadius: BorderRadius.circular(15.0),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.grey,
+                                                offset: Offset(2, 1),
+                                                blurRadius: 6.0,
+                                                spreadRadius: 1.0),
+                                          ]),
+                                    ),
+                                    onTap: () {
+//                                      setState(() {
+//                                        generateGroupID = groupID.groupID+1;
+//                                      });
+//                                      _submit();
+                                      GoToPage(context, AddGangIcon());
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      validator: (value) {
-                        print(value);
-                        if (value.isEmpty) {
-                          return 'Please enter gangname';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-
-                  Center(
-                    child: FlatButton(
-                      onPressed: () {
-                        setState(() {
-                          generateGroupID = groupID.groupID+1;
-                        });
-                        _submit();
-//                      MaterialApp(
-//                        onGenerateRoute: (RouteSettings routeSettings){
-//                          return new PageRouteBuilder<dynamic>(
-//                              settings: routeSettings,
-//                              pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-//                                    return SecondPage();
-//                              },
-//                              transitionDuration: const Duration(milliseconds: 300),
-//                              transitionsBuilder: (BuildContext context, Animation<double> animation,
-//                                  Animation<double> secondaryAnimation, Widget child) {
-//                                return effectMap[PageTransitionType.slideInUp](Curves.linear, animation, secondaryAnimation, child);
-//                              }
-//                          );
-//                        },
-//                      );
-//                    Navigator.of(context).push(_createRoute());
-//                    Navigator.of(context).push(PageTransition(type: PageTransitionType.slideParallaxUp, child: SecondPage()));
-                      },
-                      child: Text(
-                        'Submit',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-
-                    ),
-                  )
-                ],
-              ),
-            ),
+                    )
+                ),
+              );
+            },
           ),
         );
       }

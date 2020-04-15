@@ -225,6 +225,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  finite_coverflow:
+    dependency: "direct main"
+    description:
+      name: finite_coverflow
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   firebase:
     dependency: transitive
     description:

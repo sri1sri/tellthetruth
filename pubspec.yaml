@@ -69,6 +69,7 @@ dependencies:
   fab_circular_menu: ^1.0.0
   animated_text_kit: 2.0.0
   circle_wheel_scroll: ^0.0.1+1
+  finite_coverflow: ^1.0.0
 
 
 dev_dependencies:

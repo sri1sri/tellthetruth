@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
+import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -178,6 +179,12 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                   ),
                                 ),
 
+                                Expanded(
+                                  child:SizedBox(
+                                    height: 500,
+                                    child: getVariableScaleCrousel(),
+                                  ),
+                                ),
 
 
                                 Row(
@@ -249,82 +256,6 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                           ),
                         ),
                       ),
-                    floatingActionButton: Builder(
-                      builder: (context) => FabCircularMenu(
-                        key: fabKey,
-                        // Cannot be `Alignment.center`
-                        fabCloseColor: subBackgroundColor,
-                        alignment: Alignment.centerLeft,
-                        ringColor: Colors.white.withAlpha(25),
-                        ringDiameter: 850.0,
-                        ringWidth: 180.0,
-                        fabSize: 74.0,
-                        fabElevation: 30.0,
-                        fabOpenIcon: Icon(Icons.menu, color: backgroundColor),
-                        fabCloseIcon: Icon(Icons.close, color: backgroundColor),
-                        fabMargin: const EdgeInsets.all(10.0),
-                        animationDuration: const Duration(milliseconds: 800),
-                        animationCurve: Curves.easeInOutCirc,
-                        onDisplayChange: (isOpen) {
-                          _showSnackBar(context, "The menu is ${isOpen ? "open" : "closed"}");
-                        },
-                        children: <Widget>[
-                          RawMaterialButton(
-                            onPressed: () {
-                              _showSnackBar(context, "You pressed 1");
-                            },
-                            shape: CircleBorder(),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                          ),
-
-                          RawMaterialButton(
-                            onPressed: () {
-                              _showSnackBar(context, "You pressed 2");
-                            },
-                            shape: CircleBorder(),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                          ),
-
-                          RawMaterialButton(
-                            onPressed: () {
-                              _showSnackBar(context, "You pressed 3");
-                            },
-                            shape: CircleBorder(),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                          ),
-
-                          RawMaterialButton(
-                            onPressed: () {
-                              _showSnackBar(context, "You pressed 3");
-                            },
-                            shape: CircleBorder(),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                          ),
-
-                          RawMaterialButton(
-                            onPressed: () {
-                              _showSnackBar(context, "You pressed 3");
-                            },
-                            shape: CircleBorder(),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                          ),
-                          RawMaterialButton(
-                            onPressed: () {
-                              _showSnackBar(context, "You pressed 4. This one closes the menu on tap");
-                              fabKey.currentState.close();
-                            },
-                            shape: CircleBorder(),
-                            padding: const EdgeInsets.all(10.0),
-                            child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                          )
-                        ],
-                      ),
-                    ),
                   ),
                 );
               },
@@ -333,13 +264,37 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         }
     );
   }
-  void _showSnackBar (BuildContext context, String message) {
-    Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          duration: const Duration(milliseconds: 1000),
-        )
+
+  Widget icon(String imgpath )
+  {
+    return Container(
+      color: Colors.deepPurple,
+      child: Center(
+        child: Card(
+          child:Lottie.network(imgpath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
+        ),
+      ),
+    );
+
+  }
+
+  Widget getVariableScaleCrousel() {
+    return FinitePager(
+      scaleX: 0.8,
+      scaleY: 0.4,
+      scrollDirection: Axis.horizontal,
+      children: <Widget>[
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+      ],
     );
   }
+
 
 }

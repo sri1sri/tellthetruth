@@ -12,7 +12,8 @@ import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/Add/AddItem.dart';
 import 'package:tellthetruth/firebase/database.dart';
-import 'package:tellthetruth/home/dashboard.dart';
+import 'package:tellthetruth/home/Dashboard.dart';
+import 'package:tellthetruth/home/Dashbroard.dart';
 import 'package:tellthetruth/home/Profile.dart';
 import 'package:tellthetruth/home/Settings.dart';
 
@@ -39,7 +40,7 @@ class F_HomePage extends StatefulWidget {
 
 class _F_HomePageState extends State<F_HomePage> {
   int pageIndex = 0;
-  final DashboardPage _dashboardPage = DashboardPage();
+  final Dashboard1Page _dashboardPage = Dashboard1Page();
   final AddItemPage _addItemPage = AddItemPage();
   final ProfilePage _profilePage = ProfilePage();
 //  final SettingsPage _settingsPage = SettingsPage();

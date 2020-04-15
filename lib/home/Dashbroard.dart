@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
@@ -84,62 +85,22 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                             Text("........",style: TextStyle(color: Colors.transparent),),
                             Row(
                               children: [
-                                GradientText(
-                                  'T',
-                                  style: logoStyle1,
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]]
-                                  ),
-                                ),
-                                GradientText(
-                                  'ell',
-                                  style: logoStyle2,
-                                  gradient: LinearGradient(
-                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
+                                Text( 'T',
+                                  style: logoStyle1,),
+                                Text( 'ell',
+                                  style: logoStyle2),
+
                                 SizedBox(width: 5,),
-                                GradientText(
-                                  'T',
-                                  style: logoStyle1,
-                                  gradient: LinearGradient(
-                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                                GradientText(
-                                  'he',
-                                  style: logoStyle2,
-                                  gradient: LinearGradient(
-                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
+                                Text( 'T',
+                                  style: logoStyle1,),
+                                Text( 'he',
+                                  style: logoStyle2,),
+
                                 SizedBox(width: 5,),
-                                GradientText(
-                                  'T',
-                                  style: logoStyle1,
-                                  gradient: LinearGradient(
-                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                                GradientText(
-                                  'ruth',
-                                  style: logoStyle2,
-                                  gradient: LinearGradient(
-                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
+                                Text( 'T',
+                                  style: logoStyle1,),
+                                Text( 'ruth',
+                                  style: logoStyle2,),
                               ],
                             ),
                             IconButton(
@@ -175,43 +136,25 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 //                          ),
 //                          SizedBox(height: 20,),
                                 Text('Good Morning',style: TextStyle(
-                                    color: Colors.black12,
+                                    color: Colors.white38,
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w900,
                                     fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
                                 ),
 
                                 SizedBox(height: getDynamicHeight(10),),
-                                GradientText(
-                                  "$USER_NAME",
-                                  style: boldStyleLight,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
+                                Text("$USER_NAME",
+                                  style: TextStyle(
+                                    color: Colors.white,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w700,
+              fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),),
+
                               ],
                             ),
                           ),
                           SizedBox(height: getDynamicHeight(20),),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                                child: Text("My Gangs",style: TextStyle(
-                                    color: Colors.black45,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w800,
-                                    fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),),
-                              ),
-                            ],
-                          ),
+
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Container(
@@ -411,20 +354,48 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(groupName,style: backgroundText,),
-                            GradientText(
-                                description,
-                                style: questionStyle1,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0XffFD8B1F),
-                                    Color(0XffD152E0),
-                                    Color(0Xff30D0DB),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  height: getDynamicHeight(150),
                                 ),
-                              ),
+                                Positioned(
+                                  top: 25,
+                                  child:Text(groupName,style: backgroundText,),
+                                  //Text("Question",style: backgroundText,),
+                                ),
+                                Positioned(
+                                  child: GradientText(
+                                    description,
+                                    style: questionStyle1,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0XffFD8B1F),
+                                        Color(0XffD152E0),
+                                        Color(0Xff30D0DB),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+//                            Text(groupName,style: backgroundText,),
+//                            GradientText(
+//                                description,
+//                                style: questionStyle1,
+//                                gradient: LinearGradient(
+//                                  colors: [
+//                                    Color(0XffFD8B1F),
+//                                    Color(0XffD152E0),
+//                                    Color(0Xff30D0DB),
+//                                  ],
+//                                  begin: Alignment.topLeft,
+//                                  end: Alignment.bottomRight,
+//                                ),
+//                              ),
                           ],
 
                         ),

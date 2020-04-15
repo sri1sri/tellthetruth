@@ -107,7 +107,6 @@ class _F_HomePageState extends State<F_HomePage> {
 //                end: Alignment.bottomCenter,
 //                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
         child: Scaffold(
-            backgroundColor: Colors.transparent,
             bottomNavigationBar: CurvedNavigationBar(
               key: _bottomNavigationKey,
               index: pageIndex,
@@ -120,7 +119,7 @@ class _F_HomePageState extends State<F_HomePage> {
               ],
               color: Colors.white,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Colors.transparent,
+//              backgroundColor: Colors.transparent,
               animationCurve: Curves.easeInOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (int tappedIndex) {

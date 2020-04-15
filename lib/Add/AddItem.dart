@@ -77,7 +77,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                         end: Alignment.bottomCenter,
                         colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
 
                     Container(
@@ -114,7 +114,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                               isRepeatingAnimation: false,// or Alignment.topLeft
                             ),
                           ),
-                                              SizedBox(height: getDynamicHeight(40),),
+                          SizedBox(height: getDynamicHeight(40),),
 
                         ],
                       ),
@@ -136,12 +136,12 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 alignment: Alignment.center,
                                 children: [
                                   Container(
-                                    height: getDynamicHeight(155),
+                                    height: getDynamicHeight(140),
                                   ),
                                   Positioned(
-                                    top: 25,
+                                    top: 18,
                                     child:FadeAnimatedTextKit(
-                                        text: ["6",],
+                                        text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
                                         textStyle: backgroundText,
                                         textAlign: TextAlign.center,
                                         alignment: AlignmentDirectional.center // or Alignment.topLeft
@@ -174,10 +174,10 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 alignment: Alignment.center,
                                 children: [
                                   Container(
-                                    height: getDynamicHeight(155),
+                                    height: getDynamicHeight(140),
                                   ),
                                   Positioned(
-                                    top: 25,
+                                    top: 18,
                                     child:FadeAnimatedTextKit(
                                         text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                                         textStyle: backgroundText,
@@ -212,10 +212,10 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 alignment: Alignment.center,
                                 children: [
                                   Container(
-                                    height: getDynamicHeight(150),
+                                    height: getDynamicHeight(140),
                                   ),
                                   Positioned(
-                                    top: 25,
+                                    top: 18,
                                     child:FadeAnimatedTextKit(
                                         text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
                                         textStyle: backgroundText,
@@ -241,15 +241,14 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 ],
                               ),
                             ),
+                            Container(
+                              height: getDynamicHeight(60),
+                              color: Colors.redAccent,
+                              width: MediaQuery.of(context).size.width,
+                            ),
                           ],
                         ),
                       ),
-                    ),
-
-                    Container(
-                      height: getDynamicHeight(60),
-                      color: Colors.redAccent,
-                      width: MediaQuery.of(context).size.width,
                     ),
                   ],
                 ),

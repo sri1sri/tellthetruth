@@ -125,17 +125,16 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-//                                      Row(
-//                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                        children: [
-//                                          Container(),
-//                                          IconButton(
-//                                            icon: Icon(Icons.clear,color: Colors.white,size: 30,),
-//                                            color: Colors.white,
-//                                            onPressed: () {Navigator.pop(context, true);},
-//                                          ),
-//                                        ],
-//                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          IconButton(
+                                            icon: Icon(Icons.arrow_back_ios,color: Colors.white,size: 30,),
+                                            color: Colors.white,
+                                            onPressed: () {Navigator.pop(context, true);},
+                                          ),
+                                        ],
+                                      ),
                                       SizedBox(
                                         height: getDynamicHeight(20),
                                       ),
@@ -144,18 +143,18 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                           print("Tap Event");
                                         },
                                         text: [
-//                "Good evening Vasanth,",
-//                "Ready to create something exiciting ?",
-                                          "Hey $USER_NAME, Select your group icon.",
+                                          "Hey $USER_NAME, Let's select a group icon for your gang ...!",
                                         ],
-                                        textStyle: questionStyleThin,
+                                        textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
                                         textAlign: TextAlign.start,
                                         alignment: AlignmentDirectional.topStart,
                                         isRepeatingAnimation: false,// or Alignment.topLeft
                                       ),
-                                      SizedBox(
-                                        height: getDynamicHeight(20),
-                                      ),
+//
                                     ],
                                   ),
                                 ),

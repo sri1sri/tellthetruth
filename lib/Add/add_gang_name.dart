@@ -150,13 +150,13 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                         print("Tap Event");
                                       },
                                       text: [
-                                        "Good evening $USER_NAME, Create a new gang.",
+                                        "Good evening $USER_NAME, Let's create a new gang...!",
                                       ],
-                                      textStyle:  TextStyle(
+                                      textStyle: TextStyle(
                                           color: Colors.white,
                                           fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: getDynamicTextSize(24),decoration: TextDecoration.none),
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
                                       textAlign: TextAlign.start,
                                       alignment: AlignmentDirectional.topStart,
                                       isRepeatingAnimation: false,// or Alignment.topLeft

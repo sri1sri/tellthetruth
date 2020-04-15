@@ -106,7 +106,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                   ],
                                 ),
                                 IconButton(
-                                  icon: Icon(Icons.notifications,color: Colors.white,),
+                                  icon: Icon(Icons.notifications,color: Colors.white,size: 30,),
                                   color: Colors.white,
                                   onPressed: () {
                                     Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));

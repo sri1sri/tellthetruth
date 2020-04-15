@@ -4,6 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:flutter_page_transition/page_transition_type.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
@@ -65,11 +66,11 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
         return Container(
           child: new Scaffold(
               body: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+//                decoration: BoxDecoration(
+//                    gradient: LinearGradient(
+//                        begin: Alignment.topCenter,
+//                        end: Alignment.bottomCenter,
+//                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,18 +84,66 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             Text("........",style: TextStyle(color: Colors.transparent),),
                             Row(
                               children: [
-                                Text("T",style: logoStyle1,),
-                                Text("ell",style: logoStyle2,),
+                                GradientText(
+                                  'T',
+                                  style: logoStyle1,
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                      colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]]
+                                  ),
+                                ),
+                                GradientText(
+                                  'ell',
+                                  style: logoStyle2,
+                                  gradient: LinearGradient(
+                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
                                 SizedBox(width: 5,),
-                                Text("T",style: logoStyle1,),
-                                Text("he",style: logoStyle2,),
+                                GradientText(
+                                  'T',
+                                  style: logoStyle1,
+                                  gradient: LinearGradient(
+                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                GradientText(
+                                  'he',
+                                  style: logoStyle2,
+                                  gradient: LinearGradient(
+                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
                                 SizedBox(width: 5,),
-                                Text("T",style: logoStyle1,),
-                                Text("ruth",style: logoStyle2,),
+                                GradientText(
+                                  'T',
+                                  style: logoStyle1,
+                                  gradient: LinearGradient(
+                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                GradientText(
+                                  'ruth',
+                                  style: logoStyle2,
+                                  gradient: LinearGradient(
+                                    colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
                               ],
                             ),
                             IconButton(
-                              icon: Icon(Icons.notifications,color: Colors.white,),
+                              icon: Icon(Icons.notifications,color: Colors.grey,),
                               color: Colors.white,
                               onPressed: () {
                                 Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
@@ -117,9 +166,21 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 
                           ),
                           SizedBox(height: 20,),
-                          Text("Hello, $USER_NAME",style: boldStyleLight,),
+                          GradientText(
+                            'Good Morning',
+                            style: boldStyleLight,
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0XffFD8B1F),
+                                Color(0XffD152E0),
+                                Color(0Xff30D0DB),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
                           SizedBox(height: 10,),
-                          Text("Hey today you got 3 more questions to\n answer in your groups.",style: answerStyleBlur,)
+                          Text("$USER_NAME",style: boldStyleLight,),
                         ],
                       ),
                     ),
@@ -133,26 +194,28 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                                child: Text(
-                                  "My gangs",
+                                child: GradientText(
+                                  'My Gangs',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w800,
                                       fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
                                 child: GestureDetector(
-                                  child: Text(
-                                    "Show all",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),
-                                  ),
+                                  child: Text("Show All",style: answerStyleBlur,)
                                 ),
                               ),
                             ],
@@ -335,40 +398,43 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
   }
 
   Widget _buildImage(String lottiePath, String groupName, String description) {
-    return ExpandPageTransition(
-      navigateToPage: QuestionsPage(),
-      transitionType: ContainerTransitionType.fade,
-      closedBuilder: (BuildContext _, VoidCallback openContainer) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(PageTransition(type: PageTransitionType.slideUp, child: QuestionsPage()));
+        //GoToPage(context, QuestionsPage());
+      },
+      child: ExpandPageTransition(
+        navigateToPage: QuestionsPage(),
+        transitionType: ContainerTransitionType.fade,
+        closedBuilder: (BuildContext _, VoidCallback openContainer) {
 
-      return GestureDetector(
-          onTap: (){
-            Navigator.of(context).push(PageTransition(type: PageTransitionType.slideUp, child: QuestionsPage()));
-            //GoToPage(context, QuestionsPage());
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
+        return GestureDetector(
+            child: Card(
+              elevation: 15,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
 
-                Lottie.network(lottiePath,height: getDynamicHeight(150),width: getDynamicWidth(150)),
+                    Lottie.network(lottiePath,height: getDynamicHeight(150),width: getDynamicWidth(150)),
 
-                SizedBox(height: 20,),
+                    SizedBox(height: 20,),
 
-                Text(
-                  description,
-                  style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                      fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),
-                ),
-                Text(
-                  groupName,
-                  style: TextStyle(
-                      color: Color(0xFF1F4B6E),
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w700,
-                      fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),
-                ),
+                    Text(
+                      description,
+                      style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w500,
+                          fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),
+                    ),
+                    Text(
+                      groupName,
+                      style: TextStyle(
+                          color: Color(0xFF1F4B6E),
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w700,
+                          fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),
+                    ),
 
 //            Stack(children: [
 //              Container(
@@ -421,7 +487,9 @@ class _F_DashboardPageState extends State<F_DashboardPage> {
 //            ]
 //
 //            ),
-          ]));},
+              ]),
+            ));},
+      ),
     );
   }
 

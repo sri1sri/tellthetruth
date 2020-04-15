@@ -12,7 +12,7 @@ var heavyStyle = TextStyle(
     fontSize: getDynamicTextSize(50),decoration: TextDecoration.none);
 
 var backgroundText = TextStyle(
-    color: Colors.black.withOpacity(0.1),
+    color: Colors.black45,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w900,
     fontSize: getDynamicTextSize(50),decoration: TextDecoration.none);
@@ -55,7 +55,7 @@ var questionStyle1 = TextStyle(
     fontSize: getDynamicTextSize(24),decoration: TextDecoration.none);
 
 var questionStyleThin = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w400,
     fontSize: getDynamicTextSize(24),decoration: TextDecoration.none);
@@ -67,7 +67,7 @@ var answerStyle = TextStyle(
     fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);
 
 var answerStyleBlur = TextStyle(
-    color: Colors.white.withOpacity(0.7),
+    color: Colors.black54.withOpacity(0.6),
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w600,
     fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);

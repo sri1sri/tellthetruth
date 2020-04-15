@@ -4,6 +4,7 @@ import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:tellthetruth/home/dashboard.dart';
+import 'package:tellthetruth/landing_page.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -373,7 +374,7 @@ void showFancyCustomDialog(BuildContext context) {
                       alignment: Alignment.bottomCenter,
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftUp, duration: Duration(seconds: 1), child: DashboardPage()));
+                          Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftUp, duration: Duration(seconds: 1), child: LandingPage()));
                         },
                         child: Container(
                           width: double.infinity,

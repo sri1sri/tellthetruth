@@ -6,6 +6,7 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:interactive_add_button_layout/interactive_add_button_layout.dart';
 import 'package:screenshot/screenshot.dart';
@@ -71,10 +72,8 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
           child: new Scaffold(
               body: Container(
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                   color: Colors.white
+                ),
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -129,7 +128,19 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 //Text("Question",style: backgroundText,),
                               ),
                               Positioned(
-                                child: Text("Join your gang...",style: questionStyle1,),
+                                child: GradientText(
+                                  'Join your gang...',
+                                  style: questionStyle1,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
                               )
                             ],
                           ),
@@ -155,7 +166,19 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 //Text("Question",style: backgroundText,),
                               ),
                               Positioned(
-                                child: Text("Wanna ask a question?",style: questionStyle1,),
+                                child: GradientText(
+                                  'Wanna ask a question?',
+                                  style: questionStyle1,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
                               )
                             ],
                           ),
@@ -180,7 +203,19 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                                 ),
                               ),
                               Positioned(
-                                child: Text("Create a new gang & have fun.",style: questionStyle1,),
+                                child: GradientText(
+                                  'Create a new gang & have fun.',
+                                  style: questionStyle1,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
                               )
                             ],
                           ),

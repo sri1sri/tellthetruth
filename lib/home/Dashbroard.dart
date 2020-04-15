@@ -48,7 +48,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
   Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
           body: _buildContent(context),
         ),
@@ -66,11 +66,11 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
         return Container(
           child: new Scaffold(
               body: Container(
-//                decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                        begin: Alignment.topCenter,
-//                        end: Alignment.bottomCenter,
-//                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
 
 //                  crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,43 +157,46 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
                       ],
                     ),
-                    SizedBox(height: getDynamicHeight(20),),
+                    SizedBox(height: getDynamicHeight(10),),
                      Column(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
 //                          CircleAvatar(
 //                            backgroundImage: AssetImage("images/boy.png"),
 //                            radius: 35,
 //
 //                          ),
 //                          SizedBox(height: 20,),
-                              Text('Good Morning',style: TextStyle(
-                                  color: Colors.black12,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
-                              ),
-
-                              SizedBox(height: getDynamicHeight(10),),
-                              GradientText(
-                                "$USER_NAME",
-                                style: boldStyleLight,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0XffFD8B1F),
-                                    Color(0XffD152E0),
-                                    Color(0Xff30D0DB),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                                Text('Good Morning',style: TextStyle(
+                                    color: Colors.black12,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
                                 ),
-                              ),
-                            ],
+
+                                SizedBox(height: getDynamicHeight(10),),
+                                GradientText(
+                                  "$USER_NAME",
+                                  style: boldStyleLight,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(height: getDynamicHeight(20),),
                           Column(
@@ -210,7 +213,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Container(
                                 height: getDynamicHeight(530.0) ,
                                 width: MediaQuery.of(context).size.width ,
@@ -220,7 +223,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',".Net 791","6 new questions"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"Family","the good one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"LTI Pune","the great one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"Caseu Gang","the worst one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"Caseu","the worst one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
@@ -393,31 +396,23 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
         transitionType: ContainerTransitionType.fade,
         closedBuilder: (BuildContext _, VoidCallback openContainer) {
 
-          return Card(
+          return
+
+
+            Card(
 
                 elevation: 0,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-
-                      Stack(
-                        alignment: Alignment.centerLeft,
-                        children: [
-                          Container(
-                            height: getDynamicHeight(140),
-                            width: getDynamicWidth(250) ,
-                          ),
-                          Positioned(
-                            top: 15,
-                            child:Text(groupName,style: backgroundText,)
-                            //Text("Question",style: backgroundText,),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right:50.0),
-                            child: Positioned(
-                              bottom: 5,
-                              child: GradientText(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(groupName,style: backgroundText,),
+                            GradientText(
                                 description,
                                 style: questionStyle1,
                                 gradient: LinearGradient(
@@ -430,13 +425,49 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                   end: Alignment.bottomRight,
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Lottie.network(lottiePath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                    ]),
-              );},
+                          ],
+
+                        ),
+
+//                      Stack(
+//                          alignment: Alignment.centerLeft,
+//                          children: [
+//                            Container(
+//                              height: getDynamicHeight(140),
+//                              width: getDynamicWidth(250) ,
+//                            ),
+//                            Positioned(
+//                              top: 15,
+//                              child:Text(groupName,style: backgroundText,)
+//                              //Text("Question",style: backgroundText,),
+//                            ),
+//                            Padding(
+//                              padding: const EdgeInsets.only(right:50.0),
+//                              child: Positioned(
+//                                bottom: 5,
+//                                child: GradientText(
+//                                  description,
+//                                  style: questionStyle1,
+//                                  gradient: LinearGradient(
+//                                    colors: [
+//                                      Color(0XffFD8B1F),
+//                                      Color(0XffD152E0),
+//                                      Color(0Xff30D0DB),
+//                                    ],
+//                                    begin: Alignment.topLeft,
+//                                    end: Alignment.bottomRight,
+//                                  ),
+//                                ),
+//                              ),
+//                            )
+//                          ],
+//                      ),
+                        Lottie.network(lottiePath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
+                      ]),
+                ),
+              );
+
+          },
       ),
     );
   }

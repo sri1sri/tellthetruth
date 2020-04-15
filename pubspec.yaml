@@ -72,6 +72,7 @@ dependencies:
   finite_coverflow: ^1.0.0
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -124,6 +125,7 @@ flutter:
     - images/girl.png
     - images/seen.png
     - images/poll.png
+    - images/success-2.flr
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

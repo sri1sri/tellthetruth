@@ -59,6 +59,9 @@ class _F_AddGangNameState extends State<F_AddGangName> {
       print(_gangName);
       print(generateGroupID);
 
+      GoToPage(context, AddGangIcon());
+
+
       setState(() {
         isLoading = false;
       });
@@ -113,7 +116,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                       child: Container(
                         color: Colors.transparent,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 50, 20, 40),
+                          padding: const EdgeInsets.fromLTRB(20, 30, 20, 40),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,8 +150,6 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                         print("Tap Event");
                                       },
                                       text: [
-//                "Good evening Vasanth,",
-//                "Ready to create something exiciting ?",
                                         "Good evening $USER_NAME, Create a new gang.",
                                       ],
                                       textStyle: questionStyleThin,
@@ -199,7 +200,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                   validator: (value) {
                                     print(value);
                                     if (value.isEmpty) {
-                                      return 'Please enter gangname';
+                                      return 'Please enter gang name';
                                     }
                                     return null;
                                   },
@@ -207,14 +208,14 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                               ),
 
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    child: Text(""),
-                                  ),
+//                                  Container(
+//                                    child: Text(""),
+//                                  ),
                                   GestureDetector(
                                     child: Container(
-                                      width: getDynamicWidth(200.0),
+                                      width: getDynamicWidth(180.0),
                                       padding: EdgeInsets.all(15.0),
                                       child: Center(
                                           child: Row(
@@ -224,7 +225,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                                 Container(),
                                                 GradientText(
                                                   'Continue',
-                                                  style: boldStyle,
+                                                  style: mediumStyle,
                                                   gradient: LinearGradient(
                                                     colors: [
                                                       Color(0XffFD8B1F),
@@ -251,7 +252,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
 //                            Color(0Xff30D0DB),
 //                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
-                                          borderRadius: BorderRadius.circular(15.0),
+                                          borderRadius: BorderRadius.circular(30.0),
                                           boxShadow: [
                                             BoxShadow(
                                                 color: Colors.grey,
@@ -261,11 +262,10 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                           ]),
                                     ),
                                     onTap: () {
-//                                      setState(() {
-//                                        generateGroupID = groupID.groupID+1;
-//                                      });
-//                                      _submit();
-                                      GoToPage(context, AddGangIcon());
+                                      setState(() {
+                                        generateGroupID = groupID.groupID+1;
+                                      });
+                                      _submit();
                                     },
                                   ),
                                 ],

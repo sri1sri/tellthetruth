@@ -3,21 +3,16 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-//import 'package:page_transition/page_transition.dart';
-import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
-import 'package:tellthetruth/common_widgets/button_widget/to_do_button.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/database_model/gang_id_model.dart';
 import 'package:tellthetruth/firebase/database.dart';
-import 'package:tellthetruth/home/Profile.dart';
 
 class AddGangIcon extends StatelessWidget {
   @override
@@ -125,17 +120,17 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(),
-                                          IconButton(
-                                            icon: Icon(Icons.clear,color: Colors.white,size: 30,),
-                                            color: Colors.white,
-                                            onPressed: () {Navigator.pop(context, true);},
-                                          ),
-                                        ],
-                                      ),
+//                                      Row(
+//                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                                        children: [
+//                                          Container(),
+//                                          IconButton(
+//                                            icon: Icon(Icons.clear,color: Colors.white,size: 30,),
+//                                            color: Colors.white,
+//                                            onPressed: () {Navigator.pop(context, true);},
+//                                          ),
+//                                        ],
+//                                      ),
                                       SizedBox(
                                         height: getDynamicHeight(20),
                                       ),

@@ -48,7 +48,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
   Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Scaffold(
           body: _buildContent(context),
         ),
@@ -72,7 +72,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 //                        end: Alignment.bottomCenter,
 //                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
 //                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Column(
@@ -157,15 +157,14 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
                       ],
                     ),
-
-                    Container(
-                      color: Colors.transparent,
-                      child: Column(
+                    SizedBox(height: getDynamicHeight(20),),
+                     Column(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
 //                          CircleAvatar(
 //                            backgroundImage: AssetImage("images/boy.png"),
@@ -180,7 +179,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                   fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
                               ),
 
-                              SizedBox(height: 10,),
+                              SizedBox(height: getDynamicHeight(10),),
                               GradientText(
                                 "$USER_NAME",
                                 style: boldStyleLight,
@@ -196,41 +195,24 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                               ),
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          SizedBox(height: getDynamicHeight(20),),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-                                child: GradientText(
-                                  'My Gangs',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w800,
-                                      fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                                child: GestureDetector(
-                                    child: Text("Show All",style: answerStyleBlur,)
-                                ),
+                                child: Text("My Gangs",style: TextStyle(
+                                    color: Colors.black45,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),),
                               ),
                             ],
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
                             child: Container(
-                                height: getDynamicHeight(350.0) ,
+                                height: getDynamicHeight(530.0) ,
                                 width: MediaQuery.of(context).size.width ,
                                 child: SingleChildScrollView(
                                   child:Column(
@@ -251,7 +233,6 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                           ),
                         ],
                       ),
-                    ),
                   ],
                 ),
               )
@@ -414,37 +395,40 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
           return Card(
 
-                elevation: 15,
+                elevation: 0,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
 
                       Stack(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         children: [
                           Container(
-                            height: getDynamicHeight(110),
+                            height: getDynamicHeight(140),
                             width: getDynamicWidth(250) ,
                           ),
                           Positioned(
-                            top: 25,
+                            top: 15,
                             child:Text(groupName,style: backgroundText,)
                             //Text("Question",style: backgroundText,),
                           ),
-                          Positioned(
-                            bottom: 20,
-                            child: GradientText(
-                              description,
-                              style: questionStyle1,
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0XffFD8B1F),
-                                  Color(0XffD152E0),
-                                  Color(0Xff30D0DB),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                          Padding(
+                            padding: const EdgeInsets.only(right:50.0),
+                            child: Positioned(
+                              bottom: 5,
+                              child: GradientText(
+                                description,
+                                style: questionStyle1,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0XffFD8B1F),
+                                    Color(0XffD152E0),
+                                    Color(0Xff30D0DB),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
                               ),
                             ),
                           )

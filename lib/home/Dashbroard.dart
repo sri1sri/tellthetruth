@@ -80,7 +80,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                       children: [
                         Column(
                           children: <Widget>[
-                            SizedBox(height: 60,),
+                            SizedBox(height: 50,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -133,7 +133,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                   fontWeight: FontWeight.w900,
                                   fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
                               ),
-                              SizedBox(height: getDynamicHeight(10),),
+                              SizedBox(height: getDynamicHeight(5),),
                               Text("$USER_NAME",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -143,7 +143,6 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                             ],
                           ),
                         ),
-                        SizedBox(height: getDynamicHeight(20),),
                       ],
                     ),
                      Column(
@@ -153,7 +152,8 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Container(
-                                height: getDynamicHeight(500.0) ,
+                              color: Colors.white,
+                                height: getDynamicHeight(530.0) ,
                                 width: MediaQuery.of(context).size.width ,
                                 child: SingleChildScrollView(
                                   child:Column(
@@ -173,7 +173,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                           ),
                           Container(
                             height: getDynamicHeight(60),
-                            color: Colors.white,
+                            color: Colors.redAccent,
                             width: MediaQuery.of(context).size.width,
                           ),
                         ],
@@ -343,7 +343,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
 
             Container(
-               height: getDynamicHeight(120),
+               height: getDynamicHeight(130),
                 child: Padding(
                   padding: const EdgeInsets.only(top:20,left: 20,right: 10),
                   child: Row(

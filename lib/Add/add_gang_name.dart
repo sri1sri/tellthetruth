@@ -152,7 +152,11 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                       text: [
                                         "Good evening $USER_NAME, Create a new gang.",
                                       ],
-                                      textStyle: questionStyleThin,
+                                      textStyle:  TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getDynamicTextSize(24),decoration: TextDecoration.none),
                                       textAlign: TextAlign.start,
                                       alignment: AlignmentDirectional.topStart,
                                       isRepeatingAnimation: false,// or Alignment.topLeft
@@ -169,7 +173,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                   autocorrect: true,
                                   obscureText: false,
                                   keyboardType: TextInputType.text,
-                                  keyboardAppearance: Brightness.dark,
+                                  keyboardAppearance: Brightness.light,
                                   autofocus: true,
                                   cursorColor: Colors.white,
                                   maxLength: 15,

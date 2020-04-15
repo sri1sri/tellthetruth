@@ -80,7 +80,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                       children: [
                         Column(
                           children: <Widget>[
-                            SizedBox(height: 60,),
+                            SizedBox(height: 50,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -133,7 +133,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                   fontWeight: FontWeight.w900,
                                   fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
                               ),
-                              SizedBox(height: getDynamicHeight(10),),
+                              SizedBox(height: getDynamicHeight(5),),
                               Text("$USER_NAME",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -143,7 +143,6 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                             ],
                           ),
                         ),
-                        SizedBox(height: getDynamicHeight(20),),
                       ],
                     ),
                      Column(
@@ -153,7 +152,8 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Container(
-                                height: getDynamicHeight(530.0) ,
+                              color: Colors.white,
+                                height: getDynamicHeight(570.0) ,
                                 width: MediaQuery.of(context).size.width ,
                                 child: SingleChildScrollView(
                                   child:Column(
@@ -167,6 +167,8 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
                                       _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
 
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
+                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
                                     ],
                                   ) ,
                                 )
@@ -329,63 +331,56 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
         Navigator.of(context).push(PageTransition(type: PageTransitionType.rippleMiddle, child: QuestionsPage()));
         //GoToPage(context, QuestionsPage());
       },
-      child: ExpandPageTransition(
-        navigateToPage: QuestionsPage(),
-        transitionType: ContainerTransitionType.fade,
-        closedBuilder: (BuildContext _, VoidCallback openContainer) {
+      child: Card(
 
-          return
-
-
-            Card(
-                elevation: 0,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              alignment: Alignment.centerLeft,
-                              children: [
-                                Container(
-                                  height: getDynamicHeight(120),
-                                  width: getDynamicWidth(250),
-                                ),
-                                Positioned(
-                                  top: 10,
-                                  child:Text(groupName,style: backgroundText,),
-                                  //Text("Question",style: backgroundText,),
-                                ),
-                                Positioned(
-                                  child: GradientText(
-                                    description,
-                                    style: questionStyle1,
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color(0XffFD8B1F),
-                                        Color(0XffD152E0),
-                                        Color(0Xff30D0DB),
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 30.0),
+                          child: Container(
+//                          color: Colors.red,
+                            height: getDynamicHeight(130),
+                            width: getDynamicWidth(250),
+                          ),
                         ),
-                        Lottie.network(lottiePath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                      ]),
-                ),
-              );
+                        Positioned(
+                          top: 15,
+                          child:Text(groupName,style: backgroundText,),
+                        ),
+                        Positioned(
+                          child: GradientText(
+                            description,
+                            style: questionStyle1,
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0XffFD8B1F),
+                                Color(0XffD152E0),
+                                Color(0Xff30D0DB),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
 
-          },
+                ),
+                Lottie.network(lottiePath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
+              ]),
+        ),
       ),
     );
   }

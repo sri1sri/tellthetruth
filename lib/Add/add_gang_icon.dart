@@ -262,13 +262,13 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
       scrollDirection: Axis.horizontal,
       children: <Widget>[
         icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_VCStus.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_BonJMC.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_RWZde1.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_KMustJ.json"),
       ],
     );
   }

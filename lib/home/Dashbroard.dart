@@ -106,7 +106,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                   ],
                                 ),
                                 IconButton(
-                                  icon: Icon(Icons.notifications,color: Colors.grey,),
+                                  icon: Icon(Icons.notifications,color: Colors.white,),
                                   color: Colors.white,
                                   onPressed: () {
                                     Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
@@ -145,16 +145,18 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                         ),
                       ],
                     ),
-                     Column(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            child: Container(
-                              color: Colors.white,
-                                height: getDynamicHeight(530.0) ,
-                                width: MediaQuery.of(context).size.width ,
+                     ClipRRect(
+                       borderRadius: BorderRadius.only(topRight: Radius.circular(40.0),topLeft: Radius.circular(40.0)),
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              child: Container(
+                                color: Colors.white,
+                                  height: getDynamicHeight(530.0) ,
+                                  width: MediaQuery.of(context).size.width ,
                                 child: SingleChildScrollView(
                                   child:Column(
                                     children: [
@@ -169,15 +171,16 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                     ],
                                   ) ,
                                 )
+                              ),
                             ),
-                          ),
-                          Container(
-                            height: getDynamicHeight(60),
-                            color: Colors.redAccent,
-                            width: MediaQuery.of(context).size.width,
-                          ),
-                        ],
-                      ),
+                            Container(
+                              height: getDynamicHeight(60),
+                              color: Colors.redAccent,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ],
+                        ),
+                     ),
 
                   ],
                 ),

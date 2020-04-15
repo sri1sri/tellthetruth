@@ -157,7 +157,6 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
                                 Expanded(
                                   child:SizedBox(
-                                    height: 200,
                                     child: getVariableScaleCrousel(),
                                   ),
                                 ),
@@ -248,7 +247,11 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
       child: Center(
         child: Card(
           color: Colors.transparent,
-          child:Lottie.network(imgpath,height: getDynamicHeight(200),width: getDynamicWidth(200)),
+          child:GestureDetector(
+             onTap: (){
+               print(imgpath);
+             },
+              child: Lottie.network(imgpath,height: getDynamicHeight(200),width: getDynamicWidth(200))),
         ),
       ),
     );

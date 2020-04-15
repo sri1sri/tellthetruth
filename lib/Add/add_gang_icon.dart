@@ -111,7 +111,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                         child: Container(
                           color: Colors.transparent,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 50, 10, 40),
+                            padding: const EdgeInsets.fromLTRB(20, 50, 20, 40),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,35 +148,16 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                         alignment: AlignmentDirectional.topStart,
                                         isRepeatingAnimation: false,// or Alignment.topLeft
                                       ),
-//                                      SizedBox(
-//                                        height: getDynamicHeight(20),
-//                                      ),
-//                                      GestureDetector(
-//                                        child: Container(
-//                                          width: getDynamicWidth(150.0),
-//                                          padding: EdgeInsets.all(15.0),
-//                                          child: Center(
-//                                              child: Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(100),width: getDynamicWidth(100)),
-//                                          ),
-//                                          decoration: BoxDecoration(
-//                                              borderRadius: BorderRadius.circular(15.0), ),
-//                                        ),
-//                                        onTap: () {
-////                                      // The menu can be handled programatically using a key
-//                                          if (fabKey.currentState.isOpen) {
-//                                            fabKey.currentState.close();
-//                                          } else {
-//                                            fabKey.currentState.open();
-//                                          }
-//                                        },
-//                                      ),
+                                      SizedBox(
+                                        height: getDynamicHeight(20),
+                                      ),
                                     ],
                                   ),
                                 ),
 
                                 Expanded(
                                   child:SizedBox(
-                                    height: 500,
+                                    height: 200,
                                     child: getVariableScaleCrousel(),
                                   ),
                                 ),
@@ -220,7 +201,6 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                                 ])),
                                         decoration: BoxDecoration(
                                             color: Colors.white.withOpacity(0.7),
-
 //                            gradient: LinearGradient(
 //                                colors: <Color>[
 //                                Color(0XffFD8B1F),
@@ -228,7 +208,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 //                            Color(0Xff30D0DB),
 //                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
-                                            borderRadius: BorderRadius.circular(30.0),
+                                            borderRadius: BorderRadius.circular(15.0),
                                             boxShadow: [
                                               BoxShadow(
                                                   color: Colors.grey,
@@ -264,8 +244,10 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
   Widget icon(String imgpath )
   {
     return Container(
+      color: Colors.transparent,
       child: Center(
         child: Card(
+          color: Colors.transparent,
           child:Lottie.network(imgpath,height: getDynamicHeight(200),width: getDynamicWidth(200)),
         ),
       ),
@@ -275,19 +257,18 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
   Widget getVariableScaleCrousel() {
     return FinitePager(
-      onPageChanged: ,
       scaleX: 0.8,
-      scaleY: 0.4,
+      scaleY: 0.7,
       scrollDirection: Axis.horizontal,
       children: <Widget>[
         icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_VCStus.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_BonJMC.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_RWZde1.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_KMustJ.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
+        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
       ],
     );
   }

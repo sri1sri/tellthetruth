@@ -72,156 +72,185 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
           child: new Scaffold(
               body: Container(
                 decoration: BoxDecoration(
-                   color: Colors.white
-                ),
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Center(
-                      child: SizedBox(
-                        width: getDynamicWidth(200),
-                        height: getDynamicHeight(200),
-                        child: Container(
-                            child: FlareActor("images/welcome.flr",
-                                alignment: Alignment.center,
-                                fit: BoxFit.contain,
-                                animation: 'Animations')),
+
+                    Container(
+                      color: Colors.transparent,
+                      child: Column(
+                        children: <Widget>[
+                          Center(
+                            child: SizedBox(
+                              width: getDynamicWidth(200),
+                              height: getDynamicHeight(200),
+                              child: Container(
+                                  child: FlareActor("images/welcome.flr",
+                                      alignment: Alignment.center,
+                                      fit: BoxFit.contain,
+                                      animation: 'Animations')),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                            child: TyperAnimatedTextKit(
+                              onTap: () {
+                                print("Tap Event");
+                              },
+                              text: [
+                                "Good evening $USER_NAME, ready to do something exiciting ?",
+                              ],
+                              textStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                              textAlign: TextAlign.center,
+                              alignment: AlignmentDirectional.topCenter,
+                              isRepeatingAnimation: false,// or Alignment.topLeft
+                            ),
+                          ),
+                                              SizedBox(height: getDynamicHeight(40),),
+
+                        ],
                       ),
                     ),
-                    TyperAnimatedTextKit(
-                      onTap: () {
-                        print("Tap Event");
-                      },
-                      text: [
-//                "Good evening Vasanth,",
-//                "Ready to create something exiciting ?",
-                        "Good evening $USER_NAME, ready to do something exiciting ?",
-                      ],
-                      textStyle: questionStyleThin,
-                      textAlign: TextAlign.center,
-                      alignment: AlignmentDirectional.topCenter,
-                      isRepeatingAnimation: false,// or Alignment.topLeft
+
+//                    SizedBox(height: getDynamicHeight(100),),
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
+                      child: Container(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: (){
+                                GoToPage(context, JoinGang());
+                                print("Tap Event");
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height: getDynamicHeight(155),
+                                  ),
+                                  Positioned(
+                                    top: 25,
+                                    child:FadeAnimatedTextKit(
+                                        text: ["6",],
+                                        textStyle: backgroundText,
+                                        textAlign: TextAlign.center,
+                                        alignment: AlignmentDirectional.center // or Alignment.topLeft
+                                    ),
+                                    //Text("Question",style: backgroundText,),
+                                  ),
+                                  Positioned(
+                                    child: GradientText(
+                                      'Join your gang...',
+                                      style: questionStyle1,
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color(0XffFD8B1F),
+                                          Color(0XffD152E0),
+                                          Color(0Xff30D0DB),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                print("Tap Event");
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height: getDynamicHeight(155),
+                                  ),
+                                  Positioned(
+                                    top: 25,
+                                    child:FadeAnimatedTextKit(
+                                        text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                                        textStyle: backgroundText,
+                                        textAlign: TextAlign.center,
+                                        alignment: AlignmentDirectional.center // or Alignment.topLeft
+                                    ),
+                                    //Text("Question",style: backgroundText,),
+                                  ),
+                                  Positioned(
+                                    child: GradientText(
+                                      'Wanna ask a question?',
+                                      style: questionStyle1,
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color(0XffFD8B1F),
+                                          Color(0XffD152E0),
+                                          Color(0Xff30D0DB),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: (){
+                                GoToPage(context, AddGangName());
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height: getDynamicHeight(150),
+                                  ),
+                                  Positioned(
+                                    top: 25,
+                                    child:FadeAnimatedTextKit(
+                                        text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
+                                        textStyle: backgroundText,
+                                        textAlign: TextAlign.center,
+                                        alignment: AlignmentDirectional.center // or Alignment.topLeft
+                                    ),
+                                  ),
+                                  Positioned(
+                                    child: GradientText(
+                                      'Create a new gang & have fun.',
+                                      style: questionStyle1,
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color(0XffFD8B1F),
+                                          Color(0XffD152E0),
+                                          Color(0Xff30D0DB),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    //Text("Good evening Vasanth, ready to create something new ?",style: questionStyleThin,textAlign: TextAlign.center,),
-                    SizedBox(height: getDynamicHeight(100),),
-                    Column(
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            GoToPage(context, JoinGang());
-                            print("Tap Event");
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(150),
-                              ),
-                              Positioned(
-                                top: 25,
-                                child:FadeAnimatedTextKit(
-                                    text: ["6",],
-                                    textStyle: backgroundText,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Positioned(
-                                child: GradientText(
-                                  'Join your gang...',
-                                  style: questionStyle1,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            print("Tap Event");
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(150),
-                              ),
-                              Positioned(
-                                top: 25,
-                                child:FadeAnimatedTextKit(
-                                    text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                                    textStyle: backgroundText,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Positioned(
-                                child: GradientText(
-                                  'Wanna ask a question?',
-                                  style: questionStyle1,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: (){
-                            GoToPage(context, AddGangName());
-                          },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(150),
-                              ),
-                              Positioned(
-                                top: 25,
-                                child:FadeAnimatedTextKit(
-                                    text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
-                                    textStyle: backgroundText,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                              ),
-                              Positioned(
-                                child: GradientText(
-                                  'Create a new gang & have fun.',
-                                  style: questionStyle1,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
+
+                    Container(
+                      height: getDynamicHeight(60),
+                      color: Colors.redAccent,
+                      width: MediaQuery.of(context).size.width,
+                    ),
                   ],
                 ),
               )

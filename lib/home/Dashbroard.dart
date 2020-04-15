@@ -146,7 +146,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                       ],
                     ),
                      ClipRRect(
-                       borderRadius: BorderRadius.only(topRight: Radius.circular(40.0),topLeft: Radius.circular(40.0)),
+                       borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
                        child: Column(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,

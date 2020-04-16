@@ -14,6 +14,10 @@ abstract class Database{
   Stream<UserDetails> getUserDetails();
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
+  Future<void> updateInsights(CommonFiles commonFiles);
+  Stream<List<GangDetails>>readGangs();
+
+
 //  Stream<List<GangDetails>> checkGangName(String gangName);
 
 //  Stream<List<GangDetails>> searchGang(int gangCode);
@@ -61,12 +65,18 @@ class FirestoreDatabase implements Database {
     data: gangDetails.toMap(),
   );
 
-//  @override
-//  Stream<List<GangDetails>> checkGangName(String gangName) => _service.collectionStream(
-//    path: APIPath.gangsList(),
-//    builder: (data, documentId) => GangDetails.fromMap(data, documentId),
-//    queryBuilder: (query) => query.where('gang_name', isEqualTo: gangName).where('created_by', isEqualTo: USER_ID),
-//  );
+  @override
+  Future<void> updateInsights(CommonFiles commonFiles) async => await _service.updateData(
+    path: APIPath.insights(),
+    data: commonFiles.toMap(),
+  );
+
+  @override
+  Stream<List<GangDetails>>readGangs() => _service.collectionStream(
+    path: APIPath.gangsList(),
+    builder: (data, documentId) => GangDetails.fromMap(data, documentId),
+    queryBuilder: (query) => query.where('gang_user_ids', arrayContains: USER_ID),
+  );
 
 
 

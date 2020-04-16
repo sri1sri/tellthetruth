@@ -1,22 +1,12 @@
 import 'dart:async';
-import 'package:firebase_admob/firebase_admob.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tellthetruth/common_variables/sizeConfig.dart';
-import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:provider/provider.dart';
 import 'package:slimy_card/slimy_card.dart';
-import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
-import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
-import 'package:tellthetruth/firebase/auth.dart';
 
 import '../landing_page.dart';
 
@@ -80,9 +70,9 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
         handleTick( );
       } );
     }
-    int seconds = secondsPassed % 60;
-    int minutes = secondsPassed ~/ 60;
-    int hours = secondsPassed ~/ (60 * 60);
+//    int seconds = secondsPassed % 60;
+//    int minutes = secondsPassed ~/ 60;
+//    int hours = secondsPassed ~/ (60 * 60);
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
@@ -130,14 +120,14 @@ class _F_QuestionDetailPageState extends State<F_QuestionDetailPage> {
                             children: <Widget>[
                               LabelText(
                                   label: 'HRS',
-                                  value: hours.toString( ).padLeft( 2, '0' ) ),
+                                  value: convertSeconds(secondsPassed)[0].toString( ).padLeft( 2, '0' ) ),
                               LabelText(
                                   label: 'MIN',
-                                  value: minutes.toString( ).padLeft(
+                                  value: convertSeconds(secondsPassed)[1].toString( ).padLeft(
                                       2, '0' ) ),
                               LabelText(
                                   label: 'SEC',
-                                  value: seconds.toString( ).padLeft(
+                                  value: convertSeconds(secondsPassed)[2].toString( ).padLeft(
                                       2, '0' ) ),
                             ],
                           ),

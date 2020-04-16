@@ -65,7 +65,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
               gangID = data.documents[0].documentID.toString(),
 
               if(usersList.contains(USER_ID)){
-                customAlertBox(context, 'Oops...', 'You are already member in this group.'),
+//                customAlertBox(context, 'Oops...', 'You are already member in this group.'),
               }else{
                 usersList.add(USER_ID),
                 gangDetails = GangDetails(gangUserIDS: usersList.cast<String>().toSet().toList()),
@@ -73,7 +73,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                 GoToPage(context, LandingPage()),
               }
             }else{
-              customAlertBox(context, 'Oops...', 'You have entered wrong gang code. Please check the you entered.'),
+//              customAlertBox(context, 'Oops...', 'You have entered wrong gang code. Please check the you entered.'),
             }
           }
       );

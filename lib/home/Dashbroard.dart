@@ -16,8 +16,11 @@ import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
+import 'package:tellthetruth/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/home/all_questions.dart';
 import 'package:tellthetruth/home/groupMembers.dart';
 
@@ -65,136 +68,145 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
   Widget _buildContent(BuildContext context) {
 
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
-      tween: tween,
-      duration: tween.duration,
-      builder: (context, animation) {
-        return Container(
-          child: new Scaffold(
-              body: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                     Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
+    return StreamBuilder<List<GangDetails>>(
+      stream: DBreference.readGangs(),
+      builder: (context, snapshot) {
+
+        return ListItemsBuilder<GangDetails>(
+            snapshot: snapshot,
+            itemBuilder: (context, data) => ControlledAnimation(
+              playback: Playback.MIRROR,
+              tween: tween,
+              duration: tween.duration,
+              builder: (context, animation) {
+                return Container(
+                  child: new Scaffold(
+                      body: Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            SizedBox(height: 50,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("........",style: TextStyle(color: Colors.transparent),),
-                                Row(
-                                  children: [
-                                    Text( 'T',
-                                      style: logoStyle1,),
-                                    Text( 'ell',
-                                        style: logoStyle2),
+                                Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 50,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("........",style: TextStyle(color: Colors.transparent),),
+                                        Row(
+                                          children: [
+                                            Text( 'T',
+                                              style: logoStyle1,),
+                                            Text( 'ell',
+                                                style: logoStyle2),
 
-                                    SizedBox(width: 5,),
-                                    Text( 'T',
-                                      style: logoStyle1,),
-                                    Text( 'he',
-                                      style: logoStyle2,),
+                                            SizedBox(width: 5,),
+                                            Text( 'T',
+                                              style: logoStyle1,),
+                                            Text( 'he',
+                                              style: logoStyle2,),
 
-                                    SizedBox(width: 5,),
-                                    Text( 'T',
-                                      style: logoStyle1,),
-                                    Text( 'ruth',
-                                      style: logoStyle2,),
+                                            SizedBox(width: 5,),
+                                            Text( 'T',
+                                              style: logoStyle1,),
+                                            Text( 'ruth',
+                                              style: logoStyle2,),
+                                          ],
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.notifications,color: Colors.white,size: 30,),
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
+                                          },
+                                        ),
+
+                                      ],
+                                    ),
+                                    // SizedBox(height: 30,),
+
+
                                   ],
                                 ),
-                                IconButton(
-                                  icon: Icon(Icons.notifications,color: Colors.white,size: 30,),
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1), child: ViewMembersPage()));
-                                  },
+                                SizedBox(height: getDynamicHeight(10),),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Good Morning',style: TextStyle(
+                                          color: Colors.white38,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
+                                      ),
+                                      SizedBox(height: getDynamicHeight(5),),
+                                      Text("$USER_NAME",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),),
+                                    ],
+                                  ),
                                 ),
-
                               ],
                             ),
-                            // SizedBox(height: 30,),
-
-
-                          ],
-                        ),
-                        SizedBox(height: getDynamicHeight(10),),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Good Morning',style: TextStyle(
-                                  color: Colors.white38,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: getDynamicTextSize(40),decoration: TextDecoration.none)
-                              ),
-                              SizedBox(height: getDynamicHeight(5),),
-                              Text("$USER_NAME",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                     ClipRRect(
-                       borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
-                       child: Column(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Container(
-                                color: Colors.white,
-                                  height: getDynamicHeight(530.0) ,
-                                  width: MediaQuery.of(context).size.width ,
-                                child: SingleChildScrollView(
-                                  child:Column(
-                                    children: [
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',".Net 791","6 new questions"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"Family","the good one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"LTI Pune","the great one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"Caseu","the worst one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
-                                      _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
-                                    ],
-                                  ) ,
-                                )
-                              ),
-                            ),
-                           // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                    child: Container(
+                                        color: Colors.white,
+                                        height: getDynamicHeight(530.0) ,
+                                        width: MediaQuery.of(context).size.width ,
+                                        child: SingleChildScrollView(
+                                          child:Column(
+                                            children: [
+                                              _buildImage(data != null ? data.gangIconURL : '',data != null ? data.gangName : 'fetching...',"6 new questions"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"Family","the good one"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"LTI Pune","the great one"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"Caseu","the worst one"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
+//                                              _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
+                                            ],
+                                          ) ,
+                                        )
+                                    ),
+                                  ),
+                                  // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
 //                            Container(
 //                              height: getDynamicHeight(60),
 //                              color: Colors.redAccent,
 //                              width: MediaQuery.of(context).size.width,
 //                            ),
+                                ],
+                              ),
+                            ),
+
                           ],
                         ),
-                     ),
-
-                  ],
-                ),
-              )
-          ),
+                      )
+                  ),
+                );
+              },
+            ),
         );
-      },
+      }
     );
   }
 
@@ -209,10 +221,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
         transitionType: ContainerTransitionType.fade,
         closedBuilder: (BuildContext _, VoidCallback openContainer) {
 
-          return
-
-
-            Container(
+          return Container(
                height: getDynamicHeight(130),
                 child: Padding(
                   padding: const EdgeInsets.only(top:20,left: 20,right: 10),

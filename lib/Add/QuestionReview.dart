@@ -161,7 +161,7 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                       .size
                       .width,
                   bottomCardWidget: bottomCardWidget(),
-                  bottomCardHeight: getDynamicHeight(250),
+                  bottomCardHeight: getDynamicHeight(270),
                   topCardHeight: getDynamicHeight(200),
                 ),
               ),

@@ -132,7 +132,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                           children: [
                             GestureDetector(
                               onTap: (){
-                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: JoinGang()));
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftDown, duration: Duration(seconds: 0),alignment: Alignment.bottomCenter, child: JoinGang()));
                                 print("Tap Event");
                               },
                               child: Stack(

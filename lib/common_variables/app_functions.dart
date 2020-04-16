@@ -115,31 +115,31 @@ List<String> CONTACT_NUMBERS = new List();
 }
 
 
-void customAlertBox(BuildContext context, String title, String description){
-  showDialog(
-      context: context,
-      builder: (_) => NetworkGiffyDialog(
-        key: Key("NetworkDialog"),
-        image: Image.network("https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
-          fit: BoxFit.cover,
-        ),
-        entryAnimation: EntryAnimation.TOP_LEFT,
-        title: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 22.0, fontWeight: FontWeight.w600),
-        ),
-        description: Text(
-          description,
-          textAlign: TextAlign.center,
-        ),
-        onlyOkButton: true,
-        onOkButtonPressed: (){
-          Navigator.of(context).pop();
-        },
-      ));
-}
+//void customAlertBox(BuildContext context, String title, String description){
+//  showDialog(
+//      context: context,
+//      builder: (_) => NetworkGiffyDialog(
+//        key: Key("NetworkDialog"),
+//        image: Image.network("https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
+//          fit: BoxFit.cover,
+//        ),
+//        entryAnimation: EntryAnimation.TOP_LEFT,
+//        title: Text(
+//          title,
+//          textAlign: TextAlign.center,
+//          style: TextStyle(
+//              fontSize: 22.0, fontWeight: FontWeight.w600),
+//        ),
+//        description: Text(
+//          description,
+//          textAlign: TextAlign.center,
+//        ),
+//        onlyOkButton: true,
+//        onOkButtonPressed: (){
+//          Navigator.of(context).pop();
+//        },
+//      ));
+//}
 
 
 

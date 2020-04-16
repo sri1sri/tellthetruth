@@ -8,17 +8,12 @@ import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/common_widgets/platform_alert/platform_alert_dialog.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
-import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/Add/AddItem.dart';
 import 'package:tellthetruth/firebase/database.dart';
-import 'package:tellthetruth/home/Dashboard.dart';
 import 'package:tellthetruth/home/Dashbroard.dart';
 import 'package:tellthetruth/home/Profile.dart';
-import 'package:tellthetruth/home/Settings.dart';
 
-import '../landing_page.dart';
 const backgroundGradient = LinearGradient(colors: <Color>[
   Color(0XffFD8B1F),
   Color(0XffD152E0),

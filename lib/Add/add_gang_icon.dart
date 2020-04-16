@@ -63,7 +63,16 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         createBy: USER_ID,
         gangUserIDS: [USER_ID],
       );
+
+      final updateInsights = CommonFiles(
+        groupsCount: int.parse(widget.gangCode)
+      );
+
       await DBreference.createGang(createGang);
+      await DBreference.updateInsights(updateInsights);
+
+
+
       GoToPage(context, LandingPage());
 
 

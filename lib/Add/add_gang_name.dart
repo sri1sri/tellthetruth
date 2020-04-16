@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,6 +45,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
   bool isLoading = false;
   int generateGroupID;
   List<String> icons;
+  bool openKeyboard = false;
 
 
   bool _validateAndSaveForm() {
@@ -80,29 +83,29 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                 isLoading = false;
               }),
 
-          showDialog(
-          context: context,
-          builder: (_) => NetworkGiffyDialog(
-            key: Key("NetworkDialog"),
-            image: Image.network("https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
-              fit: BoxFit.cover,
-            ),
-            entryAnimation: EntryAnimation.TOP_LEFT,
-            title: Text(
-              'Oops...',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 22.0, fontWeight: FontWeight.w600),
-            ),
-            description: Text(
-              'You already have gang existing with this name ${_gangName}. Please try with new name.',
-              textAlign: TextAlign.center,
-            ),
-            onlyOkButton: true,
-            onOkButtonPressed: (){
-              Navigator.of(context).pop();
-            },
-          )),
+//          showDialog(
+//          context: context,
+//          builder: (_) => NetworkGiffyDialog(
+//            key: Key("NetworkDialog"),
+//            image: Image.network("https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
+//              fit: BoxFit.cover,
+//            ),
+//            entryAnimation: EntryAnimation.TOP_LEFT,
+//            title: Text(
+//              'Oops...',
+//              textAlign: TextAlign.center,
+//              style: TextStyle(
+//                  fontSize: 22.0, fontWeight: FontWeight.w600),
+//            ),
+//            description: Text(
+//              'You already have gang existing with this name ${_gangName}. Please try with new name.',
+//              textAlign: TextAlign.center,
+//            ),
+//            onlyOkButton: true,
+//            onOkButtonPressed: (){
+//              Navigator.of(context).pop();
+//            },
+//          )),
 
               print('already existing'),
 
@@ -126,6 +129,13 @@ class _F_AddGangNameState extends State<F_AddGangName> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        openKeyboard = true;
+        print('completed');
+
+      });
+    });
     return offlineWidget(context);
   }
 
@@ -146,10 +156,6 @@ class _F_AddGangNameState extends State<F_AddGangName> {
         stream: DBreference.getInsights(),
         builder: (context, snapshot) {
           final insightsData = snapshot.data;
-
-
-
-
             return TransparentLoading(
               loading: isLoading,
               child: ControlledAnimation(
@@ -226,7 +232,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                       obscureText: false,
                                       keyboardType: TextInputType.text,
                                       keyboardAppearance: Brightness.light,
-                                      autofocus: true,
+                                      autofocus: openKeyboard ? true : false,
                                       cursorColor: Colors.white,
                                       maxLength: 15,
                                       onEditingComplete: _submit,

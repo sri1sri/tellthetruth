@@ -58,6 +58,138 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(120),
+              child: ControlledAnimation(
+                playback: Playback.MIRROR,
+                tween: tween,
+                duration: tween.duration,
+                builder: (context, animation) {
+                  return Container(
+                    child: new Scaffold(
+                      body: Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  animation["color1"],
+                                  animation["color2"],
+                                  animation["color3"],
+                                  animation["color4"]
+                                ])),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: <Widget>[
+                                    SizedBox(
+                                      height: 50,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "........",
+                                          style: TextStyle(color: Colors.transparent),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'T',
+                                              style: logoStyle1,
+                                            ),
+                                            Text('ell', style: logoStyle2),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'T',
+                                              style: logoStyle1,
+                                            ),
+                                            Text(
+                                              'he',
+                                              style: logoStyle2,
+                                            ),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              'T',
+                                              style: logoStyle1,
+                                            ),
+                                            Text(
+                                              'ruth',
+                                              style: logoStyle2,
+                                            ),
+                                          ],
+                                        ),
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.notifications,
+                                            color: Colors.white,
+                                            size: 30,
+                                          ),
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                    type: PageTransitionType
+                                                        .rippleRightDown,
+                                                    duration: Duration(seconds: 1),
+                                                    child: ViewMembersPage()));
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    // SizedBox(height: 30,),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: getDynamicHeight(10),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Good Morning',
+                                          style: TextStyle(
+                                              color: Colors.white38,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: getDynamicTextSize(40),
+                                              decoration: TextDecoration.none)),
+                                      SizedBox(
+                                        height: getDynamicHeight(5),
+                                      ),
+                                      Text(
+                                        "$USER_NAME",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getDynamicTextSize(26),
+                                            decoration: TextDecoration.none),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+          ),
           body: _buildContent(context),
         ),
       ),
@@ -65,176 +197,48 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
-      tween: tween,
-      duration: tween.duration,
-      builder: (context, animation) {
-        return Container(
-          child: new Scaffold(
-            body: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                    animation["color1"],
-                    animation["color2"],
-                    animation["color3"],
-                    animation["color4"]
-                  ])),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 50,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "........",
-                                style: TextStyle(color: Colors.transparent),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'T',
-                                    style: logoStyle1,
-                                  ),
-                                  Text('ell', style: logoStyle2),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    'T',
-                                    style: logoStyle1,
-                                  ),
-                                  Text(
-                                    'he',
-                                    style: logoStyle2,
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    'T',
-                                    style: logoStyle1,
-                                  ),
-                                  Text(
-                                    'ruth',
-                                    style: logoStyle2,
-                                  ),
-                                ],
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.notifications,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                                color: Colors.white,
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType
-                                              .rippleRightDown,
-                                          duration: Duration(seconds: 1),
-                                          child: ViewMembersPage()));
-                                },
-                              ),
-                            ],
-                          ),
-                          // SizedBox(height: 30,),
-                        ],
-                      ),
-                      SizedBox(
-                        height: getDynamicHeight(10),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Good Morning',
-                                style: TextStyle(
-                                    color: Colors.white38,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: getDynamicTextSize(40),
-                                    decoration: TextDecoration.none)),
-                            SizedBox(
-                              height: getDynamicHeight(5),
-                            ),
-                            Text(
-                              "$USER_NAME",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getDynamicTextSize(26),
-                                  decoration: TextDecoration.none),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20.0),
-                        topLeft: Radius.circular(20.0)),
-                    child: StreamBuilder<List<GangDetails>>(
-                      stream: DBreference.readGangs(),
-                      builder: (context, snapshot) {
-print(snapshot.data.length);
-                        return ListItemsBuilder<GangDetails>(
-                          snapshot: snapshot,
-                          itemBuilder: (context, data) => Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                color: Colors.white,
-                                height: getDynamicHeight(530.0),
-                                width: MediaQuery.of(context).size.width,
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: <Widget>[
-                                      _buildImage(
-                                          data != null
-                                              ? data.gangIconURL
-                                              : '',
-                                          data != null
-                                              ? data.gangName
-                                              : 'fetching...',
-                                          "6 new questions"),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
-                            ],
-                          ),
-                        );
-                      },
+    return StreamBuilder<List<GangDetails>>(
+      stream: DBreference.readGangs(),
+      builder: (context, snapshot) {
+        print(snapshot.data.length);
+        return ListItemsBuilder<GangDetails>(
+          snapshot: snapshot,
+          itemBuilder: (context, data) => ClipRRect(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  color: Colors.white,
+                  height: getDynamicHeight(530.0),
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        _buildImage(
+                            data != null
+                                ? data.gangIconURL
+                                : '',
+                            data != null
+                                ? data.gangName
+                                : 'fetching...',
+                            "6 new questions"),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
+              ],
             ),
           ),
         );
       },
     );
   }
+
 
   Widget _buildImage(String lottiePath, String groupName, String description) {
     return GestureDetector(

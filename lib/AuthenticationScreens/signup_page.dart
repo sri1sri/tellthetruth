@@ -347,7 +347,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                         FlatButton(
                           child: GradientText(
                             'Login',
-                            style: boldStyle,
+                            style: mediumStyle,
                             gradient: LinearGradient(
                               colors: [
                                 Color(0XffFD8B1F),

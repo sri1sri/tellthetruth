@@ -14,7 +14,7 @@ import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/button_widget/to_do_button.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/database_model/gang_id_model.dart';
+import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/home/Profile.dart';
 
@@ -59,7 +59,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
       print(_gangName);
       print(generateGroupID);
 
-      GoToPage(context, AddGangIcon());
+      GoToPage(context, AddGangIcon(gangCode: generateGroupID.toString(),));
 
 
       setState(() {
@@ -94,10 +94,11 @@ class _F_AddGangNameState extends State<F_AddGangName> {
 
   @override
   Widget _buildContent(BuildContext context) {
-    return StreamBuilder<GangCode>(
-        stream: DBreference.getGangCode(),
+    return StreamBuilder<CommonFiles>(
+        stream: DBreference.getInsights(),
         builder: (context, snapshot) {
-          final groupID = snapshot.data;
+          final insightsData = snapshot.data;
+
         return TransparentLoading(
           loading: isLoading,
           child: ControlledAnimation(
@@ -267,7 +268,8 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                     ),
                                     onTap: () {
                                       setState(() {
-                                        generateGroupID = groupID.groupID+1;
+                                        print(insightsData.groupsCount);
+                                        generateGroupID = insightsData.groupsCount+1;
                                       });
                                       _submit();
                                     },

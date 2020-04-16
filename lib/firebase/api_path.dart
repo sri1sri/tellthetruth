@@ -7,7 +7,5 @@ class APIPath {
   static String gangDetails(String gangID) => '${API_SUFFIX}gangs/$gangID';
   static String gangsList() => '${API_SUFFIX}gangs';
 
-
-
-  static String gangcode() => 'common_files/on_going_group_number';
+  static String insights() => '${API_SUFFIX}common_files/insights';
 }

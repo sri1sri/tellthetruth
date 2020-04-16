@@ -1,7 +1,9 @@
 import 'dart:math';
 
-import 'package:animated_text_kit/animated_text_kit.dart';
+//import 'package:admob_flutter/admob_flutter.dart';
+//import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:flutter_page_transition/page_transition_type.dart';
@@ -15,6 +17,7 @@ import 'package:tellthetruth/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/home/all_questions.dart';
 import 'package:tellthetruth/home/groupMembers.dart';
 
@@ -43,6 +46,9 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAdMob.instance.initialize(appId: getAppId());
+//    createBannerAd()..load()..show(anchorType: AnchorType.bottom, anchorOffset: 40.0,);
+
     return offlineWidget(context);
   }
 
@@ -173,11 +179,12 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                                 )
                               ),
                             ),
-                            Container(
-                              height: getDynamicHeight(60),
-                              color: Colors.redAccent,
-                              width: MediaQuery.of(context).size.width,
-                            ),
+                           // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
+//                            Container(
+//                              height: getDynamicHeight(60),
+//                              color: Colors.redAccent,
+//                              width: MediaQuery.of(context).size.width,
+//                            ),
                           ],
                         ),
                      ),
@@ -189,146 +196,6 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
         );
       },
     );
-
-
-//      new MaterialApp(
-//        debugShowCheckedModeBanner: false,
-//        home: Container(
-//          child: new Scaffold(
-//              backgroundColor:Colors.white,
-//              body: Container(
-//                decoration: new BoxDecoration(
-//                    gradient: new LinearGradient(
-//                      begin: Alignment.topCenter,
-//                      end: Alignment.bottomCenter,
-//                      colors: [
-//                        Color(0XffFD8B1F),
-//                        Color(0XffD152E0),
-//                        Color(0Xff30D0DB),
-//                        Color(0Xff12c2e9),
-//                      ],
-//                    )),
-//                child: Column(
-//                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                  crossAxisAlignment: CrossAxisAlignment.start,
-//                  children: <Widget>[
-//                        Column(
-//                          children: <Widget>[
-//                            SizedBox(height: 60,),
-//                            Row(
-//                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                              children: [
-//                                Text("........",style: TextStyle(color: Colors.transparent),),
-//                                Row(
-//                                  children: [
-//                                    Text("T",style: titleStyle,),
-//                                    Text("ell",style: titleStyle,),
-//                                    SizedBox(width: 5,),
-//                                    Text("T",style: titleStyle,),
-//                                    Text("he",style: titleStyle,),
-//                                    SizedBox(width: 5,),
-//                                    Text("T",style: titleStyle,),
-//                                    Text("ruth",style: titleStyle,),
-//                                  ],
-//                                ),
-//                                IconButton(
-//                                  icon: Icon(Icons.notifications,color: Colors.white,),
-//                                  color: Colors.white,
-//                                  onPressed: () {
-//                                    Navigator.push(context, PageTransition(type: PageTransitionType.slideZoomUp, duration: Duration(seconds: 1), child: ViewMembersPage()));
-//                                  },
-//                                ),
-//
-//                              ],
-//                            ),
-//                          ],
-//                        ),
-//                        Padding(
-//                          padding: const EdgeInsets.only(left:20.0,right: 20),
-//                          child: Column(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                            children: [
-//                              CircleAvatar(
-//                                backgroundImage: AssetImage("images/boy.png"),
-//                                radius: 35,
-//                              ),
-//                              SizedBox(height: 20,),
-//                              Text("Hello, Vasanthakumar",style: boldStyleLight,),
-//                              SizedBox(height: 10,),
-//                              Text("Hey today you got 3 more questions to\n answer in your groups.",style: answerStyleBlur,)
-//                            ],
-//                          ),
-//                        ),
-//                        Container(
-//                          color: Colors.transparent,
-//                          child: Column(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            children: [
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                children: <Widget>[
-//                                  Padding(
-//                                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
-//                                    child: Text(
-//                                      "My gangs",
-//                                      style: TextStyle(
-//                                          color: Colors.white,
-//                                          fontFamily: 'Montserrat',
-//                                          fontWeight: FontWeight.w800,
-//                                          fontSize: getDynamicTextSize(19),decoration: TextDecoration.none),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-//                                    child: GestureDetector(
-//                                      child: Text(
-//                                        "Show all",
-//                                        style: TextStyle(
-//                                            color: Colors.white,
-//                                            fontFamily: 'Montserrat',
-//                                            fontWeight: FontWeight.w600,
-//                                            fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                ],
-//                              ),
-//                              Padding(
-//                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
-//                                child: Container(
-//                                    height: getDynamicHeight(350.0) ,
-//                                    width: MediaQuery.of(context).size.width ,
-//                                    padding: EdgeInsets.only(top: 10.0),
-//                                    child: GridView.count(
-//                                        crossAxisCount: 1,
-//                                        crossAxisSpacing: 1,
-//                                        mainAxisSpacing: 20,
-//                                        childAspectRatio: 1.45,
-//                                        scrollDirection: Axis.horizontal,
-//                                        children: [
-////                                          Container(width: 10, color: Colors.transparent,),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',"Winner winner winn","6 new questions"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"srivatsav","the good one"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"vamsi","the great one"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"jake","the worst one"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
-//                                          _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
-//
-//                                        ])),
-//                              ),
-//                            ],
-//                          ),
-//                        ),
-//                  ],
-//                ),
-//              )
-//          ),
-//        )
-//    );
-
   }
 
   Widget _buildImage(String lottiePath, String groupName, String description) {
@@ -393,7 +260,6 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
                       ]),
                 ),
               );
-
           },
       ),
     );

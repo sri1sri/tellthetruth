@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';

@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
-import 'package:tellthetruth/database_model/gang_id_model.dart';
+import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
 
 abstract class Database{
 
-  Stream<GangCode> getGangCode();
+  Stream<CommonFiles> getInsights();
   Stream<UserDetails> getUserDetails();
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
@@ -34,9 +34,9 @@ class FirestoreDatabase implements Database {
   );
 
   @override
-  Stream<GangCode> getGangCode() => _service.documentStream(
-    path: APIPath.gangcode(),
-    builder: (data, documentId) => GangCode.fromMap(data, documentId),
+  Stream<CommonFiles> getInsights() => _service.documentStream(
+    path: APIPath.insights(),
+    builder: (data, documentId) => CommonFiles.fromMap(data, documentId),
   );
 
   @override

@@ -4,4 +4,4 @@ Future<String> USERID()async{
   return user.uid;
 }
 
-String API_SUFFIX = 'test';
+String API_SUFFIX = 'test_';

@@ -179,6 +179,11 @@ PODS:
     - Flutter
   - devicelocale (0.0.1):
     - Flutter
+  - Firebase/AdMob (6.21.0):
+    - Firebase/CoreOnly
+    - Google-Mobile-Ads-SDK (~> 7.50)
+  - Firebase/Analytics (6.21.0):
+    - Firebase/Core
   - Firebase/Auth (6.21.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.5.1)
@@ -193,6 +198,14 @@ PODS:
   - Firebase/Storage (6.21.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.6.0)
+  - firebase_admob (0.0.1):
+    - Firebase/AdMob
+    - Firebase/Core
+    - Flutter
+  - firebase_analytics (0.0.1):
+    - Firebase/Analytics (~> 6.0)
+    - Firebase/Core
+    - Flutter
   - firebase_auth (0.0.1):
     - Firebase/Auth (~> 6.3)
     - Firebase/Core
@@ -265,6 +278,8 @@ PODS:
     - Flutter
   - flutter_plugin_android_lifecycle (0.0.1):
     - Flutter
+  - Google-Mobile-Ads-SDK (7.58.0):
+    - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -348,6 +363,8 @@ DEPENDENCIES:
   - connectivity_macos (from `.symlinks/plugins/connectivity_macos/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - devicelocale (from `.symlinks/plugins/devicelocale/ios`)
+  - firebase_admob (from `.symlinks/plugins/firebase_admob/ios`)
+  - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_auth_web (from `.symlinks/plugins/firebase_auth_web/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -383,6 +400,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstallations
     - FirebaseStorage
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -409,6 +427,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info/ios"
   devicelocale:
     :path: ".symlinks/plugins/devicelocale/ios"
+  firebase_admob:
+    :path: ".symlinks/plugins/firebase_admob/ios"
+  firebase_analytics:
+    :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_auth_web:
@@ -460,6 +482,8 @@ SPEC CHECKSUMS:
   device_info: cbf09d2ec12aa7110e0b09fabe54b5bd6c8efe74
   devicelocale: feebbe5e7a30adb8c4f83185de1b50ff19b44f00
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
+  firebase_admob: d8c2bc95b5e0069406280ce6adb816cdee6aa595
+  firebase_analytics: dacdcfc524d722fff13dcff942f0dfa47e6be567
   firebase_auth: 1f46484071219159ad6c64d304af425ad7373052
   firebase_auth_web: 0955c07bcc06e84af76b9d4e32e6f31518f2d7de
   firebase_core: dc539d4bdc69894823e4a6e557034a9e48960f21
@@ -479,6 +503,7 @@ SPEC CHECKSUMS:
   flutter_keyboard_visibility: 6195387fb6d8f46e5cd6dda4a4154e41f800f545
   flutter_native_timezone: e72ff1900460ff57cfd331d1758050c9269f3e99
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
+  Google-Mobile-Ads-SDK: 7052557293c75c676db55feb707ace9b790f32c1
   GoogleAppMeasurement: 6e68a94d0eaeb1d73ef6b0ed4f7334e29d63ae29
   GoogleDataTransport: b29a21d813e906014ca16c00897827e40e4a24ab
   GoogleDataTransportCCTSupport: 6f15a89b0ca35d6fa523e1f752ef818588885988
@@ -502,6 +527,6 @@ SPEC CHECKSUMS:
   url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
   url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
 
-PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a
+PODFILE CHECKSUM: c1b34269bf95e90b6647bf1a6afe1ab381fe5ad6
 
-COCOAPODS: 1.9.0.beta.3
+COCOAPODS: 1.9.1

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
@@ -18,6 +19,7 @@ import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/Add/add_gang_name.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/home/groupMembers.dart';
 
 import 'join_gang.dart';

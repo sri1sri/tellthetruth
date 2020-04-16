@@ -70,6 +70,8 @@ dependencies:
   animated_text_kit: 2.0.0
   circle_wheel_scroll: ^0.0.1+1
   finite_coverflow: ^1.0.0
+  firebase_admob: ^0.9.3+1
+  firebase_analytics: ^5.0.11
 
 
 

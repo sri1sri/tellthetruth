@@ -16,19 +16,25 @@ import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/database_model/gang_id_model.dart';
+import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/firebase/database.dart';
 
 class AddGangIcon extends StatelessWidget {
+  AddGangIcon({@required this.gangCode});
+  String gangCode;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_AddGangIcon(),
+      child: F_AddGangIcon(gangCode: gangCode,),
     );
   }
 }
 
 class F_AddGangIcon extends StatefulWidget {
+  F_AddGangIcon({@required this.gangCode});
+  String gangCode;
+
   @override
   _F_AddGangIconState createState() => _F_AddGangIconState();
 }
@@ -37,20 +43,17 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
-  final _formKey = GlobalKey<FormState>();
-  String _gangName;
   bool isLoading = false;
-  int generateGroupID;
+  String selectedIcon;
 
-
-  bool _validateAndSaveForm() {
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
+  List<String> icons = ["https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",
+    "https://assets7.lottiefiles.com/packages/lf20_VCStus.json",
+    "https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json",
+    "https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json",
+    "https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json",
+    "https://assets7.lottiefiles.com/packages/lf20_BonJMC.json",
+    "https://assets7.lottiefiles.com/packages/lf20_RWZde1.json",
+    "https://assets7.lottiefiles.com/packages/lf20_KMustJ.json"];
 
   Future<void> _submit() async {
 
@@ -58,9 +61,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
       isLoading = true;
     });
 
-    if (_validateAndSaveForm()) {
-      print(_gangName);
-      print(generateGroupID);
+    if (selectedIcon != null) {
+      print(selectedIcon);
 
       setState(() {
         isLoading = false;
@@ -71,9 +73,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         isLoading = false;
       });
     }
-
   }
-
 
 
   @override
@@ -94,8 +94,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
   @override
   Widget _buildContent(BuildContext context) {
-    return StreamBuilder<GangCode>(
-        stream: DBreference.getGangCode(),
+    return StreamBuilder<CommonFiles>(
+        stream: DBreference.getInsights(),
         builder: (context, snapshot) {
           final groupID = snapshot.data;
           return TransparentLoading(
@@ -129,9 +129,11 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           IconButton(
-                                            icon: Icon(Icons.arrow_back_ios,color: Colors.white,size: 30,),
+                                            icon: Icon(Icons.clear,color: Colors.white,size: 30,),
                                             color: Colors.white,
-                                            onPressed: () {Navigator.pop(context, true);},
+                                            onPressed: () {
+                                              GoToPage(context, LandingPage());
+                                            },
                                           ),
                                         ],
                                       ),
@@ -143,7 +145,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                           print("Tap Event");
                                         },
                                         text: [
-                                          "Hey $USER_NAME, Let's select a group icon for your gang ...!",
+                                          "${widget.gangCode} is your gang code.\nSelect a dodo for your gang ...!",
                                         ],
                                         textStyle: TextStyle(
                                             color: Colors.white,
@@ -181,7 +183,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                                   Container(),
                                                   GradientText(
                                                     'Create',
-                                                    style: boldStyle,
+                                                    style: mediumStyle,
                                                     gradient: LinearGradient(
                                                       colors: [
                                                         Color(0XffFD8B1F),
@@ -195,14 +197,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                                   Container(),
                                                 ])),
                                         decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(0.7),
-//                            gradient: LinearGradient(
-//                                colors: <Color>[
-//                                Color(0XffFD8B1F),
-//                            Color(0XffD152E0),
-//                            Color(0Xff30D0DB),
-//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-
+                                            color: Colors.white,
                                             borderRadius: BorderRadius.circular(30.0),
                                             boxShadow: [
                                               BoxShadow(
@@ -213,8 +208,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                             ]),
                                       ),
                                       onTap: () {
-                                        showFancyCustomDialog( context );
-                                      },
+                                        _submit();
+                                        },
                                     ),
                                   ],
                                 ),
@@ -232,197 +227,175 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
     );
   }
 
-  Widget icon(String imgpath )
-  {
-    return Container(
-      color: Colors.transparent,
-      child: Center(
-        child: Card(
-          color: Colors.transparent,
-          child:GestureDetector(
-             onTap: (){
-               print(imgpath);
-             },
-              child: Lottie.network(imgpath,height: getDynamicHeight(200),width: getDynamicWidth(200))),
-        ),
-      ),
-    );
-
-  }
-
   Widget getVariableScaleCrousel() {
     return FinitePager(
       scaleX: 0.8,
       scaleY: 0.7,
       scrollDirection: Axis.horizontal,
+      onPageChanged: (index){
+        selectedIcon = icons[index];
+      },
       children: <Widget>[
-        icon("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_VCStus.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_BonJMC.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_RWZde1.json"),
-        icon("https://assets7.lottiefiles.com/packages/lf20_KMustJ.json"),
+        for (var iconURL in icons)
+    Lottie.network(iconURL,height: getDynamicHeight(200),width: getDynamicWidth(200))
       ],
     );
   }
 
-
 }
-
-
-void showFancyCustomDialog(BuildContext context) {
-
-  showGeneralDialog(
-      context: context,
-      pageBuilder: (context, anim1, anim2) {},
-      barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.4),
-      barrierLabel: '',
-      transitionBuilder: (context, anim1, anim2, child) {
-        return Transform.rotate(
-          angle: math.radians(anim1.value * 360),
-          child: Opacity(
-            opacity: anim1.value,
-            child: Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                height: getDynamicHeight(600.0),
-                width: getDynamicWidth(320.0),
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      width: double.infinity,
-                      height: getDynamicHeight(600),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(height: getDynamicHeight(60),),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Center(
-                                    child: SizedBox(
-                                      width: getDynamicWidth(200),
-                                      height: getDynamicHeight(200),
-                                      child: Container(
-                                          child: FlareActor("images/success-2.flr",
-                                              alignment: Alignment.topRight,
-                                              fit: BoxFit.contain,
-                                              animation: 'check-success')),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: Divider(color: Colors.black54,thickness: 1,),
-                            ),
-                            Column(
-                              children: [
-                                Text("2DS6AHA",style: boldStyle,),
-                                 Lottie.network("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",height: getDynamicHeight(100),width: getDynamicWidth(100)),
-                                Text("ROCKSTARS",style: boldStyle,)
-                              ],
-                            ),
-                            SizedBox(
-                              height: getDynamicHeight(20),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: Text("Note : The group code has been sent to your group members, then can access the group by it.",style: regularStyle,),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: getDynamicHeight(50),
-                      alignment: Alignment.bottomCenter,
-                      decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                            "Success",
-                            style: questionStyle
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftUp, duration: Duration(seconds: 1), child: LandingPage()));
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: getDynamicHeight(50),
-                          decoration: BoxDecoration(
-                            color: Colors.blue[300],
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(12),
-                              bottomRight: Radius.circular(12),
-                            ),
-                          ),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Okay let's go!",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      // These values are based on trial & error method
-                      alignment: Alignment(1.05, -1.05),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-      transitionDuration: Duration(milliseconds: 300));
-}
+//
+//
+//void showFancyCustomDialog(BuildContext context) {
+//
+//  showGeneralDialog(
+//      context: context,
+//      pageBuilder: (context, anim1, anim2) {},
+//      barrierDismissible: true,
+//      barrierColor: Colors.black.withOpacity(0.4),
+//      barrierLabel: '',
+//      transitionBuilder: (context, anim1, anim2, child) {
+//        return Transform.rotate(
+//          angle: math.radians(anim1.value * 360),
+//          child: Opacity(
+//            opacity: anim1.value,
+//            child: Dialog(
+//              shape: RoundedRectangleBorder(
+//                borderRadius: BorderRadius.circular(12.0),
+//              ),
+//              child: Container(
+//                decoration: BoxDecoration(
+//                  borderRadius: BorderRadius.circular(20.0),
+//                ),
+//                height: getDynamicHeight(600.0),
+//                width: getDynamicWidth(320.0),
+//                child: Stack(
+//                  children: <Widget>[
+//                    Container(
+//                      width: double.infinity,
+//                      height: getDynamicHeight(600),
+//                      decoration: BoxDecoration(
+//                        color: Colors.grey[100],
+//                        borderRadius: BorderRadius.circular(12.0),
+//                      ),
+//                      child: Container(
+//                        child: Column(
+//                          crossAxisAlignment: CrossAxisAlignment.center,
+//                          children: [
+//                            SizedBox(height: getDynamicHeight(60),),
+//                            Padding(
+//                              padding: const EdgeInsets.all(10.0),
+//                              child: Row(
+//                                mainAxisAlignment: MainAxisAlignment.center,
+//                                children: [
+//                                  Center(
+//                                    child: SizedBox(
+//                                      width: getDynamicWidth(200),
+//                                      height: getDynamicHeight(200),
+//                                      child: Container(
+//                                          child: FlareActor("images/success-2.flr",
+//                                              alignment: Alignment.topRight,
+//                                              fit: BoxFit.contain,
+//                                              animation: 'check-success')),
+//                                    ),
+//                                  ),
+//                                ],
+//                              ),
+//                            ),
+//                            Padding(
+//                              padding: const EdgeInsets.symmetric(horizontal: 15),
+//                              child: Divider(color: Colors.black54,thickness: 1,),
+//                            ),
+//                            Column(
+//                              children: [
+//                                Text("2DS6AHA",style: boldStyle,),
+//                                 Lottie.network("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",height: getDynamicHeight(100),width: getDynamicWidth(100)),
+//                                Text("ROCKSTARS",style: boldStyle,)
+//                              ],
+//                            ),
+//                            SizedBox(
+//                              height: getDynamicHeight(20),
+//                            ),
+//                            Padding(
+//                              padding: const EdgeInsets.symmetric(horizontal: 15),
+//                              child: Text("Note : The group code has been sent to your group members, then can access the group by it.",style: regularStyle,),
+//                            )
+//                          ],
+//                        ),
+//                      ),
+//                    ),
+//                    Container(
+//                      width: double.infinity,
+//                      height: getDynamicHeight(50),
+//                      alignment: Alignment.bottomCenter,
+//                      decoration: BoxDecoration(
+//                        color: Colors.greenAccent,
+//                        borderRadius: BorderRadius.only(
+//                          topLeft: Radius.circular(12),
+//                          topRight: Radius.circular(12),
+//                        ),
+//                      ),
+//                      child: Align(
+//                        alignment: Alignment.center,
+//                        child: Text(
+//                            "Success",
+//                            style: questionStyle
+//                        ),
+//                      ),
+//                    ),
+//                    Align(
+//                      alignment: Alignment.bottomCenter,
+//                      child: InkWell(
+//                        onTap: () {
+//                          Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftUp, duration: Duration(seconds: 1), child: LandingPage()));
+//                        },
+//                        child: Container(
+//                          width: double.infinity,
+//                          height: getDynamicHeight(50),
+//                          decoration: BoxDecoration(
+//                            color: Colors.blue[300],
+//                            borderRadius: BorderRadius.only(
+//                              bottomLeft: Radius.circular(12),
+//                              bottomRight: Radius.circular(12),
+//                            ),
+//                          ),
+//                          child: Align(
+//                            alignment: Alignment.center,
+//                            child: Text(
+//                              "Okay let's go!",
+//                              style: TextStyle(
+//                                  color: Colors.white,
+//                                  fontSize: 20,
+//                                  fontWeight: FontWeight.w600),
+//                            ),
+//                          ),
+//                        ),
+//                      ),
+//                    ),
+//                    Align(
+//                      // These values are based on trial & error method
+//                      alignment: Alignment(1.05, -1.05),
+//                      child: InkWell(
+//                        onTap: () {
+//                          Navigator.pop(context);
+//                        },
+//                        child: Container(
+//                          decoration: BoxDecoration(
+//                            color: Colors.grey[200],
+//                            borderRadius: BorderRadius.circular(12),
+//                          ),
+//                          child: Icon(
+//                            Icons.close,
+//                            color: Colors.black,
+//                          ),
+//                        ),
+//                      ),
+//                    ),
+//                  ],
+//                ),
+//              ),
+//            ),
+//          ),
+//        );
+//      },
+//      transitionDuration: Duration(milliseconds: 300));
+//}

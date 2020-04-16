@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -79,6 +80,7 @@ class _F_HomePageState extends State<F_HomePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return StreamBuilder<UserDetails>(
         stream: DBreference.getUserDetails(),
         builder: (context, snapshot) {

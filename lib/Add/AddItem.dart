@@ -13,6 +13,7 @@ import 'package:interactive_add_button_layout/interactive_add_button_layout.dart
 import 'package:screenshot/screenshot.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:swipe_up_menu/swipe_up_menu.dart';
+import 'package:tellthetruth/Add/QuestionEntry.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -131,7 +132,7 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                           children: [
                             GestureDetector(
                               onTap: (){
-                                GoToPage(context, JoinGang());
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: JoinGang()));
                                 print("Tap Event");
                               },
                               child: Stack(
@@ -170,7 +171,8 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                             ),
                             GestureDetector(
                               onTap: (){
-                                print("Tap Event");
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: QuestionEntryPage()));
+
                               },
                               child: Stack(
                                 alignment: Alignment.center,
@@ -208,7 +210,8 @@ class _F_AddItemPageState extends State<F_AddItemPage> {
                             ),
                             GestureDetector(
                               onTap: (){
-                                GoToPage(context, AddGangName());
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightUp, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: AddGangName()));
+
                               },
                               child: Stack(
                                 alignment: Alignment.center,

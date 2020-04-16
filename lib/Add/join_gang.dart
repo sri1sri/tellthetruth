@@ -1,6 +1,12 @@
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_text/gradient_text.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/common_variables/app_colors.dart';
+import 'package:tellthetruth/common_variables/app_fonts.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
@@ -92,106 +98,180 @@ class _F_JoinGangState extends State<F_JoinGang> {
   Widget _buildContent(BuildContext context) {
     return TransparentLoading(
       loading: isLoading,
-      child: Container(
-        color: Color(0xFF7E7ED5),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.brown,
+      child: ControlledAnimation(
+        playback: Playback.MIRROR,
+        tween: tween,
+        duration: tween.duration,
+        builder: (context, animation) {
+          return Container(
+            child: new Scaffold(
+                body: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 50, 20, 40),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(),
+                                    IconButton(
+                                      icon: Icon(Icons.clear,color: Colors.white,size: 30,),
+                                      color: Colors.white,
+                                      onPressed: () {Navigator.pop(context, true);},
+                                    ),
+                                  ],
+                                ),
+                                CircleAvatar(
+                                  backgroundImage: AssetImage("images/male.png"),
+                                  radius: 40,
+                                  backgroundColor: Colors.transparent,
+
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TyperAnimatedTextKit(
+                                  onTap: () {
+                                    print("Tap Event");
+                                  },
+                                  text: [
+                                    "Good evening $USER_NAME, Let's join a new gang....!",
+                                  ],
+                                  textStyle: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                  textAlign: TextAlign.start,
+                                  alignment: AlignmentDirectional.topStart,
+                                  isRepeatingAnimation: false,// or Alignment.topLeft
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Form(
+                            key: _formKey,
+                            child: TextFormField(
+                              onChanged: (value) => _gangCode = value,
+                              textInputAction: TextInputAction.done,
+                              autocorrect: true,
+                              obscureText: false,
+                              keyboardType: TextInputType.number,
+                              keyboardAppearance: Brightness.dark,
+                              autofocus: true,
+                              cursorColor: Colors.white,
+                              onEditingComplete: _submit,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 26,decoration: TextDecoration.none),
+                              decoration: const InputDecoration(
+                                counterStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: const BorderSide(color: Colors.white),
+                                ),
+                                hintText: 'Add gang code',
+                                hintStyle: TextStyle(
+                                    color: Colors.white30,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 26,decoration: TextDecoration.none),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide:
+                                  const BorderSide(color: Colors.transparent, width: 0.0),
+                                ),
+                              ),
+                              validator: (value) {
+                                print(value);
+                                if (value.isEmpty) {
+                                  return 'Please enter gang code';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+//                                  Container(
+//                                    child: Text(""),
+//                                  ),
+                              GestureDetector(
+                                child: Container(
+                                  width: getDynamicWidth(180.0),
+                                  padding: EdgeInsets.all(15.0),
+                                  child: Center(
+                                      child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Container(),
+                                            GradientText(
+                                              'Join',
+                                              style: mediumStyle,
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0XffFD8B1F),
+                                                  Color(0XffD152E0),
+                                                  Color(0Xff30D0DB),
+                                                ],
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.blue,
+                                              size: getDynamicTextSize(30),
+                                            ),
+                                            Container(),
+                                          ])),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.7),
+
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey,
+                                            offset: Offset(2, 1),
+                                            blurRadius: 6.0,
+                                            spreadRadius: 1.0),
+                                      ]),
+                                ),
+                                onTap: () {
+                                  _submit();
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'Good morning sri,\nJoin a new gang.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              Form(
-                key: _formKey,
-                child: TextFormField(
-                  onChanged: (value) => _gangCode = value,
-                  textInputAction: TextInputAction.done,
-                  autocorrect: true,
-                  obscureText: false,
-                  keyboardType: TextInputType.number,
-                  keyboardAppearance: Brightness.dark,
-                  autofocus: true,
-                  cursorColor: Colors.white,
-                  onEditingComplete: _submit,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 26,decoration: TextDecoration.none),
-                  decoration: const InputDecoration(
-                    counterStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                    ),
-                    hintText: 'Add gang code',
-                    hintStyle: TextStyle(
-                        color: Colors.white30,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 26,decoration: TextDecoration.none),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide:
-                      const BorderSide(color: Colors.transparent, width: 0.0),
-                    ),
                   ),
-                  validator: (value) {
-                    print(value);
-                    if (value.isEmpty) {
-                      return 'Please enter gang code';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-
-              Center(
-                child: FlatButton(
-                  onPressed: () {
-                    _submit();
-                  },
-                  child: Text(
-                    'Join',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-
-                ),
-              )
-            ],
-          ),
-        ),
+                )
+            ),
+          );
+        },
       ),
+
     );
   }
 

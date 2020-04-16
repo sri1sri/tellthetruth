@@ -74,6 +74,7 @@ dependencies:
   firebase_analytics: ^5.0.11
   liquid_swipe: ^1.4.2
   giffy_dialog: ^1.7.0
+  animated_widgets: ^1.0.3
 
 
 

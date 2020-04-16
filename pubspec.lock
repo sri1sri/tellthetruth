@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  animated_widgets:
+    dependency: "direct main"
+    description:
+      name: animated_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   animations:
     dependency: "direct main"
     description:
@@ -348,7 +355,7 @@ packages:
       name: flutter_colorpicker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.2"
+    version: "0.3.3"
   flutter_contact:
     dependency: "direct main"
     description:

@@ -83,6 +83,10 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  SizedBox(
+                    height: getDynamicHeight(1),
+                  ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

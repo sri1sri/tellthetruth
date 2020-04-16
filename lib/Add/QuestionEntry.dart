@@ -45,6 +45,12 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0XffFD8B1F),
+      Color(0XffD152E0),
+      Color(0Xff30D0DB),],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,22 +97,6 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                       SizedBox(
                         height: getDynamicHeight(20),
                       ),
-                      TyperAnimatedTextKit(
-                        onTap: () {
-                          print("Tap Event");
-                        },
-                        text: [
-                          "Good evening $USER_NAME, Let's create a new question.!",
-                        ],
-                        textStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.7),
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w700,
-                            fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
-                        textAlign: TextAlign.start,
-                        alignment: AlignmentDirectional.topStart,
-                        isRepeatingAnimation: false,// or Alignment.topLeft
-                      ),
                       Stack(
                         alignment: Alignment.center,
                         children: [
@@ -114,7 +104,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                             height: getDynamicHeight(140),
                           ),
                           Positioned(
-                            top: 18,
+                            top: 0,
                             child:FadeAnimatedTextKit(
                                 text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                                 textStyle: backgroundText,
@@ -124,66 +114,53 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                             //Text("Question",style: backgroundText,),
                           ),
                           Positioned(
-                            child: GradientText(
-                              'Add your Question...!',
-                              style: questionStyle1,
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0XffFD8B1F),
-                                  Color(0XffD152E0),
-                                  Color(0Xff30D0DB),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                            child: Form(
+                              key: _formKey,
+                              child: TextFormField(
+                                //onChanged: (value) => _gangName = value,
+                                textInputAction: TextInputAction.done,
+                                autocorrect: true,
+                                obscureText: false,
+                                keyboardType: TextInputType.text,
+                                keyboardAppearance: Brightness.dark,
+                                autofocus: true,
+                                cursorColor: Colors.blue,
+                                maxLength: 100,
+                                //onEditingComplete: _submit,
+                                style: TextStyle(
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w600,
+                                    foreground: Paint()..shader = linearGradient),
+                                decoration: const InputDecoration(
+                                  counterStyle: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 24
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: const BorderSide(color: Colors.transparent),
+                                  ),
+                                  hintText: '______Add your Question______',
+                                  hintStyle: TextStyle(
+                                     fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 24, ),
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide:
+                                    const BorderSide(color: Colors.transparent, width: 0.0),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  print(value);
+                                  if (value.isEmpty) {
+                                    return 'Please enter Question';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                           )
                         ],
-                      ),
-                      Form(
-                        key: _formKey,
-                        child: TextFormField(
-                          //onChanged: (value) => _gangName = value,
-                          textInputAction: TextInputAction.done,
-                          autocorrect: true,
-                          obscureText: false,
-                          keyboardType: TextInputType.text,
-                          keyboardAppearance: Brightness.dark,
-                          autofocus: true,
-                          cursorColor: Colors.black54,
-                          maxLength: 100,
-                          //onEditingComplete: _submit,
-                          style: TextStyle(
-                              color: Colors.black54,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w700,
-                              fontSize: 26,decoration: TextDecoration.none),
-                          decoration: const InputDecoration(
-                            counterStyle: TextStyle(
-                              color: Colors.black54,
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black54),
-                            ),
-                            hintText: 'Add your Question',
-                            hintStyle: TextStyle(
-                                color: Colors.black12,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 26,decoration: TextDecoration.none),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide:
-                              const BorderSide(color: Colors.transparent, width: 0.0),
-                            ),
-                          ),
-                          validator: (value) {
-                            print(value);
-                            if (value.isEmpty) {
-                              return 'Please enter Question';
-                            }
-                            return null;
-                          },
-                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

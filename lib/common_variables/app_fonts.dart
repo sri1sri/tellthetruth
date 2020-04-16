@@ -1,6 +1,7 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
 
@@ -88,3 +89,19 @@ var logoStyle2 = TextStyle(
     fontFamily: 'FingerPaint',
     fontWeight: FontWeight.w700,
     fontSize: getDynamicTextSize(22),decoration: TextDecoration.none);
+
+
+Gradient gradiantText =  LinearGradient(
+  colors: [
+    Color(0XffFD8B1F),
+    Color(0XffD152E0),
+    Color(0Xff30D0DB),
+  ],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
+
+final Shader linearGradient = LinearGradient(
+  colors: <Color>[Color(0XffFD8B1F),Color(0XffD152E0), Color(0Xff30D0DB)],
+).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+

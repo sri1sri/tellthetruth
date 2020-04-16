@@ -19,7 +19,7 @@ class GangDetails{
   final String gangIconURL;
   final String createBy;
   final Timestamp createdAt;
-  final List<String> gangUserIDS;
+  final List<dynamic> gangUserIDS;
 
   final Null empty;
 
@@ -36,7 +36,7 @@ class GangDetails{
     final String gangIconURL = data['gang_icon_url'];
     final String createdBy = data['created_by'];
     final Timestamp createdAt = data['created_at'];
-    final List<String> gangUserIDS = data['gang_user_ids'];
+    final List<dynamic> gangUserIDS = data['gang_user_ids'];
 
     final Null empty = data['empty'];
 

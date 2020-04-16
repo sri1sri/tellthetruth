@@ -68,8 +68,9 @@ class _F_HomePageState extends State<F_HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final database = Provider.of<Database>(context, listen: false);
-      DBreference = database;
+    setState(() {
+      DBreference = Provider.of<Database>(context, listen: false);
+    });
   }
   
   @override

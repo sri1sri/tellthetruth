@@ -1,4 +1,6 @@
 
+//import 'dart:html';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +46,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
 
   Future<void> _submit() async {
 
-    List<String> usersList;
+    List usersList;
     var gangDetails;
     String gangID;
 
@@ -55,26 +57,21 @@ class _F_JoinGangState extends State<F_JoinGang> {
     if (_validateAndSaveForm()) {
 
 
-      Firestore.instance.collection('${API_SUFFIX}gangs').where('gang_code', isEqualTo: _gangCode)
+      await Firestore.instance.collection('${API_SUFFIX}gangs').where('gang_code', isEqualTo: _gangCode)
           .snapshots().listen(
               (data) => {
             if(data.documents.length == 1){
-             // usersList = data.documents[0]['gang_user_ids'],
-              gangID = data.documents[0].documentID,
-              print(gangID),
+              usersList = data.documents[0]['gang_user_ids'],
+              gangID = data.documents[0].documentID.toString(),
 
-              if(usersList.contains('${USER_ID}1')){
+              if(usersList.contains(USER_ID)){
                 customAlertBox(context, 'Oops...', 'You are already member in this group.'),
               }else{
-                print(usersList),
                 usersList.add(USER_ID),
-                print(usersList),
-                gangDetails = GangDetails(gangUserIDS: usersList),
+                gangDetails = GangDetails(gangUserIDS: usersList.cast<String>().toSet().toList()),
                 DBreference.updateGang(gangDetails, gangID),
-                customAlertBox(context, 'Hurray...', 'You have successfully added to this group.'),
                 GoToPage(context, LandingPage()),
               }
-
             }else{
               customAlertBox(context, 'Oops...', 'You have entered wrong gang code. Please check the you entered.'),
             }

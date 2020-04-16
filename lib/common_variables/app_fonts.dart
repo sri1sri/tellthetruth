@@ -22,7 +22,7 @@ var backgroundText1 = TextStyle(
     color: Colors.black12,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w900,
-    fontSize: getDynamicTextSize(40),decoration: TextDecoration.none);
+    fontSize: getDynamicTextSize(35),decoration: TextDecoration.none);
 
 
 var boldStyle = TextStyle(
@@ -109,5 +109,5 @@ Gradient gradiantText =  LinearGradient(
 
 final Shader linearGradient = LinearGradient(
   colors: <Color>[Color(0XffFD8B1F),Color(0XffD152E0), Color(0Xff30D0DB)],
-).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+).createShader(Rect.fromLTWH(150.0, 250.0, 50.0,100));
 

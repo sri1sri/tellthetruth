@@ -68,6 +68,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
+          resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
             padding: const EdgeInsets.fromLTRB(15, 50, 15, 50),
@@ -97,7 +98,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                               child: Center(
                                   child: Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.end,
                                       children: <Widget>[
                                         Container(),
                                         GradientText(
@@ -113,12 +114,6 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                             end: Alignment.bottomRight,
                                           ),
                                         ),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.blue,
-                                          size: getDynamicTextSize(15),
-                                        ),
-                                        Container(),
                                       ])),
                               decoration: BoxDecoration(
                                   color: Colors.white,
@@ -130,13 +125,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
 //                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
                                   borderRadius: BorderRadius.circular(15.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(2, 1),
-                                        blurRadius: 6.0,
-                                        spreadRadius: 1.0),
-                                  ]),
+                                  ),
                             ),
                             onTap: () {
                             },
@@ -145,17 +134,17 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                       ),
                     ],
                   ),
-                  Center(
-                    child: SizedBox(
-                      width: getDynamicWidth(200),
-                      height: getDynamicHeight(200),
-                      child: Container(
-                          child: FlareActor("images/options.flr",
-                              alignment: Alignment.center,
-                              fit: BoxFit.contain,
-                              animation: 'option')),
-                    ),
-                  ),
+//                  Center(
+//                    child: SizedBox(
+//                      width: getDynamicWidth(200),
+//                      height: getDynamicHeight(200),
+//                      child: Container(
+//                          child: FlareActor("images/options.flr",
+//                              alignment: Alignment.center,
+//                              fit: BoxFit.contain,
+//                              animation: 'option')),
+//                    ),
+//                  ),
                   Form(
                     key: _formKey,
                     child: Column(
@@ -178,7 +167,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 top: 0,
                                 child:FadeAnimatedTextKit(
                                     text: ["Option 1","Opzione 1","Možnost 1","Opción 1","विकल्प 1","Doorasho 1","Pilihan 1","Optionem 1"],
-                                    textStyle: backgroundText,
+                                    textStyle: backgroundText1,
                                     textAlign: TextAlign.center,
                                     alignment: AlignmentDirectional.center // or Alignment.topLeft
                                 ),
@@ -189,7 +178,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 child: Positioned(
                                   child: TextFormField(
                                     //onChanged: (value) => _gangName = value,
-                                    maxLines: 1,
+                                    maxLines: 2,
                                     textInputAction: TextInputAction.done,
                                     autocorrect: true,
                                     obscureText: false,
@@ -201,14 +190,14 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                     //onEditingComplete: _submit,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 24.0,
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.w600,
                                         foreground: Paint()..shader = linearGradient),
                                     decoration: const InputDecoration(
                                       counterStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17,
+                                        fontSize: 18,
                                       ),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: const BorderSide(color: Colors.transparent),
@@ -217,7 +206,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                       hintStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 24, ),
+                                        fontSize: 18, ),
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                         const BorderSide(color: Colors.transparent, width: 0.0),
@@ -255,7 +244,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 top: 0,
                                 child:FadeAnimatedTextKit(
                                     text: ["Option 2","Opzione 2","Možnost 2","Opción 2","विकल्प 2","Doorasho 2","Pilihan 2","Optionem 2"],
-                                    textStyle: backgroundText,
+                                    textStyle: backgroundText1,
                                     textAlign: TextAlign.center,
                                     alignment: AlignmentDirectional.center // or Alignment.topLeft
                                 ),
@@ -266,7 +255,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 child: Positioned(
                                   child:TextFormField(
                                     //onChanged: (value) => _gangName = value,
-                                    maxLines: 1,
+                                    maxLines: 2,
                                     textInputAction: TextInputAction.done,
                                     autocorrect: true,
                                     obscureText: false,
@@ -278,14 +267,14 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                     //onEditingComplete: _submit,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 24.0,
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.w600,
                                         foreground: Paint()..shader = linearGradient),
                                     decoration: const InputDecoration(
                                       counterStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17,
+                                        fontSize: 18,
                                       ),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: const BorderSide(color: Colors.transparent),
@@ -294,7 +283,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                       hintStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 24, ),
+                                        fontSize: 18, ),
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                         const BorderSide(color: Colors.transparent, width: 0.0),
@@ -332,7 +321,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 top: 0,
                                 child:FadeAnimatedTextKit(
                                     text: ["Option 3","Opzione 3","Možnost 3","Opción 3","विकल्प 3","Doorasho 3","Pilihan 3","Optionem 3"],
-                                    textStyle: backgroundText,
+                                    textStyle: backgroundText1,
                                     textAlign: TextAlign.center,
                                     alignment: AlignmentDirectional.center // or Alignment.topLeft
                                 ),
@@ -343,7 +332,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 child: Positioned(
                                   child:TextFormField(
                                     //onChanged: (value) => _gangName = value,
-                                    maxLines: 1,
+                                    maxLines: 2,
                                     textInputAction: TextInputAction.done,
                                     autocorrect: true,
                                     obscureText: false,
@@ -355,14 +344,14 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                     //onEditingComplete: _submit,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 24.0,
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.w600,
                                         foreground: Paint()..shader = linearGradient),
                                     decoration: const InputDecoration(
                                       counterStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17,
+                                        fontSize: 18,
                                       ),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: const BorderSide(color: Colors.transparent),
@@ -371,7 +360,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                       hintStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 24, ),
+                                        fontSize: 18, ),
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                         const BorderSide(color: Colors.transparent, width: 0.0),
@@ -409,7 +398,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 top: 0,
                                 child:FadeAnimatedTextKit(
                                     text: ["Option 4","Opzione 4","Možnost 4","Opción 4","विकल्प 4","Doorasho 4","Pilihan 4","Optionem 4"],
-                                    textStyle: backgroundText,
+                                    textStyle: backgroundText1,
                                     textAlign: TextAlign.center,
                                     alignment: AlignmentDirectional.center // or Alignment.topLeft
                                 ),
@@ -420,7 +409,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 child: Positioned(
                                   child: TextFormField(
                                     //onChanged: (value) => _gangName = value,
-                                    maxLines: 1,
+                                    maxLines: 2,
                                     textInputAction: TextInputAction.done,
                                     autocorrect: true,
                                     obscureText: false,
@@ -432,14 +421,14 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                     //onEditingComplete: _submit,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 24.0,
+                                        fontSize: 18.0,
                                         fontWeight: FontWeight.w600,
                                         foreground: Paint()..shader = linearGradient),
                                     decoration: const InputDecoration(
                                       counterStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 17,
+                                        fontSize: 18,
                                       ),
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide: const BorderSide(color: Colors.transparent),
@@ -448,7 +437,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                       hintStyle: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 24, ),
+                                        fontSize: 18, ),
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                         const BorderSide(color: Colors.transparent, width: 0.0),

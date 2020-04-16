@@ -105,7 +105,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                                   child: Center(
                                       child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.end,
                                           children: <Widget>[
                                             Container(),
                                             GradientText(
@@ -121,12 +121,6 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                                                 end: Alignment.bottomRight,
                                               ),
                                             ),
-                                            Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Colors.blue,
-                                              size: getDynamicTextSize(15),
-                                            ),
-                                            Container(),
                                           ])),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -138,13 +132,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
 //                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
                                       borderRadius: BorderRadius.circular(15.0),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey,
-                                            offset: Offset(2, 1),
-                                            blurRadius: 6.0,
-                                            spreadRadius: 1.0),
-                                      ]),
+                                      ),
                                 ),
                                 onTap: () {
                                   Navigator.push(context, PageTransition(type: PageTransitionType.rippleMiddle, duration: Duration(seconds: 2),alignment: Alignment.bottomCenter, child: OptionEntryPage()));
@@ -154,7 +142,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                           ),
                         ],
                       ),
-                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
+                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
                       Stack(
                         alignment: Alignment.center,
                         children: [

@@ -49,7 +49,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
     colors: <Color>[Color(0XffFD8B1F),
       Color(0XffD152E0),
       Color(0Xff30D0DB),],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+  ).createShader(Rect.fromLTWH(150.0, 250.0, 50.0,100));
 
 
   @override
@@ -114,51 +114,55 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                             ),
                             //Text("Question",style: backgroundText,),
                           ),
-                          Positioned(
-                            child: Form(
-                              key: _formKey,
-                              child: TextFormField(
-                                //onChanged: (value) => _gangName = value,
-                                textInputAction: TextInputAction.done,
-                                autocorrect: true,
-                                obscureText: false,
-                                keyboardType: TextInputType.text,
-                                keyboardAppearance: Brightness.dark,
-                                autofocus: true,
-                                cursorColor: Colors.blue,
-                                maxLength: 48,
-                                //onEditingComplete: _submit,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.w600,
-                                    foreground: Paint()..shader = linearGradient),
-                                decoration: const InputDecoration(
-                                  counterStyle: TextStyle(
-                                    fontFamily: 'Montserrat',
+                          Padding(
+                            padding: const EdgeInsets.only(top:30.0),
+                            child: Positioned(
+                              child: Form(
+                                key: _formKey,
+                                child: TextFormField(
+                                  //onChanged: (value) => _gangName = value,
+                                  maxLines: 3,
+                                  textInputAction: TextInputAction.done,
+                                  autocorrect: true,
+                                  obscureText: false,
+                                  keyboardType: TextInputType.text,
+                                  keyboardAppearance: Brightness.dark,
+                                  autofocus: true,
+                                  cursorColor: Colors.blue,
+                                  maxLength: 100,
+                                  //onEditingComplete: _submit,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 24.0,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 17,
+                                      foreground: Paint()..shader = linearGradient),
+                                  decoration: const InputDecoration(
+                                    counterStyle: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 17,
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.transparent),
+                                    ),
+                                    hintText: 'Add your Question',
+                                    hintStyle: TextStyle(
+                                       fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 24, ),
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide:
+                                      const BorderSide(color: Colors.transparent, width: 0.0),
+                                    ),
                                   ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: const BorderSide(color: Colors.transparent),
-                                  ),
-                                  hintText: 'Add your Question',
-                                  hintStyle: TextStyle(
-                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 24, ),
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderSide:
-                                    const BorderSide(color: Colors.transparent, width: 0.0),
-                                  ),
+                                  validator: (value) {
+                                    print(value);
+                                    if (value.isEmpty) {
+                                      return 'Please enter Question';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                validator: (value) {
-                                  print(value);
-                                  if (value.isEmpty) {
-                                    return 'Please enter Question';
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
                           )

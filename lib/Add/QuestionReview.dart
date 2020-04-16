@@ -66,9 +66,9 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
     Color(0Xff30D0DB),
   ];
   List<Color> _colors1 = [ //Get list of colors
-    Color(0Xff30D0DB),
-    Color(0XffFD8B1F),
-    Color(0XffD152E0),
+    Color(0Xff30DD76),
+    Color(0XffFF871F),
+    Color(0XffFF3FE0),
   ];
 
 
@@ -85,10 +85,9 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
       } else {
         _currentIndex += 1;
       }
+      print(_currentIndex);
     }
     );
-
-    //setState(() => (_currentIndex == _colorCount - 1) ? _currentIndex = 1 : _currentIndex += 1);
   }
 
 
@@ -148,8 +147,8 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
               .height,
           decoration: new BoxDecoration(
               gradient: LinearGradient(colors: <Color>[
-                _colors[0],
-                _colors1[1],
+                _colors[_currentIndex],
+                _colors1[_currentIndex],
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
           child: Column(
@@ -179,8 +178,8 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                               decoration: BoxDecoration(
 
                             gradient: LinearGradient(colors: <Color>[
-                              _colors[0],
-                              _colors1[1],
+                              _colors[_currentIndex],
+                              _colors1[_currentIndex],
                             ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                                 border: Border.all(
                                   color: Colors.white, //                   <--- border color
@@ -190,7 +189,7 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                               ),
                             ),
                             onTap: () {
-                              _onChanged;
+                              _onChanged();
                               //Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: QuestionReviewPage()));
                             },
                           ),

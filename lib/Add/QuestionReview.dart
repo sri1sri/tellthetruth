@@ -13,6 +13,30 @@ import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 
+
+const backgroundGradient = LinearGradient(colors: <Color>[
+  Color(0XffFD8B1F),
+  Color(0XffD152E0),
+  Color(0Xff30D0DB),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
+const activeGradient = LinearGradient(
+  colors: <Color>[
+    Color(0XffD152E0),
+    Color(0Xff30D0DB),
+    Color(0XffFD8B1F),
+  ],
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+);
+const backgroundGradient1 = LinearGradient(colors: <Color>[
+  Color(0XffD152E0),
+  Color(0Xff30D0DB),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
+const backgroundGradient2 = LinearGradient(colors: <Color>[
+  Color(0XffFD8B1F),
+  Color(0XffD152E0),
+], begin: Alignment.topLeft, end: Alignment.bottomRight);
+
 class QuestionReviewPage extends StatelessWidget {
 
   //ProfilePage({@required this.database});
@@ -35,6 +59,33 @@ class F_QuestionReviewPage extends StatefulWidget {
 }
 
 class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
+
+
+  List<Gradient> _colors = [ //Get list of colors
+    backgroundGradient,
+    activeGradient,
+    backgroundGradient1,
+    backgroundGradient2,
+  ];
+
+  int _currentIndex = 0;
+
+  _onChanged() { //update with a new color when the user taps button
+    int _colorCount = _colors.length;
+
+    setState(() {
+      if (_currentIndex == _colorCount - 1) {
+        _currentIndex = 0;
+      } else {
+        _currentIndex += 1;
+      }
+    });
+
+    //setState(() => (_currentIndex == _colorCount - 1) ? _currentIndex = 1 : _currentIndex += 1);
+  }
+
+
+
   static const duration = const Duration( seconds: 1 );
 
   int secondsPassed = 5000;
@@ -89,16 +140,8 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
               .size
               .height,
           decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                  Color( 0Xff12c2e9 ),
-                ],
-              ) ),
+              gradient: _colors[_currentIndex],
+      ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
@@ -125,12 +168,7 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                               padding: EdgeInsets.all(15.0),
                               decoration: BoxDecoration(
 
-                            gradient: LinearGradient(
-                                colors: <Color>[
-                                Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                            gradient: _colors[_currentIndex],
                                 border: Border.all(
                                   color: Colors.white, //                   <--- border color
                                   width: getDynamicWidth(1),
@@ -139,6 +177,7 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                               ),
                             ),
                             onTap: () {
+                              _onChanged;
                               //Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: QuestionReviewPage()));
                             },
                           ),
@@ -171,30 +210,29 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Select Gang",style: questionStyle1,),
-                    SizedBox(height: getDynamicHeight(5),),
                     Container(
                           color: Colors.transparent,
-                          height: getDynamicHeight(120.0) ,
+                          height: getDynamicHeight(80.0) ,
                           width: MediaQuery.of(context).size.width ,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child:Row(
                               children: [
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',".Net 791","6 new questions"),
+                                _buildImage(".Net 791"),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_VCStus.json',"Family","the good one"),
+                                _buildImage("Family",),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json',"LTI Pune","the great one"),
+                                _buildImage("LTI Pune",),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json',"Caseu","the worst one"),
+                                _buildImage("Caseu",),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json',"rajaa","the greatest one"),
+                                _buildImage("rajaa",),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_BonJMC.json',"eldooo","the great one"),
+                                _buildImage("eldooo",),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_RWZde1.json',"sainath","the naughty one"),
+                                _buildImage("sainath",),
                                 SizedBox(width: getDynamicWidth(8),),
-                                _buildImage('https://assets7.lottiefiles.com/packages/lf20_KMustJ.json',"nanditha","the perfect one"),
+                                _buildImage("nanditha",),
                                 SizedBox(width: getDynamicWidth(8),),
                               ],
                             ) ,
@@ -202,7 +240,62 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                       ),
                   ],
                 ),
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+//                                  Container(
+//                                    child: Text(""),
+//                                  ),
+                  GestureDetector(
+                    child: Container(
+                      width: getDynamicWidth(180.0),
+                      padding: EdgeInsets.all(15.0),
+                      child: Center(
+                          child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(),
+                                GradientText(
+                                  'Create',
+                                  style: mediumStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.blue,
+                                  size: getDynamicTextSize(15),
+                                ),
+                                Container(),
+                              ])),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+
+                          borderRadius: BorderRadius.circular(30.0),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(2, 1),
+                                blurRadius: 6.0,
+                                spreadRadius: 1.0),
+                          ]),
+                    ),
+                    onTap: () {
+
+                    },
+                  ),
+                ],
+              ),
+
 
 
             ],
@@ -423,7 +516,7 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
     );
   }
 
-  Widget _buildImage(String lottiePath, String groupName, String description) {
+  Widget _buildImage( String description) {
     return GestureDetector(
       onTap: (){
         //GoToPage(context, QuestionsPage());
@@ -434,53 +527,27 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
         closedBuilder: (BuildContext _, VoidCallback openContainer) {
 
           return
-
-
             Container(
-              height: getDynamicHeight(130),
+              height: getDynamicHeight(50),
               child: Padding(
-                padding: const EdgeInsets.only(top:20,left: 20,right: 10),
+                padding: const EdgeInsets.only(left: 15,right: 15),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Stack(
-                            alignment: Alignment.centerLeft,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(80),
-                                width: getDynamicWidth(250),
-                              ),
-                              Positioned(
-                                top: 5,
-                                child:Text(groupName,style: backgroundText,),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Positioned(
-                                top: 40,
-                                child: GradientText(
-                                  description,
-                                  style: questionStyle1,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-
+                      GradientText(
+                        description,
+                        style: questionStyle1,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                       ),
-                      Lottie.network(lottiePath,height: getDynamicHeight(100),width: getDynamicWidth(100)),
                     ]),
               ),
             );

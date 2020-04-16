@@ -8,7 +8,7 @@ class CommonFiles{
 
   final int groupsCount;
   final int questionsCount;
-  final List<String> iconsURL;
+  final iconsURL;
 
   final Null empty;
   
@@ -19,7 +19,7 @@ class CommonFiles{
 
     final int groupsCount = data['groups_count'];
     final int questionsCount = data['questions_count'];
-    final List<String> iconsURL = data['icons_url'];
+    final iconsURL = data['icons_url'];
 
     final Null empty = data['empty'];
 

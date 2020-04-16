@@ -15,7 +15,7 @@ class GangDetails{
 
   final String gangID;
   final String gangName;
-  final int gangCode;
+  final String gangCode;
   final String gangIconURL;
   final String createBy;
   final Timestamp createdAt;
@@ -32,7 +32,7 @@ class GangDetails{
 
 
     final String gangName = data['gang_name'];
-    final int gangCode = data['gang_code'];
+    final String gangCode = data['gang_code'];
     final String gangIconURL = data['gang_icon_url'];
     final String createdBy = data['created_by'];
     final Timestamp createdAt = data['created_at'];

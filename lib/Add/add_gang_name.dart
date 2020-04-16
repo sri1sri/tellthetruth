@@ -38,6 +38,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
   String _gangName;
   bool isLoading = false;
   int generateGroupID;
+  List<String> icons;
 
 
   bool _validateAndSaveForm() {
@@ -56,10 +57,8 @@ class _F_AddGangNameState extends State<F_AddGangName> {
     });
 
     if (_validateAndSaveForm()) {
-      print(_gangName);
-      print(generateGroupID);
 
-      GoToPage(context, AddGangIcon(gangCode: generateGroupID.toString(),));
+      GoToPage(context, AddGangIcon(gangCode: generateGroupID.toString(), gangName: _gangName,));
 
 
       setState(() {
@@ -249,13 +248,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                                 Container(),
                                               ])),
                                       decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.7),
-//                            gradient: LinearGradient(
-//                                colors: <Color>[
-//                                Color(0XffFD8B1F),
-//                            Color(0XffD152E0),
-//                            Color(0Xff30D0DB),
-//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                                          color: Colors.white,
 
                                           borderRadius: BorderRadius.circular(30.0),
                                           boxShadow: [
@@ -270,6 +263,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                       setState(() {
                                         print(insightsData.groupsCount);
                                         generateGroupID = insightsData.groupsCount+1;
+                                        icons = insightsData.iconsURL;
                                       });
                                       _submit();
                                     },

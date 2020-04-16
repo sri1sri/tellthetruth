@@ -14,6 +14,7 @@ abstract class Database{
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Stream<List<GangDetails>> searchGang(int gangCode);
+  Stream<CommonFiles> getAnimations();
 
 }
 
@@ -40,8 +41,15 @@ class FirestoreDatabase implements Database {
   );
 
   @override
+  Stream<CommonFiles> getAnimations() => _service.documentStream(
+    path: APIPath.animationsURL(),
+    builder: (data, documentId) => CommonFiles.fromMap(data, documentId),
+  );
+
+
+  @override
   Future<void> createGang(GangDetails gangDetails) async => await _service.setData(
-    path: APIPath.gangDetails(DateTime.now().toString()),
+    path: APIPath.gangDetails(DateTime.now().toIso8601String()),
     data: gangDetails.toMap(),
   );
 

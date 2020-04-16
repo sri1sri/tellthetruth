@@ -1,11 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter_page_transition/flutter_page_transition.dart';
-import 'package:tellthetruth/home/dashboard.dart';
-import 'package:tellthetruth/landing_page.dart';
-import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -17,23 +13,27 @@ import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
+import 'package:tellthetruth/home/home_page.dart';
 
 class AddGangIcon extends StatelessWidget {
-  AddGangIcon({@required this.gangCode});
+  AddGangIcon({@required this.gangCode,@required this.gangName});
   String gangCode;
+  String gangName;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_AddGangIcon(gangCode: gangCode,),
+      child: F_AddGangIcon(gangCode: gangCode, gangName: gangName,),
     );
   }
 }
 
 class F_AddGangIcon extends StatefulWidget {
-  F_AddGangIcon({@required this.gangCode});
+  F_AddGangIcon({@required this.gangCode,@required this.gangName});
   String gangCode;
+  String gangName;
 
   @override
   _F_AddGangIconState createState() => _F_AddGangIconState();
@@ -46,15 +46,6 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
   bool isLoading = false;
   String selectedIcon;
 
-  List<String> icons = ["https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",
-    "https://assets7.lottiefiles.com/packages/lf20_VCStus.json",
-    "https://assets7.lottiefiles.com/packages/lf20_uwmgvS.json",
-    "https://assets7.lottiefiles.com/packages/lf20_CFgBAP.json",
-    "https://assets7.lottiefiles.com/packages/lf20_OyFTHm.json",
-    "https://assets7.lottiefiles.com/packages/lf20_BonJMC.json",
-    "https://assets7.lottiefiles.com/packages/lf20_RWZde1.json",
-    "https://assets7.lottiefiles.com/packages/lf20_KMustJ.json"];
-
   Future<void> _submit() async {
 
     setState(() {
@@ -62,7 +53,18 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
     });
 
     if (selectedIcon != null) {
-      print(selectedIcon);
+
+      final createGang = GangDetails(
+        gangCode: widget.gangCode,
+        gangIconURL: selectedIcon,
+        gangName: widget.gangName,
+        createdAt: Timestamp.fromDate(DateTime.now()),
+        createBy: USER_ID,
+        gangUserIDS: [USER_ID],
+      );
+      await DBreference.createGang(createGang);
+      GoToPage(context, HomePage());
+
 
       setState(() {
         isLoading = false;
@@ -95,9 +97,11 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
   @override
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<CommonFiles>(
-        stream: DBreference.getInsights(),
+        stream: DBreference.getAnimations(),
         builder: (context, snapshot) {
-          final groupID = snapshot.data;
+          final animationsData = snapshot.data;
+          selectedIcon = animationsData != null ? animationsData.iconsURL[0] : 'https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json';
+
           return TransparentLoading(
             loading: isLoading,
             child: ControlledAnimation(
@@ -132,7 +136,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                             icon: Icon(Icons.clear,color: Colors.white,size: 30,),
                                             color: Colors.white,
                                             onPressed: () {
-                                              GoToPage(context, LandingPage());
+                                              Navigator.pop(context);
                                             },
                                           ),
                                         ],
@@ -163,7 +167,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
                                 Expanded(
                                   child:SizedBox(
-                                    child: getVariableScaleCrousel(),
+                                    child: getVariableScaleCrousel(animationsData != null ? animationsData.iconsURL : []),
                                   ),
                                 ),
 
@@ -227,8 +231,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
     );
   }
 
-  Widget getVariableScaleCrousel() {
-    return FinitePager(
+  Widget getVariableScaleCrousel(icons) {
+    return icons != null ? FinitePager(
       scaleX: 0.8,
       scaleY: 0.7,
       scrollDirection: Axis.horizontal,
@@ -239,163 +243,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         for (var iconURL in icons)
     Lottie.network(iconURL,height: getDynamicHeight(200),width: getDynamicWidth(200))
       ],
-    );
+    ) : Container(child: Text('Loading'),);
   }
 
 }
-//
-//
-//void showFancyCustomDialog(BuildContext context) {
-//
-//  showGeneralDialog(
-//      context: context,
-//      pageBuilder: (context, anim1, anim2) {},
-//      barrierDismissible: true,
-//      barrierColor: Colors.black.withOpacity(0.4),
-//      barrierLabel: '',
-//      transitionBuilder: (context, anim1, anim2, child) {
-//        return Transform.rotate(
-//          angle: math.radians(anim1.value * 360),
-//          child: Opacity(
-//            opacity: anim1.value,
-//            child: Dialog(
-//              shape: RoundedRectangleBorder(
-//                borderRadius: BorderRadius.circular(12.0),
-//              ),
-//              child: Container(
-//                decoration: BoxDecoration(
-//                  borderRadius: BorderRadius.circular(20.0),
-//                ),
-//                height: getDynamicHeight(600.0),
-//                width: getDynamicWidth(320.0),
-//                child: Stack(
-//                  children: <Widget>[
-//                    Container(
-//                      width: double.infinity,
-//                      height: getDynamicHeight(600),
-//                      decoration: BoxDecoration(
-//                        color: Colors.grey[100],
-//                        borderRadius: BorderRadius.circular(12.0),
-//                      ),
-//                      child: Container(
-//                        child: Column(
-//                          crossAxisAlignment: CrossAxisAlignment.center,
-//                          children: [
-//                            SizedBox(height: getDynamicHeight(60),),
-//                            Padding(
-//                              padding: const EdgeInsets.all(10.0),
-//                              child: Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                children: [
-//                                  Center(
-//                                    child: SizedBox(
-//                                      width: getDynamicWidth(200),
-//                                      height: getDynamicHeight(200),
-//                                      child: Container(
-//                                          child: FlareActor("images/success-2.flr",
-//                                              alignment: Alignment.topRight,
-//                                              fit: BoxFit.contain,
-//                                              animation: 'check-success')),
-//                                    ),
-//                                  ),
-//                                ],
-//                              ),
-//                            ),
-//                            Padding(
-//                              padding: const EdgeInsets.symmetric(horizontal: 15),
-//                              child: Divider(color: Colors.black54,thickness: 1,),
-//                            ),
-//                            Column(
-//                              children: [
-//                                Text("2DS6AHA",style: boldStyle,),
-//                                 Lottie.network("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",height: getDynamicHeight(100),width: getDynamicWidth(100)),
-//                                Text("ROCKSTARS",style: boldStyle,)
-//                              ],
-//                            ),
-//                            SizedBox(
-//                              height: getDynamicHeight(20),
-//                            ),
-//                            Padding(
-//                              padding: const EdgeInsets.symmetric(horizontal: 15),
-//                              child: Text("Note : The group code has been sent to your group members, then can access the group by it.",style: regularStyle,),
-//                            )
-//                          ],
-//                        ),
-//                      ),
-//                    ),
-//                    Container(
-//                      width: double.infinity,
-//                      height: getDynamicHeight(50),
-//                      alignment: Alignment.bottomCenter,
-//                      decoration: BoxDecoration(
-//                        color: Colors.greenAccent,
-//                        borderRadius: BorderRadius.only(
-//                          topLeft: Radius.circular(12),
-//                          topRight: Radius.circular(12),
-//                        ),
-//                      ),
-//                      child: Align(
-//                        alignment: Alignment.center,
-//                        child: Text(
-//                            "Success",
-//                            style: questionStyle
-//                        ),
-//                      ),
-//                    ),
-//                    Align(
-//                      alignment: Alignment.bottomCenter,
-//                      child: InkWell(
-//                        onTap: () {
-//                          Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftUp, duration: Duration(seconds: 1), child: LandingPage()));
-//                        },
-//                        child: Container(
-//                          width: double.infinity,
-//                          height: getDynamicHeight(50),
-//                          decoration: BoxDecoration(
-//                            color: Colors.blue[300],
-//                            borderRadius: BorderRadius.only(
-//                              bottomLeft: Radius.circular(12),
-//                              bottomRight: Radius.circular(12),
-//                            ),
-//                          ),
-//                          child: Align(
-//                            alignment: Alignment.center,
-//                            child: Text(
-//                              "Okay let's go!",
-//                              style: TextStyle(
-//                                  color: Colors.white,
-//                                  fontSize: 20,
-//                                  fontWeight: FontWeight.w600),
-//                            ),
-//                          ),
-//                        ),
-//                      ),
-//                    ),
-//                    Align(
-//                      // These values are based on trial & error method
-//                      alignment: Alignment(1.05, -1.05),
-//                      child: InkWell(
-//                        onTap: () {
-//                          Navigator.pop(context);
-//                        },
-//                        child: Container(
-//                          decoration: BoxDecoration(
-//                            color: Colors.grey[200],
-//                            borderRadius: BorderRadius.circular(12),
-//                          ),
-//                          child: Icon(
-//                            Icons.close,
-//                            color: Colors.black,
-//                          ),
-//                        ),
-//                      ),
-//                    ),
-//                  ],
-//                ),
-//              ),
-//            ),
-//          ),
-//        );
-//      },
-//      transitionDuration: Duration(milliseconds: 300));
-//}

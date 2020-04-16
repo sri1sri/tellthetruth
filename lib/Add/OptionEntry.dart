@@ -71,7 +71,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
           resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 50, 15, 50),
+            padding: const EdgeInsets.fromLTRB(15, 50, 15, 0),
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: Column(

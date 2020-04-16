@@ -6,11 +6,13 @@ import 'package:animations/animations.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:liquid_swipe/Helpers/Helpers.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:tellthetruth/Add/QuestionReview.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
@@ -128,6 +130,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                   ),
                             ),
                             onTap: () {
+                              Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: QuestionReviewPage()));
                             },
                           ),
                         ],

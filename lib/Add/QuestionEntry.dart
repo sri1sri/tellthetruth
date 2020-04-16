@@ -74,9 +74,10 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
+        resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 50, 15, 50),
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 50),
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: Column(
@@ -93,7 +94,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                           ),
                         ],
                       ),
-                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
+                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(200),width: getDynamicWidth(200)),
                       SizedBox(
                         height: getDynamicHeight(20),
                       ),
@@ -125,9 +126,10 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                                 keyboardAppearance: Brightness.dark,
                                 autofocus: true,
                                 cursorColor: Colors.blue,
-                                maxLength: 100,
+                                maxLength: 48,
                                 //onEditingComplete: _submit,
-                                style: TextStyle(
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w600,
                                     foreground: Paint()..shader = linearGradient),
@@ -135,12 +137,12 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                                   counterStyle: TextStyle(
                                     fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 24
+                                      fontSize: 17,
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: const BorderSide(color: Colors.transparent),
                                   ),
-                                  hintText: '______Add your Question______',
+                                  hintText: 'Add your Question',
                                   hintStyle: TextStyle(
                                      fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w600,
@@ -199,7 +201,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                                         Container(),
                                       ])),
                               decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.7),
+                                  color: Colors.white,
 //                            gradient: LinearGradient(
 //                                colors: <Color>[
 //                                Color(0XffFD8B1F),

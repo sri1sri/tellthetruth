@@ -16,6 +16,7 @@ import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/home/home_page.dart';
+import 'package:tellthetruth/landing_page.dart';
 
 class AddGangIcon extends StatelessWidget {
   AddGangIcon({@required this.gangCode,@required this.gangName});
@@ -63,7 +64,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         gangUserIDS: [USER_ID],
       );
       await DBreference.createGang(createGang);
-      GoToPage(context, HomePage());
+      GoToPage(context, LandingPage());
 
 
       setState(() {

@@ -2,6 +2,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
@@ -12,6 +13,7 @@ import 'package:tellthetruth/common_widgets/offline_widgets/offline_widget.dart'
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
+import 'package:tellthetruth/landing_page.dart';
 
 class JoinGang extends StatelessWidget {
   @override
@@ -42,6 +44,10 @@ class _F_JoinGangState extends State<F_JoinGang> {
 
   Future<void> _submit() async {
 
+    List<String> usersList;
+    var gangDetails;
+    String gangID;
+
     setState(() {
       isLoading = true;
     });
@@ -49,17 +55,28 @@ class _F_JoinGangState extends State<F_JoinGang> {
     if (_validateAndSaveForm()) {
 
 
-      Firestore.instance.collection('testgangs').where('gang_code', isEqualTo:int.parse(_gangCode))
+      Firestore.instance.collection('${API_SUFFIX}gangs').where('gang_code', isEqualTo: _gangCode)
           .snapshots().listen(
               (data) => {
             if(data.documents.length == 1){
+             // usersList = data.documents[0]['gang_user_ids'],
+              gangID = data.documents[0].documentID,
+              print(gangID),
 
-             // var gangCode = data.documents[0].documentID,
-
+              if(usersList.contains('${USER_ID}1')){
+                customAlertBox(context, 'Oops...', 'You are already member in this group.'),
+              }else{
+                print(usersList),
+                usersList.add(USER_ID),
+                print(usersList),
+                gangDetails = GangDetails(gangUserIDS: usersList),
+                DBreference.updateGang(gangDetails, gangID),
+                customAlertBox(context, 'Hurray...', 'You have successfully added to this group.'),
+                GoToPage(context, LandingPage()),
+              }
 
             }else{
-      print('invalid'),
-
+              customAlertBox(context, 'Oops...', 'You have entered wrong gang code. Please check the you entered.'),
             }
           }
       );
@@ -73,9 +90,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
         isLoading = false;
       });
     }
-
   }
-
 
 
   @override
@@ -274,6 +289,4 @@ class _F_JoinGangState extends State<F_JoinGang> {
 
     );
   }
-
 }
-

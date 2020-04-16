@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
@@ -13,7 +14,9 @@ abstract class Database{
   Stream<UserDetails> getUserDetails();
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
-  Stream<List<GangDetails>> searchGang(int gangCode);
+//  Stream<List<GangDetails>> checkGangName(String gangName);
+
+//  Stream<List<GangDetails>> searchGang(int gangCode);
   Stream<CommonFiles> getAnimations();
 
 }
@@ -46,7 +49,6 @@ class FirestoreDatabase implements Database {
     builder: (data, documentId) => CommonFiles.fromMap(data, documentId),
   );
 
-
   @override
   Future<void> createGang(GangDetails gangDetails) async => await _service.setData(
     path: APIPath.gangDetails(DateTime.now().toIso8601String()),
@@ -54,15 +56,27 @@ class FirestoreDatabase implements Database {
   );
 
   @override
-  Stream<List<GangDetails>> searchGang(int gangCode) => _service.collectionStream(
-    path: APIPath.gangsList(),
-    builder: (data, documentId) => GangDetails.fromMap(data, documentId),
-    queryBuilder: (query) => query.where('gang_code', isEqualTo: gangCode),
-  );
-
-  @override
   Future<void> updateGang(GangDetails gangDetails, String gangID) async => await _service.updateData(
     path: APIPath.gangDetails(gangID),
     data: gangDetails.toMap(),
   );
+
+//  @override
+//  Stream<List<GangDetails>> checkGangName(String gangName) => _service.collectionStream(
+//    path: APIPath.gangsList(),
+//    builder: (data, documentId) => GangDetails.fromMap(data, documentId),
+//    queryBuilder: (query) => query.where('gang_name', isEqualTo: gangName).where('created_by', isEqualTo: USER_ID),
+//  );
+
+
+
+
+//  @override
+//  Stream<List<GangDetails>> searchGang(int gangCode) => _service.collectionStream(
+//    path: APIPath.gangsList(),
+//    builder: (data, documentId) => GangDetails.fromMap(data, documentId),
+//    queryBuilder: (query) => query.where('gang_code', isEqualTo: gangCode),
+//  );
+
+
 }

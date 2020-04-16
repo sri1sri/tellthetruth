@@ -79,11 +79,69 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(),
                       IconButton(
                         icon: Icon(Icons.clear,color: Colors.black,size: 30,),
                         color: Colors.white,
                         onPressed: () {Navigator.pop(context, true);},
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+//                                  Container(
+//                                    child: Text(""),
+//                                  ),
+                          GestureDetector(
+                            child: Container(
+                              width: getDynamicWidth(180.0),
+                              padding: EdgeInsets.all(15.0),
+                              child: Center(
+                                  child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Container(),
+                                        GradientText(
+                                          'Continue',
+                                          style: mediumStyle,
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color(0XffFD8B1F),
+                                              Color(0XffD152E0),
+                                              Color(0Xff30D0DB),
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.blue,
+                                          size: getDynamicTextSize(15),
+                                        ),
+                                        Container(),
+                                      ])),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+//                            gradient: LinearGradient(
+//                                colors: <Color>[
+//                                Color(0XffFD8B1F),
+//                            Color(0XffD152E0),
+//                            Color(0Xff30D0DB),
+//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey,
+                                        offset: Offset(2, 1),
+                                        blurRadius: 6.0,
+                                        spreadRadius: 1.0),
+                                  ]),
+                            ),
+                            onTap: () {
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -127,7 +185,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 //Text("Question",style: backgroundText,),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top:30.0),
+                                padding: const EdgeInsets.only(top:25.0),
                                 child: Positioned(
                                   child: TextFormField(
                                     //onChanged: (value) => _gangName = value,
@@ -178,6 +236,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                             ],
                           ),/* your widget */
                         ),
+                        SizedBox(height: getDynamicHeight(10),),
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -203,7 +262,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 //Text("Question",style: backgroundText,),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top:30.0),
+                                padding: const EdgeInsets.only(top:20.0),
                                 child: Positioned(
                                   child:TextFormField(
                                     //onChanged: (value) => _gangName = value,
@@ -254,6 +313,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                             ],
                           ),/* your widget */
                         ),
+                        SizedBox(height: getDynamicHeight(10),),
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -279,7 +339,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 //Text("Question",style: backgroundText,),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top:30.0),
+                                padding: const EdgeInsets.only(top:20.0),
                                 child: Positioned(
                                   child:TextFormField(
                                     //onChanged: (value) => _gangName = value,
@@ -330,6 +390,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                             ],
                           ),/* your widget */
                         ),
+                        SizedBox(height: getDynamicHeight(10),),
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -355,7 +416,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                                 //Text("Question",style: backgroundText,),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top:30.0),
+                                padding: const EdgeInsets.only(top:20.0),
                                 child: Positioned(
                                   child: TextFormField(
                                     //onChanged: (value) => _gangName = value,
@@ -410,65 +471,7 @@ class _F_OptionEntryPageState extends State<F_OptionEntryPage> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-//                                  Container(
-//                                    child: Text(""),
-//                                  ),
-                      GestureDetector(
-                        child: Container(
-                          width: getDynamicWidth(180.0),
-                          padding: EdgeInsets.all(15.0),
-                          child: Center(
-                              child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Container(),
-                                    GradientText(
-                                      'Continue',
-                                      style: mediumStyle,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0XffFD8B1F),
-                                          Color(0XffD152E0),
-                                          Color(0Xff30D0DB),
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.blue,
-                                      size: getDynamicTextSize(30),
-                                    ),
-                                    Container(),
-                                  ])),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.7),
-//                            gradient: LinearGradient(
-//                                colors: <Color>[
-//                                Color(0XffFD8B1F),
-//                            Color(0XffD152E0),
-//                            Color(0Xff30D0DB),
-//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
 
-                              borderRadius: BorderRadius.circular(30.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(2, 1),
-                                    blurRadius: 6.0,
-                                    spreadRadius: 1.0),
-                              ]),
-                        ),
-                        onTap: () {
-                        },
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),

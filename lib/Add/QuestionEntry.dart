@@ -77,31 +77,84 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
         resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 50),
+            padding: const EdgeInsets.fromLTRB(15, 50, 15, 50),
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: getDynamicHeight(1),
-                  ),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(),
                           IconButton(
                             icon: Icon(Icons.clear,color: Colors.black,size: 30,),
                             color: Colors.white,
                             onPressed: () {Navigator.pop(context, true);},
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+//                                  Container(
+//                                    child: Text(""),
+//                                  ),
+                              GestureDetector(
+                                child: Container(
+                                  width: getDynamicWidth(180.0),
+                                  padding: EdgeInsets.all(15.0),
+                                  child: Center(
+                                      child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Container(),
+                                            GradientText(
+                                              'Continue',
+                                              style: mediumStyle,
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Color(0XffFD8B1F),
+                                                  Color(0XffD152E0),
+                                                  Color(0Xff30D0DB),
+                                                ],
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.arrow_forward_ios,
+                                              color: Colors.blue,
+                                              size: getDynamicTextSize(15),
+                                            ),
+                                            Container(),
+                                          ])),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+//                            gradient: LinearGradient(
+//                                colors: <Color>[
+//                                Color(0XffFD8B1F),
+//                            Color(0XffD152E0),
+//                            Color(0Xff30D0DB),
+//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey,
+                                            offset: Offset(2, 1),
+                                            blurRadius: 6.0,
+                                            spreadRadius: 1.0),
+                                      ]),
+                                ),
+                                onTap: () {
+                                  Navigator.push(context, PageTransition(type: PageTransitionType.rippleMiddle, duration: Duration(seconds: 2),alignment: Alignment.bottomCenter, child: OptionEntryPage()));
+                                },
+                              ),
+                            ],
+                          ),
                         ],
                       ),
-                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(200),width: getDynamicWidth(200)),
-                      SizedBox(
-                        height: getDynamicHeight(20),
-                      ),
+                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
                       Stack(
                         alignment: Alignment.center,
                         children: [
@@ -119,7 +172,7 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                             //Text("Question",style: backgroundText,),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top:30.0),
+                            padding: const EdgeInsets.only(top:25.0),
                             child: Positioned(
                               child: Form(
                                 key: _formKey,
@@ -172,66 +225,10 @@ class _F_QuestionEntryPageState extends State<F_QuestionEntryPage> {
                           )
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-//                                  Container(
-//                                    child: Text(""),
-//                                  ),
-                          GestureDetector(
-                            child: Container(
-                              width: getDynamicWidth(180.0),
-                              padding: EdgeInsets.all(15.0),
-                              child: Center(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(),
-                                        GradientText(
-                                          'Continue',
-                                          style: mediumStyle,
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color(0XffFD8B1F),
-                                              Color(0XffD152E0),
-                                              Color(0Xff30D0DB),
-                                            ],
-                                            begin: Alignment.topLeft,
-                                            end: Alignment.bottomRight,
-                                          ),
-                                        ),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.blue,
-                                          size: getDynamicTextSize(30),
-                                        ),
-                                        Container(),
-                                      ])),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-//                            gradient: LinearGradient(
-//                                colors: <Color>[
-//                                Color(0XffFD8B1F),
-//                            Color(0XffD152E0),
-//                            Color(0Xff30D0DB),
-//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                  SizedBox(
+                    height: getDynamicHeight(20),
+                  ),
 
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(2, 1),
-                                        blurRadius: 6.0,
-                                        spreadRadius: 1.0),
-                                  ]),
-                            ),
-                            onTap: () {
-                              Navigator.push(context, PageTransition(type: PageTransitionType.rippleMiddle, duration: Duration(seconds: 2),alignment: Alignment.bottomCenter, child: OptionEntryPage()));
-                            },
-                          ),
-                        ],
-                      ),
                 ],
               ),
             ),

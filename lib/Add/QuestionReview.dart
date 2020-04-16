@@ -60,13 +60,19 @@ class F_QuestionReviewPage extends StatefulWidget {
 
 class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
 
-
-  List<Gradient> _colors = [ //Get list of colors
-    backgroundGradient,
-    activeGradient,
-    backgroundGradient1,
-    backgroundGradient2,
+  List<Color> _colors = [ //Get list of colors
+    Color(0XffFD8B1F),
+    Color(0XffD152E0),
+    Color(0Xff30D0DB),
   ];
+  List<Color> _colors1 = [ //Get list of colors
+    Color(0Xff30D0DB),
+    Color(0XffFD8B1F),
+    Color(0XffD152E0),
+  ];
+
+
+
 
   int _currentIndex = 0;
 
@@ -79,7 +85,8 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
       } else {
         _currentIndex += 1;
       }
-    });
+    }
+    );
 
     //setState(() => (_currentIndex == _colorCount - 1) ? _currentIndex = 1 : _currentIndex += 1);
   }
@@ -140,7 +147,10 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
               .size
               .height,
           decoration: new BoxDecoration(
-              gradient: _colors[_currentIndex],
+              gradient: LinearGradient(colors: <Color>[
+                _colors[0],
+                _colors1[1],
+              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -168,7 +178,10 @@ class _F_QuestionReviewPageState extends State<F_QuestionReviewPage> {
                               padding: EdgeInsets.all(15.0),
                               decoration: BoxDecoration(
 
-                            gradient: _colors[_currentIndex],
+                            gradient: LinearGradient(colors: <Color>[
+                              _colors[0],
+                              _colors1[1],
+                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                                 border: Border.all(
                                   color: Colors.white, //                   <--- border color
                                   width: getDynamicWidth(1),

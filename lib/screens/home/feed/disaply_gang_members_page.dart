@@ -43,6 +43,9 @@ class _F_GangMembersState extends State<F_GangMembers> {
             body: CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  centerTitle: true,
                   title: MyAppBar(),
                   pinned: true,
                   expandedHeight: getDynamicHeight(400.0),

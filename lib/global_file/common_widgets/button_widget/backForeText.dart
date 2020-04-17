@@ -76,12 +76,16 @@ class BackForeTextInput extends StatelessWidget {
         this.onEditingComplete,
         this.onChanged,
         this.hintText,
-        this.validText,
+        this.validationText,
         this.topPadding,
         this.height,
+        this.textInputAction,
+        this.focusNode,
+        this.onFieldSubmitted,
+        this.showCounterStyle,
       });
 
-  final String validText;
+  final String validationText;
   final double height;
   final TextStyle backTextStyle;
   final VoidCallback onEditingComplete;
@@ -93,6 +97,10 @@ class BackForeTextInput extends StatelessWidget {
   final List backText;
   final String hintText;
   final double topPadding;
+  final TextInputAction textInputAction;
+  final FocusNode focusNode;
+  final ValueChanged<String> onFieldSubmitted;
+  bool showCounterStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -117,12 +125,14 @@ class BackForeTextInput extends StatelessWidget {
             child:TextFormField(
                 onChanged: (value) => onChanged,
                 maxLines: lines,
-                textInputAction: TextInputAction.done,
+                textInputAction: textInputAction,
                 autocorrect: true,
                 obscureText: false,
                 keyboardType: TextInputType.text,
-                keyboardAppearance: Brightness.dark,
+                keyboardAppearance: Brightness.light,
                 autofocus: true,
+                focusNode: focusNode,
+                onFieldSubmitted: onFieldSubmitted,
                 cursorColor: Colors.blue,
                 maxLength: length,
                 onEditingComplete: onEditingComplete,
@@ -135,7 +145,7 @@ class BackForeTextInput extends StatelessWidget {
                   counterStyle: TextStyle(
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
-                    fontSize: textFont,
+                    fontSize: showCounterStyle ? 17 : 0,
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(color: Colors.transparent),
@@ -153,7 +163,7 @@ class BackForeTextInput extends StatelessWidget {
                 validator: (value) {
                   print(value);
                   if (value.isEmpty) {
-                    return validText;
+                    return validationText;
                   }
                   return null;
                 },

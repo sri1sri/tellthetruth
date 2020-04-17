@@ -1,5 +1,4 @@
 
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,26 +6,25 @@ import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
-import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'content_preview_page.dart';
 
 class AddOptions extends StatelessWidget {
-  //ProfilePage({@required this.database});
-  //Database database;
+  AddOptions({@required this.question});
+  String question;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_AddOptions(),
+      child: F_AddOptions(question: question,),
     );
   }
 }
 
 class F_AddOptions extends StatefulWidget {
-  // F_ProfilePage({@required this.database});
-  // Database database;
+  F_AddOptions({@required this.question});
+  String question;
 
   @override
   _F_AddOptionsState createState() => _F_AddOptionsState();
@@ -36,6 +34,68 @@ class _F_AddOptionsState extends State<F_AddOptions> {
 
   final _formKey = GlobalKey<FormState>();
 
+  String _optionOne;
+  String _optionTwo;
+  String _optionThree;
+  String _optionFour;
+
+  final FocusNode _optionOneFocusNode = FocusNode();
+  final FocusNode _optionTwoFocusNode = FocusNode();
+  final FocusNode _optionThreeFocusNode = FocusNode();
+  final FocusNode _optionFourFocusNode = FocusNode();
+
+  bool isLoading = false;
+
+  bool _validateAndSaveForm() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> _submit() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    if (_validateAndSaveForm()) {
+
+      print('q= ${widget.question}');
+      print('1 = $_optionOne');
+      print('2 = $_optionTwo');
+      print('3= $_optionThree');
+      print('4=$_optionFour');
+
+      Navigator.push(context,
+          PageTransition(type: PageTransitionType.rippleRightDown,
+              duration: Duration(seconds: 1),
+              alignment: Alignment.bottomCenter,
+              child: ContentPreview(question: widget.question,
+                optionOne: _optionOne,
+                optionTwo: _optionTwo,
+                optionThree: _optionThree,
+                optionFour: _optionFour,
+              ),
+          ),
+      );
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement initState
+    _optionOneFocusNode.dispose();
+    _optionTwoFocusNode.dispose();
+    _optionThreeFocusNode.dispose();
+    _optionFourFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +139,6 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-//                                  Container(
-//                                    child: Text(""),
-//                                  ),
                           GestureDetector(
                             child: Container(
                               width: getDynamicWidth(180.0),
@@ -108,35 +165,17 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                                       ])),
                               decoration: BoxDecoration(
                                   color: Colors.white,
-//                            gradient: LinearGradient(
-//                                colors: <Color>[
-//                                Color(0XffFD8B1F),
-//                            Color(0XffD152E0),
-//                            Color(0Xff30D0DB),
-//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-
                                   borderRadius: BorderRadius.circular(15.0),
                                   ),
                             ),
                             onTap: () {
-                              Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: ContentPreview()));
+                              _submit();
                             },
                           ),
                         ],
                       ),
                     ],
                   ),
-//                  Center(
-//                    child: SizedBox(
-//                      width: getDynamicWidth(200),
-//                      height: getDynamicHeight(200),
-//                      child: Container(
-//                          child: FlareActor("images/options.flr",
-//                              alignment: Alignment.center,
-//                              fit: BoxFit.contain,
-//                              animation: 'option')),
-//                    ),
-//                  ),
                   Form(
                     key: _formKey,
                     child: Column(
@@ -151,21 +190,27 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                           ],
                           child:  BackForeTextInput(
                             backText: ["Option 1","Opzione 1","Možnost 1","Opción 1","विकल्प 1","Doorasho 1","Pilihan 1","Optionem 1"],
-                            lines:1,
-                            length:null,
+                            onChanged: (value) => _optionOne = value,
+                            textInputAction: TextInputAction.next,
+                            focusNode: _optionOneFocusNode,
+                            onFieldSubmitted: (value) => value == ''
+                                ? null
+                                : FocusScope.of(context)
+                                .requestFocus(_optionTwoFocusNode),
+                            lines:2,
+                            length:48,
                             textFont:18,
-                            // onEditingComplete: _submit,
-                            // onChanged: _gangName = value,
-                            validText:"Add your 1'st Option",
-                            hintText:"Add your 1'st Option",
+                            validationText:"Add your Options",
+                            hintText:"Add your Options",
                             topPadding:20,
                             hintFont: 18,
                             backTextStyle: backgroundText1,
                             height: 50,
+                            showCounterStyle: false,
 
                           ),
                         ),
-                        SizedBox(height: getDynamicHeight(10),),
+//                        SizedBox(height: getDynamicHeight(5),),
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -176,21 +221,27 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                           ],
                           child: BackForeTextInput(
                             backText: ["Option 2","Opzione 2","Možnost 2","Opción 2","विकल्प 2","Doorasho 2","Pilihan 2","Optionem 2"],
-                            lines:1,
-                            length:null,
+                            onChanged: (value) => _optionTwo = value,
+                            textInputAction: TextInputAction.next,
+                            focusNode: _optionTwoFocusNode,
+                            onFieldSubmitted: (value) => value == ''
+                                ? null
+                                : FocusScope.of(context)
+                                .requestFocus(_optionThreeFocusNode),
+                            lines:2,
+                            length:48,
                             textFont:18,
-                            // onEditingComplete: _submit,
-                            // onChanged: _gangName = value,
-                            validText:"Add your 2'nd Option",
-                            hintText:"Add your 2'nd Option",
+                            validationText:"Add your options",
+                            hintText:"Add your options",
                             topPadding:20,
                             hintFont: 18,
                             backTextStyle: backgroundText1,
                             height: 50,
+                            showCounterStyle: false,
 
                           ),
                         ),
-                        SizedBox(height: getDynamicHeight(10),),
+//                        SizedBox(height: getDynamicHeight(5),),
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -201,21 +252,27 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                           ],
                           child:  BackForeTextInput(
                             backText: ["Option 3","Opzione 3","Možnost 3","Opción 3","विकल्प 3","Doorasho 3","Pilihan 3","Optionem 3"],
-                            lines:1,
-                            length:null,
+                            onChanged: (value) => _optionThree = value,
+                            textInputAction: TextInputAction.next,
+                            focusNode: _optionThreeFocusNode,
+                            onFieldSubmitted: (value) => value == ''
+                                ? null
+                                : FocusScope.of(context)
+                                .requestFocus(_optionFourFocusNode),
+                            lines:2,
+                            length:48,
                             textFont:18,
-                            // onEditingComplete: _submit,
-                            // onChanged: _gangName = value,
-                            validText:"Add your 3'rd Option",
-                            hintText:"Add your 3'rd Option",
+                            validationText:"Add your options",
+                            hintText:"Add your options",
                             topPadding:20,
                             hintFont: 18,
                             backTextStyle: backgroundText1,
                             height: 50,
+                            showCounterStyle: false,
 
                           ),/* your widget */
                         ),
-                        SizedBox(height: getDynamicHeight(10),),
+//                        SizedBox(height: getDynamicHeight(5),),
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -226,27 +283,26 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                           ],
                           child:  BackForeTextInput(
                             backText: ["Option 4","Opzione 4","Možnost 4","Opción 4","विकल्प 4","Doorasho 4","Pilihan 4","Optionem 4"],
-                            lines:1,
-                            length:null,
+                            onChanged: (value) => _optionFour = value,
+                            textInputAction: TextInputAction.done,
+                            focusNode: _optionFourFocusNode,
+                            onEditingComplete: _submit,
+                            lines:2,
+                            length:48,
                             textFont:18,
-                            // onEditingComplete: _submit,
-                            // onChanged: _gangName = value,
-                            validText:"Add your 4'th Option",
-                            hintText:"Add your 4'th Option",
+                            validationText:"Add your options",
+                            hintText:"Add your options",
                             topPadding:20,
                             hintFont: 18,
                             backTextStyle: backgroundText1,
                             height: 50,
+                            showCounterStyle: false,
 
                           ),/* your widget */
                         ),
-
                       ],
                     ),
                   ),
-
-                  Container(),
-
                 ],
               ),
             ),

@@ -84,6 +84,11 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {

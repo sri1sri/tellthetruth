@@ -260,9 +260,6 @@ class _F_JoinGangState extends State<F_JoinGang> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-//                                  Container(
-//                                    child: Text(""),
-//                                  ),
                           GestureDetector(
                             child: Container(
                               width: getDynamicWidth(180.0),

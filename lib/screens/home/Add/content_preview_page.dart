@@ -33,22 +33,48 @@ const backgroundGradient2 = LinearGradient(colors: <Color>[
   Color(0XffD152E0),
 ], begin: Alignment.topLeft, end: Alignment.bottomRight);
 
+
 class ContentPreview extends StatelessWidget {
 
-  //ProfilePage({@required this.database});
-  //Database database;
+  ContentPreview({@required this.question,
+    @required this.optionOne,
+    @required this.optionTwo,
+    @required this.optionThree,
+    @required this.optionFour,
+  });
+
+  String question;
+  String optionOne;
+  String optionTwo;
+  String optionThree;
+  String optionFour;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_ContentPreview(),
+      child: F_ContentPreview(question: question,
+        optionOne: optionOne,
+        optionTwo: optionTwo,
+        optionThree: optionThree,
+        optionFour: optionFour,
+      ),
     );
   }
 }
 
 class F_ContentPreview extends StatefulWidget {
-  // F_ProfilePage({@required this.database});
-  // Database database;
+  F_ContentPreview({@required this.question,
+    @required this.optionOne,
+    @required this.optionTwo,
+    @required this.optionThree,
+    @required this.optionFour,
+  });
+
+   String question;
+   String optionOne;
+   String optionTwo;
+   String optionThree;
+   String optionFour;
 
   @override
   _F_ContentPreviewState createState() => _F_ContentPreviewState();
@@ -66,8 +92,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     Color(0XffFF871F),
     Color(0XffFF3FE0),
   ];
-
-
 
 
   int _currentIndex = 0;
@@ -101,6 +125,17 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
         secondsPassed = secondsPassed - 1;
       } );
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('q= ${widget.question}');
+    print('1 = ${widget.optionOne}');
+    print('2 = ${widget.optionTwo}');
+    print('3= ${widget.optionThree}');
+    print('4=${widget.optionFour}');
   }
 
 
@@ -327,7 +362,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             GradientText(
-              "Who invented the mac Book Air and in which year Book Air and in which year?",
+              widget.question,
               textAlign: TextAlign.center,
               style: mediumStyle,
               gradient: LinearGradient(
@@ -363,20 +398,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "Vasanthakumar - 1996",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "40 votes",
+                    widget.optionOne,
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -405,20 +427,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "SrivatsavKonda - 1960",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "35 votes",
+                    widget.optionTwo,
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -447,20 +456,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "Vamsipesala - 1967",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "88 votes",
+                    widget.optionThree,
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -489,20 +485,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "Rockstarumesh - 1667",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "5 votes",
+                    widget.optionFour,
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [

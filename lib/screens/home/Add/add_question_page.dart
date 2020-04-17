@@ -34,12 +34,45 @@ class F_AddQuestion extends StatefulWidget {
 class _F_AddQuestionState extends State<F_AddQuestion> {
 
   final _formKey = GlobalKey<FormState>();
+  String _question;
+  bool isLoading = false;
 
   final Shader linearGradient = LinearGradient(
     colors: <Color>[Color(0XffFD8B1F),
       Color(0XffD152E0),
       Color(0Xff30D0DB),],
   ).createShader(Rect.fromLTWH(150.0, 250.0, 50.0,100));
+
+  bool _validateAndSaveForm() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+  
+  Future<void> _submit() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    if (_validateAndSaveForm()) {
+      Navigator.push(context,
+          PageTransition(type: PageTransitionType.rippleMiddle,
+              duration: Duration(seconds: 2),
+              alignment: Alignment.bottomCenter,
+              child: AddOptions(question: _question,
+              ),
+          ),
+      );
+
+    } else {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
 
   @override
@@ -118,7 +151,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                                       ),
                                 ),
                                 onTap: () {
-                                  Navigator.push(context, PageTransition(type: PageTransitionType.rippleMiddle, duration: Duration(seconds: 2),alignment: Alignment.bottomCenter, child: AddOptions()));
+                                  _submit();
                                 },
                               ),
                             ],
@@ -130,24 +163,21 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                         key: _formKey,
                         child: BackForeTextInput(
                             backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                            lines:3,
-                            length:100,
-                            textFont:24,
-                           // onEditingComplete: _submit,
-                           // onChanged: _gangName = value,
-                            validText:"Please enter your Question",
-                            hintText:"Add your Question",
-                            topPadding:25,
-                            hintFont: 24,
-                            backTextStyle: backgroundText,
-                            height: 140,
-
+                          onChanged: (value)=> _question = value,
+                          onEditingComplete: _submit,
+                          textInputAction: TextInputAction.done,  
+                          lines:3,
+                          length:48,
+                          textFont:24,
+                          validationText:"Please enter question",
+                          hintText:"Add your Question",
+                          topPadding:25,
+                          hintFont: 24,
+                          backTextStyle: backgroundText,
+                          height: 140,
+                          showCounterStyle: true,
                         ),
                       ),
-                  SizedBox(
-                    height: getDynamicHeight(20),
-                  ),
-
                 ],
               ),
             ),

@@ -131,9 +131,7 @@ class _F_AddPageState extends State<F_AddPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
-      child: Container(
+    return Container(
         color: Colors.white,
         child: Column(
           children: [
@@ -159,7 +157,6 @@ class _F_AddPageState extends State<F_AddPage> {
             ),
           ],
         ),
-      ),
     );
   }
 }

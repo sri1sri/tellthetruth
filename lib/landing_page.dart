@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'AuthenticationScreens/login_page.dart';
-import 'common_variables/app_functions.dart';
+import 'package:tellthetruth/screens/authentication/select_authentication_page.dart';
+import 'package:tellthetruth/screens/home/home_page.dart';
 import 'firebase/auth.dart';
 import 'firebase/database.dart';
-import 'home/home_page.dart';
+import 'global_file/common_variables/app_functions.dart';
 
 class LandingPage extends StatelessWidget {
 
@@ -22,7 +22,7 @@ class LandingPage extends StatelessWidget {
 
           User user = snapshot.data;
           if (user == null) {
-            return LoginPage.create(context);
+            return SelectAuthentication.create(context);
           }
           return Provider<User>.value(
             value: user,

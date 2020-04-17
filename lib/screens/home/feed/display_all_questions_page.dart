@@ -88,6 +88,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               color: Colors.white,
               onPressed: () {Navigator.pop(context, true);},
             ),
+            centerTitle: true,
             title: GradientText(
               'Tell Truth',
               style: boldStyle,
@@ -108,6 +109,17 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 onPressed: () {
                   Navigator.push(context, PageTransition(type: PageTransitionType.rotate, duration: Duration(seconds: 1), child: GangMembers()));
                   },
+              ),
+              GestureDetector(
+                onTap: (){},
+                  child: Image.asset('images/what.jpeg',height: getDynamicHeight(30),width: getDynamicWidth(30),)
+              ),
+              IconButton(
+                icon: Icon(Icons.person_add,color: Colors.black,),
+                color: Colors.white,
+                onPressed: () {
+                  //Navigator.push(context, PageTransition(type: PageTransitionType.rotate, duration: Duration(seconds: 1), child: GangMembers()));
+                },
               ),
 
             ],

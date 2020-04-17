@@ -108,6 +108,7 @@ flutter:
     - images/poll.png
     - images/success-2.flr
     - images/options.flr
+    - images/what.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

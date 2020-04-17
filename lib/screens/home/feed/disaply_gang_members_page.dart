@@ -46,7 +46,6 @@ class _F_GangMembersState extends State<F_GangMembers> {
                   backgroundColor: Colors.white,
                   elevation: 0,
                   centerTitle: true,
-                  title: MyAppBar(),
                   pinned: true,
                   expandedHeight: getDynamicHeight(400.0),
                   flexibleSpace: FlexibleSpaceBar(
@@ -231,38 +230,6 @@ class MyFlexiableAppBar extends StatelessWidget {
       ),
       decoration: new BoxDecoration(
         color: Colors.white,
-      ),
-    );
-  }
-}
-
-class MyAppBar extends StatelessWidget {
-
-  final double barHeight = 66.0;
-
-  const MyAppBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          GradientText(
-            'Group Members',
-            style: boldStyle,
-            gradient: LinearGradient(
-              colors: [
-                Color(0XffFD8B1F),
-                Color(0XffD152E0),
-                Color(0Xff30D0DB),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-
-        ],
       ),
     );
   }

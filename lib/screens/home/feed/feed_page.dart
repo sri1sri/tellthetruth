@@ -239,7 +239,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                       children: <Widget>[
                         Container(
                           height: getDynamicHeight(100),
-                          width: getDynamicWidth(250),
+                          width: getDynamicWidth(270),
                         ),
                         Positioned(
                           top: 7,

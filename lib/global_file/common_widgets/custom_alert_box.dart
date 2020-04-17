@@ -1,19 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tellthetruth/common_variables/app_fonts.dart';
-import 'package:tellthetruth/common_variables/app_functions.dart';
+import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
+import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 
 CustomAlertBox(BuildContext context, String title, String desctiption, bool isSuccess, VoidCallback onPressed,){
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
-      return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-              Radius.circular(10.0)),
-        ),
+      return ClipRRect(
+          borderRadius: BorderRadius.all(new Radius.circular(15.0)),
         child: AlertDialog(
           content: SingleChildScrollView(
             child: ListBody(
@@ -33,9 +30,8 @@ CustomAlertBox(BuildContext context, String title, String desctiption, bool isSu
                     Text(desctiption,textAlign: TextAlign.center,style: answerStyleBlur,),
                     SizedBox(height: getDynamicHeight(20),),
                     GestureDetector(
-                      onTap: (){
-                        onPressed;
-                      },
+                      onTap: onPressed,
+
                       child: Container(
                         child: isSuccess == true ? Text("OK Cool",style: TextStyle(color: Colors.green,
                           fontFamily: 'Montserrat',

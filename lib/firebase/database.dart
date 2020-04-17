@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
 
@@ -16,11 +16,6 @@ abstract class Database{
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Future<void> updateInsights(CommonFiles commonFiles);
   Stream<List<GangDetails>>readGangs();
-
-
-//  Stream<List<GangDetails>> checkGangName(String gangName);
-
-//  Stream<List<GangDetails>> searchGang(int gangCode);
   Stream<CommonFiles> getAnimations();
 
 }

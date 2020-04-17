@@ -1,4 +1,3 @@
-import 'package:tellthetruth/common_variables/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 import '../model/slide.dart';

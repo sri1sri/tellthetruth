@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tellthetruth/common_variables/app_functions.dart';
+import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 
 class User {
   User({@required this.uid});

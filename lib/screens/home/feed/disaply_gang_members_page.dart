@@ -45,7 +45,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                 SliverAppBar(
                   title: MyAppBar(),
                   pinned: true,
-                  expandedHeight: 400.0,
+                  expandedHeight: getDynamicHeight(400.0),
                   flexibleSpace: FlexibleSpaceBar(
                     background: MyFlexiableAppBar(),
                   ),
@@ -140,7 +140,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                           ),
                         ],
                       ),
-                      SizedBox(width: 15,),
+                      SizedBox(width: getDynamicWidth(15) ,),
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,

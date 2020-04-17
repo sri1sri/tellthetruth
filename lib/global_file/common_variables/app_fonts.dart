@@ -97,6 +97,13 @@ var logoStyle2 = TextStyle(
     fontSize: getDynamicTextSize(22),decoration: TextDecoration.none);
 
 
+var answerStyleBlur1 = TextStyle(
+    color: Colors.black87,
+    fontFamily: 'Montserrat',
+    fontWeight: FontWeight.w700,
+    fontSize: getDynamicTextSize(18),decoration: TextDecoration.none);
+
+
 Gradient gradiantText =  LinearGradient(
   colors: [
     Color(0XffFD8B1F),

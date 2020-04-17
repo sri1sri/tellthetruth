@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
+import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'add_options_page.dart';
 
@@ -132,75 +133,17 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                         ],
                       ),
                       Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            height: getDynamicHeight(140),
-                          ),
-                          Positioned(
-                            top: 0,
-                            child:FadeAnimatedTextKit(
-                                text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                                textStyle: backgroundText,
-                                textAlign: TextAlign.center,
-                                alignment: AlignmentDirectional.center // or Alignment.topLeft
-                            ),
-                            //Text("Question",style: backgroundText,),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top:25.0),
-                            child: Positioned(
-                              child: Form(
-                                key: _formKey,
-                                child: TextFormField(
-                                  //onChanged: (value) => _gangName = value,
-                                  maxLines: 3,
-                                  textInputAction: TextInputAction.done,
-                                  autocorrect: true,
-                                  obscureText: false,
-                                  keyboardType: TextInputType.text,
-                                  keyboardAppearance: Brightness.dark,
-                                  autofocus: true,
-                                  cursorColor: Colors.blue,
-                                  maxLength: 100,
-                                  //onEditingComplete: _submit,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.w600,
-                                      foreground: Paint()..shader = linearGradient),
-                                  decoration: const InputDecoration(
-                                    counterStyle: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 17,
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.transparent),
-                                    ),
-                                    hintText: 'screens.home.Add your Question',
-                                    hintStyle: TextStyle(
-                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 24, ),
-                                    enabledBorder: const OutlineInputBorder(
-                                      borderSide:
-                                      const BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
-                                  ),
-                                  validator: (value) {
-                                    print(value);
-                                    if (value.isEmpty) {
-                                      return 'Please enter Question';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
+                      Form(
+                        key: _formKey,
+                        child: BackForeTextInput(
+                            backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                            lines:3,
+                            length:100,
+                            textFont:24,
+                           // onEditingComplete: _submit,
+                           // onChanged: _gangName = value,
+                            validText:"Please enter your Question"
+                        ),
                       ),
                   SizedBox(
                     height: getDynamicHeight(20),

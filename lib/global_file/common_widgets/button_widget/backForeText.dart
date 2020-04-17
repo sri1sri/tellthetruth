@@ -68,6 +68,7 @@ class BackForeTextInput extends StatelessWidget {
   BackForeTextInput(
       {
         this.backText,
+        this.backTextStyle,
         this.lines,
         this.length,
         this.textFont,
@@ -77,9 +78,12 @@ class BackForeTextInput extends StatelessWidget {
         this.hintText,
         this.validText,
         this.topPadding,
+        this.height,
       });
 
   final String validText;
+  final double height;
+  final TextStyle backTextStyle;
   final VoidCallback onEditingComplete;
   ValueChanged<String> onChanged;
   final int lines;
@@ -96,13 +100,13 @@ class BackForeTextInput extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          height: getDynamicHeight(140),
+          height: getDynamicHeight(height),
         ),
         Positioned(
           top: 0,
           child:FadeAnimatedTextKit(
               text: backText,
-              textStyle: backgroundText,
+              textStyle: backTextStyle,
               textAlign: TextAlign.center,
               alignment: AlignmentDirectional.center // or Alignment.topLeft
           ),

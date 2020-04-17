@@ -135,7 +135,13 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                             textFont:24,
                            // onEditingComplete: _submit,
                            // onChanged: _gangName = value,
-                            validText:"Please enter your Question"
+                            validText:"Please enter your Question",
+                            hintText:"Add your Question",
+                            topPadding:25,
+                            hintFont: 24,
+                            backTextStyle: backgroundText,
+                            height: 140,
+
                         ),
                       ),
                   SizedBox(

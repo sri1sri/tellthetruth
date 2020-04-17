@@ -8,6 +8,7 @@ import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
+import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'content_preview_page.dart';
 
@@ -148,73 +149,21 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             Offset(0, -250), //intermediate value
                             Offset(0, 0) //enabled value
                           ],
-                          child:  Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(50),
-                              ),
-                              Positioned(
-                                top: 0,
-                                child:FadeAnimatedTextKit(
-                                    text: ["Option 1","Opzione 1","Možnost 1","Opción 1","विकल्प 1","Doorasho 1","Pilihan 1","Optionem 1"],
-                                    textStyle: backgroundText1,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:25.0),
-                                child: Positioned(
-                                  child: TextFormField(
-                                    //onChanged: (value) => _gangName = value,
-                                    maxLines: 2,
-                                    textInputAction: TextInputAction.done,
-                                    autocorrect: true,
-                                    obscureText: false,
-                                    keyboardType: TextInputType.text,
-                                    keyboardAppearance: Brightness.dark,
-                                    autofocus: true,
-                                    cursorColor: Colors.blue,
-                                    // maxLength: 100,
-                                    //onEditingComplete: _submit,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w600,
-                                        foreground: Paint()..shader = linearGradient),
-                                    decoration: const InputDecoration(
-                                      counterStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.transparent),
-                                      ),
-                                      hintText: "screens.home.Add your 1'st Option",
-                                      hintStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18, ),
-                                      enabledBorder: const OutlineInputBorder(
-                                        borderSide:
-                                        const BorderSide(color: Colors.transparent, width: 0.0),
-                                      ),
-                                    ),
-                                    validator: (value) {
-                                      print(value);
-                                      if (value.isEmpty) {
-                                        return 'Please enter Question';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),/* your widget */
+                          child:  BackForeTextInput(
+                            backText: ["Option 1","Opzione 1","Možnost 1","Opción 1","विकल्प 1","Doorasho 1","Pilihan 1","Optionem 1"],
+                            lines:1,
+                            length:null,
+                            textFont:18,
+                            // onEditingComplete: _submit,
+                            // onChanged: _gangName = value,
+                            validText:"Add your 1'st Option",
+                            hintText:"Add your 1'st Option",
+                            topPadding:20,
+                            hintFont: 18,
+                            backTextStyle: backgroundText1,
+                            height: 50,
+
+                          ),
                         ),
                         SizedBox(height: getDynamicHeight(10),),
                         TranslationAnimatedWidget(
@@ -225,73 +174,21 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             Offset(-200, 250), //intermediate value
                             Offset(0, 0) //enabled value
                           ],
-                          child:  Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(50),
-                              ),
-                              Positioned(
-                                top: 0,
-                                child:FadeAnimatedTextKit(
-                                    text: ["Option 2","Opzione 2","Možnost 2","Opción 2","विकल्प 2","Doorasho 2","Pilihan 2","Optionem 2"],
-                                    textStyle: backgroundText1,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: Positioned(
-                                  child:TextFormField(
-                                    //onChanged: (value) => _gangName = value,
-                                    maxLines: 2,
-                                    textInputAction: TextInputAction.done,
-                                    autocorrect: true,
-                                    obscureText: false,
-                                    keyboardType: TextInputType.text,
-                                    keyboardAppearance: Brightness.dark,
-                                    autofocus: true,
-                                    cursorColor: Colors.blue,
-                                    //maxLength: 100,
-                                    //onEditingComplete: _submit,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w600,
-                                        foreground: Paint()..shader = linearGradient),
-                                    decoration: const InputDecoration(
-                                      counterStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.transparent),
-                                      ),
-                                      hintText: "screens.home.Add your 2'nd Option",
-                                      hintStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18, ),
-                                      enabledBorder: const OutlineInputBorder(
-                                        borderSide:
-                                        const BorderSide(color: Colors.transparent, width: 0.0),
-                                      ),
-                                    ),
-                                    validator: (value) {
-                                      print(value);
-                                      if (value.isEmpty) {
-                                        return 'Please enter Question';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),/* your widget */
+                          child: BackForeTextInput(
+                            backText: ["Option 2","Opzione 2","Možnost 2","Opción 2","विकल्प 2","Doorasho 2","Pilihan 2","Optionem 2"],
+                            lines:1,
+                            length:null,
+                            textFont:18,
+                            // onEditingComplete: _submit,
+                            // onChanged: _gangName = value,
+                            validText:"Add your 2'nd Option",
+                            hintText:"Add your 2'nd Option",
+                            topPadding:20,
+                            hintFont: 18,
+                            backTextStyle: backgroundText1,
+                            height: 50,
+
+                          ),
                         ),
                         SizedBox(height: getDynamicHeight(10),),
                         TranslationAnimatedWidget(
@@ -302,72 +199,20 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             Offset(400, -250),  //intermediate value
                             Offset(0, 0) //enabled value
                           ],
-                          child:  Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(50),
-                              ),
-                              Positioned(
-                                top: 0,
-                                child:FadeAnimatedTextKit(
-                                    text: ["Option 3","Opzione 3","Možnost 3","Opción 3","विकल्प 3","Doorasho 3","Pilihan 3","Optionem 3"],
-                                    textStyle: backgroundText1,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: Positioned(
-                                  child:TextFormField(
-                                    //onChanged: (value) => _gangName = value,
-                                    maxLines: 2,
-                                    textInputAction: TextInputAction.done,
-                                    autocorrect: true,
-                                    obscureText: false,
-                                    keyboardType: TextInputType.text,
-                                    keyboardAppearance: Brightness.dark,
-                                    autofocus: true,
-                                    cursorColor: Colors.blue,
-                                    // maxLength: 100,
-                                    //onEditingComplete: _submit,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w600,
-                                        foreground: Paint()..shader = linearGradient),
-                                    decoration: const InputDecoration(
-                                      counterStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.transparent),
-                                      ),
-                                      hintText: "screens.home.Add your 3'rd Option",
-                                      hintStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18, ),
-                                      enabledBorder: const OutlineInputBorder(
-                                        borderSide:
-                                        const BorderSide(color: Colors.transparent, width: 0.0),
-                                      ),
-                                    ),
-                                    validator: (value) {
-                                      print(value);
-                                      if (value.isEmpty) {
-                                        return 'Please enter Question';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
-                              )
-                            ],
+                          child:  BackForeTextInput(
+                            backText: ["Option 3","Opzione 3","Možnost 3","Opción 3","विकल्प 3","Doorasho 3","Pilihan 3","Optionem 3"],
+                            lines:1,
+                            length:null,
+                            textFont:18,
+                            // onEditingComplete: _submit,
+                            // onChanged: _gangName = value,
+                            validText:"Add your 3'rd Option",
+                            hintText:"Add your 3'rd Option",
+                            topPadding:20,
+                            hintFont: 18,
+                            backTextStyle: backgroundText1,
+                            height: 50,
+
                           ),/* your widget */
                         ),
                         SizedBox(height: getDynamicHeight(10),),
@@ -379,72 +224,20 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             Offset(0, 250), //intermediate value
                             Offset(0, 0) //enabled value
                           ],
-                          child:  Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: getDynamicHeight(50),
-                              ),
-                              Positioned(
-                                top: 0,
-                                child:FadeAnimatedTextKit(
-                                    text: ["Option 4","Opzione 4","Možnost 4","Opción 4","विकल्प 4","Doorasho 4","Pilihan 4","Optionem 4"],
-                                    textStyle: backgroundText1,
-                                    textAlign: TextAlign.center,
-                                    alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                ),
-                                //Text("Question",style: backgroundText,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:20.0),
-                                child: Positioned(
-                                  child: TextFormField(
-                                    //onChanged: (value) => _gangName = value,
-                                    maxLines: 2,
-                                    textInputAction: TextInputAction.done,
-                                    autocorrect: true,
-                                    obscureText: false,
-                                    keyboardType: TextInputType.text,
-                                    keyboardAppearance: Brightness.dark,
-                                    autofocus: true,
-                                    cursorColor: Colors.blue,
-                                    //maxLength: 100,
-                                    //onEditingComplete: _submit,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.w600,
-                                        foreground: Paint()..shader = linearGradient),
-                                    decoration: const InputDecoration(
-                                      counterStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(color: Colors.transparent),
-                                      ),
-                                      hintText: "screens.home.Add your 4'th Option",
-                                      hintStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18, ),
-                                      enabledBorder: const OutlineInputBorder(
-                                        borderSide:
-                                        const BorderSide(color: Colors.transparent, width: 0.0),
-                                      ),
-                                    ),
-                                    validator: (value) {
-                                      print(value);
-                                      if (value.isEmpty) {
-                                        return 'Please enter Question';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ),
-                              )
-                            ],
+                          child:  BackForeTextInput(
+                            backText: ["Option 4","Opzione 4","Možnost 4","Opción 4","विकल्प 4","Doorasho 4","Pilihan 4","Optionem 4"],
+                            lines:1,
+                            length:null,
+                            textFont:18,
+                            // onEditingComplete: _submit,
+                            // onChanged: _gangName = value,
+                            validText:"Add your 4'th Option",
+                            hintText:"Add your 4'th Option",
+                            topPadding:20,
+                            hintFont: 18,
+                            backTextStyle: backgroundText1,
+                            height: 50,
+
                           ),/* your widget */
                         ),
 

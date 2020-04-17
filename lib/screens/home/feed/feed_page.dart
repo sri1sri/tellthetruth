@@ -6,10 +6,13 @@ import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 import 'disaply_gang_members_page.dart';
@@ -207,40 +210,42 @@ class _F_FeedPageState extends State<F_FeedPage> {
 
   Widget _buildContent(BuildContext context) {
 
-//    return StreamBuilder<List<GangDetails>>(
-//      stream: DBreference.readGangs(),
-//      builder: (context, snapshot) {
-//        print(snapshot.data.length);
-//        return ListItemsBuilder<GangDetails>(
-//          snapshot: snapshot,
-//          itemBuilder: (context, data) =>  Column(
-//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//            crossAxisAlignment: CrossAxisAlignment.start,
-//            children: <Widget>[
-//              Container(
-//                color: Colors.white,
-//                width: MediaQuery.of(context).size.width,
-//                child: SingleChildScrollView(
-//                  child: Column(
-//                    children: <Widget>[
-//                      _buildImage(
-//                          data != null
-//                              ? data.gangIconURL
-//                              : '',
-//                          data != null
-//                              ? data.gangName
-//                              : 'fetching...',
-//                          "6 new questions"),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//              // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
-//            ],
-//          ),
-//        );
-//      },
-//    );
+    return Container(
+      color: Colors.white,
+      child: StreamBuilder<List<GangDetails>>(
+        stream: DBreference.readGangs(),
+        builder: (context, snapshot) {
+
+          return ListItemsBuilder<GangDetails>(
+            snapshot: snapshot,
+            itemBuilder: (context, data) =>  Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        _buildImage(
+                            data != null
+                                ? data.gangIconURL
+                                : '',
+                            data != null
+                                ? data.gangName
+                                : 'fetching...',
+                            "6 new questions"),
+                      ],
+                    ),
+                  ),
+                ),
+                // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 
 

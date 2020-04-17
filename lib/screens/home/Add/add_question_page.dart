@@ -114,13 +114,6 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                                           ])),
                                   decoration: BoxDecoration(
                                       color: Colors.white,
-//                            gradient: LinearGradient(
-//                                colors: <Color>[
-//                                Color(0XffFD8B1F),
-//                            Color(0XffD152E0),
-//                            Color(0Xff30D0DB),
-//                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-
                                       borderRadius: BorderRadius.circular(15.0),
                                       ),
                                 ),

@@ -126,20 +126,20 @@ class BackForeTextInput extends StatelessWidget {
                     fontSize: textFont,
                     fontWeight: FontWeight.w600,
                     foreground: Paint()..shader = linearGradient),
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   counterStyle: TextStyle(
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
-                    fontSize: 18,
+                    fontSize: textFont,
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: const BorderSide(color: Colors.transparent),
                   ),
-                  hintText: "Add your Qusetion",
+                  hintText: hintText,
                   hintStyle: TextStyle(
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
-                    fontSize: 24,),
+                    fontSize: hintFont,),
                   enabledBorder: const OutlineInputBorder(
                     borderSide:
                     const BorderSide(color: Colors.transparent, width: 0.0),

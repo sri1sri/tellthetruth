@@ -175,10 +175,6 @@ PODS:
     - Reachability
   - connectivity_macos (0.0.1):
     - Flutter
-  - device_info (0.0.1):
-    - Flutter
-  - devicelocale (0.0.1):
-    - Flutter
   - Firebase/AdMob (6.21.0):
     - Firebase/CoreOnly
     - Google-Mobile-Ads-SDK (~> 7.50)
@@ -270,14 +266,6 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GTMSessionFetcher/Core (~> 1.1)
   - Flutter (1.0.0)
-  - flutter_contact (0.0.1):
-    - Flutter
-  - flutter_keyboard_visibility (0.7.0):
-    - Flutter
-  - flutter_native_timezone (0.0.1):
-    - Flutter
-  - flutter_plugin_android_lifecycle (0.0.1):
-    - Flutter
   - Google-Mobile-Ads-SDK (7.58.0):
     - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.4.0):
@@ -325,46 +313,22 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.3.1)
-  - image_gallery_saver (0.0.1):
-    - Flutter
-  - image_picker (0.0.1):
-    - Flutter
   - leveldb-library (1.22)
-  - libphonenumber (0.0.1):
-    - Flutter
-    - libPhoneNumber-iOS
-  - libPhoneNumber-iOS (0.9.15)
-  - liquid_swipe (0.0.1):
-    - Flutter
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - path_provider (0.0.1):
-    - Flutter
-  - path_provider_macos (0.0.1):
-    - Flutter
   - permission_handler (3.3.0):
     - Flutter
   - PromisesObjC (1.2.8)
   - Reachability (3.2)
-  - receive_sharing_intent (0.0.1):
-    - Flutter
-  - url_launcher (0.0.1):
-    - Flutter
-  - url_launcher_macos (0.0.1):
-    - Flutter
-  - url_launcher_web (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - cloud_firestore_web (from `.symlinks/plugins/cloud_firestore_web/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - connectivity_macos (from `.symlinks/plugins/connectivity_macos/ios`)
-  - device_info (from `.symlinks/plugins/device_info/ios`)
-  - devicelocale (from `.symlinks/plugins/devicelocale/ios`)
   - firebase_admob (from `.symlinks/plugins/firebase_admob/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
@@ -373,21 +337,7 @@ DEPENDENCIES:
   - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
-  - flutter_contact (from `.symlinks/plugins/flutter_contact/ios`)
-  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
-  - flutter_native_timezone (from `.symlinks/plugins/flutter_native_timezone/ios`)
-  - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
-  - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
-  - image_picker (from `.symlinks/plugins/image_picker/ios`)
-  - libphonenumber (from `.symlinks/plugins/libphonenumber/ios`)
-  - liquid_swipe (from `.symlinks/plugins/liquid_swipe/ios`)
-  - path_provider (from `.symlinks/plugins/path_provider/ios`)
-  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
-  - receive_sharing_intent (from `.symlinks/plugins/receive_sharing_intent/ios`)
-  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
-  - url_launcher_macos (from `.symlinks/plugins/url_launcher_macos/ios`)
-  - url_launcher_web (from `.symlinks/plugins/url_launcher_web/ios`)
 
 SPEC REPOS:
   trunk:
@@ -412,7 +362,6 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
-    - libPhoneNumber-iOS
     - nanopb
     - PromisesObjC
     - Reachability
@@ -426,10 +375,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity/ios"
   connectivity_macos:
     :path: ".symlinks/plugins/connectivity_macos/ios"
-  device_info:
-    :path: ".symlinks/plugins/device_info/ios"
-  devicelocale:
-    :path: ".symlinks/plugins/devicelocale/ios"
   firebase_admob:
     :path: ".symlinks/plugins/firebase_admob/ios"
   firebase_analytics:
@@ -446,36 +391,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
-  flutter_contact:
-    :path: ".symlinks/plugins/flutter_contact/ios"
-  flutter_keyboard_visibility:
-    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
-  flutter_native_timezone:
-    :path: ".symlinks/plugins/flutter_native_timezone/ios"
-  flutter_plugin_android_lifecycle:
-    :path: ".symlinks/plugins/flutter_plugin_android_lifecycle/ios"
-  image_gallery_saver:
-    :path: ".symlinks/plugins/image_gallery_saver/ios"
-  image_picker:
-    :path: ".symlinks/plugins/image_picker/ios"
-  libphonenumber:
-    :path: ".symlinks/plugins/libphonenumber/ios"
-  liquid_swipe:
-    :path: ".symlinks/plugins/liquid_swipe/ios"
-  path_provider:
-    :path: ".symlinks/plugins/path_provider/ios"
-  path_provider_macos:
-    :path: ".symlinks/plugins/path_provider_macos/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
-  receive_sharing_intent:
-    :path: ".symlinks/plugins/receive_sharing_intent/ios"
-  url_launcher:
-    :path: ".symlinks/plugins/url_launcher/ios"
-  url_launcher_macos:
-    :path: ".symlinks/plugins/url_launcher_macos/ios"
-  url_launcher_web:
-    :path: ".symlinks/plugins/url_launcher_web/ios"
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -484,8 +401,6 @@ SPEC CHECKSUMS:
   cloud_firestore_web: 9ec3dc7f5f98de5129339802d491c1204462bfec
   connectivity: 6e94255659cc86dcbef1d452ad3e0491bb1b3e75
   connectivity_macos: e2e9731b6b22dda39eb1b128f6969d574460e191
-  device_info: cbf09d2ec12aa7110e0b09fabe54b5bd6c8efe74
-  devicelocale: feebbe5e7a30adb8c4f83185de1b50ff19b44f00
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   firebase_admob: d8c2bc95b5e0069406280ce6adb816cdee6aa595
   firebase_analytics: dacdcfc524d722fff13dcff942f0dfa47e6be567
@@ -504,10 +419,6 @@ SPEC CHECKSUMS:
   FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
   FirebaseStorage: b43ee271294227e1a3225544b073f3b49b427f46
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_contact: a2b54438acfd060abfebf2e2b85d70c70a15ac2f
-  flutter_keyboard_visibility: 6195387fb6d8f46e5cd6dda4a4154e41f800f545
-  flutter_native_timezone: e72ff1900460ff57cfd331d1758050c9269f3e99
-  flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
   Google-Mobile-Ads-SDK: 7052557293c75c676db55feb707ace9b790f32c1
   GoogleAppMeasurement: 6e68a94d0eaeb1d73ef6b0ed4f7334e29d63ae29
   GoogleDataTransport: b29a21d813e906014ca16c00897827e40e4a24ab
@@ -516,23 +427,12 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
-  image_gallery_saver: 73b3cd8ad9c950c739878af9c311744d1bf5405d
-  image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
-  libphonenumber: bd14d5abfc5939ab0b0767234e2d8e2593af258e
-  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
-  liquid_swipe: d3dbe523989a927528e7e7d2d0fc674da90cbbf7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
-  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   permission_handler: 67637977b227d62d46bfbf524f335f8568de5a73
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  receive_sharing_intent: c0d87310754e74c0f9542947e7cbdf3a0335a3b1
-  url_launcher: a1c0cc845906122c4784c542523d8cacbded5626
-  url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
-  url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
 
 PODFILE CHECKSUM: c1b34269bf95e90b6647bf1a6afe1ab381fe5ad6
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

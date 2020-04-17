@@ -41,7 +41,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
   bool isLoading = false;
   int generateGroupID;
   List<String> icons;
-  bool openKeyboard = false;
+//  bool openKeyboard = false;
 
 
   bool _validateAndSaveForm() {
@@ -125,12 +125,11 @@ class _F_AddGangNameState extends State<F_AddGangName> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        openKeyboard = true;
-        print('completed');
-      });
-    });
+//    Future.delayed(const Duration(milliseconds: 500), () {
+//      setState(() {
+//        openKeyboard = true;
+//      });
+//    });
     return offlineWidget(context);
   }
 
@@ -227,7 +226,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                       obscureText: false,
                                       keyboardType: TextInputType.text,
                                       keyboardAppearance: Brightness.light,
-                                      autofocus: openKeyboard ? true : false,
+                                      autofocus: true,
                                       cursorColor: Colors.white,
                                       maxLength: 15,
                                       onEditingComplete: _submit,

@@ -36,7 +36,6 @@ class F_AddPage extends StatefulWidget {
 }
 
 class _F_AddPageState extends State<F_AddPage> {
-//  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +47,73 @@ class _F_AddPageState extends State<F_AddPage> {
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(getDynamicHeight(300)),
+            child: ControlledAnimation(
+              playback: Playback.MIRROR,
+              tween: tween,
+              duration: tween.duration,
+              builder: (context, animation) {
+                return Container(
+                  child: new Scaffold(
+                      body: Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+
+                            Container(
+                              color: Colors.transparent,
+                              child: Column(
+                                children: <Widget>[
+                                  Center(
+                                    child: SizedBox(
+                                      width: getDynamicWidth(200),
+                                      height: getDynamicHeight(200),
+                                      child: Container(
+                                          child: FlareActor("images/welcome.flr",
+                                              alignment: Alignment.center,
+                                              fit: BoxFit.contain,
+                                              animation: 'Animations')),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                                    child: TyperAnimatedTextKit(
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
+                                      text: [
+                                        "Good evening $USER_NAME, ready to do something exiciting ?",
+                                      ],
+                                      textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                      textAlign: TextAlign.center,
+                                      alignment: AlignmentDirectional.topCenter,
+                                      isRepeatingAnimation: false,// or Alignment.topLeft
+                                    ),
+                                  ),
+                                  SizedBox(height: getDynamicHeight(40),),
+
+                                ],
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      )
+                  ),
+                );
+              },
+            ),
+          ),
           body: _buildContent(context),
         ),
       ),
@@ -55,100 +121,35 @@ class _F_AddPageState extends State<F_AddPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return ControlledAnimation(
-      playback: Playback.MIRROR,
-      tween: tween,
-      duration: tween.duration,
-      builder: (context, animation) {
-        return Container(
-          child: new Scaffold(
-              body: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
-                child: Column(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                    Container(
-                      color: Colors.transparent,
-                      child: Column(
-                        children: <Widget>[
-                          Center(
-                            child: SizedBox(
-                              width: getDynamicWidth(200),
-                              height: getDynamicHeight(200),
-                              child: Container(
-                                  child: FlareActor("images/welcome.flr",
-                                      alignment: Alignment.center,
-                                      fit: BoxFit.contain,
-                                      animation: 'Animations')),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                            child: TyperAnimatedTextKit(
-                              onTap: () {
-                                print("Tap Event");
-                              },
-                              text: [
-                                "Good evening $USER_NAME, ready to do something exiciting ?",
-                              ],
-                              textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
-                              textAlign: TextAlign.center,
-                              alignment: AlignmentDirectional.topCenter,
-                              isRepeatingAnimation: false,// or Alignment.topLeft
-                            ),
-                          ),
-                          SizedBox(height: getDynamicHeight(40),),
-
-                        ],
-                      ),
-                    ),
-
-//                    SizedBox(height: getDynamicHeight(100),),
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
-                      child: Container(
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            BackForeText(
-                              backText: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
-                              foreText: 'Join your gang',
-                              route: JoinGang(),
-                            ),
-                            BackForeText(
-                              backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                              foreText: 'Wanna ask a question?',
-                              route: AddQuestion(),
-                            ),
-                            BackForeText(
-                              backText: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
-                              foreText: 'Create a new gang & have fun',
-                              route: AddGangName(),
-                            ),
-                            Container(
-                              height: getDynamicHeight(60),
-                              color: Colors.redAccent,
-                              width: MediaQuery.of(context).size.width,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-          ),
-        );
-      },
+    return ClipRRect(
+      borderRadius: BorderRadius.only(topRight: Radius.circular(20.0),topLeft: Radius.circular(20.0)),
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            BackForeText(
+              backText: ["Join Gang", "ముఠాలో చేరండి", "गिरोह में शामिल हों","கும்பலில் சேருங்கள்","സംഘത്തിൽ ചേരുക","ಗ್ಯಾಂಗ್ ಸೇರಲು"],
+              foreText: 'Join your gang',
+              route: JoinGang(),
+            ),
+            BackForeText(
+              backText: ["Tell The Truth", "నిజమ్ చెప్పు", "सच बताओ","உண்மையை கூறவும்","സത്യം പറയൂ","ನಿಜ ಹೇಳು"],
+              foreText: 'Wanna ask a question?',
+              route: AddQuestion(),
+            ),
+            BackForeText(
+              backText: ["Create Gang", "గ్యాంగ్ సృష్టించండి", "गैंग बनाएं","கும்பலை உருவாக்குங்கள்","ഗാംഗ് സൃഷ്ടിക്കുക","ಗ್ಯಾಂಗ್ ರಚಿಸಿ"],
+              foreText: 'Create a new gang & have fun',
+              route: AddGangName(),
+            ),
+            Container(
+              height: getDynamicHeight(60),
+              color: Colors.redAccent,
+              width: MediaQuery.of(context).size.width,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

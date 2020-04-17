@@ -76,6 +76,7 @@ class BackForeTextInput extends StatelessWidget {
         this.onChanged,
         this.hintText,
         this.validText,
+        this.topPadding,
       });
 
   final String validText;
@@ -87,6 +88,7 @@ class BackForeTextInput extends StatelessWidget {
   final int length;
   final List backText;
   final String hintText;
+  final double topPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +106,9 @@ class BackForeTextInput extends StatelessWidget {
               textAlign: TextAlign.center,
               alignment: AlignmentDirectional.center // or Alignment.topLeft
           ),
-          //Text("Question",style: backgroundText,),
         ),
         Padding(
-          padding: const EdgeInsets.only(top:25.0),
+          padding: EdgeInsets.only(top:topPadding),
           child: Positioned(
             child:TextFormField(
                 onChanged: (value) => onChanged,

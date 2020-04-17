@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 
 class TransparentLoading extends StatelessWidget {
   final Widget child;
@@ -13,7 +15,9 @@ class TransparentLoading extends StatelessWidget {
         body: Stack(
           children: <Widget>[
             child,
-            loading ? Center(child: CircularProgressIndicator()) : Container()
+            loading ? Center(child: Lottie.network("https://assets1.lottiefiles.com/packages/lf20_5Y4qjB.json",
+                height: getDynamicHeight(210),
+                width: getDynamicWidth(210)),) : Container()
           ],
         ));
   }

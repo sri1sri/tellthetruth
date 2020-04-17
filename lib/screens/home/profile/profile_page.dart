@@ -50,36 +50,31 @@ class _F_ProfileState extends State<F_Profile> {
   final PageController ctrl = PageController(viewportFraction: 0.2,);
 
   Widget _buildContent(BuildContext context) {
-    return new MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: new Scaffold(
-            backgroundColor:Colors.white,
-body: Container(
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0XffFD8B1F),
-                      Color(0XffD152E0),
-                      Color(0Xff30D0DB),
-                      Color(0Xff12c2e9),
-                    ],
-                  )),
-              child:   Column(
-                  children: <Widget>[
-                    SizedBox(height: 100,),
-                    Center(
-                      child: InkWell(onTap: (){
-                        _confirmSignOut(context);
-                      },child: Text('logout')),
-                    ),
-                  ],
-                ),
-            )
-        ),
+    return Container(
+      decoration: new BoxDecoration(
+          gradient: new LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0XffFD8B1F),
+              Color(0XffD152E0),
+              Color(0Xff30D0DB),
+              Color(0Xff12c2e9),
+            ],
+          )),
+      child:   Column(
+        children: <Widget>[
+          SizedBox(height: 100,),
+          Center(
+            child: InkWell(onTap: (){
+              _confirmSignOut(context);
+            },child: Text('logout')),
+          ),
+        ],
+      ),
     );
   }
+
 
   Future<void> _signOut(BuildContext context) async {
     try {

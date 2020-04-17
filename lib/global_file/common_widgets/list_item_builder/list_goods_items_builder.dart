@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'goods_empty_content.dart';
+import 'empty_feed_content.dart';
 
 typedef GoodsItemWidgetBuilder<T> = Widget Function(BuildContext context, T item);
 
@@ -20,11 +20,11 @@ class ListGoodsItemsBuilder<T> extends StatelessWidget {
       if (items.isNotEmpty) {
         return _buildList(items);
       } else {
-        return GoodsEmptyContent();
+        return EmptyFeedContent();
       }
     } else if (snapshot.hasError) {
       print('error => ${snapshot.error}');
-      return GoodsEmptyContent(
+      return EmptyFeedContent(
         title: 'Something went wrong',
         message: 'Can\'t load items right now.',
       );

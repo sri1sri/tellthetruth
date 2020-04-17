@@ -47,155 +47,137 @@ class _F_FeedPageState extends State<F_FeedPage> {
     return offlineWidget(context);
   }
 
+
   Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: ControlledAnimation(
-          playback: Playback.MIRROR,
-          tween: tween,
-          duration: tween.duration,
-          builder: (context, animation) {
-            return Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        animation["color1"],
-                        animation["color2"],
-                        animation["color3"],
-                        animation["color4"]
-                      ])),
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(220)),
-                  child: ControlledAnimation(
-                    playback: Playback.MIRROR,
-                    tween: tween,
-                    duration: tween.duration,
-                    builder: (context, animation) {
-                      return Container(
-                        color: Colors.transparent,
-                        child:  Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 50.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "........",
-                                    style: TextStyle(color: Colors.transparent),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'T',
-                                        style: logoStyle1,
-                                      ),
-                                      Text('ell', style: logoStyle2),
-                                      SizedBox(
-                                        width: getDynamicWidth(5),
-                                      ),
-                                      Text(
-                                        'T',
-                                        style: logoStyle1,
-                                      ),
-                                      Text(
-                                        'he',
-                                        style: logoStyle2,
-                                      ),
-                                      SizedBox(
-                                        width: getDynamicWidth(5),
-                                      ),
-                                      Text(
-                                        'T',
-                                        style: logoStyle1,
-                                      ),
-                                      Text(
-                                        'ruth',
-                                        style: logoStyle2,
-                                      ),
-                                    ],
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.notifications,
-                                      color: Colors.white,
-                                      size: 30,
+        child: Scaffold(
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(getDynamicHeight(240)),
+              child: ControlledAnimation(
+                  playback: Playback.MIRROR,
+                  tween: tween,
+                  duration: tween.duration,
+                  builder: (context, animation) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                animation["color1"],
+                                animation["color2"],
+                                animation["color3"],
+                                // animation["color4"]
+                              ])),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "........",
+                                  style: TextStyle(color: Colors.transparent),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'T',
+                                      style: logoStyle1,
                                     ),
+                                    Text('ell', style: logoStyle2),
+                                    SizedBox(
+                                      width: getDynamicWidth(5),
+                                    ),
+                                    Text(
+                                      'T',
+                                      style: logoStyle1,
+                                    ),
+                                    Text(
+                                      'he',
+                                      style: logoStyle2,
+                                    ),
+                                    SizedBox(
+                                      width: getDynamicWidth(5),
+                                    ),
+                                    Text(
+                                      'T',
+                                      style: logoStyle1,
+                                    ),
+                                    Text(
+                                      'ruth',
+                                      style: logoStyle2,
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.notifications,
                                     color: Colors.white,
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          PageTransition(
-                                              type: PageTransitionType
-                                                  .rippleRightDown,
-                                              duration: Duration(seconds: 1),
-                                              child: GangMembers()
-                                          ),
-                                      );
-                                    },
+                                    size: 30,
                                   ),
-                                ],
-                              ),
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType
+                                              .rippleRightDown,
+                                          duration: Duration(seconds: 1),
+                                          child: GangMembers()
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: getDynamicHeight(30),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('Good Morning',
-                                      style: TextStyle(
-                                          color: Colors.white38,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: getDynamicTextSize(40),
-                                          decoration: TextDecoration.none)),
-                                  SizedBox(
-                                    height: getDynamicHeight(5),
-                                  ),
-                                  Text(
-                                    "$USER_NAME",
+                          ),
+                          SizedBox(
+                            height: getDynamicHeight(30),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(greeting(),
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.white38,
                                         fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: getDynamicTextSize(26),
-                                        decoration: TextDecoration.none),
-                                  ),
-                                ],
-                              ),
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: getDynamicTextSize(40),
+                                        decoration: TextDecoration.none)),
+                                SizedBox(
+                                  height: getDynamicHeight(5),
+                                ),
+                                Text(
+                                  "$USER_NAME",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getDynamicTextSize(26),
+                                      decoration: TextDecoration.none),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                body: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30.0),
-                        topLeft: Radius.circular(30.0)),
-                    child: Container(
-                      color: Colors.white,
-                        child: _buildContent(context)
-                    ),
-                ),
-              ),
-            );
-          },
+                          ),
+                        ],
+                      ),
+                    );
+                  })
+          ),
+          body: _buildContent(context),
         ),
       ),
     );
   }
+
 
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<List<GangDetails>>(
@@ -213,19 +195,14 @@ class _F_FeedPageState extends State<F_FeedPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-
-                      Text(data != null
-                          ? data.gangName
-                          : 'fetching...')
-
-//                      _buildImage(
-//                          data != null
-//                              ? data.gangIconURL
-//                              : '',
-//                          data != null
-//                              ? data.gangName
-//                              : 'fetching...',
-//                          "6 new questions"),
+                      _buildImage(
+                          data != null
+                              ? data.gangIconURL
+                              : '',
+                          data != null
+                              ? data.gangName
+                              : 'fetching...',
+                          "6 new questions"),
                     ],
                   ),
                 ),
@@ -247,7 +224,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
         //GoToPage(context, QuestionsPage());
       },
       child: Container(
-        height: getDynamicHeight(110),
+        height: getDynamicHeight(140),
         child: Padding(
           padding: const EdgeInsets.only(top: 20, left: 20, right: 10),
           child: Row(
@@ -261,11 +238,11 @@ class _F_FeedPageState extends State<F_FeedPage> {
                       alignment: Alignment.centerLeft,
                       children: <Widget>[
                         Container(
-                          height: getDynamicHeight(80),
+                          height: getDynamicHeight(100),
                           width: getDynamicWidth(250),
                         ),
                         Positioned(
-                          top: 5,
+                          top: 7,
                           child: Text(
                             groupName,
                             style: backgroundText,

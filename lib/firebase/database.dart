@@ -70,6 +70,6 @@ class FirestoreDatabase implements Database {
   Stream<List<GangDetails>>readGangs() => _service.collectionStream(
     path: APIPath.gangsList(),
     builder: (data, documentId) => GangDetails.fromMap(data, documentId),
-    queryBuilder: (query) => query.where('created_by', isEqualTo: USER_ID),
+    queryBuilder: (query) => query.where('gang_user_ids', arrayContains: USER_ID),
   );
 }

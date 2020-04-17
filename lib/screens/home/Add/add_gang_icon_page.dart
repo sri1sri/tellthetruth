@@ -9,6 +9,7 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/global_file/common_widgets/loading_page.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
@@ -67,9 +68,9 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
       await DBreference.createGang(createGang);
       await DBreference.updateInsights(updateInsights);
 
-
-
-      GoToPage(context, LandingPage());
+      CustomAlertBox(context, 'code- ${widget.gangCode}', 'Gang has been successfully created. Please share this gang code with your friends to join.',true, (){
+        GoToPage(context, LandingPage());
+      });
 
 
       setState(() {

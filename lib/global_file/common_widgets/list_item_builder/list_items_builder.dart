@@ -1,7 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'empty_content.dart';
+import 'empty_feed_content.dart';
 
 typedef ItemWidgetBuilder<T> = Widget Function(BuildContext context, T item);
 
@@ -20,7 +23,7 @@ class ListItemsBuilder<T> extends StatelessWidget {
       if (items.isNotEmpty) {
         return _buildList(items);
       } else {
-        return EmptyContent();
+        return EmptyFeedContent();
       }
     } else if (snapshot.hasError) {
       print('error => ${snapshot.error}');
@@ -29,8 +32,12 @@ class ListItemsBuilder<T> extends StatelessWidget {
         message: 'Can\'t load items right now.',
       );
     }
-    return Center(child: CircularProgressIndicator());
+    return Center(child:
+        Lottie.network("https://assets2.lottiefiles.com/packages/lf20_2l2iQr.json",height: getDynamicHeight(300),width: SCREEN_SIZE.width),
+    );
   }
+
+
 
   Widget _buildList(List<T> items) {
     return ListView.separated(

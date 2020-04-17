@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
@@ -228,17 +229,93 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10.0 ),
-            child: SlimyCard(
-              color: Colors.transparent,
-              borderRadius: 30,
-              slimeEnabled: true,
-              topCardWidget: topCardWidget(),
-              width: MediaQuery.of(context).size.width,
-              bottomCardWidget: bottomCardWidget(),
-              bottomCardHeight: getDynamicHeight(270),
-              topCardHeight: getDynamicHeight(150),
+          Container(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    width: getDynamicWidth(MediaQuery.of(context).size.width),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular( 5 ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all( 10.0 ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          GradientText(
+                            widget.question,
+                            textAlign: TextAlign.center,
+                            style: mediumStyle,
+                            gradient: LinearGradient(
+                              colors: [
+                                Color( 0XffFD8B1F ),
+                                Color( 0XffD152E0 ),
+                                Color( 0Xff30D0DB ),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      TranslationAnimatedWidget(
+                        enabled: true,
+                        duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                        values: [
+                          Offset(0, -250), // disabled value value
+                          Offset(0, -250), //intermediate value
+                          Offset(0, 0) //enabled value
+                        ],
+                        child: OptionCard(context ,widget.optionOne),
+                      ),
+                       SizedBox(height: getDynamicHeight(8),),
+                      TranslationAnimatedWidget(
+                        enabled: true,
+                        duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                        values: [
+                          Offset(-200, 250), // disabled value value
+                          Offset(-200, 250), //intermediate value
+                          Offset(0, 0) //enabled value
+                        ],
+                        child: OptionCard(context ,widget.optionTwo),
+                      ),
+                       SizedBox(height: getDynamicHeight(8),),
+                      TranslationAnimatedWidget(
+                        enabled: true,
+                        duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                        values: [
+                          Offset(400, -250), // disabled value value
+                          Offset(400, -250),  //intermediate value
+                          Offset(0, 0) //enabled value
+                        ],
+                        child: OptionCard(context ,widget.optionThree),/* your widget */
+                      ),
+                       SizedBox(height: getDynamicHeight(8),),
+                      TranslationAnimatedWidget(
+                        enabled: true,
+                        duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                        values: [
+                          Offset(0, 250), // disabled value value
+                          Offset(0, 250), //intermediate value
+                          Offset(0, 0) //enabled value
+                        ],
+                        child: OptionCard(context ,widget.optionFour),/* your widget */
+                      ),
+                    ],
+                  ),
+                ),
+
+              ],
             ),
           ),
           Padding(
@@ -331,163 +408,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget topCardWidget() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular( 5 ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all( 10.0 ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            GradientText(
-              widget.question,
-              textAlign: TextAlign.center,
-              style: mediumStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-// This widget will be passed as Bottom Card's Widget.
-  Widget bottomCardWidget() {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    widget.optionOne,
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    widget.optionTwo,
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    widget.optionThree,
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    widget.optionFour,
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-
     );
   }
 
@@ -585,3 +505,35 @@ class LabelText extends StatelessWidget {
   }
 }
 
+Widget OptionCard(BuildContext context ,String Option)
+{
+  return Container(
+    height: getDynamicHeight(55),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular( 5 ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GradientText(
+            Option,
+            style: answerStyle,
+            gradient: LinearGradient(
+              colors: [
+                Color( 0XffFD8B1F ),
+                Color( 0XffD152E0 ),
+                Color( 0Xff30D0DB ),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+
+}

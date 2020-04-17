@@ -7,10 +7,10 @@ import 'app_functions.dart';
 
 //light
 var heavyStyle = TextStyle(
-    color: Color(0xFF253949),
+    color: Colors.black54,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w900,
-    fontSize: getDynamicTextSize(50),decoration: TextDecoration.none);
+    fontSize: getDynamicTextSize(35),decoration: TextDecoration.none);
 
 var backgroundText = TextStyle(
     color: Colors.black12,

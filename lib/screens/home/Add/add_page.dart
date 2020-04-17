@@ -46,74 +46,85 @@ class _F_AddPageState extends State<F_AddPage> {
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(getDynamicHeight(300)),
-            child: ControlledAnimation(
-              playback: Playback.MIRROR,
-              tween: tween,
-              duration: tween.duration,
-              builder: (context, animation) {
-                return Container(
-                  child: new Scaffold(
-                      body: Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [animation["color1"], animation["color2"],animation["color3"], animation["color4"]])),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-
-                            Container(
-                              color: Colors.transparent,
-                              child: Column(
-                                children: <Widget>[
-                                  Center(
-                                    child: SizedBox(
-                                      width: getDynamicWidth(200),
-                                      height: getDynamicHeight(200),
-                                      child: Container(
-                                          child: FlareActor("images/welcome.flr",
-                                              alignment: Alignment.center,
-                                              fit: BoxFit.contain,
-                                              animation: 'Animations')),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                                    child: TyperAnimatedTextKit(
-                                      onTap: () {
-                                        print("Tap Event");
-                                      },
-                                      text: [
-                                        "Good evening $USER_NAME, ready to do something exiciting ?",
-                                      ],
-                                      textStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
-                                      textAlign: TextAlign.center,
-                                      alignment: AlignmentDirectional.topCenter,
-                                      isRepeatingAnimation: false,// or Alignment.topLeft
-                                    ),
-                                  ),
-                                  SizedBox(height: getDynamicHeight(40),),
-
-                                ],
+        child: ControlledAnimation(
+          playback: Playback.MIRROR,
+          tween: tween,
+          duration: tween.duration,
+          builder: (context, animation) {
+            return Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        animation["color1"],
+                        animation["color2"],
+                        animation["color3"],
+                        animation["color4"]
+                      ])),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: PreferredSize(
+                  preferredSize: Size.fromHeight(getDynamicHeight(300)),
+                  child: ControlledAnimation(
+                    playback: Playback.MIRROR,
+                    tween: tween,
+                    duration: tween.duration,
+                    builder: (context, animation) {
+                      return Container(
+                        color: Colors.transparent,
+                        child:  Column(
+                          children: <Widget>[
+                            Center(
+                              child: SizedBox(
+                                width: getDynamicWidth(200),
+                                height: getDynamicHeight(200),
+                                child: Container(
+                                    child: FlareActor("images/welcome.flr",
+                                        alignment: Alignment.center,
+                                        fit: BoxFit.contain,
+                                        animation: 'Animations')),
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                              child: TyperAnimatedTextKit(
+                                onTap: () {
+                                  print("Tap Event");
+                                },
+                                text: [
+                                  "Good evening $USER_NAME, ready to do something exiciting ?",
+                                ],
+                                textStyle: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                textAlign: TextAlign.center,
+                                alignment: AlignmentDirectional.topCenter,
+                                isRepeatingAnimation: false,// or Alignment.topLeft
+                              ),
+                            ),
+                            SizedBox(height: getDynamicHeight(40),),
+
                           ],
                         ),
-                      )
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
-          body: _buildContent(context),
+                ),
+                body: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30.0),
+                      topLeft: Radius.circular(30.0)),
+                  child: Container(
+                      color: Colors.white,
+                      child: _buildContent(context)
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

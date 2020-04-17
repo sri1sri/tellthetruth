@@ -33,6 +33,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
   final _formKey = GlobalKey<FormState>();
   String _gangCode;
   bool isLoading = false;
+  bool check = true;
 
   bool _validateAndSaveForm() {
     final form = _formKey.currentState;
@@ -64,13 +65,13 @@ class _F_JoinGangState extends State<F_JoinGang> {
                     gangID = data.documents[0].documentID.toString(),
                     if (usersList.contains(USER_ID))
                       {
-                        CustomAlertBox(
+                        check ? CustomAlertBox(
                             context,
                             'Oops...',
                             'You are already member in this gang. Please join in new gang.',
                             false, () {
                           Navigator.pop(context);
-                        }),
+                        }) : null,
                       }
                     else
                       {
@@ -79,18 +80,28 @@ class _F_JoinGangState extends State<F_JoinGang> {
                             gangUserIDS:
                                 usersList.cast<String>().toSet().toList()),
                         DBreference.updateGang(gangDetails, gangID),
-                        GoToPage(context, LandingPage()),
+                      setState(() {
+                      check = false;
+                      }),
+                        CustomAlertBox(
+                            context,
+                            'Success...',
+                            'You have entered into this gang.',
+                            true, () {
+                          GoToPage(context, LandingPage());
+                        }),
+
                       }
                   }
                 else
                   {
-                    CustomAlertBox(
+                    check ? CustomAlertBox(
                         context,
                         'Oops...',
                         'You have entered wrong gang code. Please check the you entered.',
                         false, () {
                       Navigator.pop(context);
-                    }),
+                    }) : null,
                   }
               });
 
@@ -145,7 +156,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
               child: Container(
                 color: Colors.transparent,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 50, 20, 40),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -283,15 +294,8 @@ class _F_JoinGangState extends State<F_JoinGang> {
                                     Container(),
                                   ])),
                               decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.7),
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(2, 1),
-                                        blurRadius: 6.0,
-                                        spreadRadius: 1.0),
-                                  ]),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(30.0),),
                             ),
                             onTap: () {
                               _submit();

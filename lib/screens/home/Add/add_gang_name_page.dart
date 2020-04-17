@@ -104,11 +104,6 @@ class _F_AddGangNameState extends State<F_AddGangName> {
 
   @override
   Widget build(BuildContext context) {
-//    Future.delayed(const Duration(milliseconds: 500), () {
-//      setState(() {
-//        openKeyboard = true;
-//      });
-//    });
     return offlineWidget(context);
   }
 
@@ -152,7 +147,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                     child: Container(
                       color: Colors.transparent,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 40),
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -293,14 +288,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius:
-                                            BorderRadius.circular(30.0),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.grey,
-                                              offset: Offset(2, 1),
-                                              blurRadius: 6.0,
-                                              spreadRadius: 1.0),
-                                        ]),
+                                            BorderRadius.circular(30.0),),
                                   ),
                                   onTap: () {
                                     setState(() {

@@ -209,14 +209,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                                 ])),
                                         decoration: BoxDecoration(
                                             color: Colors.white,
-                                            borderRadius: BorderRadius.circular(30.0),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: Colors.grey,
-                                                  offset: Offset(2, 1),
-                                                  blurRadius: 6.0,
-                                                  spreadRadius: 1.0),
-                                            ]),
+                                            borderRadius: BorderRadius.circular(30.0),),
                                       ),
                                       onTap: () {
                                         _submit();

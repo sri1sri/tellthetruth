@@ -8,6 +8,7 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 import 'add_question_page.dart';
@@ -118,121 +119,20 @@ class _F_AddPageState extends State<F_AddPage> {
                         color: Colors.white,
                         child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleLeftDown, duration: Duration(seconds: 0),alignment: Alignment.bottomCenter, child: JoinGang()));
-                                print("Tap Event");
-                              },
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: getDynamicHeight(140),
-                                  ),
-                                  Positioned(
-                                    top: 18,
-                                    child:FadeAnimatedTextKit(
-                                        text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
-                                        textStyle: backgroundText,
-                                        textAlign: TextAlign.center,
-                                        alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                    ),
-                                    //Text("Question",style: backgroundText,),
-                                  ),
-                                  Positioned(
-                                    child: GradientText(
-                                      'Join your gang...',
-                                      style: questionStyle1,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0XffFD8B1F),
-                                          Color(0XffD152E0),
-                                          Color(0Xff30D0DB),
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                            BackForeText(
+                              backText: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
+                              foreText: 'Join your gang',
+                              route: JoinGang(),
                             ),
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: AddQuestion()));
-
-                              },
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: getDynamicHeight(140),
-                                  ),
-                                  Positioned(
-                                    top: 18,
-                                    child:FadeAnimatedTextKit(
-                                        text: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                                        textStyle: backgroundText,
-                                        textAlign: TextAlign.center,
-                                        alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                    ),
-                                    //Text("Question",style: backgroundText,),
-                                  ),
-                                  Positioned(
-                                    child: GradientText(
-                                      'Wanna ask a question?',
-                                      style: questionStyle1,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0XffFD8B1F),
-                                          Color(0XffD152E0),
-                                          Color(0Xff30D0DB),
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                            BackForeText(
+                              backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                              foreText: 'Wanna ask a question?',
+                              route: AddQuestion(),
                             ),
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightUp, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: AddGangName()));
-
-                              },
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: getDynamicHeight(140),
-                                  ),
-                                  Positioned(
-                                    top: 18,
-                                    child:FadeAnimatedTextKit(
-                                        text: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
-                                        textStyle: backgroundText,
-                                        textAlign: TextAlign.center,
-                                        alignment: AlignmentDirectional.center // or Alignment.topLeft
-                                    ),
-                                  ),
-                                  Positioned(
-                                    child: GradientText(
-                                      'Create a new gang & have fun.',
-                                      style: questionStyle1,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0XffFD8B1F),
-                                          Color(0XffD152E0),
-                                          Color(0Xff30D0DB),
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                            BackForeText(
+                              backText: ["Gang", "Banda", "Pandilla","गिरोह","Burcad","Geng","Bando","Cohors"],
+                              foreText: 'Create a new gang & have fun',
+                              route: AddGangName(),
                             ),
                             Container(
                               height: getDynamicHeight(60),
@@ -252,66 +152,3 @@ class _F_AddPageState extends State<F_AddPage> {
     );
   }
 }
-
-
-
-//
-//////////
-//////////////
-     //Please dont clear this
-//////////////
-/////////
-//
-
-
-//ScreenshotController screenshotController = ScreenshotController();
-//File _imageFile;
-//
-//
-//@override
-//Widget build(BuildContext context) {
-//  return Screenshot(child: offlineWidget(context), controller: screenshotController,);
-//}
-
-//Widget _buildContent(BuildContext context) {
-//  return new MaterialApp(
-//    debugShowCheckedModeBanner: false,
-//    screens.home: new Scaffold(
-//        backgroundColor:Colors.white,
-//        body: Row(
-//          children: <Widget>[
-//            Container(
-//              decoration: new BoxDecoration(
-//                  gradient: new LinearGradient(
-//                    begin: Alignment.topCenter,
-//                    end: Alignment.bottomCenter,
-//                    colors: [
-//                      Color(0XffFD8B1F),
-//                      Color(0XffD152E0),
-//                      Color(0Xff30D0DB),
-//                    ],
-//                  )),
-//            ),
-//            InkWell(onTap: (){
-//              screenshotController.capture().then((File image) {
-//                //Capture Done
-//                setState(() {
-//                  print(_imageFile);
-//                  _imageFile = image;
-//                  print(_imageFile);
-//                  final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
-//                  print(result);
-//                });
-//              }).catchError((onError) {
-//                print(onError);
-//              });
-//            },
-//              child: Text('take screenshot'),),
-//
-//            _imageFile != null ? Image.file(_imageFile) : Container(height: 10,width: 10,color: Colors.red,),
-//
-//          ],
-//        )
-//    ),
-//  );
-//}

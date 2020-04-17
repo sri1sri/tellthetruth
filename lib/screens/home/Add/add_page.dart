@@ -135,6 +135,7 @@ class _F_AddPageState extends State<F_AddPage> {
         color: Colors.white,
         child: Column(
           children: [
+            SizedBox(height: getDynamicHeight(20),),
             BackForeText(
               backText: ["Join Gang", "ముఠాలో చేరండి", "गिरोह में शामिल हों","கும்பலில் சேருங்கள்","സംഘത്തിൽ ചേരുക","ಗ್ಯಾಂಗ್ ಸೇರಲು"],
               foreText: 'Join your gang',
@@ -150,11 +151,11 @@ class _F_AddPageState extends State<F_AddPage> {
               foreText: 'Create a new gang & have fun',
               route: AddGangName(),
             ),
-            Container(
-              height: getDynamicHeight(60),
-              color: Colors.redAccent,
-              width: MediaQuery.of(context).size.width,
-            ),
+//            Container(
+//              height: getDynamicHeight(60),
+//              color: Colors.redAccent,
+//              width: MediaQuery.of(context).size.width,
+//            ),
           ],
         ),
     );

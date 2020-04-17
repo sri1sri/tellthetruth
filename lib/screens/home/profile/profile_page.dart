@@ -2,7 +2,9 @@ import 'package:animations/animations.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/firebase/auth.dart';
+import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/global_file/common_widgets/platform_alert/platform_alert_dialog.dart';
@@ -40,28 +42,63 @@ class _F_ProfileState extends State<F_Profile> {
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: Scaffold(
-          body: _buildContent(context),
+        child: ControlledAnimation(
+          playback: Playback.MIRROR,
+          tween: tween,
+          duration: tween.duration,
+          builder: (context, animation) {
+            return Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        animation["color1"],
+                        animation["color2"],
+                        animation["color3"],
+                        animation["color4"]
+                      ])),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: PreferredSize(
+                  preferredSize: Size.fromHeight(getDynamicHeight(300)),
+                  child: ControlledAnimation(
+                    playback: Playback.MIRROR,
+                    tween: tween,
+                    duration: tween.duration,
+                    builder: (context, animation) {
+                      return Container(
+                        color: Colors.transparent,
+                        child:  Column(
+                          children: <Widget>[
+
+
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                body: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30.0),
+                      topLeft: Radius.circular(30.0)),
+                  child: Container(
+                      color: Colors.white,
+                      child: _buildContent(context)
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  final PageController ctrl = PageController(viewportFraction: 0.2,);
-
   Widget _buildContent(BuildContext context) {
     return Container(
-      decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0XffFD8B1F),
-              Color(0XffD152E0),
-              Color(0Xff30D0DB),
-              Color(0Xff12c2e9),
-            ],
-          )),
+      color: Colors.white,
       child:   Column(
         children: <Widget>[
           SizedBox(height: 100,),

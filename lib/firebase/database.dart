@@ -77,16 +77,4 @@ class FirestoreDatabase implements Database {
     builder: (data, documentId) => GangDetails.fromMap(data, documentId),
     queryBuilder: (query) => query.where('created_by', isEqualTo: USER_ID),
   );
-
-
-
-
-//  @override
-//  Stream<List<GangDetails>> searchGang(int gangCode) => _service.collectionStream(
-//    path: APIPath.gangsList(),
-//    builder: (data, documentId) => GangDetails.fromMap(data, documentId),
-//    queryBuilder: (query) => query.where('gang_code', isEqualTo: gangCode),
-//  );
-
-
 }

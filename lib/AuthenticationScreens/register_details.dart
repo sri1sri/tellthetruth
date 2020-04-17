@@ -7,6 +7,7 @@ import 'package:gender_selection/gender_selection.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/common_variables/app_functions.dart';
 import 'package:tellthetruth/common_variables/sizeConfig.dart';
+import 'package:tellthetruth/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/common_widgets/loading_page.dart';
 import 'package:tellthetruth/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
@@ -62,7 +63,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   Future<Null> showPicker(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: DateTime(2010),
+      initialDate: DateTime(2006),
       firstDate: DateTime(1930),
       lastDate: DateTime(2010),
     );
@@ -88,7 +89,6 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   }
 
   Future<void> _saveData() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
 
     final userDetails = UserDetails(
       emailID: widget.email,
@@ -99,12 +99,11 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
       dateOfBirth: Timestamp.fromDate(selectedDate),
     );
 
-    await FirestoreService.instance.setData(
-    path: APIPath.userDetails(user.uid),
+    FirestoreService.instance.setData(
+    path: APIPath.userDetails(USER_ID),
     data: userDetails.toMap(),
     );
     GoToPage(context, LandingPage());
-
   }
 
   Future<void> _submit() async {
@@ -118,20 +117,25 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
           customFormat2.format(selectedDate) !=
               customFormat2.format(DateTime.now())) {
         try {
-          await Firestore.instance
+           Firestore.instance
               .collection('${API_SUFFIX}users')
               .where('username',
               isEqualTo: _username)
               .snapshots()
               .listen((data) => {
-          if (data.documents.length == 0){
-            _saveData(),
-          }else{
-              setState(() {
-            isLoading = false;
-          }),
-        print('username already taken'),
-          }
+             if(isLoading){
+               if (data.documents.length == 0){
+                 isLoading = false,
+                 _saveData(),
+               }else{
+    setState(() {
+    isLoading = false;
+    }),
+                 CustomAlertBox(context, 'Opps...', 'This Username is already take. Please try with another username.', (){
+                   Navigator.pop(context);
+                 }),
+               }
+             }
           });
         } on PlatformException catch (e) {
           PlatformExceptionAlertDialog(
@@ -143,17 +147,18 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
           });
         }
       } else {
-        print('please fill details corretly');
         setState(() {
           isLoading = false;
         });
+        CustomAlertBox(context, 'Opps...', 'Seems like you didn\'t add you birthday or gender. Please add it.', (){
+        Navigator.pop(context);
+      });
       }
     }else{
       setState(() {
         isLoading = false;
       });
     }
-
   }
 
   @override
@@ -241,10 +246,11 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                               offset: Offset(-2, -2),
                                               blurRadius: 1.0,
                                               spreadRadius: 2.0)
-                                        ]),
+                                        ],),
                                     child: new TextFormField(
                                       onChanged: (value) => _username = value,
-                                      textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.done,
+                                      onEditingComplete: _submit,
                                       autocorrect: true,
                                       obscureText: false,
                                       focusNode: _usernameFocusNode,

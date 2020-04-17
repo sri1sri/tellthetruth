@@ -48,7 +48,7 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
   @override
   Widget build(BuildContext context) {
     FirebaseAdMob.instance.initialize(appId: getAppId());
-//    createBannerAd()..load()..show(anchorType: AnchorType.bottom, anchorOffset: 40.0,);
+    createBannerAd()..load()..show(anchorType: AnchorType.bottom, anchorOffset: 40.0,);
 
     return offlineWidget(context);
   }
@@ -210,50 +210,46 @@ class _F_Dashboard1PageState extends State<F_Dashboard1Page> {
             );
           },
         ),
-
-
-
-
-
       ),
     );
   }
 
   Widget _buildContent(BuildContext context) {
-    return StreamBuilder<List<GangDetails>>(
-      stream: DBreference.readGangs(),
-      builder: (context, snapshot) {
-        print(snapshot.data.length);
-        return ListItemsBuilder<GangDetails>(
-          snapshot: snapshot,
-          itemBuilder: (context, data) =>  Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      _buildImage(
-                          data != null
-                              ? data.gangIconURL
-                              : '',
-                          data != null
-                              ? data.gangName
-                              : 'fetching...',
-                          "6 new questions"),
-                    ],
-                  ),
-                ),
-              ),
-              // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
-            ],
-          ),
-        );
-      },
-    );
+
+//    return StreamBuilder<List<GangDetails>>(
+//      stream: DBreference.readGangs(),
+//      builder: (context, snapshot) {
+//        print(snapshot.data.length);
+//        return ListItemsBuilder<GangDetails>(
+//          snapshot: snapshot,
+//          itemBuilder: (context, data) =>  Column(
+//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//            crossAxisAlignment: CrossAxisAlignment.start,
+//            children: <Widget>[
+//              Container(
+//                color: Colors.white,
+//                width: MediaQuery.of(context).size.width,
+//                child: SingleChildScrollView(
+//                  child: Column(
+//                    children: <Widget>[
+//                      _buildImage(
+//                          data != null
+//                              ? data.gangIconURL
+//                              : '',
+//                          data != null
+//                              ? data.gangName
+//                              : 'fetching...',
+//                          "6 new questions"),
+//                    ],
+//                  ),
+//                ),
+//              ),
+//              // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
+//            ],
+//          ),
+//        );
+//      },
+//    );
   }
 
 

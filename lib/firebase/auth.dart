@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tellthetruth/common_variables/app_functions.dart';
 
 class User {
   User({@required this.uid});
@@ -51,6 +52,7 @@ class Auth implements AuthBase {
   @override
   Future<User> registerWithEmail(String email, String password) async {
     final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+    USER_ID = authResult.user.uid.toString();
     return _userFromFirebase(authResult.user);
   }
 

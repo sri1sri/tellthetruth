@@ -359,12 +359,7 @@ class _F_SignupPageState extends State<F_SignupPage> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EmailAuthentication(),
-                              ),
-                            );
+                            Navigator.pop(context);
                           },
                         ),
                       ],

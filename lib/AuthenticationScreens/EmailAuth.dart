@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/AuthenticationScreens/forgot_password_page.dart';
 import 'package:tellthetruth/AuthenticationScreens/signup_page.dart';
 import 'package:tellthetruth/common_variables/app_colors.dart';
 import 'package:tellthetruth/common_variables/app_fonts.dart';
@@ -90,7 +91,6 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return offlineWidget(context);
   }
 
@@ -264,7 +264,30 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: getDynamicHeight(20.0),
+                                  height: getDynamicHeight(15.0),
+                                ),
+                                FlatButton(
+                                  child: GradientText(
+                                    'Forgot password?',
+                                    style: mediumStyle,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0XffFD8B1F),
+                                        Color(0XffD152E0),
+                                        Color(0Xff30D0DB),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ForgotPasswordPage(),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -275,7 +298,7 @@ class _F_EmailAuthenticationState extends State<F_EmailAuthentication> {
                   ],
                 ),
 
-                SizedBox(height: getDynamicHeight(45)),
+                SizedBox(height: getDynamicHeight(20)),
 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,

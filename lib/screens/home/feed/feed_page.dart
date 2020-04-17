@@ -194,7 +194,8 @@ class _F_FeedPageState extends State<F_FeedPage> {
 
         return ListItemsBuilder<GangDetails>(
           snapshot: snapshot,
-          itemBuilder: (context, data) =>  Column(
+          itemBuilder: (context, data) =>
+              Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -203,14 +204,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      _buildImage(
-                          data != null
-                              ? data.gangIconURL
-                              : '',
-                          data != null
-                              ? data.gangName
-                              : 'fetching...',
-                          "6 new questions"),
+                      _buildImage("6 new questions", data),
                     ],
                   ),
                 ),
@@ -224,7 +218,9 @@ class _F_FeedPageState extends State<F_FeedPage> {
   }
 
 
-  Widget _buildImage(String lottiePath, String groupName, String description) {
+  Widget _buildImage( String description, GangDetails data) {
+//    USER_GANG_NAMES.add(data != null ? data.gangName : 'null');
+//    USER_GANG_ID.add(data != null ? data.gangCode:'null');
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(PageTransition(
@@ -252,7 +248,9 @@ class _F_FeedPageState extends State<F_FeedPage> {
                         Positioned(
                           top: 7,
                           child: Text(
-                            groupName,
+                            data != null
+                                ? data.gangName
+                                : 'fetching...',
                             style: backgroundText,
                           ),
                           //Text("Question",style: backgroundText,),
@@ -277,12 +275,15 @@ class _F_FeedPageState extends State<F_FeedPage> {
                     ),
                   ],
                 ),
-                Lottie.network(lottiePath,
+                Lottie.network(data != null
+                    ? data.gangIconURL
+                    : '',
                     height: getDynamicHeight(100),
                     width: getDynamicWidth(100)),
               ]),
         ),
       ),
     );
+
   }
 }

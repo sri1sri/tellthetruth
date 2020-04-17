@@ -38,6 +38,14 @@ class F_AddPage extends StatefulWidget {
 class _F_AddPageState extends State<F_AddPage> {
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(USER_GANG_NAMES);
+    print(USER_GANG_ID);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
   }

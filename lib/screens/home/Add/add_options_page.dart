@@ -62,12 +62,6 @@ class _F_AddOptionsState extends State<F_AddOptions> {
 
     if (_validateAndSaveForm()) {
 
-      print('q= ${widget.question}');
-      print('1 = $_optionOne');
-      print('2 = $_optionTwo');
-      print('3= $_optionThree');
-      print('4=$_optionFour');
-
       Navigator.push(context,
           PageTransition(type: PageTransitionType.rippleRightDown,
               duration: Duration(seconds: 1),

@@ -19,6 +19,8 @@ void GoToPage(BuildContext context, Widget page) {
 String USER_ID;
 String USER_NAME;
 String USER_GENDER;
+List USER_GANG_NAMES;
+List USER_GANG_ID;
 
 //ImageSource IMAGE_SOURCE = ImageSource.gallery;
 Size SCREEN_SIZE;

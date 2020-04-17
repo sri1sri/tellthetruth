@@ -16,6 +16,7 @@ class QuestionDetails{
   });
 
   final String questionID;
+
   final Timestamp createdAt;
   final Timestamp endsAt;
   final String createdBy;
@@ -24,9 +25,6 @@ class QuestionDetails{
   final String question;
   final int viewCount;
   final int answeredCount;
-
-//  final Map<dynamic, dynamic> qufestion;
-
 
   final Null empty;
 

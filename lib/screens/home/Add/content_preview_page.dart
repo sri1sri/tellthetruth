@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'package:animations/animations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tellthetruth/database_model/question_details.dart';
+import 'package:tellthetruth/firebase/database.dart';
+import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/screens/home/feed/display_all_questions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -9,30 +13,7 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
-
-const backgroundGradient = LinearGradient(colors: <Color>[
-  Color(0XffFD8B1F),
-  Color(0XffD152E0),
-  Color(0Xff30D0DB),
-], begin: Alignment.topLeft, end: Alignment.bottomRight);
-const activeGradient = LinearGradient(
-  colors: <Color>[
-    Color(0XffD152E0),
-    Color(0Xff30D0DB),
-    Color(0XffFD8B1F),
-  ],
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-);
-const backgroundGradient1 = LinearGradient(colors: <Color>[
-  Color(0XffD152E0),
-  Color(0Xff30D0DB),
-], begin: Alignment.topLeft, end: Alignment.bottomRight);
-const backgroundGradient2 = LinearGradient(colors: <Color>[
-  Color(0XffFD8B1F),
-  Color(0XffD152E0),
-], begin: Alignment.topLeft, end: Alignment.bottomRight);
-
+import '../../../landing_page.dart';
 
 class ContentPreview extends StatelessWidget {
 
@@ -82,6 +63,11 @@ class F_ContentPreview extends StatefulWidget {
 
 class _F_ContentPreviewState extends State<F_ContentPreview> {
 
+  int _currentColorIndex = 0;
+  bool isLoading = false;
+  bool isAnonymous = true;
+  bool isGangSelected = false;
+
   List<Color> _colors = [ //Get list of colors
     Color(0XffFD8B1F),
     Color(0XffD152E0),
@@ -94,51 +80,53 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   ];
 
 
-  int _currentIndex = 0;
-
-  _onChanged() { //update with a new color when the user taps button
+  changeBackground() { //update with a new color when the user taps button
     int _colorCount = _colors.length;
 
     setState(() {
-      if (_currentIndex == _colorCount - 1) {
-        _currentIndex = 0;
+      if (_currentColorIndex == _colorCount - 1) {
+        _currentColorIndex = 0;
       } else {
-        _currentIndex += 1;
+        _currentColorIndex += 1;
       }
-      print(_currentIndex);
+      print(_currentColorIndex);
     }
     );
   }
+  
+
+  Future<void> _submit() async {
+    setState(() {
+      isLoading = true;
+    });
 
 
+    final createQuestion = QuestionDetails(
+      createdAt: Timestamp.fromDate(DateTime.now()),
+      answeredCount: 0,
+      createdBy: USER_ID,
+      endsAt: Timestamp.fromDate(DateTime.now()),
+      options: [widget.optionOne, widget.optionTwo, widget.optionThree, widget.optionFour],
+      question: widget.question,
+      revealIdentity: isAnonymous,
+      viewCount: 0,
+    );
 
-  static const duration = const Duration( seconds: 1 );
+    await DBreference.createQuestion(createQuestion, '2020-04-17 22:17:28.884711');
+    setState(() {
+      isLoading = false;
+    });
 
-  int secondsPassed = 5000;
-  bool isActive = true;
+    CustomAlertBox(context,
+        'Success',
+        'Question posted !!!!!',
+        true, (){
+      GoToPage(context, LandingPage());
+    });
 
-  Timer timer;
 
-  void handleTick() {
-    if (isActive) {
-      setState( () {
-        secondsPassed = secondsPassed - 1;
-      } );
-    }
   }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print('q= ${widget.question}');
-    print('1 = ${widget.optionOne}');
-    print('2 = ${widget.optionTwo}');
-    print('3= ${widget.optionThree}');
-    print('4=${widget.optionFour}');
-  }
-
-
+  
   @override
   Widget build(BuildContext context) {
     return offlineWidget( context );
@@ -156,196 +144,188 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   }
 
   Widget _buildContent(BuildContext context) {
-    if (timer == null) {
-      timer = Timer.periodic( duration, (Timer t) {
-        handleTick( );
-      } );
-    }
-    int seconds = secondsPassed % 60;
-    int minutes = secondsPassed ~/ 60;
-    int hours = secondsPassed ~/ (60 * 60);
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: new Scaffold(
-        body: Container(
-          width: MediaQuery
-              .of( context )
-              .size
-              .width,
-          height: MediaQuery
-              .of( context )
-              .size
-              .height,
-          decoration: new BoxDecoration(
-              gradient: LinearGradient(colors: <Color>[
-                _colors[_currentIndex],
-                _colors1[_currentIndex],
-              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+    return Container(
+      width: MediaQuery.of( context ).size.width,
+      height: MediaQuery.of( context ).size.height,
+      decoration: new BoxDecoration(
+        gradient: LinearGradient(colors: <Color>[
+          _colors[_currentColorIndex],
+          _colors1[_currentColorIndex],
+        ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-//                    SizedBox( height: getDynamicHeight(40) ),
-                    Padding(
-                      padding: const EdgeInsets.only(left:15.0,right: 15,top:30 ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector( child: Icon(
-                            Icons.close, color: Colors.white,size: 30, ),
-                            onTap: () {
-                              Navigator.pop( context, true );
-                            },
-                          ),
-                          GestureDetector(
-                            child: Container(
-                              width: getDynamicWidth(50.0),
-                              height: getDynamicHeight(50),
-                              padding: EdgeInsets.all(15.0),
-                              decoration: BoxDecoration(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left:15.0,right: 15,top:20 ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector( child: Icon(
+                  Icons.close, color: Colors.white,size: 30, ),
+                  onTap: () {
+                    Navigator.pop( context, true );
+                  },
+                ),
 
-                            gradient: LinearGradient(colors: <Color>[
-                              _colors[_currentIndex],
-                              _colors1[_currentIndex],
-                            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                                border: Border.all(
-                                  color: Colors.white, //                   <--- border color
-                                  width: getDynamicWidth(1),
-                                ),
-                                borderRadius: BorderRadius.circular(30.0),
+                GestureDetector(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        child: isAnonymous ? Text('Anonymous mode', style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),)
+                            :
+                        Text('Reveal identity ', style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
+                      ),
+                      Text('Tap here to change', style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w400,
+                          fontSize: getDynamicTextSize(12),decoration: TextDecoration.none))
+                    ],
+                  ),
+                  onTap: () {
+                    setState(() {
+                      isAnonymous ? isAnonymous = false : isAnonymous = true;
+                    });
+                  },
+                ),
+
+                GestureDetector(
+                  child: Container(
+                    width: getDynamicWidth(40),
+                    height: getDynamicHeight(40),
+                    padding: EdgeInsets.all(20.0),
+                    decoration: BoxDecoration(
+
+                      gradient: LinearGradient(colors: <Color>[
+                        _colors[_currentColorIndex],
+                        _colors1[_currentColorIndex],
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                      border: Border.all(
+                        color: Colors.white, //                   <--- border color
+                        width: getDynamicWidth(3),
+                      ),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  ),
+                  onTap: () {
+                    changeBackground();
+                  },
+                ),
+
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0 ),
+            child: SlimyCard(
+              color: Colors.transparent,
+              borderRadius: 30,
+              slimeEnabled: true,
+              topCardWidget: topCardWidget(),
+              width: MediaQuery.of(context).size.width,
+              bottomCardWidget: bottomCardWidget(),
+              bottomCardHeight: getDynamicHeight(270),
+              topCardHeight: getDynamicHeight(150),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Select Gang",style: questionStyle1,),
+                Container(
+                    color: Colors.transparent,
+                    height: getDynamicHeight(80.0) ,
+                    width: MediaQuery.of(context).size.width ,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child:Row(
+                        children: [
+                          _buildImage(".Net 791"),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("Family",),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("LTI Pune",),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("Caseu",),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("rajaa",),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("eldooo",),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("sainath",),
+                          SizedBox(width: getDynamicWidth(8),),
+                          _buildImage("nanditha",),
+                          SizedBox(width: getDynamicWidth(8),),
+                        ],
+                      ) ,
+                    )
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              GestureDetector(
+                child: Container(
+                  width: getDynamicWidth(180.0),
+                  padding: EdgeInsets.all(15.0),
+                  child: Center(
+                      child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(),
+                            GradientText(
+                              'Ask',
+                              style: mediumStyle,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                               ),
                             ),
-                            onTap: () {
-                              _onChanged();
-                              //Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightDown, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: QuestionReviewPage()));
-                            },
-                          ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.blue,
+                              size: getDynamicTextSize(15),
+                            ),
+                            Container(),
+                          ])),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
 
-                        ],
-                      ),
-                    ),
-                  ],
+                      borderRadius: BorderRadius.circular(30.0),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(2, 1),
+                            blurRadius: 6.0,
+                            spreadRadius: 1.0),
+                      ]),
                 ),
+                onTap: () {
+                  _submit();
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0 ),
-                child: SlimyCard(
-                  color: Colors.transparent,
-                  borderRadius: 30,
-                  slimeEnabled: true,
-                  topCardWidget: topCardWidget(),
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  bottomCardWidget: bottomCardWidget(),
-                  bottomCardHeight: getDynamicHeight(270),
-                  topCardHeight: getDynamicHeight(200),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left:10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Select Gang",style: questionStyle1,),
-                    Container(
-                          color: Colors.transparent,
-                          height: getDynamicHeight(80.0) ,
-                          width: MediaQuery.of(context).size.width ,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child:Row(
-                              children: [
-                                _buildImage(".Net 791"),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("Family",),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("LTI Pune",),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("Caseu",),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("rajaa",),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("eldooo",),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("sainath",),
-                                SizedBox(width: getDynamicWidth(8),),
-                                _buildImage("nanditha",),
-                                SizedBox(width: getDynamicWidth(8),),
-                              ],
-                            ) ,
-                          )
-                      ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-//                                  Container(
-//                                    child: Text(""),
-//                                  ),
-                  GestureDetector(
-                    child: Container(
-                      width: getDynamicWidth(180.0),
-                      padding: EdgeInsets.all(15.0),
-                      child: Center(
-                          child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Container(),
-                                GradientText(
-                                  'Create',
-                                  style: mediumStyle,
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0XffFD8B1F),
-                                      Color(0XffD152E0),
-                                      Color(0Xff30D0DB),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.blue,
-                                  size: getDynamicTextSize(15),
-                                ),
-                                Container(),
-                              ])),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-
-                          borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(2, 1),
-                                blurRadius: 6.0,
-                                spreadRadius: 1.0),
-                          ]),
-                    ),
-                    onTap: () {
-
-                    },
-                  ),
-                ],
-              ),
-
-
-
             ],
           ),
-
-        ),
-
+        ],
       ),
     );
   }

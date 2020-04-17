@@ -111,7 +111,7 @@ class BackForeTextInput extends StatelessWidget {
           height: getDynamicHeight(height),
         ),
         Positioned(
-          top:-10,
+          top: -10,
           child:FadeAnimatedTextKit(
               text: backText,
               textStyle: backTextStyle,
@@ -121,7 +121,7 @@ class BackForeTextInput extends StatelessWidget {
         ),
         Positioned(
           child:TextFormField(
-            onChanged: (value) => onChanged,
+            onChanged: onChanged,
             maxLines: lines,
             textInputAction: textInputAction,
             autocorrect: true,

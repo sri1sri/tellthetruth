@@ -50,7 +50,7 @@ class FirestoreDatabase implements Database {
 
   @override
   Future<void> createGang(GangDetails gangDetails) async => await _service.setData(
-    path: APIPath.gangDetails(DateTime.now().toIso8601String()),
+    path: APIPath.gangDetails(DateTime.now().toString()),
     data: gangDetails.toMap(),
   );
 

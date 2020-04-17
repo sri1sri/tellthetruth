@@ -57,148 +57,137 @@ class _F_FeedPageState extends State<F_FeedPage> {
           duration: tween.duration,
           builder: (context, animation) {
             return Container(
-              child: new Scaffold(
-                body: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            animation["color1"],
-                            animation["color2"],
-                            animation["color3"],
-                            animation["color4"]
-                          ])),
-                  child:
-                  Scaffold(
-                    backgroundColor: Colors.transparent,
-                    appBar: PreferredSize(
-                      preferredSize: Size.fromHeight(getDynamicHeight(270)),
-                      child: ControlledAnimation(
-                        playback: Playback.MIRROR,
-                        tween: tween,
-                        duration: tween.duration,
-                        builder: (context, animation) {
-                          return Container(
-                            color: Colors.transparent,
-                            child: new Scaffold(
-                              backgroundColor: Colors.transparent,
-                              body: Container(
-                                color: Colors.transparent,
-                                child:
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      children: <Widget>[
-                                        SizedBox(
-                                          height: getDynamicHeight(50),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "........",
-                                              style: TextStyle(color: Colors.transparent),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'T',
-                                                  style: logoStyle1,
-                                                ),
-                                                Text('ell', style: logoStyle2),
-                                                SizedBox(
-                                                  width: getDynamicWidth(5),
-                                                ),
-                                                Text(
-                                                  'T',
-                                                  style: logoStyle1,
-                                                ),
-                                                Text(
-                                                  'he',
-                                                  style: logoStyle2,
-                                                ),
-                                                SizedBox(
-                                                  width: getDynamicWidth(5),
-                                                ),
-                                                Text(
-                                                  'T',
-                                                  style: logoStyle1,
-                                                ),
-                                                Text(
-                                                  'ruth',
-                                                  style: logoStyle2,
-                                                ),
-                                              ],
-                                            ),
-                                            IconButton(
-                                              icon: Icon(
-                                                Icons.notifications,
-                                                color: Colors.white,
-                                                size: 30,
-                                              ),
-                                              color: Colors.white,
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                        type: PageTransitionType
-                                                            .rippleRightDown,
-                                                        duration: Duration(seconds: 1),
-                                                        child: GangMembers()));
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                        // SizedBox(height: 30,),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: getDynamicHeight(30),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Good Morning',
-                                              style: TextStyle(
-                                                  color: Colors.white38,
-                                                  fontFamily: 'Montserrat',
-                                                  fontWeight: FontWeight.w900,
-                                                  fontSize: getDynamicTextSize(40),
-                                                  decoration: TextDecoration.none)),
-                                          SizedBox(
-                                            height: getDynamicHeight(5),
-                                          ),
-                                          Text(
-                                            "$USER_NAME",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontFamily: 'Montserrat',
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: getDynamicTextSize(26),
-                                                decoration: TextDecoration.none),
-                                          ),
-                                        ],
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        animation["color1"],
+                        animation["color2"],
+                        animation["color3"],
+                        animation["color4"]
+                      ])),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: PreferredSize(
+                  preferredSize: Size.fromHeight(getDynamicHeight(220)),
+                  child: ControlledAnimation(
+                    playback: Playback.MIRROR,
+                    tween: tween,
+                    duration: tween.duration,
+                    builder: (context, animation) {
+                      return Container(
+                        color: Colors.transparent,
+                        child:  Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 50.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "........",
+                                    style: TextStyle(color: Colors.transparent),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'T',
+                                        style: logoStyle1,
                                       ),
+                                      Text('ell', style: logoStyle2),
+                                      SizedBox(
+                                        width: getDynamicWidth(5),
+                                      ),
+                                      Text(
+                                        'T',
+                                        style: logoStyle1,
+                                      ),
+                                      Text(
+                                        'he',
+                                        style: logoStyle2,
+                                      ),
+                                      SizedBox(
+                                        width: getDynamicWidth(5),
+                                      ),
+                                      Text(
+                                        'T',
+                                        style: logoStyle1,
+                                      ),
+                                      Text(
+                                        'ruth',
+                                        style: logoStyle2,
+                                      ),
+                                    ],
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.notifications,
+                                      color: Colors.white,
+                                      size: 30,
                                     ),
-                                  ],
-                                ),
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              type: PageTransitionType
+                                                  .rippleRightDown,
+                                              duration: Duration(seconds: 1),
+                                              child: GangMembers()
+                                          ),
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                             ),
-                          );
-                        },
-                      ),
-                    ),
-                    body: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30.0),
-                            topLeft: Radius.circular(30.0)),
-                        child: _buildContent(context)),
+                            SizedBox(
+                              height: getDynamicHeight(30),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Good Morning',
+                                      style: TextStyle(
+                                          color: Colors.white38,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: getDynamicTextSize(40),
+                                          decoration: TextDecoration.none)),
+                                  SizedBox(
+                                    height: getDynamicHeight(5),
+                                  ),
+                                  Text(
+                                    "$USER_NAME",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getDynamicTextSize(26),
+                                        decoration: TextDecoration.none),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
+                ),
+                body: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.0),
+                        topLeft: Radius.circular(30.0)),
+                    child: Container(
+                      color: Colors.white,
+                        child: _buildContent(context)
+                    ),
                 ),
               ),
             );
@@ -209,42 +198,43 @@ class _F_FeedPageState extends State<F_FeedPage> {
   }
 
   Widget _buildContent(BuildContext context) {
+    return StreamBuilder<List<GangDetails>>(
+      stream: DBreference.readGangs(),
+      builder: (context, snapshot) {
 
-    return Container(
-      color: Colors.white,
-      child: StreamBuilder<List<GangDetails>>(
-        stream: DBreference.readGangs(),
-        builder: (context, snapshot) {
+        return ListItemsBuilder<GangDetails>(
+          snapshot: snapshot,
+          itemBuilder: (context, data) =>  Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
 
-          return ListItemsBuilder<GangDetails>(
-            snapshot: snapshot,
-            itemBuilder: (context, data) =>  Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        _buildImage(
-                            data != null
-                                ? data.gangIconURL
-                                : '',
-                            data != null
-                                ? data.gangName
-                                : 'fetching...',
-                            "6 new questions"),
-                      ],
-                    ),
+                      Text(data != null
+                          ? data.gangName
+                          : 'fetching...')
+
+//                      _buildImage(
+//                          data != null
+//                              ? data.gangIconURL
+//                              : '',
+//                          data != null
+//                              ? data.gangName
+//                              : 'fetching...',
+//                          "6 new questions"),
+                    ],
                   ),
                 ),
-                // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+              // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
+            ],
+          ),
+        );
+      },
     );
   }
 

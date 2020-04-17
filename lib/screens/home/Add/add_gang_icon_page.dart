@@ -1,6 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
-import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/loading_page.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
@@ -41,8 +39,6 @@ class F_AddGangIcon extends StatefulWidget {
 }
 
 class _F_AddGangIconState extends State<F_AddGangIcon> {
-
-  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   bool isLoading = false;
   String selectedIcon;

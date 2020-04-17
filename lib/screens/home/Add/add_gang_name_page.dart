@@ -129,7 +129,6 @@ class _F_AddGangNameState extends State<F_AddGangName> {
       setState(() {
         openKeyboard = true;
         print('completed');
-
       });
     });
     return offlineWidget(context);
@@ -244,7 +243,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: const BorderSide(color: Colors.white),
                                         ),
-                                        hintText: 'screens.home.Add gang name',
+                                        hintText: 'Add gang name',
                                         hintStyle: TextStyle(
                                             color: Colors.white30,
                                             fontFamily: 'Montserrat',

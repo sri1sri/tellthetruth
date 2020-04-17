@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contact/contacts.dart';
-import 'package:giffy_dialog/giffy_dialog.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 void GoToPage(BuildContext context, Widget page) {
@@ -23,7 +20,7 @@ String USER_ID;
 String USER_NAME;
 String USER_GENDER;
 
-ImageSource IMAGE_SOURCE = ImageSource.gallery;
+//ImageSource IMAGE_SOURCE = ImageSource.gallery;
 Size SCREEN_SIZE;
 double IPHONE_11_PRO_MAX_HEIGHT = 896;
 double IPHONE_11_PRO_MAX_Width = 414;
@@ -89,30 +86,30 @@ List<int> convertSeconds(int seconds) {
   return [hours.toInt(), min.toInt(), sec.toInt() ];
 }
 
-List<String> CONTACT_NUMBERS = new List();
-
-  getAllContacts() async {
-  await Contacts.streamContacts().forEach((contact) {
-    contact.phones.forEach((phone){
-      String spaceRmoved = phone.value.replaceAll(" ", "");
-      String con = spaceRmoved.replaceAll("-", "");
-      if(con.length>10){
-        String onlycon = con.replaceAll(new RegExp(r'[^\w\s]+'),'');
-
-        if(!CONTACT_NUMBERS.contains(onlycon)){
-          CONTACT_NUMBERS.add(onlycon);
-        }
-      }
-    });
-
-  }).whenComplete((){
-    return CONTACT_NUMBERS;
-//      print('contacts ${ContactNumber}');
-//      setState(() {
+//List<String> CONTACT_NUMBERS = new List();
 //
-//      });
-  });
-}
+//  getAllContacts() async {
+//  await Contacts.streamContacts().forEach((contact) {
+//    contact.phones.forEach((phone){
+//      String spaceRmoved = phone.value.replaceAll(" ", "");
+//      String con = spaceRmoved.replaceAll("-", "");
+//      if(con.length>10){
+//        String onlycon = con.replaceAll(new RegExp(r'[^\w\s]+'),'');
+//
+//        if(!CONTACT_NUMBERS.contains(onlycon)){
+//          CONTACT_NUMBERS.add(onlycon);
+//        }
+//      }
+//    });
+//
+//  }).whenComplete((){
+//    return CONTACT_NUMBERS;
+////      print('contacts ${ContactNumber}');
+////      setState(() {
+////
+////      });
+//  });
+//}
 
 
 //void customAlertBox(BuildContext context, String title, String description){

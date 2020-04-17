@@ -1,6 +1,5 @@
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
@@ -36,7 +35,7 @@ class F_AddPage extends StatefulWidget {
 }
 
 class _F_AddPageState extends State<F_AddPage> {
-  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
+//  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,6 @@ class _F_AddPageState extends State<F_AddPage> {
   }
 
   Widget _buildContent(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return ControlledAnimation(
       playback: Playback.MIRROR,
       tween: tween,

@@ -18,8 +18,8 @@ abstract class Database{
   Future<void> updateInsights(CommonFiles commonFiles);
   Stream<List<GangDetails>>readGangs();
   Stream<CommonFiles> getAnimations();
-
   Future<void> createQuestion(QuestionDetails questionDetails, String gangID);
+  Stream<List<QuestionDetails>>readQuestions(String gangID);
 
 }
 
@@ -74,6 +74,12 @@ class FirestoreDatabase implements Database {
   Future<void> createQuestion(QuestionDetails questionDetails, String gangID) async => await _service.setData(
     path: APIPath.questionDetails(gangID, DateTime.now().toString()),
     data: questionDetails.toMap(),
+  );
+
+  @override
+  Stream<List<QuestionDetails>>readQuestions(String gangID) => _service.collectionStream(
+    path: APIPath.questionsList(gangID),
+    builder: (data, documentId) => QuestionDetails.fromMap(data, documentId),
   );
 
   @override

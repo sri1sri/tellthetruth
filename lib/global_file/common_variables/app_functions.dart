@@ -103,6 +103,13 @@ String greeting() {
   return 'Good Night';
 }
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
+
 //List<String> CONTACT_NUMBERS = new List();
 //
 //  getAllContacts() async {

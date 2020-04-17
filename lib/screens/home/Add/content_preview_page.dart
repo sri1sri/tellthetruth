@@ -68,20 +68,21 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   bool isAnonymous = true;
   bool isGangSelected = false;
 
-  List<Color> _colors = [ //Get list of colors
-    Color(0XffFD8B1F),
-    Color(0XffD152E0),
-    Color(0Xff30D0DB),
+  List _colors1 = [ //Get list of colors
+    '0XffFD8B1F',
+    '0XffD152E0',
+    '0Xff30D0DB',
   ];
-  List<Color> _colors1 = [ //Get list of colors
-    Color(0Xff30DD76),
-    Color(0XffFF871F),
-    Color(0XffFF3FE0),
+
+  List _colors2 = [ //Get list of colors
+    '0Xff30DD76',
+    '0XffFF871F',
+    '0XffFF3FE0',
   ];
 
 
   changeBackground() { //update with a new color when the user taps button
-    int _colorCount = _colors.length;
+    int _colorCount = _colors1.length;
 
     setState(() {
       if (_currentColorIndex == _colorCount - 1) {
@@ -110,6 +111,9 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       question: widget.question,
       revealIdentity: isAnonymous,
       viewCount: 0,
+      color1: _colors1[_currentColorIndex].toString(),
+      color2: _colors2[_currentColorIndex].toString(),
+      createByGender: USER_GENDER,
     );
 
     await DBreference.createQuestion(createQuestion, '2020-04-17 22:17:28.884711');
@@ -149,8 +153,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       height: MediaQuery.of( context ).size.height,
       decoration: new BoxDecoration(
         gradient: LinearGradient(colors: <Color>[
-          _colors[_currentColorIndex],
-          _colors1[_currentColorIndex],
+          Color(_colors1[_currentColorIndex]),
+          Color(_colors2[_currentColorIndex]),
         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
       child: Column(
@@ -206,8 +210,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                     decoration: BoxDecoration(
 
                       gradient: LinearGradient(colors: <Color>[
-                        _colors[_currentColorIndex],
                         _colors1[_currentColorIndex],
+                        _colors2[_currentColorIndex],
                       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                       border: Border.all(
                         color: Colors.white, //                   <--- border color

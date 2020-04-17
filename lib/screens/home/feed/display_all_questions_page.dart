@@ -5,9 +5,13 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
+import 'package:tellthetruth/database_model/question_details.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
+import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 import 'diaplay_single_question_page.dart';
@@ -40,20 +44,22 @@ const backgroundGradient2 = LinearGradient(colors: <Color>[
 
 
 class AllQuestions extends StatelessWidget {
-  //ProfilePage({@required this.database});
-  //Database database;
+  AllQuestions({@required this.gangID, @required this.gangName});
+  String gangID;
+  String gangName;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_AllQuestions(),
+      child: F_AllQuestions(gangID: gangID,gangName: gangName),
     );
   }
 }
 
 class F_AllQuestions extends StatefulWidget {
-  // F_ProfilePage({@required this.database});
-  // Database database;
+  F_AllQuestions({@required this.gangID, @required this.gangName});
+   String gangID;
+  String gangName;
 
   @override
   _F_AllQuestionsState createState() => _F_AllQuestionsState();
@@ -71,17 +77,6 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
-          body: _buildContent(context),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildContent(BuildContext context) {
-    return new MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: new Scaffold(
-          backgroundColor:Colors.white,
           appBar: AppBar(
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
@@ -90,7 +85,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             ),
             centerTitle: true,
             title: GradientText(
-              'Tell Truth',
+              widget.gangName,
               style: boldStyle,
               gradient: LinearGradient(
                 colors: [
@@ -108,10 +103,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 color: Colors.white,
                 onPressed: () {
                   Navigator.push(context, PageTransition(type: PageTransitionType.rotate, duration: Duration(seconds: 1), child: GangMembers()));
-                  },
+                },
               ),
               GestureDetector(
-                onTap: (){},
+                  onTap: (){},
                   child: Image.asset('images/what.jpeg',height: getDynamicHeight(30),width: getDynamicWidth(30),)
               ),
               IconButton(
@@ -126,55 +121,62 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             elevation: 0,
             backgroundColor: Colors.white,
           ),
-          body: SingleChildScrollView(
-            child: Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: <Widget>[
-                    SafeArea(
-                      child: Container(
-                        height: MediaQuery.of(context).size.height/1.2,
-                        width: MediaQuery.of(context).size.width,
-                        padding: EdgeInsets.all(0.0),
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                                child: GridView.count(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 0,
-                                    childAspectRatio: 0.57,
-                                    children: [
-                                      _QuestionListCard(backgroundGradient, "who is our father of our nation","images/boy.png","383","230",true),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/boy.png","5","30",false),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","36","830",false),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5","200",false),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","56","340",true),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","64","210",false),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/girl.png","5756","850",false),
-                                      _QuestionListCard(activeGradient, "who is our father of our nation","images/girl.png","432","400",true),
-                                      _QuestionListCard(backgroundGradient1, "who is our father of our nation","images/boy.png","423","420",false),
-                                      _QuestionListCard(backgroundGradient2, "who is our father of our nation","images/boy.png","3423","700",true),
-                                    ]
-                                )
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+          body: _buildContent(context),
+        ),
+      ),
+    );
+  }
 
-                  ],
+  Widget _buildContent(BuildContext context) {
+    return StreamBuilder<List<QuestionDetails>>(
+        stream: DBreference.readQuestions(widget.gangID),
+        builder: (context, snapshot) {
+          return ListItemsBuilder<QuestionDetails>(
+              snapshot: snapshot,
+              itemBuilder: (context, data) => SingleChildScrollView(
+                child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: <Widget>[
+                        SafeArea(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height/1.2,
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.all(0.0),
+                            child: Column(
+                              children: <Widget>[
+                                Expanded(
+                                    child: GridView.count(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 10,
+                                        mainAxisSpacing: 0,
+                                        childAspectRatio: 0.57,
+                                        children: [
+                                          _QuestionListCard(data),
+                                         ]
+                                    )
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        )
-    );
 
+          );
+          },
+    );
   }
-  Widget _QuestionListCard(LinearGradient Gradiant, String Question,String imgPath,String views,String response, bool isBlur) {
+
+
+
+  Widget _QuestionListCard(QuestionDetails data) {
     return ExpandPageTransition(
 
       navigateToPage: SingleQuestion(),
@@ -205,7 +207,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                               child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8.0),
-                                    gradient: Gradiant,
+                                    gradient: LinearGradient(colors: <Color>[
+                                      Color(int.tryParse(data != null ? data.color1 : 0XffFD8B1F)),
+                                      Color(int.tryParse(data != null ? data.color2 : 0Xff30DD76)),
+                                    ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
@@ -221,10 +226,11 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                               Row(
                                                 children: [
 
-                                                  CircleAvatar(
+                                                   CircleAvatar(
                                                     backgroundColor: Colors.transparent,
-                                                    backgroundImage: AssetImage(
-                                                        imgPath),
+                                                    backgroundImage: data != null ? data.createByGender == 'male' ? AssetImage(
+                                                        'images/boy.png') : AssetImage(
+                                                        'images/girl.png') : Container(height: 0, width: 0,),
                                                     radius: 15,
                                                   ),
                                                 ],
@@ -237,30 +243,27 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                               print("Tap Event");
                                             },
                                             text: [
-                                              "Ready",
-                                              "Set",
-                                              "Your Question",
-                                              Question,
+                                              '${data.question}?'.capitalize(),
                                             ],
                                             textStyle: questionStyle,
                                             textAlign: TextAlign.center,
                                             alignment: AlignmentDirectional.topCenter,
                                             isRepeatingAnimation: false,// or Alignment.topLeft
                                           ),
-                                          isBlur == true ? BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                              sigmaX: 5,
-                                              sigmaY: 5,
-                                            ),
-                                            child: Container(
-                                              height: getDynamicHeight(1),
-                                              width: getDynamicWidth(1),
-                                              color: Colors.black.withOpacity(0.0),
-                                            ),
-                                          ) : Container(
-                                            height: 0,
-                                            width: 0,
-                                          ),
+//                                          isBlur == true ? BackdropFilter(
+//                                            filter: ImageFilter.blur(
+//                                              sigmaX: 5,
+//                                              sigmaY: 5,
+//                                            ),
+//                                            child: Container(
+//                                              height: getDynamicHeight(1),
+//                                              width: getDynamicWidth(1),
+//                                              color: Colors.black.withOpacity(0.0),
+//                                            ),
+//                                          ) : Container(
+//                                            height: 0,
+//                                            width: 0,
+//                                          ),
 
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.end,
@@ -274,7 +277,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                                     radius: 14,
                                                   ),
                                                   SizedBox(width: getDynamicWidth(5),),
-                                                  Text(views,style: countStyle,),
+                                                  Text(data.viewCount.toString(),style: countStyle,),
                                                 ],
                                               ),
                                               SizedBox(width: getDynamicWidth(20),),
@@ -288,7 +291,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                                     radius: 12,
                                                   ),
                                                   SizedBox(width: getDynamicWidth(5),),
-                                                  Text(response,style: countStyle,),
+                                                  Text(data.answeredCount.toString(),style: countStyle,),
                                                 ],
                                               ),
                                             ],
@@ -307,9 +310,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 )
             )
         );
-
       }
       );
   }
-
 }

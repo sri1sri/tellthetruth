@@ -224,7 +224,13 @@ class _F_FeedPageState extends State<F_FeedPage> {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(PageTransition(
-            type: PageTransitionType.rippleLeftUp,duration: Duration(seconds: 1), child: AllQuestions()));
+            type: PageTransitionType.rippleLeftUp,
+            duration: Duration(seconds: 1),
+            child: AllQuestions(
+                gangID: data != null ? data.gangID : '0',
+                gangName: data != null ? data.gangName : '0'),
+        ),
+        );
         //GoToPage(context, QuestionsPage());
       },
       child: Container(

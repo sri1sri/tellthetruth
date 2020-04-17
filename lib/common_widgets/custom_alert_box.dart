@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-CustomAlertBox(BuildContext context, String title, String desctiption,  VoidCallback onPressed){
+CustomAlertBox(BuildContext context, String title, String desctiption, bool isSuccess, VoidCallback onPressed,){
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!

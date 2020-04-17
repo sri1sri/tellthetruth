@@ -24,7 +24,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import '../landing_page.dart';
 
 class RegisterDetails extends StatelessWidget {
-
   RegisterDetails({@required this.email, @required this.password});
   String email;
   String password;
@@ -38,7 +37,6 @@ class RegisterDetails extends StatelessWidget {
 }
 
 class F_RegisterDetails extends StatefulWidget {
-
   F_RegisterDetails({@required this.email, @required this.password});
   String email;
   String password;
@@ -89,7 +87,6 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   }
 
   Future<void> _saveData() async {
-
     final userDetails = UserDetails(
       emailID: widget.email,
       password: widget.password,
@@ -100,14 +97,13 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
     );
 
     FirestoreService.instance.setData(
-    path: APIPath.userDetails(USER_ID),
-    data: userDetails.toMap(),
+      path: APIPath.userDetails(USER_ID),
+      data: userDetails.toMap(),
     );
     GoToPage(context, LandingPage());
   }
 
   Future<void> _submit() async {
-
     setState(() {
       isLoading = true;
     });
@@ -117,26 +113,32 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
           customFormat2.format(selectedDate) !=
               customFormat2.format(DateTime.now())) {
         try {
-           Firestore.instance
+          Firestore.instance
               .collection('${API_SUFFIX}users')
-              .where('username',
-              isEqualTo: _username)
+              .where('username', isEqualTo: _username)
               .snapshots()
               .listen((data) => {
-             if(isLoading){
-               if (data.documents.length == 0){
-                 isLoading = false,
-                 _saveData(),
-               }else{
-    setState(() {
-    isLoading = false;
-    }),
-                 CustomAlertBox(context, 'Opps...', 'This Username is already take. Please try with another username.', (){
-                   Navigator.pop(context);
-                 }),
-               }
-             }
-          });
+                    if (isLoading)
+                      {
+                        if (data.documents.length == 0)
+                          {
+                            isLoading = false,
+                            _saveData(),
+                          }
+                        else
+                          {
+                            setState(() {
+                              isLoading = false;
+                            }),
+                            CustomAlertBox(context, 'Opps...',
+                                'This Username is already take. Please try with another username.',
+                                false,
+                                () {
+                              Navigator.pop(context);
+                            }),
+                          }
+                      }
+                  });
         } on PlatformException catch (e) {
           PlatformExceptionAlertDialog(
             title: 'Operation failed',
@@ -150,11 +152,14 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
         setState(() {
           isLoading = false;
         });
-        CustomAlertBox(context, 'Opps...', 'Seems like you didn\'t add you birthday or gender. Please add it.', (){
-        Navigator.pop(context);
-      });
+        CustomAlertBox(context, 'Opps...',
+            'Seems like you didn\'t add you birthday or gender. Please add it.',
+            false,
+            () {
+          Navigator.pop(context);
+        });
       }
-    }else{
+    } else {
       setState(() {
         isLoading = false;
       });
@@ -232,21 +237,22 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                   // SizedBox(height: 20,),
                                   Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Color.fromRGBO(0, 0, 0, 0.1),
-                                              offset: Offset(3, 3),
-                                              blurRadius: 1.0,
-                                              spreadRadius: 2.0),
-                                          BoxShadow(
-                                              color: Color.fromRGBO(
-                                                  255, 255, 255, 0.9),
-                                              offset: Offset(-2, -2),
-                                              blurRadius: 1.0,
-                                              spreadRadius: 2.0)
-                                        ],),
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Color.fromRGBO(0, 0, 0, 0.1),
+                                            offset: Offset(3, 3),
+                                            blurRadius: 1.0,
+                                            spreadRadius: 2.0),
+                                        BoxShadow(
+                                            color: Color.fromRGBO(
+                                                255, 255, 255, 0.9),
+                                            offset: Offset(-2, -2),
+                                            blurRadius: 1.0,
+                                            spreadRadius: 2.0)
+                                      ],
+                                    ),
                                     child: new TextFormField(
                                       onChanged: (value) => _username = value,
                                       textInputAction: TextInputAction.done,
@@ -292,7 +298,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                     height: getDynamicHeight(10),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 0, bottom: 10),
+                                    padding:
+                                        EdgeInsets.only(top: 0, bottom: 10),
                                     child: Container(
                                       child: RaisedButton(
                                         color: Colors.white,
@@ -313,20 +320,24 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                         Icon(
                                                           Icons.date_range,
                                                           size: 18.0,
-                                                          color: backgroundColor,
+                                                          color:
+                                                              backgroundColor,
                                                         ),
                                                         SizedBox(
-                                                          width: getDynamicWidth(10),
+                                                          width:
+                                                              getDynamicWidth(
+                                                                  10),
                                                         ),
                                                         Text(
                                                             customFormat2.format(
                                                                         selectedDate) ==
-                                                                    customFormat2
-                                                                        .format(DateTime
+                                                                    customFormat2.format(
+                                                                        DateTime
                                                                             .now())
                                                                 ? 'Add birthday'
                                                                 : '${customFormat2.format(selectedDate)}',
-                                                            style: regularStyle),
+                                                            style:
+                                                                regularStyle),
                                                       ],
                                                     ),
                                                   ),
@@ -340,7 +351,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                         Color(0Xff30D0DB),
                                                       ],
                                                       begin: Alignment.topLeft,
-                                                      end: Alignment.bottomRight,
+                                                      end:
+                                                          Alignment.bottomRight,
                                                     ),
                                                   ),
                                                 ],
@@ -417,7 +429,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                         padding: EdgeInsets.all(15.0),
                         child: Center(
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                               Container(),
                               GradientText(

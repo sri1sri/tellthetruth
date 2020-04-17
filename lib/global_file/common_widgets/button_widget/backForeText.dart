@@ -111,7 +111,7 @@ class BackForeTextInput extends StatelessWidget {
           height: getDynamicHeight(height),
         ),
         Positioned(
-          top: 0,
+          top:-10,
           child:FadeAnimatedTextKit(
               text: backText,
               textStyle: backTextStyle,
@@ -119,57 +119,54 @@ class BackForeTextInput extends StatelessWidget {
               alignment: AlignmentDirectional.center // or Alignment.topLeft
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top:topPadding),
-          child: Positioned(
-            child:TextFormField(
-                onChanged: (value) => onChanged,
-                maxLines: lines,
-                textInputAction: textInputAction,
-                autocorrect: true,
-                obscureText: false,
-                keyboardType: TextInputType.text,
-                keyboardAppearance: Brightness.light,
-                autofocus: true,
-                focusNode: focusNode,
-                onFieldSubmitted: onFieldSubmitted,
-                cursorColor: Colors.blue,
-                maxLength: length,
-                onEditingComplete: onEditingComplete,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: textFont,
-                    fontWeight: FontWeight.w600,
-                    foreground: Paint()..shader = linearGradient),
-                decoration:  InputDecoration(
-                  counterStyle: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    fontSize: showCounterStyle ? 17 : 0,
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                  hintText: hintText,
-                  hintStyle: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    fontSize: hintFont,),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide:
-                    const BorderSide(color: Colors.transparent, width: 0.0),
-                  ),
-                ),
-                validator: (value) {
-                  print(value);
-                  if (value.isEmpty) {
-                    return validationText;
-                  }
-                  return null;
-                },
+        Positioned(
+          child:TextFormField(
+            onChanged: (value) => onChanged,
+            maxLines: lines,
+            textInputAction: textInputAction,
+            autocorrect: true,
+            obscureText: false,
+            keyboardType: TextInputType.text,
+            keyboardAppearance: Brightness.light,
+            autofocus: true,
+            focusNode: focusNode,
+            onFieldSubmitted: onFieldSubmitted,
+            cursorColor: Colors.blue,
+            maxLength: length,
+            onEditingComplete: onEditingComplete,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: textFont,
+                fontWeight: FontWeight.w600,
+                foreground: Paint()..shader = linearGradient),
+            decoration:  InputDecoration(
+              counterStyle: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                fontSize: showCounterStyle ? 17 : 0,
               ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: const BorderSide(color: Colors.transparent),
+              ),
+              hintText: hintText,
+              hintStyle: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.w600,
+                fontSize: hintFont,),
+              enabledBorder: const OutlineInputBorder(
+                borderSide:
+                const BorderSide(color: Colors.transparent, width: 0.0),
+              ),
+            ),
+            validator: (value) {
+              print(value);
+              if (value.isEmpty) {
+                return validationText;
+              }
+              return null;
+            },
           ),
-        )
+        ),
       ],
     );
   }

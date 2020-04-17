@@ -205,7 +205,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             topPadding:20,
                             hintFont: 18,
                             backTextStyle: backgroundText1,
-                            height: 50,
+                            height: 40,
                             showCounterStyle: false,
 
                           ),

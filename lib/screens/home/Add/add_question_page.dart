@@ -162,10 +162,10 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                       Form(
                         key: _formKey,
                         child: BackForeTextInput(
-                            backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                          backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                           onChanged: (value)=> _question = value,
                           onEditingComplete: _submit,
-                          textInputAction: TextInputAction.done,  
+                          textInputAction: TextInputAction.done,
                           lines:3,
                           length:48,
                           textFont:24,
@@ -174,7 +174,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                           topPadding:25,
                           hintFont: 24,
                           backTextStyle: backgroundText,
-                          height: 140,
+                          height: 180,
                           showCounterStyle: true,
                         ),
                       ),

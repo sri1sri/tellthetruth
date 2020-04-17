@@ -53,6 +53,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
+          backgroundColor: Color(0Xff30D0DB),
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(getDynamicHeight(240)),
               child: ControlledAnimation(
@@ -172,7 +173,14 @@ class _F_FeedPageState extends State<F_FeedPage> {
                     );
                   })
           ),
-          body: _buildContent(context),
+          body: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(40.0),
+                topLeft: Radius.circular(40.0)),
+            child: Container(
+                color: Colors.white,
+                child: _buildContent(context)),
+          ),
         ),
       ),
     );

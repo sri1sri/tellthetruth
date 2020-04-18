@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
@@ -40,12 +41,16 @@ class F_AllQuestions extends StatefulWidget {
 }
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
+
+  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
   }
 
   Widget offlineWidget(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -75,46 +80,112 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 end: Alignment.bottomRight,
               ),
             ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.list,
-                  color: Colors.black,
-                ),
-                color: Colors.white,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.rotate,
-                          duration: Duration(seconds: 1),
-                          child: GangMembers()));
-                },
-              ),
-              GestureDetector(
-                  onTap: () {},
-                  child: Image.asset(
-                    'images/what.jpeg',
-                    height: getDynamicHeight(30),
-                    width: getDynamicWidth(30),
-                  )),
-              IconButton(
-                icon: Icon(
-                  Icons.person_add,
-                  color: Colors.black,
-                ),
-                color: Colors.white,
-                onPressed: () {
-                  //Navigator.push(context, PageTransition(type: PageTransitionType.rotate, duration: Duration(seconds: 1), child: GangMembers()));
-                },
-              ),
-            ],
             elevation: 0,
             backgroundColor: Colors.white,
           ),
           body: _buildContent(context),
+    floatingActionButton: Builder(
+    builder: (context) => FabCircularMenu(
+    key: fabKey,
+    // Cannot be `Alignment.center`
+    alignment: Alignment.bottomRight,
+    ringColor: Colors.black.withOpacity(0.2),
+    ringDiameter: 500.0,
+    ringWidth: 150.0,
+    fabSize: 64.0,
+    fabElevation: 20.0,
+
+    // Also can use specific color based on wether
+    // the menu is open or not:
+     fabOpenColor: Colors.black54,
+    fabCloseColor: Colors.grey,
+    // These properties take precedence over fabColor
+    fabColor: Colors.white,
+    fabOpenIcon: Icon(Icons.menu, color: Colors.white),
+    fabCloseIcon: Icon(Icons.close, color: primaryColor),
+    fabMargin: const EdgeInsets.all(16.0),
+    animationDuration: const Duration(milliseconds: 800),
+    animationCurve: Curves.easeInOutCirc,
+    onDisplayChange: (isOpen) {
+    _showSnackBar(context, "The menu is ${isOpen ? "open" : "closed"}");
+    },
+    children: <Widget>[
+    RawMaterialButton(
+    onPressed: () {
+    _showSnackBar(context, "Edit Post");
+    },
+    shape: CircleBorder(),
+    padding: const EdgeInsets.all(24.0),
+    child: Container(
+      height: 140,
+      child: Column(
+        children: [
+          Image.asset("images/people.png",height: 70,width: 70,),
+          SizedBox(height: getDynamicHeight(5),),
+          Text("Edit Post",style: answerStyle,)
+
+        ],
+      ),
+    )
+    ),
+    RawMaterialButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.rotate,
+              duration: Duration(seconds: 1),
+              child: GangMembers()));
+    _showSnackBar(context, "View Gang");
+    },
+    shape: CircleBorder(),
+    padding: const EdgeInsets.all(24.0),
+    child: Container(
+      height: 110,
+      child: Column(
+        children: [
+          Image.asset("images/team.png",height: 70,width: 70,),
+          SizedBox(height: getDynamicHeight(5),),
+          Text("View Gang",style: answerStyle,)
+
+        ],
+      ),
+    )
+    ),
+    RawMaterialButton(
+    onPressed: () {
+    _showSnackBar(context, "Share Via WhatsApp");
+    },
+    shape: CircleBorder(),
+    padding: const EdgeInsets.all(24.0),
+    child: Container(
+      height: 100,
+      child: Column(
+        children: [
+          Image.asset("images/wha.png",height: 70,width: 70,),
+          SizedBox(height: getDynamicHeight(5),),
+          Text("Share",style: answerStyle,)
+
+        ],
+      ),
+    )
+    ),
+    ],
+    ),
+    ),
+
         ),
       ),
+    );
+
+  }
+
+  void _showSnackBar (BuildContext context, String message) {
+    Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message,style: questionStyle1),
+          duration: const Duration(milliseconds: 1000),
+        )
     );
   }
 

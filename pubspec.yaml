@@ -51,6 +51,7 @@ dependencies:
   firebase_analytics: ^5.0.11
   animated_widgets: ^1.0.3
   auto_size_text: ^2.1.0
+  fab_circular_menu: ^1.0.0
 
 
 dev_dependencies:
@@ -114,6 +115,9 @@ flutter:
     - images/policy.png
     - images/sup.png
     - images/t&c.png
+    - images/people.png
+    - images/team.png
+    - images/wha.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

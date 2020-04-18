@@ -148,9 +148,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
       builder: (context, questionsSnapshot) {
         return GridView.count(
           crossAxisCount: 2,
-          childAspectRatio: 1.0,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
+          childAspectRatio: 0.66,
+          mainAxisSpacing: 2.0,
+          crossAxisSpacing: 1.0,
           children: List.generate(
             questionsSnapshot.data.length,
             (index) {
@@ -172,7 +172,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               onPressed: openContainer,
               padding: EdgeInsets.only(left: 0.0, right: 0.0),
               child: Container(
-                  height: 300.0,
+                  height: getDynamicHeight(300),
                   width: getDynamicWidth(200.0),
                   child: Column(
                     children: <Widget>[
@@ -180,7 +180,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                         Container(height: getDynamicHeight(300.0)),
                         Positioned(
                           child: Container(
-                            height: 300.0,
+                            height: getDynamicHeight(300),
                             width: getDynamicWidth(200.0),
                             child: Container(
                                 decoration: BoxDecoration(

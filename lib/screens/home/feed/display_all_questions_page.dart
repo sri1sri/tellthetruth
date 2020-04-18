@@ -13,34 +13,9 @@ import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
-import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
-
 import 'display_single_question_page.dart';
 import 'disaply_gang_members_page.dart';
-
-const backgroundGradient = LinearGradient(colors: <Color>[
-  Color(0XffFD8B1F),
-  Color(0XffD152E0),
-  Color(0Xff30D0DB),
-], begin: Alignment.topLeft, end: Alignment.bottomRight);
-const activeGradient = LinearGradient(
-  colors: <Color>[
-    Color(0XffD152E0),
-    Color(0Xff30D0DB),
-    Color(0XffFD8B1F),
-  ],
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-);
-const backgroundGradient1 = LinearGradient(colors: <Color>[
-  Color(0XffD152E0),
-  Color(0Xff30D0DB),
-], begin: Alignment.topLeft, end: Alignment.bottomRight);
-const backgroundGradient2 = LinearGradient(colors: <Color>[
-  Color(0XffFD8B1F),
-  Color(0XffD152E0),
-], begin: Alignment.topLeft, end: Alignment.bottomRight);
 
 class AllQuestions extends StatelessWidget {
   AllQuestions({@required this.gangID, @required this.gangName});
@@ -319,7 +294,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                               width: getDynamicWidth(5),
                                             ),
                                             Text(
-                                              '${questionData != null ? (questionData.optionOne + questionData.optionTwo + questionData.optionThree + questionData.optionFour).toString() : '0'}',
+                                              '${questionData != null ? (questionData.optionOnePolledCount + questionData.optionTwoPolledCount + questionData.optionThreePolledCount + questionData.optionFourPolledCount).toString() : '0'}',
                                               style: countStyle,
                                             ),
                                           ],

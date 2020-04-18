@@ -14,7 +14,6 @@ abstract class Database {
   Stream<UserDetails> getUserDetails();
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
-  Future<void> updateInsights(CommonFiles commonFiles);
   Stream<List<GangDetails>> readGangs();
   Stream<CommonFiles> getAnimations();
   Future<void> createQuestion(QuestionDetails questionDetails, String gangID);
@@ -22,6 +21,11 @@ abstract class Database {
   Future<void> updateQuestionDetails(QuestionDetails questionDetails, String gangID, String questionID);
   Future<void> createInsights(InsightsDetails insightDetails, String gangID, String questionID);
   Stream<InsightsDetails> myInsight(String gangID, String questionID);
+  Future<void> updateInsights(InsightsDetails insightDetails, String gangID, String questionID);
+
+
+  Future<void> updateAppInsights(CommonFiles commonFiles);
+
 }
 
 Database DBreference;
@@ -113,7 +117,18 @@ class FirestoreDatabase implements Database {
       );
 
   @override
-  Future<void> updateInsights(CommonFiles commonFiles) async =>
+  Future<void> updateInsights(InsightsDetails insightDetails, String gangID, String questionID) async =>
+      await _service.updateData(
+        path: APIPath.myInsightDetails(gangID, questionID, USER_ID),
+        data: insightDetails.toMap(),
+      );
+
+
+
+
+
+  @override
+  Future<void> updateAppInsights(CommonFiles commonFiles) async =>
       await _service.updateData(
         path: APIPath.insights(),
         data: commonFiles.toMap(),

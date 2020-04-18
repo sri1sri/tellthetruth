@@ -172,50 +172,19 @@ class _F_ProfileState extends State<F_Profile> {
             ),
             Column(
               children: <Widget>[
-                _settingsCard(context,"Notifications","images/not.png",HowToUse()),
-                _settingsCard(context,"FAQ's","images/faq.png",HowToUse()),
-                _settingsCard(context,"Privacy Policy","images/policy.png",PrivacyPolicy()),
-                _settingsCard(context,"Terms & Conditions","images/t&c.png",TermsAndServices()),
-                _settingsCard(context,"Support","images/sup.png",HowToUse()),
-                _settingsCard(context,"Log Out","images/logout.png",HowToUse()),
+                _settingsCard("Notifications","images/not.png",HowToUse()),
+                _settingsCard("FAQ's","images/faq.png",HowToUse()),
+                _settingsCard("Privacy Policy","images/policy.png",PrivacyPolicy()),
+                _settingsCard("Terms & Conditions","images/t&c.png",TermsAndServices()),
+                _settingsCard("Support","images/sup.png",HowToUse()),
+                _settingsCard("Log Out","images/logout.png",null),
               ],
             ),
             Container(
               child: Padding(
                 padding: EdgeInsets.fromLTRB( 30,20,30,20 ),
                 child: Column(
-
                   children: <Widget>[
-
-                    RaisedButton(
-                      onPressed: () => _confirmSignOut(context),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular( 80.0 ) ),
-                      padding: const EdgeInsets.all( 0.0 ),
-                      child: Ink(
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF253949),
-                          borderRadius: BorderRadius.all( Radius.circular(
-                              10 ) ),
-                        ),
-                        child: Container(
-                          constraints: const BoxConstraints( minWidth: 88.0,
-                              minHeight: 50.0 ),
-                          // min sizes for Material buttons
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Log Out',
-                            style: TextStyle(
-                              color: Colors.white,
-                              letterSpacing: 1.5,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Montserrat',
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                     SizedBox( height: getDynamicHeight(10), ),
                     Text(
                       'Version 1.0.0',
@@ -226,6 +195,7 @@ class _F_ProfileState extends State<F_Profile> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+                    SizedBox( height: getDynamicHeight(10), ),
                   ],
                 ),
               ),
@@ -259,48 +229,41 @@ class _F_ProfileState extends State<F_Profile> {
     }
   }
 
-}
-
-Widget _settingsCard(BuildContext context,String title,String imgPath,Widget route) {
-  return Container(
-    width: double.infinity,
-    child: FlatButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => route ),
-        );
-      },
-      padding: EdgeInsets.only(left:40.0 ,top: 30),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular( 0.0 ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          CircleAvatar(
-            backgroundImage:
-            AssetImage(imgPath),
-            radius: 25,
-            backgroundColor: Colors.transparent,
-          ),
-          SizedBox(width: getDynamicWidth(20),),
-          Text(title,
-            style: TextStyle(
-              color: Colors.black87,
-              letterSpacing: 1.5,
-              fontSize: getDynamicTextSize(22),
-              fontWeight: FontWeight.w600,
-              //fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
+  Widget _settingsCard(String title,String imgPath,Widget route) {
+    return Container(
+      width: double.infinity,
+      child: FlatButton(
+        onPressed: () {
+          route == null ? _confirmSignOut(context) : GoToPage(context, route);
+        },
+        padding: EdgeInsets.only(left:40.0 ,top: 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular( 0.0 ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            CircleAvatar(
+              backgroundImage:
+              AssetImage(imgPath),
+              radius: 20,
+              backgroundColor: Colors.transparent,
             ),
-          ),
-        ],
-
+            SizedBox(width: getDynamicWidth(20),),
+            Text(title,
+              style: TextStyle(
+                color: Colors.black87,
+                letterSpacing: 1.5,
+                fontSize: getDynamicTextSize(20),
+                fontWeight: FontWeight.w600,
+                //fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat',
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-
-  );
+    );
+  }
 }

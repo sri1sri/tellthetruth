@@ -6,13 +6,13 @@ class QuestionDetails{
     this.createdAt,
     this.createdBy,
     this.options,
-    this.revealIdentity,
+    this.isAnonymous,
     this.endsAt,
     this.viewCount,
-    this.optionFour,
-    this.optionThree,
-    this.optionTwo,
-    this.optionOne,
+    this.optionFourPolledCount,
+    this.optionThreePolledCount,
+    this.optionTwoPolledCount,
+    this.optionOnePolledCount,
     this.question,
     this.color1,
     this.color2,
@@ -27,17 +27,17 @@ class QuestionDetails{
   final Timestamp endsAt;
   final String createdBy;
   final List options;
-  final bool revealIdentity;
+  final bool isAnonymous;
   final String question;
   final int viewCount;
   final String color1;
   final String color2;
   final String createByGender;
 
-  final int optionOne;
-  final int optionTwo;
-  final int optionThree;
-  final int optionFour;
+  final int optionOnePolledCount;
+  final int optionTwoPolledCount;
+  final int optionThreePolledCount;
+  final int optionFourPolledCount;
 
 
   final Null empty;
@@ -52,7 +52,7 @@ class QuestionDetails{
     final Timestamp endsAt = data['ends_at'];
     final String createdBy = data['created_by'];
     final List options = data['options'];
-    final bool revealIdentity = data['reveal_identity'];
+    final bool isAnonymous = data['is_anonymous'];
     final String question = data['question'];
     final int viewCount = data['view_count'];
     final int optionOne = data['option_one_count'];
@@ -73,13 +73,13 @@ class QuestionDetails{
       endsAt:endsAt,
       createdBy:createdBy,
       options:options,
-      revealIdentity:revealIdentity,
+      isAnonymous:isAnonymous,
       question: question,
       viewCount: viewCount,
-      optionOne:optionOne,
-      optionFour: optionFour,
-      optionThree: optionThree,
-      optionTwo: optionTwo,
+      optionOnePolledCount:optionOne,
+      optionFourPolledCount: optionFour,
+      optionThreePolledCount: optionThree,
+      optionTwoPolledCount: optionTwo,
       color1: color1,
       color2: color2,
       createByGender: createByGender,
@@ -90,17 +90,17 @@ class QuestionDetails{
 
   Map<String, dynamic> toMap(){
     return {
-      optionOne != null ? 'option_one_count': 'empty' : optionOne,
-      optionTwo != null ? 'option_two_count': 'empty' : optionTwo,
-      optionThree != null ? 'option_three_count': 'empty' : optionThree,
-      optionFour != null ? 'option_four_count': 'empty' : optionFour,
+      optionOnePolledCount != null ? 'option_one_count': 'empty' : optionOnePolledCount,
+      optionTwoPolledCount != null ? 'option_two_count': 'empty' : optionTwoPolledCount,
+      optionThreePolledCount != null ? 'option_three_count': 'empty' : optionThreePolledCount,
+      optionFourPolledCount != null ? 'option_four_count': 'empty' : optionFourPolledCount,
       createdAt != null ? 'created_at': 'empty' : createdAt,
       endsAt != null ? 'ends_at': 'empty' : endsAt,
       createdBy != null ? 'created_by': 'empty' : createdBy,
       options != null ? 'options': 'empty' : options,
       question != null ? 'question': 'empty' : question,
       viewCount != null ? 'view_count': 'empty' : viewCount,
-      revealIdentity != null ? 'reveal_identity': 'empty' : revealIdentity,
+      isAnonymous != null ? 'is_anonymous': 'empty' : isAnonymous,
       color1 != null ? 'color1': 'empty' : color1,
       color2 != null ? 'color2': 'empty' : color2,
       createByGender != null ? 'create_by_gender': 'empty' : createByGender,

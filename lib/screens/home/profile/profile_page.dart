@@ -97,7 +97,7 @@ class _F_ProfileState extends State<F_Profile> {
                                     height: getDynamicHeight(5),
                                   ),
                                   Text(
-                                    "v.g.vasanthakumar@gmai.com",
+                                    "v.g.vasanthakumar@gmail.com",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Montserrat',
@@ -162,72 +162,76 @@ class _F_ProfileState extends State<F_Profile> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child:   Column(
-        children: <Widget>[
-          SizedBox(
-            height: getDynamicHeight(20),
-          ),
-          Column(
-            children: <Widget>[
-              _howToUse(context),
-              _privacyPolicy(context ),
-              _termsAndConditions(context),
-              _reportAnIssue(),
-            ],
-          ),
-          Container(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB( 30,20,30,20 ),
-              child: Column(
+    return SingleChildScrollView(
+      child: Container(
+        color: Colors.white,
+        child:   Column(
+          children: <Widget>[
+            SizedBox(
+              height: getDynamicHeight(20),
+            ),
+            Column(
+              children: <Widget>[
+                _settingsCard(context,"Notifications","images/not.png",HowToUse()),
+                _settingsCard(context,"FAQ's","images/faq.png",HowToUse()),
+                _settingsCard(context,"Privacy Policy","images/policy.png",PrivacyPolicy()),
+                _settingsCard(context,"Terms & Conditions","images/t&c.png",TermsAndServices()),
+                _settingsCard(context,"Support","images/sup.png",HowToUse()),
+                _settingsCard(context,"Log Out","images/logout.png",HowToUse()),
+              ],
+            ),
+            Container(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB( 30,20,30,20 ),
+                child: Column(
 
-                children: <Widget>[
+                  children: <Widget>[
 
-                  RaisedButton(
-                    onPressed: () => _confirmSignOut(context),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular( 80.0 ) ),
-                    padding: const EdgeInsets.all( 0.0 ),
-                    child: Ink(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF253949),
-                        borderRadius: BorderRadius.all( Radius.circular(
-                            10 ) ),
-                      ),
-                      child: Container(
-                        constraints: const BoxConstraints( minWidth: 88.0,
-                            minHeight: 50.0 ),
-                        // min sizes for Material buttons
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Log Out',
-                          style: TextStyle(
-                            color: Colors.white,
-                            letterSpacing: 1.5,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Montserrat',
+                    RaisedButton(
+                      onPressed: () => _confirmSignOut(context),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular( 80.0 ) ),
+                      padding: const EdgeInsets.all( 0.0 ),
+                      child: Ink(
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF253949),
+                          borderRadius: BorderRadius.all( Radius.circular(
+                              10 ) ),
+                        ),
+                        child: Container(
+                          constraints: const BoxConstraints( minWidth: 88.0,
+                              minHeight: 50.0 ),
+                          // min sizes for Material buttons
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Log Out',
+                            style: TextStyle(
+                              color: Colors.white,
+                              letterSpacing: 1.5,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Montserrat',
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox( height: getDynamicHeight(10), ),
-                  Text(
-                    'Version 1.0.0',
-                    style: TextStyle(
-                      color: Colors.black45,
-                      fontFamily: 'Montserrat',
-                      fontSize: getDynamicTextSize(15),
-                      fontWeight: FontWeight.w600,
+                    SizedBox( height: getDynamicHeight(10), ),
+                    Text(
+                      'Version 1.0.0',
+                      style: TextStyle(
+                        color: Colors.black45,
+                        fontFamily: 'Montserrat',
+                        fontSize: getDynamicTextSize(15),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -257,54 +261,7 @@ class _F_ProfileState extends State<F_Profile> {
 
 }
 
-Widget _reportAnIssue() {
-  return Container(
-    width: double.infinity,
-    child: FlatButton(
-      onPressed: () => print( 'Report an Issue Button Pressed' ),
-      padding: EdgeInsets.all( 20.0 ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular( 0.0 ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Text( 'Report an Issue',
-                style: TextStyle(
-                  color: Colors.black87,
-                  letterSpacing: 1.5,
-                  fontSize: getDynamicTextSize(22),
-                  fontWeight: FontWeight.w600,
-                  //fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ],
-
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black54,
-                size: 30,
-              ),
-            ],
-
-          ),
-
-        ],
-
-      ),
-    ),
-
-  );
-}
-
-Widget _privacyPolicy(BuildContext context) {
+Widget _settingsCard(BuildContext context,String title,String imgPath,Widget route) {
   return Container(
     width: double.infinity,
     child: FlatButton(
@@ -312,155 +269,34 @@ Widget _privacyPolicy(BuildContext context) {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => PrivacyPolicy( ) ),
+              builder: (context) => route ),
         );
       },
-      padding: EdgeInsets.all( 20.0 ),
+      padding: EdgeInsets.only(left:40.0 ,top: 30),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular( 0.0 ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              Text( 'Privacy Policy',
-                style: TextStyle(
-                  color: Colors.black87,
-                  letterSpacing: 1.5,
-                  fontSize: getDynamicTextSize(22),
-                  fontWeight: FontWeight.w600,
-                  //fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ],
-
+          CircleAvatar(
+            backgroundImage:
+            AssetImage(imgPath),
+            radius: 25,
+            backgroundColor: Colors.transparent,
           ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black54,
-                size: 30,
-              ),
-            ],
-
+          SizedBox(width: getDynamicWidth(20),),
+          Text(title,
+            style: TextStyle(
+              color: Colors.black87,
+              letterSpacing: 1.5,
+              fontSize: getDynamicTextSize(22),
+              fontWeight: FontWeight.w600,
+              //fontWeight: FontWeight.bold,
+              fontFamily: 'Montserrat',
+            ),
           ),
-
-        ],
-
-      ),
-    ),
-
-  );
-}
-
-Widget _howToUse(BuildContext context) {
-  return Container(
-    width: double.infinity,
-    child: FlatButton(
-
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => HowToUse( ) ),
-        );
-      },
-
-      padding: EdgeInsets.all( 20.0 ),
-
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular( 0.0 ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-
-              Text( 'How To Use',
-                style: TextStyle(
-                  color: Colors.black87,
-                  letterSpacing: 1.5,
-                  fontSize: getDynamicTextSize(22),
-                  fontWeight: FontWeight.w600,
-                  //fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ],
-
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black54,
-                size: 30,
-              ),
-            ],
-
-          ),
-
-        ],
-
-      ),
-    ),
-
-  );
-}
-
-Widget _termsAndConditions(BuildContext context) {
-  return Container(
-    width: double.infinity,
-    child: FlatButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => TermsAndServices( ) ),
-        );
-      },
-      padding: EdgeInsets.all( 20.0 ),
-
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular( 0.0 ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-
-              Text( 'Terms & Conditions',
-                style: TextStyle(
-                  color: Colors.black87,
-                  letterSpacing: 1.5,
-                  fontSize: getDynamicTextSize(22),
-                  fontWeight: FontWeight.w600,
-                  //fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-            ],
-
-          ),
-          Column(
-            children: <Widget>[
-              Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black54,
-                size: 30,
-              ),
-            ],
-
-          ),
-
         ],
 
       ),

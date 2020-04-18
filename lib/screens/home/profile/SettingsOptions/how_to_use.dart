@@ -56,7 +56,7 @@ class _F_HowToUse extends State<F_HowToUse> {
           rightAction: () {
             print('right action bar is pressed in appbar');
           },
-          primaryText: 'How To Use',
+          primaryText: "FAQ's",
           secondaryText: null,
         ),
       ),

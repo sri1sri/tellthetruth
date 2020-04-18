@@ -240,7 +240,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                       borderRadius: BorderRadius.circular( 5 ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all( 10.0 ),
+                      padding: const EdgeInsets.all( 20.0 ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -449,8 +449,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       ),
     );
   }
-
-
 }
 
 class LabelText extends StatelessWidget {

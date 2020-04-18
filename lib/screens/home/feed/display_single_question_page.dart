@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
@@ -163,20 +164,104 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0 ),
-                child: SlimyCard(
-                  color: Colors.transparent,
-                  borderRadius: 30,
-                  slimeEnabled: true,
-                  topCardWidget: topCardWidget( 'https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json' ),
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  bottomCardWidget: bottomCardWidget(),
-                  bottomCardHeight: getDynamicHeight(280),
-                  topCardHeight: getDynamicHeight(250),
+              Container(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child:TranslationAnimatedWidget(
+                        enabled: true,
+                        duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                        values: [
+                          Offset(0, -250), // disabled value value
+                          Offset(0, -250), //intermediate value
+                          Offset(0, 0) //enabled value
+                        ],
+                        child:Container(
+                          width: getDynamicWidth(MediaQuery.of(context).size.width),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular( 5 ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all( 20.0 ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(80),width: getDynamicWidth(80)),
+                                SizedBox( height: getDynamicHeight(15) ),
+                                GradientText(
+                                  '${widget.questionDetails.question}?'.capitalize(),
+                                  textAlign: TextAlign.center,
+                                  style: mediumStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color( 0XffFD8B1F ),
+                                      Color( 0XffD152E0 ),
+                                      Color( 0Xff30D0DB ),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          TranslationAnimatedWidget(
+                            enabled: true,
+                            duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                            values: [
+                              Offset(0, -250), // disabled value value
+                              Offset(0, -250), //intermediate value
+                              Offset(0, 0) //enabled value
+                            ],
+                            child: OptionCard(context ,'${widget.questionDetails.options[0]}','${widget.questionDetails.optionOne} members'),
+                          ),
+                          SizedBox(height: getDynamicHeight(8),),
+                          TranslationAnimatedWidget(
+                            enabled: true,
+                            duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                            values: [
+                              Offset(-200, 250), // disabled value value
+                              Offset(-200, 250), //intermediate value
+                              Offset(0, 0) //enabled value
+                            ],
+                            child: OptionCard(context ,'${widget.questionDetails.options[1]}','${widget.questionDetails.optionTwo} members'),
+                          ),
+                          SizedBox(height: getDynamicHeight(8),),
+                          TranslationAnimatedWidget(
+                            enabled: true,
+                            duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                            values: [
+                              Offset(400, -250), // disabled value value
+                              Offset(400, -250),  //intermediate value
+                              Offset(0, 0) //enabled value
+                            ],
+                            child: OptionCard(context ,'${widget.questionDetails.options[2]}','${widget.questionDetails.optionThree} members'),/* your widget */
+                          ),
+                          SizedBox(height: getDynamicHeight(8),),
+                          TranslationAnimatedWidget(
+                            enabled: true,
+                            duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                            values: [
+                              Offset(0, 250), // disabled value value
+                              Offset(0, 250), //intermediate value
+                              Offset(0, 0) //enabled value
+                            ],
+                            child: OptionCard(context ,'${widget.questionDetails.options[3]}','${widget.questionDetails.optionFour} members'),/* your widget */
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  ],
                 ),
               ),
               Padding(
@@ -244,218 +329,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         ),
 
       ),
-    );
-  }
-
-  Widget topCardWidget(String lottieFilePath) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular( 5 ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all( 10.0 ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Lottie.network(lottieFilePath,height: getDynamicHeight(60),width: getDynamicWidth(60)),
-            SizedBox( height: getDynamicHeight(15) ),
-            GradientText(
-              '${widget.questionDetails.question}?'.capitalize(),
-              textAlign: TextAlign.center,
-              style: mediumStyle,
-              gradient: LinearGradient(
-                colors: [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            SizedBox( height: getDynamicHeight(10)),
-          ],
-        ),
-      ),
-    );
-  }
-
-// This widget will be passed as Bottom Card's Widget.
-  Widget bottomCardWidget() {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    '${widget.questionDetails.options[0]}'.capitalize(),
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "${widget.questionDetails.optionOne} members",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    '${widget.questionDetails.options[1]}'.capitalize(),
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "${widget.questionDetails.optionTwo} members",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    '${widget.questionDetails.options[2]}'.capitalize(),
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "${widget.questionDetails.optionThree} members",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    '${widget.questionDetails.options[3]}'.capitalize(),
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "${widget.questionDetails.optionFour} members",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-
     );
   }
 
@@ -655,4 +528,51 @@ void showFancyCustomDialog(BuildContext context) {
         );
       },
       transitionDuration: Duration(milliseconds: 300));
+}
+
+
+Widget OptionCard(BuildContext context ,String Option,String Members)
+{
+  return Container(
+    height: getDynamicHeight(55),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular( 5 ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GradientText(
+            Option..capitalize(),
+            style: answerStyle,
+            gradient: LinearGradient(
+              colors: [
+                Color( 0XffFD8B1F ),
+                Color( 0XffD152E0 ),
+                Color( 0Xff30D0DB ),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          GradientText(
+            Members,
+            style: answerStyle,
+            gradient: LinearGradient(
+              colors: [
+                Color( 0XffFD8B1F ),
+                Color( 0XffD152E0 ),
+                Color( 0Xff30D0DB ),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+
 }

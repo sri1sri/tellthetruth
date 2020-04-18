@@ -139,9 +139,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                   StreamBuilder<InsightsDetails>(
                       stream: DBreference.myInsight(widget.gangID, data.questionID),
                       builder: (context, snapshot) {
-
                         final insightData = snapshot.data;
-
                         return Container(
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),

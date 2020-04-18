@@ -1,18 +1,15 @@
 import 'dart:async';
 import 'package:animated_widgets/widgets/translation_animated.dart';
-import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
-import 'package:tellthetruth/screens/home/feed/display_all_questions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
-import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
-
 import '../../../landing_page.dart';
 
 class ContentPreview extends StatelessWidget {
@@ -80,6 +77,12 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     '0XffFF3FE0',
   ];
 
+  List gangIDs= ['2020-04-17 22:17:28.884711', '2020-04-17 22:19:09.291230'];
+  List gangName = ['8 gang', 'Nara batch','8 gang', 'Nara batch','8 gang', 'Nara batch'];
+
+  String selectedGangID;
+
+  Color selectGangBackgroundColor = Colors.black54;
 
   changeBackground() { //update with a new color when the user taps button
     int _colorCount = _colors1.length;
@@ -119,7 +122,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       createByGender: USER_GENDER,
     );
 
-    await DBreference.createQuestion(createQuestion, '2020-04-17 22:17:28.884711');
+    await DBreference.createQuestion(createQuestion, selectedGangID);
     setState(() {
       isLoading = false;
     });
@@ -325,35 +328,49 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Select Gang",style: questionStyle1,),
-                Container(
-                    color: Colors.transparent,
-                    height: getDynamicHeight(80.0) ,
-                    width: MediaQuery.of(context).size.width ,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child:Row(
-                        children: [
-                          _buildImage(".Net 791"),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("Family",),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("LTI Pune",),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("Caseu",),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("rajaa",),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("eldooo",),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("sainath",),
-                          SizedBox(width: getDynamicWidth(8),),
-                          _buildImage("nanditha",),
-                          SizedBox(width: getDynamicWidth(8),),
-                        ],
-                      ) ,
-                    )
-                ),
+//                Text("Select Gang",style: TextStyle(
+//                    color: Colors.white,
+//                    fontFamily: 'Montserrat',
+//                    fontWeight: FontWeight.w600,
+//                    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
+
+
+                DropDownFormField(
+                  titleText: '',
+                  hintText: 'Please select gang name',
+                  value: selectedGangName,
+                  onSaved: (value) {
+                    setState(() {
+                      selectedGangName = value;
+                    });
+                  },
+                  onChanged: (value) {
+                    setState(() {
+                      selectedGangName = value;
+                    });
+                  },
+                  dataSource: displayDropDownValues(gangName),
+                  textField: 'display',
+                  valueField: 'value',
+                  validator: (value) =>
+                  value.isNotEmpty ? null : 'company name cant\'t be empty.',
+                )
+
+
+//                Container(
+//                    color: Colors.transparent,
+//                    height: getDynamicHeight(80.0) ,
+//                    width: MediaQuery.of(context).size.width ,
+//                    child: SingleChildScrollView(
+//                      scrollDirection: Axis.horizontal,
+//                      child:Row(
+//                        children: [
+//                          for (var i = 0; i < gangName.length; i++)
+//                            _buildImage(i, selectGangBackgroundColor),
+//                        ],
+//                      ) ,
+//                    )
+//                ),
               ],
             ),
           ),
@@ -392,7 +409,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                           ])),
                   decoration: BoxDecoration(
                       color: Colors.white,
-
                       borderRadius: BorderRadius.circular(30.0),
                       boxShadow: [
                         BoxShadow(
@@ -413,42 +429,63 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     );
   }
 
-  Widget _buildImage( String description) {
-    return GestureDetector(
-      onTap: (){
-        //GoToPage(context, QuestionsPage());
-      },
-      child: ExpandPageTransition(
-        navigateToPage: AllQuestions(),
-        transitionType: ContainerTransitionType.fade,
-        closedBuilder: (BuildContext _, VoidCallback openContainer) {
+  displayDropDownValues(values){
+    try{
+      values.forEach((element) {
+        var x = {
+          "display": element,
+          "value": element,
+        };
+        dropDownValues.add(x);
+      }) ;
+      return(dropDownValues.take([values][0].length).toList());
+    }finally{
+      dropDownValues.clear();
+    }
+  }
 
-          return
-            Container(
-              height: getDynamicHeight(50),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15,right: 15),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      GradientText(
-                        description,
-                        style: questionStyle1,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                    ]),
-              ),
-            );
+  var dropDownValues = [];
+  String selectedGangName;
+
+  Widget _buildImage(int index, Color backgroundColor) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 7, right: 7),
+      child: GestureDetector(
+        onTap: (){
+          setState(() {
+            selectGangBackgroundColor = Colors.white;
+            selectedGangID = gangIDs[index];
+          });
         },
+        child: Container(
+          color: backgroundColor,
+          height: getDynamicHeight(50),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  GradientText(
+                    gangName[index],
+                    style: questionStyle1,
+                    gradient: LinearGradient(
+                      colors: selectedGangID == null ? [
+                        Colors.white,
+                        Colors.white,
+                        Colors.white,
+                      ] : [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ]),
+          ),
+        ),
       ),
     );
   }

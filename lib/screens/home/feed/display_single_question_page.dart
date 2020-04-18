@@ -126,7 +126,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     optionThreePolledCount = widget.questionDetails.optionThreePolledCount;
     optionFourPolledCount = widget.questionDetails.optionFourPolledCount;
 
-    isAnonymos = widget.insightsDetails.isAnonymos;
+    isAnonymos = widget.insightsDetails.isAnonymos == null ? true : widget.insightsDetails.isAnonymos;
     print('is == ${isAnonymos}');
   }
 

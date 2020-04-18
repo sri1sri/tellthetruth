@@ -73,6 +73,7 @@ var answerStyle = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);
 
+
 var answerStyleBlur = TextStyle(
     color: Colors.black54.withOpacity(0.6),
     fontFamily: 'Montserrat',

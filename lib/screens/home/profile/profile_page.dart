@@ -1,13 +1,18 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
+import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/global_file/common_widgets/platform_alert/platform_alert_dialog.dart';
+import 'package:tellthetruth/screens/home/profile/SettingsOptions/how_to_use.dart';
+import 'package:tellthetruth/screens/home/profile/SettingsOptions/privacy_policy.dart';
+import 'package:tellthetruth/screens/home/profile/SettingsOptions/terms_conditions.dart';
 
 import '../../../landing_page.dart';
 
@@ -61,7 +66,7 @@ class _F_ProfileState extends State<F_Profile> {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(300)),
+                  preferredSize: Size.fromHeight(getDynamicHeight(350)),
                   child: ControlledAnimation(
                     playback: Playback.MIRROR,
                     tween: tween,
@@ -71,6 +76,66 @@ class _F_ProfileState extends State<F_Profile> {
                         color: Colors.transparent,
                         child:  Column(
                           children: <Widget>[
+                            Lottie.network('https://assets6.lottiefiles.com/packages/lf20_bRHk7X.json',height: getDynamicHeight(200),width: getDynamicWidth(200)),
+                            SizedBox(
+                              height: getDynamicHeight(10),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("$USER_NAME",
+                                      style: TextStyle(
+                                          color: Colors.white54,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: getDynamicTextSize(40),
+                                          decoration: TextDecoration.none)),
+                                  SizedBox(
+                                    height: getDynamicHeight(5),
+                                  ),
+                                  Text(
+                                    "v.g.vasanthakumar@gmai.com",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getDynamicTextSize(18),
+                                        decoration: TextDecoration.none),
+                                  ),
+                                  SizedBox(
+                                    height: getDynamicHeight(20),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Text("29",style: heavyStyle,),
+                                          SizedBox(
+                                            height: getDynamicHeight(10),
+                                          ),
+                                          Text("Questions Posted",style: answerStyle,),
+                                        ],
+                                      ),
+                                      SizedBox(width: getDynamicWidth(50),),
+                                      Column(
+                                        children: [
+                                          Text("10",style: heavyStyle,),
+                                          SizedBox(
+                                            height: getDynamicHeight(10),
+                                          ),
+                                          Text("Poins Earned",style: answerStyle,),
+                                        ],
+                                      )
+                                    ],
+
+                                  )
+                                ],
+                              ),
+                            ),
 
 
                           ],
@@ -101,11 +166,66 @@ class _F_ProfileState extends State<F_Profile> {
       color: Colors.white,
       child:   Column(
         children: <Widget>[
-          SizedBox(height: 100,),
-          Center(
-            child: InkWell(onTap: (){
-              _confirmSignOut(context);
-            },child: Text('logout')),
+          SizedBox(
+            height: getDynamicHeight(20),
+          ),
+          Column(
+            children: <Widget>[
+              _howToUse(context),
+              _privacyPolicy(context ),
+              _termsAndConditions(context),
+              _reportAnIssue(),
+            ],
+          ),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB( 30,20,30,20 ),
+              child: Column(
+
+                children: <Widget>[
+
+                  RaisedButton(
+                    onPressed: () => _confirmSignOut(context),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular( 80.0 ) ),
+                    padding: const EdgeInsets.all( 0.0 ),
+                    child: Ink(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF253949),
+                        borderRadius: BorderRadius.all( Radius.circular(
+                            10 ) ),
+                      ),
+                      child: Container(
+                        constraints: const BoxConstraints( minWidth: 88.0,
+                            minHeight: 50.0 ),
+                        // min sizes for Material buttons
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Log Out',
+                          style: TextStyle(
+                            color: Colors.white,
+                            letterSpacing: 1.5,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Montserrat',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox( height: getDynamicHeight(10), ),
+                  Text(
+                    'Version 1.0.0',
+                    style: TextStyle(
+                      color: Colors.black45,
+                      fontFamily: 'Montserrat',
+                      fontSize: getDynamicTextSize(15),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -135,4 +255,216 @@ class _F_ProfileState extends State<F_Profile> {
     }
   }
 
+}
+
+Widget _reportAnIssue() {
+  return Container(
+    width: double.infinity,
+    child: FlatButton(
+      onPressed: () => print( 'Report an Issue Button Pressed' ),
+      padding: EdgeInsets.all( 20.0 ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular( 0.0 ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text( 'Report an Issue',
+                style: TextStyle(
+                  color: Colors.black87,
+                  letterSpacing: 1.5,
+                  fontSize: getDynamicTextSize(22),
+                  fontWeight: FontWeight.w600,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ],
+
+          ),
+          Column(
+            children: <Widget>[
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black54,
+                size: 30,
+              ),
+            ],
+
+          ),
+
+        ],
+
+      ),
+    ),
+
+  );
+}
+
+Widget _privacyPolicy(BuildContext context) {
+  return Container(
+    width: double.infinity,
+    child: FlatButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PrivacyPolicy( ) ),
+        );
+      },
+      padding: EdgeInsets.all( 20.0 ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular( 0.0 ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text( 'Privacy Policy',
+                style: TextStyle(
+                  color: Colors.black87,
+                  letterSpacing: 1.5,
+                  fontSize: getDynamicTextSize(22),
+                  fontWeight: FontWeight.w600,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ],
+
+          ),
+          Column(
+            children: <Widget>[
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black54,
+                size: 30,
+              ),
+            ],
+
+          ),
+
+        ],
+
+      ),
+    ),
+
+  );
+}
+
+Widget _howToUse(BuildContext context) {
+  return Container(
+    width: double.infinity,
+    child: FlatButton(
+
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HowToUse( ) ),
+        );
+      },
+
+      padding: EdgeInsets.all( 20.0 ),
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular( 0.0 ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+
+              Text( 'How To Use',
+                style: TextStyle(
+                  color: Colors.black87,
+                  letterSpacing: 1.5,
+                  fontSize: getDynamicTextSize(22),
+                  fontWeight: FontWeight.w600,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ],
+
+          ),
+          Column(
+            children: <Widget>[
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black54,
+                size: 30,
+              ),
+            ],
+
+          ),
+
+        ],
+
+      ),
+    ),
+
+  );
+}
+
+Widget _termsAndConditions(BuildContext context) {
+  return Container(
+    width: double.infinity,
+    child: FlatButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TermsAndServices( ) ),
+        );
+      },
+      padding: EdgeInsets.all( 20.0 ),
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular( 0.0 ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+
+              Text( 'Terms & Conditions',
+                style: TextStyle(
+                  color: Colors.black87,
+                  letterSpacing: 1.5,
+                  fontSize: getDynamicTextSize(22),
+                  fontWeight: FontWeight.w600,
+                  //fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ],
+
+          ),
+          Column(
+            children: <Widget>[
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black54,
+                size: 30,
+              ),
+            ],
+
+          ),
+
+        ],
+
+      ),
+    ),
+
+  );
 }

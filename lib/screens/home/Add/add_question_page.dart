@@ -167,7 +167,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                           onEditingComplete: _submit,
                           textInputAction: TextInputAction.done,
                           lines:3,
-                          length:48,
+                          length:64,
                           textFont:24,
                           validationText:"Please enter question",
                           hintText:"Add your Question",

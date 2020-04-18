@@ -78,7 +78,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   ];
 
   List gangIDs= ['2020-04-17 22:17:28.884711', '2020-04-17 22:19:09.291230'];
-  List gangName = ['8 gang', 'Nara batch','8 gang', 'Nara batch','8 gang', 'Nara batch'];
+  List gangName = ['8 gang', 'Nara batch',];
 
   String selectedGangID;
 
@@ -338,16 +338,18 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 DropDownFormField(
                   titleText: '',
                   hintText: 'Please select gang name',
-                  value: selectedGangName,
+                  value: selectedGangId,
                   onSaved: (value) {
                     setState(() {
-                      selectedGangName = value;
+                      selectedGangId = gangIDs[value];
                     });
+                    print(selectedGangID);
                   },
                   onChanged: (value) {
                     setState(() {
-                      selectedGangName = value;
+                      selectedGangId = gangIDs[value];
                     });
+                    print(selectedGangID);
                   },
                   dataSource: displayDropDownValues(gangName),
                   textField: 'display',
@@ -429,66 +431,66 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     );
   }
 
-  displayDropDownValues(values){
+  displayDropDownValues(gangNames){
     try{
-      values.forEach((element) {
+      for(var i=0; i < gangName.length; i++){
         var x = {
-          "display": element,
-          "value": element,
+          "display": gangName[i],
+          "value": i,
         };
         dropDownValues.add(x);
-      }) ;
-      return(dropDownValues.take([values][0].length).toList());
+      }
+      return(dropDownValues.take([gangNames][0].length).toList());
     }finally{
       dropDownValues.clear();
     }
   }
 
   var dropDownValues = [];
-  String selectedGangName;
+  String selectedGangId;
 
-  Widget _buildImage(int index, Color backgroundColor) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 7, right: 7),
-      child: GestureDetector(
-        onTap: (){
-          setState(() {
-            selectGangBackgroundColor = Colors.white;
-            selectedGangID = gangIDs[index];
-          });
-        },
-        child: Container(
-          color: backgroundColor,
-          height: getDynamicHeight(50),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  GradientText(
-                    gangName[index],
-                    style: questionStyle1,
-                    gradient: LinearGradient(
-                      colors: selectedGangID == null ? [
-                        Colors.white,
-                        Colors.white,
-                        Colors.white,
-                      ] : [
-                        Color(0XffFD8B1F),
-                        Color(0XffD152E0),
-                        Color(0Xff30D0DB),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ]),
-          ),
-        ),
-      ),
-    );
-  }
+//  Widget _buildImage(int index, Color backgroundColor) {
+//    return Padding(
+//      padding: const EdgeInsets.only(left: 7, right: 7),
+//      child: GestureDetector(
+//        onTap: (){
+//          setState(() {
+//            selectGangBackgroundColor = Colors.white;
+//            selectedGangID = gangIDs[index];
+//          });
+//        },
+//        child: Container(
+//          color: backgroundColor,
+//          height: getDynamicHeight(50),
+//          child: Padding(
+//            padding: const EdgeInsets.only(left: 15,right: 15),
+//            child: Row(
+//                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                crossAxisAlignment: CrossAxisAlignment.center,
+//                children: <Widget>[
+//                  GradientText(
+//                    gangName[index],
+//                    style: questionStyle1,
+//                    gradient: LinearGradient(
+//                      colors: selectedGangID == null ? [
+//                        Colors.white,
+//                        Colors.white,
+//                        Colors.white,
+//                      ] : [
+//                        Color(0XffFD8B1F),
+//                        Color(0XffD152E0),
+//                        Color(0Xff30D0DB),
+//                      ],
+//                      begin: Alignment.topLeft,
+//                      end: Alignment.bottomRight,
+//                    ),
+//                  ),
+//                ]),
+//          ),
+//        ),
+//      ),
+//    );
+//  }
 }
 
 class LabelText extends StatelessWidget {

@@ -11,11 +11,11 @@ class EmptyQuestions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(left:20.0,right: 20,top: 10),
+        padding: const EdgeInsets.only(left:20.0,right: 20),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Lottie.network("https://assets4.lottiefiles.com/private_files/lf30_YWyaYi.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
+              Lottie.network("https://assets4.lottiefiles.com/private_files/lf30_lmwiE8.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
               GradientText(
                 'You don\'t have any questions to play.',
                 style: boldStyle,
@@ -30,30 +30,27 @@ class EmptyQuestions extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              SizedBox(height: getDynamicHeight(20.0),),
+              SizedBox(height: getDynamicHeight(40.0),),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-//                  Text('How to ask question?', style: answerStyleBlur1),
-//                  SizedBox(height: getDynamicHeight(10.0),),
-//                  Text('     - Go to + tab below.', style: answerStyleBlur),
-//                  SizedBox(height: getDynamicHeight(10.0),),
-//                  Text('     - Click on Wanna ask a question.', style: answerStyleBlur),
-//                  SizedBox(height: getDynamicHeight(10.0),),
-//                  Text('     - Add question & options and also select in which gang you need to ask this question.', style: answerStyleBlur),
-//                  SizedBox(height: getDynamicHeight(10.0),),
-//                  Text('     - That\'s it..!!! Your question will be posted.', style: answerStyleBlur),
-                  SizedBox(height: getDynamicHeight(20.0),),
                   Text('Rules :', style: answerStyleBlur1),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - After 24hrs of add question polling will be closed. But questions can be viewed for 48hrs. After that questions will be removed.', style: answerStyleBlur,),
-                  SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - By default questioned & polled users identity will anonymous.', style: answerStyleBlur),
-                  SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - If you want you can reveal your identity any time while answering or while adding question.', style: answerStyleBlur),
-                  SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - You can share the question status directly to whatsapp, facebook, instagram stories from our app itself.', style: answerStyleBlur,),
-                  SizedBox(height: getDynamicHeight(40.0),),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        Text('- After 24hrs of add question polling will be closed. But questions can be viewed for 48hrs. After that questions will be removed.', style: answerStyleBlur,),
+                        SizedBox(height: getDynamicHeight(10.0),),
+                        Text('- By default questioned & polled users identity will anonymous.', style: answerStyleBlur),
+                        SizedBox(height: getDynamicHeight(10.0),),
+                        Text('- If you want you can reveal your identity any time while answering or while adding question.', style: answerStyleBlur),
+                        SizedBox(height: getDynamicHeight(10.0),),
+                        Text('- You can share the question status directly to whatsapp, facebook, instagram stories from our app itself.', style: answerStyleBlur,),
+                        SizedBox(height: getDynamicHeight(40.0),),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],

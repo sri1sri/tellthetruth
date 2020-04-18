@@ -129,199 +129,212 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return StreamBuilder<List<QuestionDetails>>(
-        stream: DBreference.readQuestions(widget.gangID),
-        builder: (context, snapshot) {
-          print('count ${snapshot.data.length}');
-          return ListItemsBuilder<QuestionDetails>(
-              snapshot: snapshot,
-              itemBuilder: (context, data) =>
-              
-              StreamBuilder<InsightsDetails>(
-            stream: DBreference.myInsight(widget.gangID, data.questionID),
-            builder: (context, snapshot) { 
-              
-              final insightData = snapshot.data;
-              
-              return Container(
-                color: Colors.red,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: <Widget>[
-                      SafeArea(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height/1.2,
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.all(0.0),
-                          child: Column(
-                            children: <Widget>[
-                              Expanded(
-                                  child: GridView.count(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 0,
-                                      childAspectRatio: 0.57,
-                                      children: [
-                                        _QuestionListCard(data, insightData),
-                                      ]
-                                  )
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-
-                    ],
-                  ),
+    return Container(
+      color: Colors.transparent,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: <Widget>[
+            SafeArea(
+              child: Container(
+                height: MediaQuery.of(context).size.height/1.2,
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.all(0.0),
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                        child: GridView.count(
+                            crossAxisCount: 1,
+                            crossAxisSpacing: 2,
+                            mainAxisSpacing: 0,
+                            childAspectRatio: 0.57,
+                            children: [
+                              _QuestionListCard(),
+                            ]
+                        )
+                    )
+                  ],
                 ),
-              );
-            }
+              ),
+            ),
 
-          ),
-          
-    );
-    },
+          ],
+        ),
+      ),
     );
   }
 
 
 
-  Widget _QuestionListCard(QuestionDetails questionData, InsightsDetails insightsData) {
+  Widget _QuestionListCard() {
+
+    return StreamBuilder<List<QuestionDetails>>(
+        stream: DBreference.readQuestions(widget.gangID),
+    builder: (context, questionsSnapshot) {
+
+    return ListItemsBuilder<QuestionDetails>(
+    snapshot: questionsSnapshot,
+    itemBuilder: (context, questionData) =>
+
+    StreamBuilder<InsightsDetails>(
+    stream: DBreference.myInsight(widget.gangID, questionData.questionID),
+    builder: (context, snapshot) {
+
+    final myInsightData = snapshot.data;
+
     return ExpandPageTransition(
 
-      navigateToPage: SingleQuestion(),
-      transitionType: ContainerTransitionType.fade,
+        navigateToPage: SingleQuestion(),
+        transitionType: ContainerTransitionType.fade,
 
-      closedBuilder: (BuildContext _, VoidCallback openContainer) {
+        closedBuilder: (BuildContext _, VoidCallback openContainer) {
 
-       return FlatButton(
-            disabledColor: Colors.white,
-            onPressed: openContainer,
-            padding: EdgeInsets.only(left: 0.0, right: 0.0),
-            child: Container(
-                height: 300.0,
-                width: getDynamicWidth(200.0),
-                child: Column(
-                  children: <Widget>[
-                    Stack(
-                        children: [
-                          Container(
+          return FlatButton(
+              disabledColor: Colors.white,
+              onPressed: openContainer,
+              padding: EdgeInsets.only(left: 0.0, right: 0.0),
+              child: Container(
+                  height: 300.0,
+                  width: getDynamicWidth(200.0),
+                  child: Column(
+                    children: <Widget>[
+                      Stack(
+                          children: [
+                            Container(
 
-                              height: getDynamicHeight(300.0)
-                          ),
-                          Positioned(
-
-                            child:  Container(
-                              height: 300.0,
-                              width: getDynamicWidth(200.0),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    gradient: LinearGradient(colors: <Color>[
-                                      Color(int.tryParse(questionData != null ? questionData.color1 : 0Xff30DD76)),
-                                      Color(int.tryParse(questionData != null ? questionData.color2 : 0Xff30DD76)),
-                                    ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-
-                                              Container(),
-
-                                              Row(
-                                                children: [
-
-                                                   CircleAvatar(
-                                                    backgroundColor: Colors.transparent,
-                                                    backgroundImage: questionData != null ? questionData.createByGender == 'male' ? AssetImage(
-                                                        'images/boy.png') : AssetImage(
-                                                        'images/girl.png') : Container(height: 0, width: 0,),
-                                                    radius: 15,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-
-                                          TyperAnimatedTextKit(
-                                            onTap: () {
-                                              print("Tap Event");
-                                            },
-                                            text: [
-                                              '${questionData.question}?'.capitalize(),
-                                            ],
-                                            textStyle: questionStyle,
-                                            textAlign: TextAlign.center,
-                                            alignment: AlignmentDirectional.topCenter,
-                                            isRepeatingAnimation: false,// or Alignment.topLeft
-                                          ),
-                                          insightsData == null ? BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                              sigmaX: 5,
-                                              sigmaY: 5,
-                                            ),
-                                            child: Container(
-                                              height: getDynamicHeight(1),
-                                              width: getDynamicWidth(1),
-                                              color: Colors.black.withOpacity(0.0),
-                                            ),
-                                          ) : Container(
-                                            height: 0,
-                                            width: 0,
-                                          ),
-
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.end,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  CircleAvatar(
-                                                    backgroundColor: Colors.transparent,
-                                                    backgroundImage: AssetImage(
-                                                        'images/seen.png'),
-                                                    radius: 14,
-                                                  ),
-                                                  SizedBox(width: getDynamicWidth(5),),
-                                                  Text(questionData.viewCount.toString(),style: countStyle,),
-                                                ],
-                                              ),
-                                              SizedBox(width: getDynamicWidth(20),),
-
-                                              Row(
-                                                children: [
-                                                  CircleAvatar(
-                                                    backgroundColor: Colors.transparent,
-                                                    backgroundImage: AssetImage(
-                                                        'images/poll.png'),
-                                                    radius: 12,
-                                                  ),
-                                                  SizedBox(width: getDynamicWidth(5),),
-                                                  Text(questionData.answeredCount.toString(),style: countStyle,),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-
-                                        ]
-                                    ),
-                                  )
-                              ),
+                                height: getDynamicHeight(300.0)
                             ),
+                            Positioned(
 
-                          ),
-                        ]
-                    ),
-                  ],
-                )
-            )
+                              child:  Container(
+                                height: 300.0,
+                                width: getDynamicWidth(200.0),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      gradient: LinearGradient(colors: <Color>[
+                                        Color(int.tryParse(questionData != null ? questionData.color1 : 0Xff30DD76)),
+                                        Color(int.tryParse(questionData != null ? questionData.color2 : 0Xff30DD76)),
+                                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+
+                                                Container(),
+
+                                                Row(
+                                                  children: [
+
+                                                    CircleAvatar(
+                                                      backgroundColor: Colors.transparent,
+                                                      backgroundImage: questionData != null ? questionData.createByGender == 'male' ? AssetImage(
+                                                          'images/boy.png') : AssetImage(
+                                                          'images/girl.png') : Container(height: 0, width: 0,),
+                                                      radius: 15,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+
+                                            TyperAnimatedTextKit(
+                                              onTap: () {
+                                                print("Tap Event");
+                                              },
+                                              text: [
+                                                '${questionData.question}?'.capitalize(),
+                                              ],
+                                              textStyle: questionStyle,
+                                              textAlign: TextAlign.center,
+                                              alignment: AlignmentDirectional.topCenter,
+                                              isRepeatingAnimation: false,// or Alignment.topLeft
+                                            ),
+                                            myInsightData == null ? BackdropFilter(
+                                              filter: ImageFilter.blur(
+                                                sigmaX: 5,
+                                                sigmaY: 5,
+                                              ),
+                                              child: Container(
+                                                height: getDynamicHeight(1),
+                                                width: getDynamicWidth(1),
+                                                color: Colors.black.withOpacity(0.0),
+                                              ),
+                                            ) : Container(
+                                              height: 0,
+                                              width: 0,
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    CircleAvatar(
+                                                      backgroundColor: Colors.transparent,
+                                                      backgroundImage: AssetImage(
+                                                          'images/seen.png'),
+                                                      radius: 14,
+                                                    ),
+                                                    SizedBox(width: getDynamicWidth(5),),
+                                                    Text(questionData.viewCount.toString(),style: countStyle,),
+                                                  ],
+                                                ),
+                                                SizedBox(width: getDynamicWidth(20),),
+
+                                                Row(
+                                                  children: [
+                                                    CircleAvatar(
+                                                      backgroundColor: Colors.transparent,
+                                                      backgroundImage: AssetImage(
+                                                          'images/poll.png'),
+                                                      radius: 12,
+                                                    ),
+                                                    SizedBox(width: getDynamicWidth(5),),
+                                                    Text(questionData.answeredCount.toString(),style: countStyle,),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+
+                                          ]
+                                      ),
+                                    )
+                                ),
+                              ),
+
+                            ),
+                          ]
+                      ),
+                    ],
+                  )
+              )
+          );
+        }
+    );
+
+
+    }
+    )
+    );
+        }
         );
-      }
-      );
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

@@ -62,16 +62,23 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   bool isPolled = false;
   int selectedOption = 0;
+  
+  bool isAnonymos = true;
 
   void handleTick() {
+
     if (isActive) {
-      setState(() {
-        secondsLeft = secondsLeft - 1;
-      } );
+      if (this.mounted) {
+        setState(() {
+          secondsLeft = secondsLeft - 1;
+        });
+      }
     }
   }
 
-  Future<bool> get() async{
+
+
+  Future<bool> updateData() async{
 
     if(widget.insightsDetails == null) {
       final updateQuestionDetails = QuestionDetails(viewCount: widget.questionDetails.viewCount + 1,);
@@ -101,8 +108,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         break;
 
       }
-
-
     });
     return true;
   }
@@ -114,12 +119,15 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
     secondsLeft = ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch - DateTime.now().millisecondsSinceEpoch)~/1000).toInt();
 
-    get();
+    updateData();
 
     optionOnePolledCount = widget.questionDetails.optionOnePolledCount;
     optionTwoPolledCount = widget.questionDetails.optionTwoPolledCount;
     optionThreePolledCount = widget.questionDetails.optionThreePolledCount;
     optionFourPolledCount = widget.questionDetails.optionFourPolledCount;
+
+    isAnonymos = widget.insightsDetails.isAnonymos;
+    print('is == ${isAnonymos}');
   }
 
   void updateInsights(int optionSelected){
@@ -145,6 +153,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
     final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymos: false);
     DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
 
@@ -203,7 +216,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector( child: Icon(
+                          GestureDetector(
+                            child: Icon(
                             Icons.arrow_back_ios, color: Colors.white, ),
                             onTap: () {
                               Navigator.pop( context, true );
@@ -225,9 +239,19 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                       2, '0' ) ),
                             ],
                           ),
-                          Container(
-                            child: Text(".....",style: TextStyle(color: Colors.transparent),),
-                          )
+                          GestureDetector(
+                            child: isAnonymos ? Icon(
+                              Icons.panorama_fish_eye, color: Colors.white, ) 
+                                : Icon(
+                              Icons.remove_red_eye, color: Colors.white ),
+                            onTap: () {
+                              final updateInsightDetails = InsightsDetails(isAnonymos: isAnonymos ? false : true);
+                              DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
+                              setState(() {
+                                isAnonymos ? isAnonymos = false : isAnonymos = true;
+                              });
+                            },
+                          ),
                         ],
                       ),
                     ),

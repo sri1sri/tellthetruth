@@ -9,7 +9,10 @@ class QuestionDetails{
     this.revealIdentity,
     this.endsAt,
     this.viewCount,
-    this.answeredCount,
+    this.optionFour,
+    this.optionThree,
+    this.optionTwo,
+    this.optionOne,
     this.question,
     this.color1,
     this.color2,
@@ -27,10 +30,15 @@ class QuestionDetails{
   final bool revealIdentity;
   final String question;
   final int viewCount;
-  final int answeredCount;
   final String color1;
   final String color2;
   final String createByGender;
+
+  final int optionOne;
+  final int optionTwo;
+  final int optionThree;
+  final int optionFour;
+
 
   final Null empty;
 
@@ -47,7 +55,11 @@ class QuestionDetails{
     final bool revealIdentity = data['reveal_identity'];
     final String question = data['question'];
     final int viewCount = data['view_count'];
-    final int answeredCount = data['answered_count'];
+    final int optionOne = data['option_one_count'];
+    final int optionTwo = data['option_two_count'];
+    final int optionThree = data['option_three_count'];
+    final int optionFour = data['option_four_count'];
+
     final String color1 = data['color1'];
     final String color2 = data['color2'];
     final String createByGender = data['create_by_gender'];
@@ -56,6 +68,7 @@ class QuestionDetails{
 
 
     return QuestionDetails(
+      questionID: questionID,
       createdAt: createdAt,
       endsAt:endsAt,
       createdBy:createdBy,
@@ -63,7 +76,10 @@ class QuestionDetails{
       revealIdentity:revealIdentity,
       question: question,
       viewCount: viewCount,
-      answeredCount:answeredCount,
+      optionOne:optionOne,
+      optionFour: optionFour,
+      optionThree: optionThree,
+      optionTwo: optionTwo,
       color1: color1,
       color2: color2,
       createByGender: createByGender,
@@ -74,7 +90,10 @@ class QuestionDetails{
 
   Map<String, dynamic> toMap(){
     return {
-      answeredCount != null ? 'answered_count': 'empty' : answeredCount,
+      optionOne != null ? 'option_one_count': 'empty' : optionOne,
+      optionTwo != null ? 'option_two_count': 'empty' : optionTwo,
+      optionThree != null ? 'option_three_count': 'empty' : optionThree,
+      optionFour != null ? 'option_four_count': 'empty' : optionFour,
       createdAt != null ? 'created_at': 'empty' : createdAt,
       endsAt != null ? 'ends_at': 'empty' : endsAt,
       createdBy != null ? 'created_by': 'empty' : createdBy,

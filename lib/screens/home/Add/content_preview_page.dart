@@ -104,13 +104,16 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
     final createQuestion = QuestionDetails(
       createdAt: Timestamp.fromDate(DateTime.now()),
-      answeredCount: 0,
       createdBy: USER_ID,
-      endsAt: Timestamp.fromDate(DateTime.now()),
+      endsAt: Timestamp.fromDate(DateTime.now().add(Duration(days: 1))),
       options: [widget.optionOne, widget.optionTwo, widget.optionThree, widget.optionFour],
       question: widget.question,
       revealIdentity: isAnonymous,
       viewCount: 0,
+      optionTwo: 0,
+      optionThree: 0,
+      optionFour: 0,
+      optionOne: 0,
       color1: _colors1[_currentColorIndex].toString(),
       color2: _colors2[_currentColorIndex].toString(),
       createByGender: USER_GENDER,

@@ -1,5 +1,9 @@
 import 'dart:async';
 import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
+import 'package:tellthetruth/database_model/insights_details.dart';
+import 'package:tellthetruth/database_model/question_details.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
@@ -10,20 +14,24 @@ import 'package:slimy_card/slimy_card.dart';
 
 
 class SingleQuestion extends StatelessWidget {
-//  ProfilePage({@required this.database});
-//  Database database;
+  SingleQuestion({@required this.questionDetails, @required this.gangID, @required this.insightsDetails});
+  String gangID;
+  QuestionDetails questionDetails;
+  InsightsDetails insightsDetails;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_SingleQuestion(),
+      child: F_SingleQuestion(questionDetails: questionDetails, gangID: gangID, insightsDetails:insightsDetails),
     );
   }
 }
 
 class F_SingleQuestion extends StatefulWidget {
-  // F_ProfilePage({@required this.database});
-  // Database database;
+  F_SingleQuestion({@required this.questionDetails, @required this.gangID, @required this.insightsDetails});
+  String gangID;
+  QuestionDetails questionDetails;
+  InsightsDetails insightsDetails;
 
   @override
   _F_SingleQuestionState createState() => _F_SingleQuestionState();
@@ -32,16 +40,34 @@ class F_SingleQuestion extends StatefulWidget {
 class _F_SingleQuestionState extends State<F_SingleQuestion> {
   static const duration = const Duration( seconds: 1 );
 
-  int secondsPassed = 5000;
   bool isActive = true;
-
   Timer timer;
+  int secondsLeft;
 
   void handleTick() {
     if (isActive) {
-      setState( () {
-        secondsPassed = secondsPassed - 1;
+      setState(() {
+        secondsLeft = secondsLeft - 1;
       } );
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+    secondsLeft = ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch - DateTime.now().millisecondsSinceEpoch)~/1000).toInt();
+    print(secondsLeft);
+
+    if(widget.insightsDetails == null) {
+      final updateQuestionDetails = QuestionDetails(viewCount: widget.questionDetails.viewCount + 1,);
+      final createInsightDetails = InsightsDetails(isViewed: true);
+
+      DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+      DBreference.createInsights(createInsightDetails, widget.gangID,widget.questionDetails.questionID);
+
     }
   }
 
@@ -68,9 +94,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         handleTick( );
       } );
     }
-//    int seconds = secondsPassed % 60;
-//    int minutes = secondsPassed ~/ 60;
-//    int hours = secondsPassed ~/ (60 * 60);
+
+
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Scaffold(
@@ -118,14 +143,14 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                             children: <Widget>[
                               LabelText(
                                   label: 'HRS',
-                                  value: convertSeconds(secondsPassed)[0].toString( ).padLeft( 2, '0' ) ),
+                                  value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[0].toString( ).padLeft( 2, '0' ) ),
                               LabelText(
                                   label: 'MIN',
-                                  value: convertSeconds(secondsPassed)[1].toString( ).padLeft(
+                                  value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[1].toString( ).padLeft(
                                       2, '0' ) ),
                               LabelText(
                                   label: 'SEC',
-                                  value: convertSeconds(secondsPassed)[2].toString( ).padLeft(
+                                  value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[2].toString( ).padLeft(
                                       2, '0' ) ),
                             ],
                           ),
@@ -168,7 +193,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           radius: 14,
                         ),
                         SizedBox( width: getDynamicWidth(5), ),
-                        Text( "200", style: countStyle, ),
+                        Text('${widget.questionDetails.viewCount}', style: countStyle, ),
                       ],
                     ),
                     Row(
@@ -180,7 +205,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           radius: 12,
                         ),
                         SizedBox( width: getDynamicWidth(5), ),
-                        Text( "150", style: countStyle, ),
+                      Text( '${(widget.questionDetails.optionOne+widget.questionDetails.optionTwo+widget.questionDetails.optionThree+widget.questionDetails.optionFour).toString()}',
+                          style: countStyle, ),
                       ],
                     ),
                     Row(
@@ -235,7 +261,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
             Lottie.network(lottieFilePath,height: getDynamicHeight(60),width: getDynamicWidth(60)),
             SizedBox( height: getDynamicHeight(15) ),
             GradientText(
-              "Who invented the mac Book Air and in which year Book Air and in which year?",
+              '${widget.questionDetails.question}?'.capitalize(),
               textAlign: TextAlign.center,
               style: mediumStyle,
               gradient: LinearGradient(
@@ -272,7 +298,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "Vasanthakumar - 1996",
+                    '${widget.questionDetails.options[0]}'.capitalize(),
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -285,49 +311,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                     ),
                   ),
                   GradientText(
-                    "40 votes",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox( height: getDynamicHeight(10), ),
-          Container(
-            height: getDynamicHeight(55),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular( 5 ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GradientText(
-                    "SrivatsavKonda - 1960",
-                    style: answerStyle,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color( 0XffFD8B1F ),
-                        Color( 0XffD152E0 ),
-                        Color( 0Xff30D0DB ),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  GradientText(
-                    "35 votes",
+                    "${widget.questionDetails.optionOne} members",
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -356,7 +340,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "Vamsipesala - 1967",
+                    '${widget.questionDetails.options[1]}'.capitalize(),
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -369,7 +353,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                     ),
                   ),
                   GradientText(
-                    "88 votes",
+                    "${widget.questionDetails.optionTwo} members",
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -398,7 +382,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GradientText(
-                    "Rockstarumesh - 1667",
+                    '${widget.questionDetails.options[2]}'.capitalize(),
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [
@@ -411,7 +395,49 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                     ),
                   ),
                   GradientText(
-                    "5 votes",
+                    "${widget.questionDetails.optionThree} members",
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color( 0XffFD8B1F ),
+                        Color( 0XffD152E0 ),
+                        Color( 0Xff30D0DB ),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox( height: getDynamicHeight(10), ),
+          Container(
+            height: getDynamicHeight(55),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular( 5 ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GradientText(
+                    '${widget.questionDetails.options[3]}'.capitalize(),
+                    style: answerStyle,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color( 0XffFD8B1F ),
+                        Color( 0XffD152E0 ),
+                        Color( 0Xff30D0DB ),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  GradientText(
+                    "${widget.questionDetails.optionFour} members",
                     style: answerStyle,
                     gradient: LinearGradient(
                       colors: [

@@ -238,6 +238,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                             print("Tap Event");
                                           },
                                           text: [
+                                            'Ready',
+                                            'Get Set',
+                                            'Your Question',
                                             '${questionData.question}?'
                                                 .capitalize(),
                                           ],

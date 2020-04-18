@@ -208,7 +208,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8.0),
                                     gradient: LinearGradient(colors: <Color>[
-                                      Color(int.tryParse(data != null ? data.color1 : 0XffFD8B1F)),
+                                      Color(int.tryParse(data != null ? data.color1 : 0Xff30DD76)),
                                       Color(int.tryParse(data != null ? data.color2 : 0Xff30DD76)),
                                     ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                                   ),

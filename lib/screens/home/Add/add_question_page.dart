@@ -62,7 +62,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
           PageTransition(type: PageTransitionType.rippleMiddle,
               duration: Duration(seconds: 2),
               alignment: Alignment.bottomCenter,
-              child: AddOptions(question: _question,
+              child: AddOptions(question: '${_question}?'.capitalize(),
               ),
           ),
       );

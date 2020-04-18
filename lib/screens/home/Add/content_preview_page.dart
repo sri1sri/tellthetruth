@@ -154,8 +154,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       height: MediaQuery.of( context ).size.height,
       decoration: new BoxDecoration(
         gradient: LinearGradient(colors: <Color>[
-          Color(_colors1[_currentColorIndex]),
-          Color(_colors2[_currentColorIndex]),
+          Color(int.parse(_colors1[_currentColorIndex])),
+          Color(int.parse(_colors2[_currentColorIndex])),
         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
       child: Column(
@@ -211,8 +211,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                     decoration: BoxDecoration(
 
                       gradient: LinearGradient(colors: <Color>[
-                        _colors1[_currentColorIndex],
-                        _colors2[_currentColorIndex],
+                        Color(int.parse(_colors1[_currentColorIndex])),
+                        Color(int.parse(_colors2[_currentColorIndex])),
                       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                       border: Border.all(
                         color: Colors.white, //                   <--- border color

@@ -6,21 +6,21 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
-class HowToUse extends StatelessWidget {
+class FAQ extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_HowToUse(),
+      child: F_FAQ(),
     );
   }
 }
 
-class F_HowToUse extends StatefulWidget {
+class F_FAQ extends StatefulWidget {
   @override
-  _F_HowToUse createState() => _F_HowToUse();
+  _F_FAQ createState() => _F_FAQ();
 }
 
-class _F_HowToUse extends State<F_HowToUse> {
+class _F_FAQ extends State<F_FAQ> {
   int _n = 0;
   @override
   Widget build(BuildContext context) {

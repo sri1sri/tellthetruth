@@ -10,8 +10,10 @@ import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/global_file/common_widgets/platform_alert/platform_alert_dialog.dart';
-import 'package:tellthetruth/screens/home/profile/SettingsOptions/how_to_use.dart';
+import 'package:tellthetruth/screens/home/profile/SettingsOptions/faq.dart';
+import 'package:tellthetruth/screens/home/profile/SettingsOptions/notification.dart';
 import 'package:tellthetruth/screens/home/profile/SettingsOptions/privacy_policy.dart';
+import 'package:tellthetruth/screens/home/profile/SettingsOptions/support.dart';
 import 'package:tellthetruth/screens/home/profile/SettingsOptions/terms_conditions.dart';
 
 import '../../../landing_page.dart';
@@ -172,11 +174,11 @@ class _F_ProfileState extends State<F_Profile> {
             ),
             Column(
               children: <Widget>[
-                _settingsCard("Notifications","images/not.png",HowToUse()),
-                _settingsCard("FAQ's","images/faq.png",HowToUse()),
+                _settingsCard("Notifications","images/not.png",Notifications()),
+                _settingsCard("FAQ's","images/faq.png",FAQ()),
                 _settingsCard("Privacy Policy","images/policy.png",PrivacyPolicy()),
                 _settingsCard("Terms & Conditions","images/t&c.png",TermsAndServices()),
-                _settingsCard("Support","images/sup.png",HowToUse()),
+                _settingsCard("Support","images/sup.png",Support()),
                 _settingsCard("Log Out","images/logout.png",null),
               ],
             ),

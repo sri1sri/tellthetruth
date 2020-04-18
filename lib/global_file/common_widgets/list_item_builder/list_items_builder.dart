@@ -37,8 +37,6 @@ class ListItemsBuilder<T> extends StatelessWidget {
     );
   }
 
-
-
   Widget _buildList(List<T> items) {
     return ListView.separated(
       separatorBuilder: (contain, index) => Divider(height: 1.5),

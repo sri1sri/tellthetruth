@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
@@ -204,7 +205,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      _buildImage("6 new questions", data),
+                      _buildImage(data),
                     ],
                   ),
                 ),
@@ -218,7 +219,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
   }
 
 
-  Widget _buildImage( String description, GangDetails data) {
+  Widget _buildImage(GangDetails data) {
 //    USER_GANG_NAMES.add(data != null ? data.gangName : 'null');
 //    USER_GANG_ID.add(data != null ? data.gangCode:'null');
     return GestureDetector(
@@ -255,7 +256,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                           top: 7,
                           child: Text(
                             data != null
-                                ? data.gangName
+                                ? '${data.gangCode}'
                                 : 'fetching...',
                             style: backgroundText,
                           ),
@@ -264,7 +265,9 @@ class _F_FeedPageState extends State<F_FeedPage> {
                         Positioned(
                           top: 40,
                           child: GradientText(
-                            description,
+                            data != null
+                                ? data.gangName
+                                : 'fetching...',
                             style: questionStyle1,
                             gradient: LinearGradient(
                               colors: [

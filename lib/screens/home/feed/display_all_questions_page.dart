@@ -12,6 +12,7 @@ import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
+import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
@@ -146,18 +147,24 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     return StreamBuilder<List<QuestionDetails>>(
       stream: DBreference.readQuestions(widget.gangID),
       builder: (context, questionsSnapshot) {
-        return GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: 0.66,
-          mainAxisSpacing: 2.0,
-          crossAxisSpacing: 1.0,
-          children: List.generate(
-            questionsSnapshot.data.length,
-            (index) {
-              return _QuestionListCard(questionsSnapshot.data[index]);
-            },
-          ),
-        );
+        return questionsSnapshot.data != null
+            ? questionsSnapshot.data.length != 0
+                ? GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.66,
+                    mainAxisSpacing: 2.0,
+                    crossAxisSpacing: 1.0,
+                    children: List.generate(
+                      questionsSnapshot.data != null
+                          ? questionsSnapshot.data.length
+                          : 0,
+                      (index) {
+                        return _QuestionListCard(questionsSnapshot.data[index]);
+                      },
+                    ),
+                  )
+                : EmptyQuestions()
+            : null;
       },
     );
   }
@@ -167,165 +174,175 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
         stream: DBreference.myInsight(widget.gangID, questionData.questionID),
         builder: (context, snapshot) {
           final insightsData = snapshot.data;
-        return ExpandPageTransition(
-            navigateToPage: SingleQuestion(),
-            transitionType: ContainerTransitionType.fade,
-            closedBuilder: (BuildContext _, VoidCallback openContainer) {
-              return FlatButton(
-                  disabledColor: Colors.white,
-                  onPressed: openContainer,
-                  padding: EdgeInsets.only(left: 0.0, right: 0.0),
-                  child: Container(
-                      height: getDynamicHeight(300),
-                      width: getDynamicWidth(200.0),
-                      child: Column(
-                        children: <Widget>[
-                          Stack(children: [
-                            Container(height: getDynamicHeight(300.0)),
-                            Positioned(
-                              child: Container(
-                                height: getDynamicHeight(300),
-                                width: getDynamicWidth(200.0),
+          return ExpandPageTransition(
+              navigateToPage: SingleQuestion(),
+              transitionType: ContainerTransitionType.fade,
+              closedBuilder: (BuildContext _, VoidCallback openContainer) {
+                return FlatButton(
+                    disabledColor: Colors.white,
+                    onPressed: openContainer,
+                    padding: EdgeInsets.only(left: 0.0, right: 0.0),
+                    child: Container(
+                        height: getDynamicHeight(300),
+                        width: getDynamicWidth(200.0),
+                        child: Column(
+                          children: <Widget>[
+                            Stack(children: [
+                              Container(height: getDynamicHeight(300.0)),
+                              Positioned(
                                 child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      gradient: LinearGradient(
-                                          colors: <Color>[
-                                            Color(int.tryParse(questionData != null
-                                                ? questionData.color1
-                                                : 0Xff30DD76)),
-                                            Color(int.tryParse(questionData != null
-                                                ? questionData.color2
-                                                : 0Xff30DD76)),
-                                          ],
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Container(),
-                                                Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      backgroundImage: questionData !=
-                                                              null
-                                                          ? questionData
-                                                                      .createByGender ==
-                                                                  'male'
-                                                              ? AssetImage(
-                                                                  'images/boy.png')
-                                                              : AssetImage(
-                                                                  'images/girl.png')
-                                                          : Container(
-                                                              height: 0,
-                                                              width: 0,
-                                                            ),
-                                                      radius: 15,
+                                  height: getDynamicHeight(300),
+                                  width: getDynamicWidth(200.0),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        gradient: LinearGradient(
+                                            colors: <Color>[
+                                              Color(int.tryParse(
+                                                  questionData != null
+                                                      ? questionData.color1
+                                                      : 0Xff30DD76)),
+                                              Color(int.tryParse(
+                                                  questionData != null
+                                                      ? questionData.color2
+                                                      : 0Xff30DD76)),
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(),
+                                                  Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        backgroundImage: questionData !=
+                                                                null
+                                                            ? questionData.createByGender ==
+                                                                    'male'
+                                                                ? AssetImage(
+                                                                    'images/boy.png')
+                                                                : AssetImage(
+                                                                    'images/girl.png')
+                                                            : Container(
+                                                                height: 0,
+                                                                width: 0,
+                                                              ),
+                                                        radius: 15,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                              TyperAnimatedTextKit(
+                                                onTap: () {
+                                                  print("Tap Event");
+                                                },
+                                                text: [
+                                                  'Ready',
+                                                  'Get Set',
+                                                  'Your Question',
+                                                  '${questionData.question}?'
+                                                      .capitalize(),
+                                                ],
+                                                textStyle: questionStyle,
+                                                textAlign: TextAlign.center,
+                                                alignment: AlignmentDirectional
+                                                    .topCenter,
+                                                isRepeatingAnimation:
+                                                    false, // or Alignment.topLeft
+                                              ),
+                                              insightsData == null
+                                                  ? BackdropFilter(
+                                                      filter: ImageFilter.blur(
+                                                        sigmaX: 5,
+                                                        sigmaY: 5,
+                                                      ),
+                                                      child: Container(
+                                                        height:
+                                                            getDynamicHeight(1),
+                                                        width:
+                                                            getDynamicWidth(1),
+                                                        color: Colors.black
+                                                            .withOpacity(0.0),
+                                                      ),
+                                                    )
+                                                  : Container(
+                                                      height: 0,
+                                                      width: 0,
                                                     ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-
-                                            TyperAnimatedTextKit(
-                                              onTap: () {
-                                                print("Tap Event");
-                                              },
-                                              text: [
-                                                'Ready',
-                                                'Get Set',
-                                                'Your Question',
-                                                '${questionData.question}?'
-                                                    .capitalize(),
-                                              ],
-                                              textStyle: questionStyle,
-                                              textAlign: TextAlign.center,
-                                              alignment:
-                                                  AlignmentDirectional.topCenter,
-                                              isRepeatingAnimation:
-                                                  false, // or Alignment.topLeft
-                                            ),
-                                          insightsData == null ? BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                              sigmaX: 5,
-                                              sigmaY: 5,
-                                            ),
-                                            child: Container(
-                                              height: getDynamicHeight(1),
-                                              width: getDynamicWidth(1),
-                                              color: Colors.black.withOpacity(0.0),
-                                            ),
-                                          ) : Container(
-                                            height: 0,
-                                            width: 0,
-                                          ),
-
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      backgroundImage: AssetImage(
-                                                          'images/seen.png'),
-                                                      radius: 14,
-                                                    ),
-                                                    SizedBox(
-                                                      width: getDynamicWidth(5),
-                                                    ),
-                                                    Text(
-                                                      questionData.viewCount
-                                                          .toString(),
-                                                      style: countStyle,
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  width: getDynamicWidth(20),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      backgroundImage: AssetImage(
-                                                          'images/poll.png'),
-                                                      radius: 12,
-                                                    ),
-                                                    SizedBox(
-                                                      width: getDynamicWidth(5),
-                                                    ),
-                                                    Text(
-                                                      questionData.answeredCount
-                                                          .toString(),
-                                                      style: countStyle,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ]),
-                                    )),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        backgroundImage:
+                                                            AssetImage(
+                                                                'images/seen.png'),
+                                                        radius: 14,
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            getDynamicWidth(5),
+                                                      ),
+                                                      Text(
+                                                        questionData.viewCount
+                                                            .toString(),
+                                                        style: countStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    width: getDynamicWidth(20),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      CircleAvatar(
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        backgroundImage:
+                                                            AssetImage(
+                                                                'images/poll.png'),
+                                                        radius: 12,
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            getDynamicWidth(5),
+                                                      ),
+                                                      Text(
+                                                        questionData
+                                                            .answeredCount
+                                                            .toString(),
+                                                        style: countStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ]),
+                                      )),
+                                ),
                               ),
-                            ),
-                          ]),
-                        ],
-                      )));
-            });
-      }
-    );
+                            ]),
+                          ],
+                        )));
+              });
+        });
   }
 }

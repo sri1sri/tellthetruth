@@ -45,10 +45,22 @@ class EmptyFeedContent extends StatelessWidget {
                   SizedBox(height: getDynamicHeight(10.0),),
                   Text('     - Click on Create new gang & have fun.', style: answerStyleBlur),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Enter you gang name & icon.', style: answerStyleBlur),
+                  Text('     - Enter your gang name & icon.', style: answerStyleBlur),
                   SizedBox(height: getDynamicHeight(10.0),),
                   Text('     - You will be providing with gang code.', style: answerStyleBlur),
+                  SizedBox(height: getDynamicHeight(40.0),),
+
+
                   SizedBox(height: getDynamicHeight(20.0),),
+                  Text('How to know gang codes?', style: answerStyleBlur1),
+                  SizedBox(height: getDynamicHeight(10.0),),
+                  Text('     - Select gang title.', style: answerStyleBlur,),
+                  SizedBox(height: getDynamicHeight(10.0),),
+                  Text('     - After navigating to next screen, On top right ', style: answerStyleBlur),
+                  SizedBox(height: getDynamicHeight(10.0),),
+                  Text('     - Enter you gang code. That\'s it..!!!', style: answerStyleBlur,),
+                  SizedBox(height: getDynamicHeight(40.0),),
+
                   Text('How to join gang?', style: answerStyleBlur1),
                   SizedBox(height: getDynamicHeight(10.0),),
                   Text('     - Go to + tab below.', style: answerStyleBlur,),

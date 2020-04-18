@@ -10,9 +10,8 @@ import 'package:slimy_card/slimy_card.dart';
 
 
 class SingleQuestion extends StatelessWidget {
-
-  //ProfilePage({@required this.database});
-  //Database database;
+//  ProfilePage({@required this.database});
+//  Database database;
 
   @override
   Widget build(BuildContext context) {

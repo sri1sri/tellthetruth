@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
@@ -356,24 +357,16 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                   valueField: 'value',
                   validator: (value) =>
                   value.isNotEmpty ? null : 'company name cant\'t be empty.',
-                )
-
-
-//                Container(
-//                    color: Colors.transparent,
-//                    height: getDynamicHeight(80.0) ,
-//                    width: MediaQuery.of(context).size.width ,
-//                    child: SingleChildScrollView(
-//                      scrollDirection: Axis.horizontal,
-//                      child:Row(
-//                        children: [
-//                          for (var i = 0; i < gangName.length; i++)
-//                            _buildImage(i, selectGangBackgroundColor),
-//                        ],
-//                      ) ,
-//                    )
-//                ),
+                ),
               ],
+            ),
+          ),
+          Container(
+            height: getDynamicHeight(50),
+            child: Expanded(
+              child:SizedBox(
+                child: getVariableScaleCrousel(),
+              ),
             ),
           ),
           Row(
@@ -429,6 +422,23 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
         ],
       ),
     );
+
+  }
+
+  Widget getVariableScaleCrousel() {
+    return FinitePager(
+      scaleX: 0.8,
+      scaleY: 0.8,
+      scrollDirection: Axis.horizontal,
+      children: <Widget>[
+        _buildImage("Indians"),
+        _buildImage("Rockstars"),
+        _buildImage("Cobras"),
+        _buildImage("Indians"),
+        _buildImage("Rockstars"),
+        _buildImage("Cobras"),
+      ],
+    );
   }
 
   displayDropDownValues(gangNames){
@@ -449,48 +459,47 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   var dropDownValues = [];
   String selectedGangId;
 
-//  Widget _buildImage(int index, Color backgroundColor) {
-//    return Padding(
-//      padding: const EdgeInsets.only(left: 7, right: 7),
-//      child: GestureDetector(
-//        onTap: (){
+  Widget _buildImage(String gangName) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 7, right: 7),
+      child: GestureDetector(
+        onTap: (){
 //          setState(() {
 //            selectGangBackgroundColor = Colors.white;
 //            selectedGangID = gangIDs[index];
 //          });
-//        },
-//        child: Container(
-//          color: backgroundColor,
-//          height: getDynamicHeight(50),
-//          child: Padding(
-//            padding: const EdgeInsets.only(left: 15,right: 15),
-//            child: Row(
-//                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                crossAxisAlignment: CrossAxisAlignment.center,
-//                children: <Widget>[
-//                  GradientText(
-//                    gangName[index],
-//                    style: questionStyle1,
-//                    gradient: LinearGradient(
-//                      colors: selectedGangID == null ? [
-//                        Colors.white,
-//                        Colors.white,
-//                        Colors.white,
-//                      ] : [
-//                        Color(0XffFD8B1F),
-//                        Color(0XffD152E0),
-//                        Color(0Xff30D0DB),
-//                      ],
-//                      begin: Alignment.topLeft,
-//                      end: Alignment.bottomRight,
-//                    ),
-//                  ),
-//                ]),
-//          ),
-//        ),
-//      ),
-//    );
-//  }
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+               borderRadius: BorderRadius.circular(10)
+          ),
+          height: getDynamicHeight(50),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  GradientText(
+                    gangName,
+                    style: questionStyle1,
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ]),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class LabelText extends StatelessWidget {
@@ -579,3 +588,5 @@ Widget OptionCard(BuildContext context ,String Option)
   );
 
 }
+
+

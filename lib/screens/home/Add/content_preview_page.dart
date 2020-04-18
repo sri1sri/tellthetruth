@@ -545,27 +545,30 @@ class LabelText extends StatelessWidget {
 Widget OptionCard(BuildContext context ,String Option)
 {
   return Container(
-    height: getDynamicHeight(55),
+    //height: getDynamicHeight(55),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular( 5 ),
     ),
     child: Padding(
-      padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
+      padding: const EdgeInsets.only( left: 15.0, right: 15.0 ,top:20,bottom:20 ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GradientText(
-            Option,
-            style: answerStyle,
-            gradient: LinearGradient(
-              colors: [
-                Color( 0XffFD8B1F ),
-                Color( 0XffD152E0 ),
-                Color( 0Xff30D0DB ),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+          Container(
+            width: getDynamicWidth(MediaQuery.of(context).size.width/1.3),
+            child: GradientText(
+              Option,
+              style: answerStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color( 0XffFD8B1F ),
+                  Color( 0XffD152E0 ),
+                  Color( 0Xff30D0DB ),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
           ),
         ],

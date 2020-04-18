@@ -331,7 +331,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                 },
                                   child: OptionCard(
                                       0,
-                                      '${optionOnePolledCount.toString()} members',
+                                      '${optionOnePolledCount.toString()} votes',
                                       selectedOption == 0 ? optionOneBackgroundColor : selectedOption == 1 ? Colors.white : optionOneBackgroundColor,
                                     isOptionOneSelected,
                                   ),
@@ -362,7 +362,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                   }
                                 },
                                 child: OptionCard(1,
-                                    '${optionTwoPolledCount.toString()} members',
+                                    '${optionTwoPolledCount.toString()} votes',
                                     selectedOption == 0 ? optionTwoBackgroundColor : selectedOption == 2 ? Colors.white : optionTwoBackgroundColor,
                                   isOptionTwoSelected,
                                 ),
@@ -392,7 +392,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
                                 },
                                 child: OptionCard(2,
-                                    '${optionThreePolledCount.toString()} members',
+                                    '${optionThreePolledCount.toString()} votes',
                                     selectedOption == 0 ? optionThreeBackgroundColor : selectedOption == 3 ? Colors.white : optionThreeBackgroundColor,
                                   isOptionThreeSelected,
                                 ),
@@ -421,7 +421,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                   }
                                 },
                                 child: OptionCard(3,
-                                    '${optionFourPolledCount.toString()} members',
+                                    '${optionFourPolledCount.toString()} votes',
                                     selectedOption == 0 ? optionFourBackgroundColor : selectedOption == 4 ? Colors.white : optionFourBackgroundColor,
                                   isOptionFourSelected,
                                 ),
@@ -641,31 +641,35 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   Widget OptionCard(int optionIndex, String polledCount, Color backgroundColor, bool isOptionSelected) {
     return Container(
-      height: getDynamicHeight(55),
+      //height: getDynamicHeight(55),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular( 5 ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only( left: 15.0, right: 15.0 ),
+        padding: const EdgeInsets.only( left: 15.0, right: 15.0 ,top:20,bottom:20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GradientText(
-              '${widget.questionDetails.options[optionIndex]}'.capitalize(),
-              style: answerStyle,
-              gradient: LinearGradient(
-                colors: isOptionSelected ? [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                ] : [
-                  Colors.white,
-                  Colors.white,
-                  Colors.white,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+            Container(
+              width: getDynamicWidth(MediaQuery.of(context).size.width/1.5),
+
+              child: GradientText(
+                '${widget.questionDetails.options[optionIndex]}'.capitalize(),
+                style: answerStyle,
+                gradient: LinearGradient(
+                  colors: isOptionSelected ? [
+                    Color( 0XffFD8B1F ),
+                    Color( 0XffD152E0 ),
+                    Color( 0Xff30D0DB ),
+                  ] : [
+                    Colors.white,
+                    Colors.white,
+                    Colors.white,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
             ),
             GradientText(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
+import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -20,7 +21,7 @@ abstract class Database{
   Stream<CommonFiles> getAnimations();
   Future<void> createQuestion(QuestionDetails questionDetails, String gangID);
   Stream<List<QuestionDetails>>readQuestions(String gangID);
-
+  Stream<InsightsDetails> myInsight(String gangID, String questionID);
 }
 
 
@@ -80,6 +81,12 @@ class FirestoreDatabase implements Database {
   Stream<List<QuestionDetails>>readQuestions(String gangID) => _service.collectionStream(
     path: APIPath.questionsList(gangID),
     builder: (data, documentId) => QuestionDetails.fromMap(data, documentId),
+  );
+
+  @override
+  Stream<InsightsDetails> myInsight(String gangID, String questionID) => _service.documentStream(
+    path: APIPath.myInsightDetails(gangID, questionID, USER_ID),
+    builder: (data, documentId) => InsightsDetails.fromMap(data, documentId),
   );
 
   @override

@@ -8,7 +8,6 @@ import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/screens/home/feed/display_all_questions_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
-import 'package:slimy_card/slimy_card.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
@@ -278,7 +277,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         ],
                         child: OptionCard(context ,widget.optionOne),
                       ),
-                       SizedBox(height: getDynamicHeight(8),),
+                      SizedBox(height: getDynamicHeight(8),),
                       TranslationAnimatedWidget(
                         enabled: true,
                         duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -289,7 +288,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         ],
                         child: OptionCard(context ,widget.optionTwo),
                       ),
-                       SizedBox(height: getDynamicHeight(8),),
+                      SizedBox(height: getDynamicHeight(8),),
                       TranslationAnimatedWidget(
                         enabled: true,
                         duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
@@ -300,7 +299,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         ],
                         child: OptionCard(context ,widget.optionThree),/* your widget */
                       ),
-                       SizedBox(height: getDynamicHeight(8),),
+                      SizedBox(height: getDynamicHeight(8),),
                       TranslationAnimatedWidget(
                         enabled: true,
                         duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation

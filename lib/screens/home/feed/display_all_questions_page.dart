@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
+import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -131,52 +132,62 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     return StreamBuilder<List<QuestionDetails>>(
         stream: DBreference.readQuestions(widget.gangID),
         builder: (context, snapshot) {
+          print('count ${snapshot.data.length}');
           return ListItemsBuilder<QuestionDetails>(
               snapshot: snapshot,
-              itemBuilder: (context, data) => SingleChildScrollView(
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: <Widget>[
-                        SafeArea(
-                          child: Container(
-                            height: MediaQuery.of(context).size.height/1.2,
-                            width: MediaQuery.of(context).size.width,
-                            padding: EdgeInsets.all(0.0),
-                            child: Column(
-                              children: <Widget>[
-                                Expanded(
-                                    child: GridView.count(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 10,
-                                        mainAxisSpacing: 0,
-                                        childAspectRatio: 0.57,
-                                        children: [
-                                          _QuestionListCard(data),
-                                         ]
-                                    )
-                                )
-                              ],
-                            ),
+              itemBuilder: (context, data) =>
+              
+              StreamBuilder<InsightsDetails>(
+            stream: DBreference.myInsight(widget.gangID, data.questionID),
+            builder: (context, snapshot) { 
+              
+              final insightData = snapshot.data;
+              
+              return Container(
+                color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget>[
+                      SafeArea(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height/1.2,
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.all(0.0),
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                  child: GridView.count(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 0,
+                                      childAspectRatio: 0.57,
+                                      children: [
+                                        _QuestionListCard(data, insightData),
+                                      ]
+                                  )
+                              )
+                            ],
                           ),
                         ),
+                      ),
 
-                      ],
-                    ),
+                    ],
                   ),
                 ),
-              ),
+              );
+            }
 
-          );
-          },
+          ),
+          
+    );
+    },
     );
   }
 
 
 
-  Widget _QuestionListCard(QuestionDetails data) {
+  Widget _QuestionListCard(QuestionDetails questionData, InsightsDetails insightsData) {
     return ExpandPageTransition(
 
       navigateToPage: SingleQuestion(),
@@ -208,8 +219,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8.0),
                                     gradient: LinearGradient(colors: <Color>[
-                                      Color(int.tryParse(data != null ? data.color1 : 0Xff30DD76)),
-                                      Color(int.tryParse(data != null ? data.color2 : 0Xff30DD76)),
+                                      Color(int.tryParse(questionData != null ? questionData.color1 : 0Xff30DD76)),
+                                      Color(int.tryParse(questionData != null ? questionData.color2 : 0Xff30DD76)),
                                     ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                                   ),
                                   child: Padding(
@@ -228,7 +239,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
                                                    CircleAvatar(
                                                     backgroundColor: Colors.transparent,
-                                                    backgroundImage: data != null ? data.createByGender == 'male' ? AssetImage(
+                                                    backgroundImage: questionData != null ? questionData.createByGender == 'male' ? AssetImage(
                                                         'images/boy.png') : AssetImage(
                                                         'images/girl.png') : Container(height: 0, width: 0,),
                                                     radius: 15,
@@ -243,27 +254,27 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                               print("Tap Event");
                                             },
                                             text: [
-                                              '${data.question}?'.capitalize(),
+                                              '${questionData.question}?'.capitalize(),
                                             ],
                                             textStyle: questionStyle,
                                             textAlign: TextAlign.center,
                                             alignment: AlignmentDirectional.topCenter,
                                             isRepeatingAnimation: false,// or Alignment.topLeft
                                           ),
-//                                          isBlur == true ? BackdropFilter(
-//                                            filter: ImageFilter.blur(
-//                                              sigmaX: 5,
-//                                              sigmaY: 5,
-//                                            ),
-//                                            child: Container(
-//                                              height: getDynamicHeight(1),
-//                                              width: getDynamicWidth(1),
-//                                              color: Colors.black.withOpacity(0.0),
-//                                            ),
-//                                          ) : Container(
-//                                            height: 0,
-//                                            width: 0,
-//                                          ),
+                                          insightsData == null ? BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                              sigmaX: 5,
+                                              sigmaY: 5,
+                                            ),
+                                            child: Container(
+                                              height: getDynamicHeight(1),
+                                              width: getDynamicWidth(1),
+                                              color: Colors.black.withOpacity(0.0),
+                                            ),
+                                          ) : Container(
+                                            height: 0,
+                                            width: 0,
+                                          ),
 
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.end,
@@ -277,7 +288,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                                     radius: 14,
                                                   ),
                                                   SizedBox(width: getDynamicWidth(5),),
-                                                  Text(data.viewCount.toString(),style: countStyle,),
+                                                  Text(questionData.viewCount.toString(),style: countStyle,),
                                                 ],
                                               ),
                                               SizedBox(width: getDynamicWidth(20),),
@@ -291,7 +302,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                                     radius: 12,
                                                   ),
                                                   SizedBox(width: getDynamicWidth(5),),
-                                                  Text(data.answeredCount.toString(),style: countStyle,),
+                                                  Text(questionData.answeredCount.toString(),style: countStyle,),
                                                 ],
                                               ),
                                             ],

@@ -21,7 +21,7 @@ class F_Notifications extends StatefulWidget {
 }
 
 class _F_Notifications extends State<F_Notifications> {
-  int _n = 0;
+  bool isSwitched = true;
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
@@ -51,7 +51,7 @@ class _F_Notifications extends State<F_Notifications> {
             Navigator.pop(context, true);
           },
           rightActionBar: Container(
-              child: Text(".............",style: TextStyle(color: Colors.white),)
+              child: Text(".....",style: TextStyle(color: Colors.white),)
           ),
           rightAction: () {
             print('right action bar is pressed in appbar');
@@ -81,19 +81,32 @@ class _F_Notifications extends State<F_Notifications> {
   _Notificationcard()
   {
     return Container(
+      height: getDynamicHeight(70),
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
 
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Center(
-            child: Text(
-              "NOTIFIATION",
-              style: answerStyleBlur,
+            isSwitched != true ? Text("Enable Notification",style: answerStyleBlur1,)
+            :
+            Text("Disable Notification",style: answerStyleBlur1,),
+
+
+            Switch(
+              value: isSwitched,
+              onChanged: (value) {
+                setState(() {
+                  isSwitched = value;
+                });
+              },
+              activeTrackColor: Colors.lightGreenAccent,
+              activeColor: Colors.green,
             ),
-          ),
+          ],
         ),
-      ),
-
+      )
     );
 
   }

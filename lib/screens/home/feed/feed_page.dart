@@ -192,6 +192,13 @@ class _F_FeedPageState extends State<F_FeedPage> {
     return StreamBuilder<List<GangDetails>>(
       stream: DBreference.readGangs(),
       builder: (context, snapshot) {
+//
+//        if(snapshot != null) {
+//          for(var i = 0; i < snapshot.data.length; i++) {
+//            USER_GANG_NAMES.add(snapshot.data[i].gangName != null ? snapshot.data[i].gangName : '0');
+//            USER_GANG_ID.add(snapshot.data[i].gangID != null ? snapshot.data[i].gangID : '0');
+//        }
+//        }
 
         return ListItemsBuilder<GangDetails>(
           snapshot: snapshot,

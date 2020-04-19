@@ -126,7 +126,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     optionThreePolledCount = widget.questionDetails.optionThreePolledCount;
     optionFourPolledCount = widget.questionDetails.optionFourPolledCount;
 
-    isAnonymos = widget.insightsDetails.isAnonymos == null ? true : widget.insightsDetails.isAnonymos;
+    isAnonymos = widget.insightsDetails == null ? true : widget.insightsDetails.isAnonymos;
     print('is == ${isAnonymos}');
   }
 
@@ -151,7 +151,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         break;
     }
 
-    final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymos: false);
+    final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymos: true);
     DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
   }
 

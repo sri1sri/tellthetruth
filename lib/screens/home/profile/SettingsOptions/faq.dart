@@ -41,6 +41,7 @@ class _F_FAQ extends State<F_FAQ> {
 
   Widget _buildContent(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80),
         child: CustomAppBar(
@@ -51,7 +52,7 @@ class _F_FAQ extends State<F_FAQ> {
             Navigator.pop(context, true);
           },
           rightActionBar: Container(
-              child: Text(".............",style: TextStyle(color: Colors.white),)
+              child: Text("......",style: TextStyle(color: Colors.white),)
           ),
           rightAction: () {
             print('right action bar is pressed in appbar');
@@ -61,31 +62,24 @@ class _F_FAQ extends State<F_FAQ> {
         ),
       ),
       body: Container(
+        color: Colors.white,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SizedBox(height: getDynamicHeight(10),),
+              SizedBox(height: getDynamicHeight(5),),
               _Notificationcard("STEP 1"," Login to app using your phone number"),
-              SizedBox(height: getDynamicHeight(10),),
+              SizedBox(height: getDynamicHeight(5),),
               _Notificationcard("STEP 2","Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app"),
-              SizedBox(height: getDynamicHeight(10),),
+              SizedBox(height: getDynamicHeight(5),),
               _Notificationcard("STEP 3","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 4","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 5","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 6","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 7","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 8","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 9","Open the app "),
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard("STEP 10","Open the app "),
+              SizedBox(height: getDynamicHeight(5),),
+              _Notificationcard("STEP 1"," Login to app using your phone number"),
+              SizedBox(height: getDynamicHeight(5),),
+              _Notificationcard("STEP 2","Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app"),
+              SizedBox(height: getDynamicHeight(5),),
+              _Notificationcard("STEP 3","Open the app "),
 
             ],
           ),
@@ -97,27 +91,21 @@ class _F_FAQ extends State<F_FAQ> {
   _Notificationcard(String step, String description)
   {
     return Container(
+      width: double.infinity,
 
-      child: Center(
-        child: Card(
-          child: Container(
-            width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(step,
+              style: answerStyleBlur1,
 
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  Text(step,
-                    style: answerStyleBlur1,
-
-                  ),
-                  SizedBox(height: getDynamicHeight(15),),
-                  Text(description,
-                    style: answerStyleBlur,)
-                ],
-              ),
             ),
-          ),
+            SizedBox(height: getDynamicHeight(10),),
+            Text(description,
+              style: answerStyleBlur,)
+          ],
         ),
       ),
     );

@@ -333,6 +333,12 @@ PODS:
     - Flutter
   - PromisesObjC (1.2.8)
   - Reachability (3.2)
+  - url_launcher (0.0.1):
+    - Flutter
+  - url_launcher_macos (0.0.1):
+    - Flutter
+  - url_launcher_web (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -353,6 +359,9 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - url_launcher_macos (from `.symlinks/plugins/url_launcher_macos/ios`)
+  - url_launcher_web (from `.symlinks/plugins/url_launcher_web/ios`)
 
 SPEC REPOS:
   trunk:
@@ -418,6 +427,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_macos/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
+  url_launcher_macos:
+    :path: ".symlinks/plugins/url_launcher_macos/ios"
+  url_launcher_web:
+    :path: ".symlinks/plugins/url_launcher_web/ios"
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
@@ -462,7 +477,10 @@ SPEC CHECKSUMS:
   permission_handler: 67637977b227d62d46bfbf524f335f8568de5a73
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  url_launcher: a1c0cc845906122c4784c542523d8cacbded5626
+  url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
+  url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
 
 PODFILE CHECKSUM: c1b34269bf95e90b6647bf1a6afe1ab381fe5ad6
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.8.4

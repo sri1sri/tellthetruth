@@ -260,6 +260,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               setState(() {
                                 isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
                               });
+                              showFancyCustomDialog( context );
                             },
                           ),
                         ],
@@ -549,6 +550,28 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 ),
               ),
 
+
+              RaisedButton(
+                onPressed: () {
+                  showFancyCustomDialog( context );
+                  _showSnackBar(context, "View Gang");
+                  final snackBar = SnackBar(
+                    content: Text('Yay! A SnackBar!'),
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () {
+                        // Some code to undo the change.
+                      },
+                    ),
+                  );
+
+                  // Find the Scaffold in the widget tree and use
+                  // it to show a SnackBar.
+                  Scaffold.of(context).showSnackBar(snackBar);
+                },
+                child: Text('Show SnackBar'),
+              ),
+
             ],
           ),
 
@@ -558,133 +581,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     );
   }
 
-
-  void showFancyCustomDialog(BuildContext context) {
-
-    showGeneralDialog(
-        context: context,
-        pageBuilder: (context, anim1, anim2) {},
-        barrierDismissible: true,
-        barrierColor: Colors.black.withOpacity(0.4),
-        barrierLabel: '',
-        transitionBuilder: (context, anim1, anim2, child) {
-          return Transform.rotate(
-            angle: math.radians(anim1.value * 360),
-            child: Opacity(
-              opacity: anim1.value,
-              child: Dialog(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  height: getDynamicHeight(300.0),
-                  width: getDynamicWidth(300.0),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: double.infinity,
-                        height: getDynamicHeight(300),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Container(
-                          child: Column(
-                            children: [
-                              SizedBox(height: getDynamicHeight(100),),
-                              Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset('images/whatsapp.png',height: getDynamicHeight(70),width: getDynamicWidth(70),),
-                                    Image.asset('images/fb.png',height: getDynamicHeight(60),width: getDynamicWidth(60),),
-                                    Image.asset('images/insta.png',height: getDynamicHeight(60),width: getDynamicWidth(60),),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: getDynamicHeight(50),
-                        alignment: Alignment.bottomCenter,
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            topRight: Radius.circular(12),
-                          ),
-                        ),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                              "Share",
-                              style: questionStyle
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: getDynamicHeight(50),
-                            decoration: BoxDecoration(
-                              color: Colors.blue[300],
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
-                              ),
-                            ),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                "Okay let's go!",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        // These values are based on trial & error method
-                        alignment: Alignment(1.05, -1.05),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Icon(
-                              Icons.close,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-        transitionDuration: Duration(milliseconds: 300));
+  void _showSnackBar(BuildContext context, String message) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(message, style: questionStyle1),
+      duration: const Duration(milliseconds: 1000),
+    ));
   }
 
 
@@ -862,3 +763,81 @@ class TimerText extends StatelessWidget {
 //    ),
 //  );
 //}
+
+
+
+void showFancyCustomDialog(BuildContext context) {
+
+  showGeneralDialog(
+      context: context,
+      pageBuilder: (context, anim1, anim2) {},
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.4),
+      barrierLabel: '',
+      transitionBuilder: (context, anim1, anim2, child) {
+        return Transform.rotate(
+          angle: math.radians(anim1.value * 360),
+          child: Opacity(
+            opacity: anim1.value,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 500),
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  height: getDynamicHeight(100.0),
+                  width: getDynamicWidth(400.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        height: getDynamicHeight(250),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text("This is the test notification message for user for details.",style: answerStyleBlur,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        // These values are based on trial & error method
+                        alignment: Alignment(1.05, -1.05),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionDuration: Duration(milliseconds: 300));
+}

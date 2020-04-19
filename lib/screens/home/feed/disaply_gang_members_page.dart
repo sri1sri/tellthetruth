@@ -317,13 +317,13 @@ void showFancyCustomDialog(BuildContext context) {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  height: getDynamicHeight(150.0),
+                  height: getDynamicHeight(250.0),
                   width: getDynamicWidth(250.0),
                   child: Stack(
                     children: <Widget>[
                       Container(
                         width: double.infinity,
-                        height: getDynamicHeight(150),
+                        height: getDynamicHeight(250),
                         decoration: BoxDecoration(
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(12.0),

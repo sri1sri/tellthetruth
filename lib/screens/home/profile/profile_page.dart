@@ -117,7 +117,7 @@ class _F_ProfileState extends State<F_Profile> {
                                     children: [
                                       Column(
                                         children: [
-                                          Text("29",style: heavyStyle,),
+                                          Text(USER_QUESTION_COUNT,style: heavyStyle,),
                                           SizedBox(
                                             height: getDynamicHeight(10),
                                           ),
@@ -127,7 +127,7 @@ class _F_ProfileState extends State<F_Profile> {
                                       SizedBox(width: getDynamicWidth(50),),
                                       Column(
                                         children: [
-                                          Text("10",style: heavyStyle,),
+                                          Text(USER_POINTS,style: heavyStyle,),
                                           SizedBox(
                                             height: getDynamicHeight(10),
                                           ),

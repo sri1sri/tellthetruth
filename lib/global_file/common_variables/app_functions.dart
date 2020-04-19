@@ -20,6 +20,8 @@ String USER_ID;
 String USER_NAME;
 String USER_GENDER;
 String USER_EMAIL;
+String USER_QUESTION_COUNT = '0';
+String USER_POINTS = '0';
 
 List<String> USER_GANG_NAMES = [];
 List<String> USER_GANG_ID = [];

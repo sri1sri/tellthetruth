@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -88,7 +90,7 @@ class _F_ProfileState extends State<F_Profile> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("$USER_NAME",
+                                  Text(USER_NAME,
                                       style: TextStyle(
                                           color: Colors.white54,
                                           fontFamily: 'Montserrat',
@@ -99,7 +101,7 @@ class _F_ProfileState extends State<F_Profile> {
                                     height: getDynamicHeight(5),
                                   ),
                                   Text(
-                                    "v.g.vasanthakumar@gmail.com",
+                                    USER_EMAIL,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: 'Montserrat',
@@ -164,6 +166,8 @@ class _F_ProfileState extends State<F_Profile> {
   }
 
   Widget _buildContent(BuildContext context) {
+
+
     return SingleChildScrollView(
       child: Container(
         color: Colors.white,
@@ -174,12 +178,12 @@ class _F_ProfileState extends State<F_Profile> {
             ),
             Column(
               children: <Widget>[
-                _settingsCard("Notifications","images/not.png",Notifications()),
-                _settingsCard("FAQ's","images/faq.png",FAQ()),
-                _settingsCard("Privacy Policy","images/policy.png",PrivacyPolicy()),
-                _settingsCard("Terms & Conditions","images/t&c.png",TermsAndServices()),
-                _settingsCard("Support","images/sup.png",Support()),
-                _settingsCard("Log Out","images/logout.png",null),
+                _settingsCard("Notifications","images/settingsNotification.png",Notifications()),
+                _settingsCard("FAQ's","images/settingsFAQ.png",FAQ()),
+                _settingsCard("Privacy Policy","images/settingsTermsAndConditions.png",PrivacyPolicy()),
+                _settingsCard("Terms & Conditions","images/settingsTermsAndConditions.png",TermsAndServices()),
+                _settingsCard("Support","images/settingsSupport.png",Support()),
+                _settingsCard("Log Out","images/settingsLogout.png",null),
               ],
             ),
             Container(

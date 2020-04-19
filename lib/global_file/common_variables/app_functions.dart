@@ -19,6 +19,8 @@ void GoToPage(BuildContext context, Widget page) {
 String USER_ID;
 String USER_NAME;
 String USER_GENDER;
+String USER_EMAIL;
+
 List<String> USER_GANG_NAMES = [];
 List<String> USER_GANG_ID = [];
 

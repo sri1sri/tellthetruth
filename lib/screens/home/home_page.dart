@@ -71,11 +71,12 @@ class _F_HomePageState extends State<F_HomePage> {
   Widget build(BuildContext context) {
 
     return StreamBuilder<UserDetails>(
-        stream: DBreference.getUserDetails(),
+        stream: DBreference.getUserDetails(USER_ID),
         builder: (context, snapshot) {
           final userDetails = snapshot.data;
           USER_NAME = userDetails != null ? userDetails.username : 'fetching...';
           USER_GENDER = userDetails != null ? userDetails.gender : 'fetching...';
+          USER_EMAIL = userDetails != null ? userDetails.emailID : 'fetching...';
 
         return offlineWidget(context);
       }

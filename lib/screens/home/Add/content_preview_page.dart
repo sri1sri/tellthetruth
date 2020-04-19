@@ -149,6 +149,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     super.initState();
 
     selectedGangID = gangIDs[0];
+
   }
 
   @override

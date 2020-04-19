@@ -193,21 +193,25 @@ class _F_FeedPageState extends State<F_FeedPage> {
     return StreamBuilder<List<GangDetails>>(
       stream: DBreference.readGangs(),
       builder: (context, snapshot) {
-//
+
         if (snapshot.hasData) {
           List<GangDetails> data = snapshot.data;
+          List<String> gName = [];
+          List<String> gId = [];
           data.forEach((f) {
-            print("GANG NAME : ${f.gangName}");
-            USER_GANG_NAMES.add(f.gangName ?? '0');
-            USER_GANG_ID.add(f.gangID ?? '0');
+            gName.add(f.gangName ?? '0');
+            gId.add(f.gangID ?? '0');
           });
-          USER_GANG_NAMES.forEach((f){
+          USER_GANG_NAMES = gName;
+          USER_GANG_ID = gId;
+          USER_GANG_NAMES.forEach((f) {
             print(" USER GANG NAME : $f");
           });
-           USER_GANG_ID.forEach((f){
+          USER_GANG_ID.forEach((f) {
             print(" USER GANG ID : $f");
           });
         }
+        print(USER_ID);
 
         return ListItemsBuilder<GangDetails>(
           snapshot: snapshot,

@@ -9,6 +9,7 @@ import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
+import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 import 'add_question_page.dart';
@@ -41,8 +42,6 @@ class _F_AddPageState extends State<F_AddPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(USER_GANG_NAMES);
-    print(USER_GANG_ID);
   }
 
   @override
@@ -152,7 +151,7 @@ class _F_AddPageState extends State<F_AddPage> {
             BackForeText(
               backText: ["Tell The Truth", "నిజమ్ చెప్పు", "सच बताओ","உண்மையை கூறவும்","സത്യം പറയൂ","ನಿಜ ಹೇಳು"],
               foreText: 'Wanna ask a question?',
-              route: AddQuestion(),
+              route:  AddQuestion(),
             ),
             BackForeText(
               backText: ["Create Gang", "గ్యాంగ్ సృష్టించండి", "गैंग बनाएं","கும்பலை உருவாக்குங்கள்","ഗാംഗ് സൃഷ്ടിക്കുക","ಗ್ಯಾಂಗ್ ರಚಿಸಿ"],

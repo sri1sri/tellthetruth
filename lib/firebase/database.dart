@@ -11,7 +11,7 @@ import 'firestore_service.dart';
 
 abstract class Database {
   Stream<CommonFiles> getInsights();
-  Stream<UserDetails> getUserDetails();
+  Stream<UserDetails> getUserDetails(String userId);
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Stream<List<GangDetails>> readGangs();
@@ -37,8 +37,8 @@ class FirestoreDatabase implements Database {
   final _service = FirestoreService.instance;
 
   @override
-  Stream<UserDetails> getUserDetails() => _service.documentStream(
-        path: APIPath.userDetails(uid),
+  Stream<UserDetails> getUserDetails(String userId) => _service.documentStream(
+        path: APIPath.userDetails(userId),
         builder: (data, documentId) => UserDetails.fromMap(data, documentId),
       );
 

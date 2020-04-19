@@ -121,12 +121,16 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     shape: CircleBorder(),
     padding: const EdgeInsets.all(24.0),
     child: Container(
-      height: 140,
+      height: 100,
       child: Column(
         children: [
-          Image.asset("images/people.png",height: 70,width: 70,),
+          Image.asset("images/myQuestions.png",height: 50,width: 50,),
           SizedBox(height: getDynamicHeight(5),),
-          Text("Edit Post",style: answerStyle,)
+          Text("Edit Post",style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w600,
+              fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),)
 
         ],
       ),
@@ -145,12 +149,16 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     shape: CircleBorder(),
     padding: const EdgeInsets.all(24.0),
     child: Container(
-      height: 110,
+      height: 100,
       child: Column(
         children: [
-          Image.asset("images/team.png",height: 70,width: 70,),
+          Image.asset("images/myGang.png",height: 50,width: 50,),
           SizedBox(height: getDynamicHeight(5),),
-          Text("View Gang",style: answerStyle,)
+          Text("View Gang",style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w600,
+              fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),)
 
         ],
       ),
@@ -168,9 +176,13 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
       height: 100,
       child: Column(
         children: [
-          Image.asset("images/wha.png",height: 70,width: 70,),
+          Image.asset("images/whatsapp.png",height: 50,width: 50,),
           SizedBox(height: getDynamicHeight(5),),
-          Text("Share",style: answerStyle,)
+          Text("Share",style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w600,
+              fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),)
 
         ],
       ),

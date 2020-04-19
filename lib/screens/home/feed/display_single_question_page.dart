@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:animated_widgets/widgets/translation_animated.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -63,7 +67,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   bool isPolled = false;
   int selectedOption = 0;
   
-  bool isAnonymos = true;
+  bool isAnswerAnonymos = true;
+  bool isQuestionAnonymos = true;
+
+  ScreenshotController screenshotController = ScreenshotController();
+  File _imageFile;
 
   void handleTick() {
 
@@ -75,8 +83,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
       }
     }
   }
-
-
 
   Future<bool> updateData() async{
 
@@ -126,8 +132,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     optionThreePolledCount = widget.questionDetails.optionThreePolledCount;
     optionFourPolledCount = widget.questionDetails.optionFourPolledCount;
 
-    isAnonymos = widget.insightsDetails == null ? true : widget.insightsDetails.isAnonymos;
-    print('is == ${isAnonymos}');
+    isAnswerAnonymos = widget.insightsDetails == null ? true : widget.insightsDetails.isAnonymos != null ? widget.insightsDetails.isAnonymos : true;
+    isQuestionAnonymos = widget.questionDetails.isAnonymous;
   }
 
   void updateInsights(int optionSelected){
@@ -163,7 +169,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   @override
   Widget build(BuildContext context) {
-    return offlineWidget( context );
+    return Screenshot(
+        child: offlineWidget(context),
+    controller: screenshotController,);
   }
 
   Widget offlineWidget(BuildContext context) {
@@ -240,21 +248,35 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                             ],
                           ),
                           GestureDetector(
-                            child: isAnonymos ? Icon(
-                              Icons.panorama_fish_eye, color: Colors.white, ) 
-                                : Icon(
-                              Icons.remove_red_eye, color: Colors.white ),
+                            child: CircleAvatar(
+                              backgroundImage:
+                              AssetImage(isAnswerAnonymos ? 'images/questionAskedAnonymous.png' :'images/questionNotAskedAnonymous.png' ),
+                              radius: 20,
+                              backgroundColor: Colors.transparent,
+                            ),
                             onTap: () {
-                              final updateInsightDetails = InsightsDetails(isAnonymos: isAnonymos ? false : true);
+                              final updateInsightDetails = InsightsDetails(isAnonymos: isAnswerAnonymos ? false : true);
                               DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
                               setState(() {
-                                isAnonymos ? isAnonymos = false : isAnonymos = true;
+                                isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
                               });
                             },
                           ),
                         ],
                       ),
                     ),
+
+           StreamBuilder<UserDetails>(
+      stream: DBreference.getUserDetails(widget.questionDetails.createdBy),
+        builder: (context, snapshot) {
+          final userDetails = snapshot.data;
+
+          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username);
+        }
+    ),
+
+
+
                   ],
                 ),
               ),
@@ -304,6 +326,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         ),
                       ),
                     ),
+
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
@@ -467,7 +490,23 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         style: countStyle, ),
                       ],
                     ),
-                    Row(
+
+
+                    widget.questionDetails.createdBy == USER_ID ? GestureDetector(
+                      child: CircleAvatar(
+                        backgroundImage:
+                        AssetImage(isQuestionAnonymos ? 'images/questionAskedAnonymous.png' : 'images/questionNotAskedAnonymous.png'),
+                        radius: 20,
+                        backgroundColor: Colors.transparent,
+                      ),
+                      onTap: () {
+                        final updateQuestionDetails = QuestionDetails(isAnonymous: isQuestionAnonymos ? false : true);
+                        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+                        setState(() {
+                          isQuestionAnonymos ? isQuestionAnonymos = false : isQuestionAnonymos = true;
+                        });
+                      },
+                    ) : Row(
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.transparent,
@@ -476,9 +515,23 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         SizedBox( width: getDynamicWidth(5), ),
                       ],
                     ),
+
                     GestureDetector(
                       onTap: () {
-                        showFancyCustomDialog( context );
+
+                screenshotController.capture().then((File image) {
+                //Capture Done
+                setState(() {
+                  print(_imageFile);
+                  _imageFile = image;
+                  print(_imageFile);
+                  final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+                  print(result);
+                });
+              }).catchError((onError) {
+                print(onError);
+              });
+                      //  showFancyCustomDialog( context );
                       },
                       child: Row(
                         children: [
@@ -747,5 +800,65 @@ class TimerText extends StatelessWidget {
       ),
     );
   }
-
 }
+
+//
+//////////
+//////////////
+//Please dont clear this
+//////////////
+/////////
+//
+
+
+//ScreenshotController screenshotController = ScreenshotController();
+//File _imageFile;
+//
+//
+//@override
+//Widget build(BuildContext context) {
+//  return Screenshot(child: offlineWidget(context), controller: screenshotController,);
+//}
+
+//Widget _buildContent(BuildContext context) {
+//  return new MaterialApp(
+//    debugShowCheckedModeBanner: false,
+//    screens.home: new Scaffold(
+//        backgroundColor:Colors.white,
+//        body: Row(
+//          children: <Widget>[
+//            Container(
+//              decoration: new BoxDecoration(
+//                  gradient: new LinearGradient(
+//                    begin: Alignment.topCenter,
+//                    end: Alignment.bottomCenter,
+//                    colors: [
+//                      Color(0XffFD8B1F),
+//                      Color(0XffD152E0),
+//                      Color(0Xff30D0DB),
+//                    ],
+//                  )),
+//            ),
+//            InkWell(onTap: (){
+//              screenshotController.capture().then((File image) {
+//                //Capture Done
+//                setState(() {
+//                  print(_imageFile);
+//                  _imageFile = image;
+//                  print(_imageFile);
+//                  final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+//                  print(result);
+//                });
+//              }).catchError((onError) {
+//                print(onError);
+//              });
+//            },
+//              child: Text('take screenshot'),),
+//
+//            _imageFile != null ? Image.file(_imageFile) : Container(height: 10,width: 10,color: Colors.red,),
+//
+//          ],
+//        )
+//    ),
+//  );
+//}

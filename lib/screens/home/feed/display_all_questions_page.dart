@@ -107,9 +107,6 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     fabMargin: const EdgeInsets.all(16.0),
     animationDuration: const Duration(milliseconds: 800),
     animationCurve: Curves.easeInOutCirc,
-    onDisplayChange: (isOpen) {
-    _showSnackBar(context, "The menu is ${isOpen ? "open" : "closed"}");
-    },
     children: <Widget>[
     RawMaterialButton(
     onPressed: () {

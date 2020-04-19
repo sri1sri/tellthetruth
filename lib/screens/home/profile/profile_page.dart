@@ -135,7 +135,6 @@ class _F_ProfileState extends State<F_Profile> {
                                         ],
                                       )
                                     ],
-
                                   )
                                 ],
                               ),

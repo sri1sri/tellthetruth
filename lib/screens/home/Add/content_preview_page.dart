@@ -121,6 +121,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
         widget.optionThree,
         widget.optionFour
       ],
+      deleteAt: Timestamp.fromDate(DateTime.now().add(Duration(days: 2))),
       question: widget.question,
       isAnonymous: isAnonymous,
       viewCount: 0,

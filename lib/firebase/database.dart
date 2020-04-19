@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
@@ -22,10 +23,9 @@ abstract class Database {
   Future<void> createInsights(InsightsDetails insightDetails, String gangID, String questionID);
   Stream<InsightsDetails> myInsight(String gangID, String questionID);
   Future<void> updateInsights(InsightsDetails insightDetails, String gangID, String questionID);
-
-
+  Future<void> deleteQuestion(String gangID, String questionID);
+  Stream<List<QuestionDetails>> deleteQuestionsList(String gangID);
   Future<void> updateAppInsights(CommonFiles commonFiles);
-
 }
 
 Database DBreference;
@@ -123,9 +123,19 @@ class FirestoreDatabase implements Database {
         data: insightDetails.toMap(),
       );
 
+  @override
+  Future<void> deleteQuestion(
+      String gangID, String questionID) async =>
+      await _service.deleteData(
+        path: APIPath.questionDetails(gangID, questionID),
+      );
 
-
-
+  @override
+  Stream<List<QuestionDetails>> deleteQuestionsList(String gangID) => _service.collectionStream(
+    path: APIPath.questionsList(gangID),
+    builder: (data, documentId) => QuestionDetails.fromMap(data, documentId),
+    queryBuilder: (query) => query.where('delete_at', isLessThan: Timestamp.fromDate(DateTime.now())),
+    );
 
   @override
   Future<void> updateAppInsights(CommonFiles commonFiles) async =>

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -42,12 +41,16 @@ class F_AllQuestions extends StatefulWidget {
 }
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
-
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return offlineWidget(context);
   }
 
@@ -86,132 +89,165 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             backgroundColor: Colors.white,
           ),
           body: _buildContent(context),
-    floatingActionButton: Builder(
-    builder: (context) => FabCircularMenu(
-    key: fabKey,
-    // Cannot be `Alignment.center`
-    alignment: Alignment.bottomRight,
-    ringColor: Colors.black.withOpacity(0.2),
-    ringDiameter: 500.0,
-    ringWidth: 150.0,
-    fabSize: 64.0,
-    fabElevation: 20.0,
+          floatingActionButton: Builder(
+            builder: (context) => FabCircularMenu(
+              key: fabKey,
+              // Cannot be `Alignment.center`
+              alignment: Alignment.bottomRight,
+              ringColor: Colors.black.withOpacity(0.2),
+              ringDiameter: 500.0,
+              ringWidth: 150.0,
+              fabSize: 64.0,
+              fabElevation: 20.0,
 
-    // Also can use specific color based on wether
-    // the menu is open or not:
-     fabOpenColor: Colors.black54,
-    fabCloseColor: Colors.grey,
-    // These properties take precedence over fabColor
-    fabColor: Colors.white,
-    fabOpenIcon: Icon(Icons.menu, color: Colors.white),
-    fabCloseIcon: Icon(Icons.close, color: primaryColor),
-    fabMargin: const EdgeInsets.all(16.0),
-    animationDuration: const Duration(milliseconds: 800),
-    animationCurve: Curves.easeInOutCirc,
-    children: <Widget>[
-    RawMaterialButton(
-    onPressed: () {
-              Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MyApp() ),
-        );
-    _showSnackBar(context, "Edit Post");
-    },
-    shape: CircleBorder(),
-    padding: const EdgeInsets.all(24.0),
-    child: Container(
-      height: 100,
-      child: Column(
-        children: [
-          Image.asset("images/myQuestions.png",height: 50,width: 50,),
-          SizedBox(height: getDynamicHeight(5),),
-          Text("Edit Post",style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w600,
-              fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),)
-
-        ],
-      ),
-    )
-    ),
-    RawMaterialButton(
-    onPressed: () {
-      Navigator.push(
-          context,
-          PageTransition(
-              type: PageTransitionType.rotate,
-              duration: Duration(seconds: 1),
-              child: GangMembers()));
-    _showSnackBar(context, "View Gang");
-    },
-    shape: CircleBorder(),
-    padding: const EdgeInsets.all(24.0),
-    child: Container(
-      height: 100,
-      child: Column(
-        children: [
-          Image.asset("images/myGang.png",height: 50,width: 50,),
-          SizedBox(height: getDynamicHeight(5),),
-          Text("View Gang",style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w600,
-              fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),)
-
-        ],
-      ),
-    )
-    ),
-    RawMaterialButton(
-    onPressed: () {
-      FlutterOpenWhatsapp.sendSingleMessage("",
-          "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!");
-    _showSnackBar(context, "Share Via WhatsApp");
-    },
-    shape: CircleBorder(),
-    padding: const EdgeInsets.all(24.0),
-    child: Container(
-      height: 100,
-      child: Column(
-        children: [
-          Image.asset("images/whatsapp.png",height: 50,width: 50,),
-          SizedBox(height: getDynamicHeight(5),),
-          Text("Share",style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w600,
-              fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),)
-
-        ],
-      ),
-    )
-    ),
-    ],
-    ),
-    ),
-
+              // Also can use specific color based on wether
+              // the menu is open or not:
+              fabOpenColor: Colors.black54,
+              fabCloseColor: Colors.grey,
+              // These properties take precedence over fabColor
+              fabColor: Colors.white,
+              fabOpenIcon: Icon(Icons.menu, color: Colors.white),
+              fabCloseIcon: Icon(Icons.close, color: primaryColor),
+              fabMargin: const EdgeInsets.all(16.0),
+              animationDuration: const Duration(milliseconds: 800),
+              animationCurve: Curves.easeInOutCirc,
+              children: <Widget>[
+                RawMaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyApp()),
+                      );
+                      //_showSnackBar(context, "Edit Post");
+                    },
+                    shape: CircleBorder(),
+                    padding: const EdgeInsets.all(24.0),
+                    child: Container(
+                      height: 100,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "images/myQuestions.png",
+                            height: 50,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            height: getDynamicHeight(5),
+                          ),
+                          Text(
+                            "Edit Post",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600,
+                                fontSize: getDynamicTextSize(17),
+                                decoration: TextDecoration.none),
+                          )
+                        ],
+                      ),
+                    )),
+                RawMaterialButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.rotate,
+                              duration: Duration(seconds: 1),
+                              child: GangMembers()));
+                      // _showSnackBar(context, "View Gang");
+                    },
+                    shape: CircleBorder(),
+                    padding: const EdgeInsets.all(24.0),
+                    child: Container(
+                      height: 100,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "images/myGang.png",
+                            height: 50,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            height: getDynamicHeight(5),
+                          ),
+                          Text(
+                            "View Gang",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600,
+                                fontSize: getDynamicTextSize(17),
+                                decoration: TextDecoration.none),
+                          )
+                        ],
+                      ),
+                    )),
+                RawMaterialButton(
+                    onPressed: () {
+                      FlutterOpenWhatsapp.sendSingleMessage("",
+                          "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!");
+                      //_showSnackBar(context, "Share Via WhatsApp");
+                    },
+                    shape: CircleBorder(),
+                    padding: const EdgeInsets.all(24.0),
+                    child: Container(
+                      height: 100,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            "images/whatsapp.png",
+                            height: 50,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            height: getDynamicHeight(5),
+                          ),
+                          Text(
+                            "Share",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600,
+                                fontSize: getDynamicTextSize(17),
+                                decoration: TextDecoration.none),
+                          )
+                        ],
+                      ),
+                    )),
+              ],
+            ),
+          ),
         ),
       ),
     );
-
   }
 
-
-  void _showSnackBar (BuildContext context, String message) {
-    Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message,style: questionStyle1),
-          duration: const Duration(milliseconds: 1000),
-        )
-    );
-  }
+//  void _showSnackBar(BuildContext context, String message) {
+//    Scaffold.of(context).showSnackBar(SnackBar(
+//      content: Text(message, style: questionStyle1),
+//      duration: const Duration(milliseconds: 1000),
+//    ));
+//  }
 
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<List<QuestionDetails>>(
       stream: DBreference.readQuestions(widget.gangID),
       builder: (context, questionsSnapshot) {
+//        StreamBuilder<List<QuestionDetails>>(
+//          stream: DBreference.deleteQuestionsList(widget.gangID),
+//          builder: (context, snapshot) {
+//            if (snapshot.hasData) {
+//              List<QuestionDetails> data = snapshot.data;
+//              data.forEach(
+//                    (f) {
+//                  DBreference.deleteQuestion(widget.gangID, f.questionID);
+//                  print('${f.questionID} - question id');
+//                },
+//              );
+//            }
+//            return null;
+//          },
+//        );
         return questionsSnapshot.data != null
             ? questionsSnapshot.data.length != 0
                 ? GridView.count(
@@ -229,7 +265,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                     ),
                   )
                 : EmptyQuestions()
-            : null;
+            : Container(
+                height: 0,
+                width: 0,
+              );
       },
     );
   }
@@ -314,20 +353,20 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                       ],
                                     ),
                                     TyperAnimatedTextKit(
-                                        onTap: openContainer,
-                                        text: [
-                                          'Ready',
-                                          'Get Set',
-                                          'Your Question',
-                                          '${questionData.question}?'
-                                              .capitalize(),
-                                        ],
-                                        textStyle: questionStyle,
-                                        textAlign: TextAlign.center,
-                                        alignment: AlignmentDirectional.topCenter,
-                                        isRepeatingAnimation:
-                                            false, // or Alignment.topLeft
-                                      ),
+                                      onTap: openContainer,
+                                      text: [
+                                        'Ready',
+                                        'Get Set',
+                                        'Your Question',
+                                        '${questionData.question}?'
+                                            .capitalize(),
+                                      ],
+                                      textStyle: questionStyle,
+                                      textAlign: TextAlign.center,
+                                      alignment: AlignmentDirectional.topCenter,
+                                      isRepeatingAnimation:
+                                          false, // or Alignment.topLeft
+                                    ),
                                     insightsData == null
                                         ? BackdropFilter(
                                             filter: ImageFilter.blur(
@@ -408,9 +447,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
   }
 }
 
-
-
-class CustomData{
+class CustomData {
   var _name;
   var _isShow;
 
@@ -427,8 +464,4 @@ class CustomData{
   }
 
   CustomData(this._name, this._isShow);
-
 }
-
-
-

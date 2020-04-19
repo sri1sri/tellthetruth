@@ -5,6 +5,7 @@ class QuestionDetails{
     this.questionID,
     this.createdAt,
     this.createdBy,
+    this.deleteAt,
     this.options,
     this.isAnonymous,
     this.endsAt,
@@ -25,6 +26,7 @@ class QuestionDetails{
 
   final Timestamp createdAt;
   final Timestamp endsAt;
+  final Timestamp deleteAt;
   final String createdBy;
   final List options;
   final bool isAnonymous;
@@ -50,6 +52,7 @@ class QuestionDetails{
     final String questionID = documentID;
     final Timestamp createdAt = data['created_at'];
     final Timestamp endsAt = data['ends_at'];
+    final Timestamp deleteAt = data['delete_at'];
     final String createdBy = data['created_by'];
     final List options = data['options'];
     final bool isAnonymous = data['is_anonymous'];
@@ -70,6 +73,7 @@ class QuestionDetails{
     return QuestionDetails(
       questionID: questionID,
       createdAt: createdAt,
+      deleteAt: deleteAt,
       endsAt:endsAt,
       createdBy:createdBy,
       options:options,
@@ -95,6 +99,8 @@ class QuestionDetails{
       optionThreePolledCount != null ? 'option_three_count': 'empty' : optionThreePolledCount,
       optionFourPolledCount != null ? 'option_four_count': 'empty' : optionFourPolledCount,
       createdAt != null ? 'created_at': 'empty' : createdAt,
+      deleteAt != null ? 'delete_at': 'empty' : deleteAt,
+
       endsAt != null ? 'ends_at': 'empty' : endsAt,
       createdBy != null ? 'created_by': 'empty' : createdBy,
       options != null ? 'options': 'empty' : options,

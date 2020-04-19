@@ -382,11 +382,14 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 //                    Text(data.gangName),
 //                    ]
 //                  ),
-                      Expanded(
+                      Container(
+                        height: getDynamicHeight(50),
+                        child: Expanded(
                     child: SizedBox(
-                      child: getVariableScaleCrousel(gangName),
+                        child: getVariableScaleCrousel(gangName),
                     ),
                   ),
+                      ),
 
 
 //          StreamBuilder<List<GangDetails>>(

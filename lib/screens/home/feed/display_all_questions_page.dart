@@ -4,6 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
@@ -154,6 +155,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     ),
     RawMaterialButton(
     onPressed: () {
+      FlutterOpenWhatsapp.sendSingleMessage("",
+          "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!");
     _showSnackBar(context, "Share Via WhatsApp");
     },
     shape: CircleBorder(),

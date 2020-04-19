@@ -298,22 +298,20 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                       ],
                                     ),
                                     TyperAnimatedTextKit(
-                                      onTap: () {
-                                        print("Tap Event");
-                                      },
-                                      text: [
-                                        'Ready',
-                                        'Get Set',
-                                        'Your Question',
-                                        '${questionData.question}?'
-                                            .capitalize(),
-                                      ],
-                                      textStyle: questionStyle,
-                                      textAlign: TextAlign.center,
-                                      alignment: AlignmentDirectional.topCenter,
-                                      isRepeatingAnimation:
-                                          false, // or Alignment.topLeft
-                                    ),
+                                        onTap: openContainer,
+                                        text: [
+                                          'Ready',
+                                          'Get Set',
+                                          'Your Question',
+                                          '${questionData.question}?'
+                                              .capitalize(),
+                                        ],
+                                        textStyle: questionStyle,
+                                        textAlign: TextAlign.center,
+                                        alignment: AlignmentDirectional.topCenter,
+                                        isRepeatingAnimation:
+                                            false, // or Alignment.topLeft
+                                      ),
                                     insightsData == null
                                         ? BackdropFilter(
                                             filter: ImageFilter.blur(

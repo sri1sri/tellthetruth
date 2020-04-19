@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
@@ -48,6 +47,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
   @override
   Widget build(BuildContext context) {
+
     return offlineWidget(context);
   }
 
@@ -185,6 +185,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     );
 
   }
+
 
   void _showSnackBar (BuildContext context, String message) {
     Scaffold.of(context).showSnackBar(
@@ -394,3 +395,28 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     );
   }
 }
+
+
+
+class CustomData{
+  var _name;
+  var _isShow;
+
+  String get name => _name;
+
+  bool get isShow => _isShow;
+
+  set isShow(bool value) {
+    _isShow = value;
+  }
+
+  set name(String value) {
+    _name = value;
+  }
+
+  CustomData(this._name, this._isShow);
+
+}
+
+
+

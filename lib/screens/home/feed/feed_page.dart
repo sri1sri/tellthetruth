@@ -1,4 +1,3 @@
-
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
@@ -16,6 +15,8 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
+import '../../../global_file/common_variables/app_functions.dart';
+import '../../../global_file/common_variables/app_functions.dart';
 import 'disaply_gang_members_page.dart';
 import 'display_all_questions_page.dart';
 
@@ -43,11 +44,15 @@ class _F_FeedPageState extends State<F_FeedPage> {
   @override
   Widget build(BuildContext context) {
     FirebaseAdMob.instance.initialize(appId: getAppId());
-    createBannerAd()..load()..show(anchorType: AnchorType.bottom, anchorOffset: 40.0,);
+    createBannerAd()
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+        anchorOffset: 40.0,
+      );
 
     return offlineWidget(context);
   }
-
 
   Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(
@@ -68,11 +73,11 @@ class _F_FeedPageState extends State<F_FeedPage> {
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                animation["color1"],
-                                animation["color2"],
-                                animation["color3"],
-                                // animation["color4"]
-                              ])),
+                            animation["color1"],
+                            animation["color2"],
+                            animation["color3"],
+                            // animation["color4"]
+                          ])),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -130,8 +135,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                                           type: PageTransitionType
                                               .rippleRightDown,
                                           duration: Duration(seconds: 1),
-                                          child: GangMembers()
-                                      ),
+                                          child: GangMembers()),
                                     );
                                   },
                                 ),
@@ -172,38 +176,42 @@ class _F_FeedPageState extends State<F_FeedPage> {
                         ],
                       ),
                     );
-                  })
-          ),
+                  })),
           body: ClipRRect(
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(40.0),
                 topLeft: Radius.circular(40.0)),
-            child: Container(
-                color: Colors.white,
-                child: _buildContent(context)),
+            child:
+                Container(color: Colors.white, child: _buildContent(context)),
           ),
         ),
       ),
     );
   }
 
-
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<List<GangDetails>>(
       stream: DBreference.readGangs(),
       builder: (context, snapshot) {
 //
-//        if(snapshot != null) {
-//          for(var i = 0; i < snapshot.data.length; i++) {
-//            USER_GANG_NAMES.add(snapshot.data[i].gangName != null ? snapshot.data[i].gangName : '0');
-//            USER_GANG_ID.add(snapshot.data[i].gangID != null ? snapshot.data[i].gangID : '0');
-//        }
-//        }
+        if (snapshot.hasData) {
+          List<GangDetails> data = snapshot.data;
+          data.forEach((f) {
+            print("GANG NAME : ${f.gangName}");
+            USER_GANG_NAMES.add(f.gangName ?? '0');
+            USER_GANG_ID.add(f.gangID ?? '0');
+          });
+          USER_GANG_NAMES.forEach((f){
+            print(" USER GANG NAME : $f");
+          });
+           USER_GANG_ID.forEach((f){
+            print(" USER GANG ID : $f");
+          });
+        }
 
         return ListItemsBuilder<GangDetails>(
           snapshot: snapshot,
-          itemBuilder: (context, data) =>
-              Column(
+          itemBuilder: (context, data) => Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -225,19 +233,19 @@ class _F_FeedPageState extends State<F_FeedPage> {
     );
   }
 
-
   Widget _buildImage(GangDetails data) {
 //    USER_GANG_NAMES.add(data != null ? data.gangName : 'null');
 //    USER_GANG_ID.add(data != null ? data.gangCode:'null');
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(PageTransition(
+        Navigator.of(context).push(
+          PageTransition(
             type: PageTransitionType.rippleLeftUp,
             duration: Duration(seconds: 1),
             child: AllQuestions(
                 gangID: data != null ? data.gangID : '0',
                 gangName: data != null ? data.gangName : '0'),
-        ),
+          ),
         );
         //GoToPage(context, QuestionsPage());
       },
@@ -262,9 +270,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                         Positioned(
                           top: 7,
                           child: Text(
-                            data != null
-                                ? '${data.gangCode}'
-                                : 'fetching...',
+                            data != null ? '${data.gangCode}' : 'fetching...',
                             style: backgroundText,
                           ),
                           //Text("Question",style: backgroundText,),
@@ -272,9 +278,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                         Positioned(
                           top: 40,
                           child: GradientText(
-                            data != null
-                                ? data.gangName
-                                : 'fetching...',
+                            data != null ? data.gangName : 'fetching...',
                             style: questionStyle1,
                             gradient: LinearGradient(
                               colors: [
@@ -291,15 +295,11 @@ class _F_FeedPageState extends State<F_FeedPage> {
                     ),
                   ],
                 ),
-                Lottie.network(data != null
-                    ? data.gangIconURL
-                    : '',
-                    height: getDynamicHeight(100),
-                    width: getDynamicWidth(100)),
+                Lottie.network(data != null ? data.gangIconURL : '',
+                    height: getDynamicHeight(100), width: getDynamicWidth(100)),
               ]),
         ),
       ),
     );
-
   }
 }

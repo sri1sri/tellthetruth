@@ -82,8 +82,11 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     '0XffFF3FE0',
   ];
 //
-  List gangIDs= ['2020-04-17 22:17:28.884711', '2020-04-17 22:19:09.291230','2020-04-17 22:17:28.884711', '2020-04-17 22:19:09.291230'];
-  List gangName = ['8 gang', 'Nara batch','8 gang', 'Nara batch'];
+//  List gangIDs= ['2020-04-17 22:17:28.884711', '2020-04-17 22:19:09.291230','2020-04-17 22:17:28.884711', '2020-04-17 22:19:09.291230'];
+//  List gangName = ['8 gang', 'Nara batch','8 gang', 'Nara batch'];
+
+  List gangIDs = USER_GANG_ID;
+  List gangName = USER_GANG_NAMES;
   String selectedGangID = '';
 
   Color selectGangBackgroundColor = Colors.black54;

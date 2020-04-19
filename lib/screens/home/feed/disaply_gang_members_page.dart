@@ -147,19 +147,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                        GradientText(
-                        name,
-                        style: mediumStyle,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0XffFD8B1F),
-                            Color(0XffD152E0),
-                            Color(0Xff30D0DB),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
+                            Text(name,style: answerStyleBlur1,),
                           ]
                       ),
                     ],
@@ -203,7 +191,19 @@ class MyFlexiableAppBar extends StatelessWidget {
     children: [
       SizedBox(height: getDynamicHeight(30),),
     Lottie.network("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",height: getDynamicHeight(150),width: getDynamicWidth(150)),
-    Text("RockStarts",style: heavyStyle,),
+      GradientText(
+        "RockStarts",
+        style: heavyStyle,
+        gradient: LinearGradient(
+          colors: [
+            Color(0XffFD8B1F),
+            Color(0XffD152E0),
+            Color(0Xff30D0DB),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
     Text("6TFBJ73",style: answerStyleBlur,),
     Row(
     mainAxisAlignment: MainAxisAlignment.center,

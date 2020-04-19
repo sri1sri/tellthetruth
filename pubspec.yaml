@@ -88,42 +88,37 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/splash.flr
-    - images/welcome.flr
-    - images/empty.flr
-    - images/walk.flr
-    - images/teddy.flr
-    - images/no internet.flr
-    - images/car-insurance.png
-    - images/co2.png
-    - images/garage.png
-    - images/helpline.png
-    - images/hospital.png
-    - images/image1.jpg
-    - images/image2.jpg
-    - images/image3.jpg
-    - images/motorcycle-2.png
-    - images/parking.png
-    - images/sos.png
-    - images/travel-insurance.png
-    - images/male.png
-    - images/female.png
+    - images/anonymous.png
     - images/boy.png
-    - images/girl.png
-    - images/seen.png
-    - images/poll.png
-    - images/success-2.flr
-    - images/options.flr
-    - images/what.jpeg
+    - images/empty.flr
     - images/faq.png
-    - images/logout.png
-    - images/not.png
-    - images/policy.png
-    - images/sup.png
-    - images/t&c.png
+    - images/girl.png
+    - images/helpline.png
+    - images/myGang.png
+    - images/myQuestions.png
+    - images/no internet.flr
+    - images/notAnonymos.png
+    - images/options.flr
     - images/people.png
-    - images/team.png
-    - images/wha.png
+    - images/poll.png
+    - images/questionAskedAnonymous.png
+    - images/questionNotAskedAnonymous.png
+    - images/seen.png
+    - images/settingsFAQ.png
+    - images/settingsLogout.png
+    - images/settingsNotification.png
+    - images/settingsSupport.png
+    - images/settingsTermsAndConditions.png
+    - images/splash.flr
+    - images/success-2.flr
+    - images/teddy.flr
+    - images/walk.flr
+    - images/welcome.flr
+    - images/whatsapp.png
+
+
+
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

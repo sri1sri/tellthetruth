@@ -16,6 +16,7 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/screens/home/feed/test.dart';
 import 'display_single_question_page.dart';
 import 'disaply_gang_members_page.dart';
 
@@ -110,6 +111,11 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     children: <Widget>[
     RawMaterialButton(
     onPressed: () {
+              Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MyApp() ),
+        );
     _showSnackBar(context, "Edit Post");
     },
     shape: CircleBorder(),

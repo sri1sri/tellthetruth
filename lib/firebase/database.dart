@@ -20,6 +20,7 @@ abstract class Database {
   Future<void> createQuestion(QuestionDetails questionDetails, String gangID);
   Stream<List<QuestionDetails>> readQuestions(String gangID);
   Future<void> updateQuestionDetails(QuestionDetails questionDetails, String gangID, String questionID);
+  Stream<QuestionDetails> readSingleQuestion(String gangID, String questionID);
   Future<void> createInsights(InsightsDetails insightDetails, String gangID, String questionID);
   Stream<InsightsDetails> myInsight(String gangID, String questionID);
   Future<void> updateInsights(InsightsDetails insightDetails, String gangID, String questionID);
@@ -88,6 +89,14 @@ class FirestoreDatabase implements Database {
   Stream<List<QuestionDetails>> readQuestions(String gangID) =>
       _service.collectionStream(
         path: APIPath.questionsList(gangID),
+        builder: (data, documentId) =>
+            QuestionDetails.fromMap(data, documentId),
+      );
+
+  @override
+  Stream<QuestionDetails> readSingleQuestion(String gangID, String questionID) =>
+      _service.documentStream(
+        path: APIPath.questionDetails(gangID, questionID),
         builder: (data, documentId) =>
             QuestionDetails.fromMap(data, documentId),
       );

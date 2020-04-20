@@ -40,9 +40,9 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string> photos description.</string>
+    <string>This app requires access to the photo library to upload your profile photo.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string> photos add description.</string>
+    <string>This app requires access to the photo library to save the question into your photo library.</string>
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-9543395526409232~1075008136</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>

@@ -147,6 +147,14 @@ class FirestoreDatabase implements Database {
     );
 
   @override
+  Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS) => _service.collectionStream(
+    path: APIPath.usersList(),
+    builder: (data, documentId) => UserDetails.fromMap(data, documentId),
+    queryBuilder: (query) =>
+        query.where('user_id', whereIn: usersIDS),
+  );
+
+  @override
   Future<void> updateAppInsights(CommonFiles commonFiles) async =>
       await _service.updateData(
         path: APIPath.insights(),

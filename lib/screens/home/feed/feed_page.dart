@@ -247,8 +247,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
             type: PageTransitionType.rippleLeftUp,
             duration: Duration(seconds: 1),
             child: AllQuestions(
-                gangID: data != null ? data.gangID : '0',
-                gangName: data != null ? data.gangName : '0'),
+                gangDetails: data),
           ),
         );
         //GoToPage(context, QuestionsPage());

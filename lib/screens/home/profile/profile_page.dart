@@ -144,12 +144,13 @@ class _F_ProfileState extends State<F_Profile> {
                                               _imageFile = image;
                                               print(_imageFile);
                                               final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
-                                             
-
                                               print(result);
                                             });
+
                                              Uint8List bytes = image.readAsBytesSync();
                                              await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
+
+
                                           }).catchError((onError) {
                                             print(onError);
                                           });

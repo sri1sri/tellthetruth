@@ -2,26 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 class GangMembers extends StatelessWidget {
-  //ProfilePage({@required this.database});
-  //Database database;
+  GangMembers({@required this.gangDetails});
+  GangDetails gangDetails;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_GangMembers(),
+      child: F_GangMembers(gangDetails:gangDetails),
     );
   }
 }
 
 class F_GangMembers extends StatefulWidget {
-  // F_ProfilePage({@required this.database});
-  // Database database;
+  F_GangMembers({@required this.gangDetails});
+  GangDetails gangDetails;
 
   @override
   _F_GangMembersState createState() => _F_GangMembersState();
@@ -105,7 +106,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                   pinned: true,
                   expandedHeight: getDynamicHeight(400.0),
                   flexibleSpace: FlexibleSpaceBar(
-                    background: MyFlexiableAppBar(),
+                    background: MyFlexiableAppBar(gangDetails: widget.gangDetails,),
                   ),
                 ),
                 SliverList(
@@ -121,44 +122,6 @@ class _F_GangMembersState extends State<F_GangMembers> {
                               children: <Widget>[
                                 SizedBox(height: 10,),
                                 MemberCard("images/boy.png","Vasanthakumar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Srivatsav",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","VamsiPesala",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Rockstar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Nandithaa",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Vasanthakumar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Srivatsav",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","VamsiPesala",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Rockstar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Nandithaa",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Vasanthakumar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Srivatsav",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","VamsiPesala",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Rockstar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Nandithaa",),
-                                SizedBox(height: 30,),
-                                MemberCard("images/boy.png","Vasanthakumar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Srivatsav",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","VamsiPesala",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/girl.png","Rockstar",),
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Nandithaa",),
                               ],
                             ),
                           ),
@@ -228,10 +191,12 @@ class _F_GangMembersState extends State<F_GangMembers> {
 }
 
 class MyFlexiableAppBar extends StatelessWidget {
+  MyFlexiableAppBar({@required this.gangDetails});
+  GangDetails gangDetails;
 
   final double appBarHeight = 66.0;
 
-  const MyFlexiableAppBar();
+//  const MyFlexiableAppBar();
 
   @override
   Widget build(BuildContext context) {
@@ -250,7 +215,7 @@ class MyFlexiableAppBar extends StatelessWidget {
       SizedBox(height: getDynamicHeight(30),),
     Lottie.network("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",height: getDynamicHeight(150),width: getDynamicWidth(150)),
       GradientText(
-        "RockStarts",
+        gangDetails.gangName,
         style: heavyStyle,
         gradient: LinearGradient(
           colors: [
@@ -262,14 +227,14 @@ class MyFlexiableAppBar extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-    Text("6TFBJ73",style: answerStyleBlur,),
+    Text(gangDetails.gangCode,style: answerStyleBlur,),
     Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
     Column(
     children: [
     Icon(Icons.art_track,size: 30,color: Colors.black54,),
-    Text("29",style: boldStyle,)
+    Text(gangDetails.gangUserIDS.length.toString(),style: boldStyle,)
     ],
     ),
     SizedBox(width: getDynamicWidth(50),),

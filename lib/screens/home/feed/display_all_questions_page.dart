@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -19,22 +20,22 @@ import 'display_single_question_page.dart';
 import 'disaply_gang_members_page.dart';
 
 class AllQuestions extends StatelessWidget {
-  AllQuestions({@required this.gangID, @required this.gangName});
-  String gangID;
-  String gangName;
+  AllQuestions({@required this.gangDetails});
+  GangDetails gangDetails;
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_AllQuestions(gangID: gangID, gangName: gangName),
+      child: F_AllQuestions(gangDetails: gangDetails,),
     );
   }
 }
 
 class F_AllQuestions extends StatefulWidget {
-  F_AllQuestions({@required this.gangID, @required this.gangName});
-  String gangID;
-  String gangName;
+  F_AllQuestions({@required this.gangDetails});
+  GangDetails gangDetails;
+
 
   @override
   _F_AllQuestionsState createState() => _F_AllQuestionsState();
@@ -42,6 +43,9 @@ class F_AllQuestions extends StatefulWidget {
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
+
+  String whtsAppMessage = "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!";
+
 
   @override
   void initState() {
@@ -73,7 +77,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             ),
             centerTitle: true,
             title: GradientText(
-              widget.gangName,
+              widget.gangDetails.gangName,
               style: boldStyle,
               gradient: LinearGradient(
                 colors: [
@@ -153,7 +157,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                           PageTransition(
                               type: PageTransitionType.rotate,
                               duration: Duration(seconds: 1),
-                              child: GangMembers()));
+                              child: GangMembers(gangDetails: widget.gangDetails,)));
                       // _showSnackBar(context, "View Gang");
                     },
                     shape: CircleBorder(),
@@ -184,8 +188,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                     )),
                 RawMaterialButton(
                     onPressed: () {
-                      FlutterOpenWhatsapp.sendSingleMessage("",
-                          "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!");
+                      FlutterOpenWhatsapp.sendSingleMessage("",whtsAppMessage.replaceAll(' ', '%20'));
+                        //
                       //_showSnackBar(context, "Share Via WhatsApp");
                     },
                     shape: CircleBorder(),
@@ -231,7 +235,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<List<QuestionDetails>>(
-      stream: DBreference.readQuestions(widget.gangID),
+      stream: DBreference.readQuestions(widget.gangDetails.gangID),
       builder: (context, questionsSnapshot) {
 //        StreamBuilder<List<QuestionDetails>>(
 //          stream: DBreference.deleteQuestionsList(widget.gangID),
@@ -275,12 +279,12 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
   Widget _QuestionListCard(QuestionDetails questionData) {
     return StreamBuilder<InsightsDetails>(
-      stream: DBreference.myInsight(widget.gangID, questionData.questionID),
+      stream: DBreference.myInsight(widget.gangDetails.gangID, questionData.questionID),
       builder: (context, snapshot) {
         final insightsData = snapshot.data;
         return ExpandPageTransition(
           navigateToPage: SingleQuestion(
-            gangID: widget.gangID,
+            gangID: widget.gangDetails.gangID,
             questionDetails: questionData,
             insightsDetails: insightsData,
 

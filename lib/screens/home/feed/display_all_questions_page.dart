@@ -277,7 +277,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               onPressed: openContainer,
               padding: EdgeInsets.only(left: 0.0, right: 0.0),
               child: Container(
-                height: getDynamicHeight(300),
+                height: getDynamicHeight(350),
                 width: getDynamicWidth(200.0),
                 child: Column(
                   children: <Widget>[
@@ -286,7 +286,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                         Container(height: getDynamicHeight(300.0)),
                         Positioned(
                           child: Container(
-                            height: getDynamicHeight(300),
+                            height: getDynamicHeight(350),
                             width: getDynamicWidth(200.0),
                             child: Container(
                               decoration: BoxDecoration(
@@ -347,7 +347,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                         '${questionData.question}?'
                                             .capitalize(),
                                       ],
-                                      textStyle: questionStyle,
+                                      textStyle: questionStyle2,
                                       textAlign: TextAlign.center,
                                       alignment: AlignmentDirectional.topCenter,
                                       isRepeatingAnimation:

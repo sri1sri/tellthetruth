@@ -281,7 +281,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
         return ExpandPageTransition(
           navigateToPage: SingleQuestion(
             gangID: widget.gangID,
-            questionID: questionData.questionID,
+            questionDetails: questionData,
+            insightsDetails: insightsData,
+
 //            insightsDetails: insightsData != null ? insightsData : null,
           ),
           transitionType: ContainerTransitionType.fade,

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
@@ -42,9 +46,14 @@ class F_Profile extends StatefulWidget {
 
 class _F_ProfileState extends State<F_Profile> {
 
+  ScreenshotController screenshotController = ScreenshotController();
+  File _imageFile;
+
   @override
   Widget build(BuildContext context) {
-    return offlineWidget(context);
+    return Screenshot(
+      controller: screenshotController,
+        child: offlineWidget(context));
   }
 
   Widget offlineWidget(BuildContext context) {
@@ -115,14 +124,30 @@ class _F_ProfileState extends State<F_Profile> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Column(
-                                        children: [
-                                          Text(USER_QUESTION_COUNT,style: heavyStyle,),
-                                          SizedBox(
-                                            height: getDynamicHeight(10),
-                                          ),
-                                          Text("Questions Posted",style: answerStyle,),
-                                        ],
+                                      GestureDetector(
+                                        child: Column(
+                                          children: [
+                                            Text(USER_QUESTION_COUNT,style: heavyStyle,),
+                                            SizedBox(
+                                              height: getDynamicHeight(10),
+                                            ),
+                                            Text("Questions Posted",style: answerStyle,),
+                                          ],
+                                        ),
+                                        onTap: (){
+                                          screenshotController.capture().then((File image) {
+                                            //Capture Done
+                                            setState(() {
+                                              print(_imageFile);
+                                              _imageFile = image;
+                                              print(_imageFile);
+                                              final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+                                              print(result);
+                                            });
+                                          }).catchError((onError) {
+                                            print(onError);
+                                          });
+                                        },
                                       ),
                                       SizedBox(width: getDynamicWidth(50),),
                                       Column(

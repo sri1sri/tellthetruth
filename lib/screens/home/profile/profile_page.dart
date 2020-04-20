@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:animations/animations.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -135,15 +137,19 @@ class _F_ProfileState extends State<F_Profile> {
                                           ],
                                         ),
                                         onTap: (){
-                                          screenshotController.capture().then((File image) {
+                                          screenshotController.capture().then((File image) async {
                                             //Capture Done
                                             setState(() {
                                               print(_imageFile);
                                               _imageFile = image;
                                               print(_imageFile);
                                               final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+                                             
+
                                               print(result);
                                             });
+                                             Uint8List bytes = image.readAsBytesSync();
+                                             await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
                                           }).catchError((onError) {
                                             print(onError);
                                           });

@@ -116,7 +116,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
           resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
+            padding: const EdgeInsets.fromLTRB(15, 25, 15, 0),
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: Column(
@@ -126,7 +126,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.clear,color: Colors.black,size: 30,),
+                        icon: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30,),
                         color: Colors.white,
                         onPressed: () {Navigator.pop(context, true);},
                       ),

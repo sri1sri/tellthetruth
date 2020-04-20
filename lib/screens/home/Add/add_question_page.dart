@@ -111,7 +111,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.clear,color: Colors.black,size: 30,),
+                            icon: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30,),
                             color: Colors.white,
                             onPressed: () {Navigator.pop(context, true);},
                           ),

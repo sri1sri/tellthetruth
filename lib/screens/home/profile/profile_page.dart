@@ -6,8 +6,8 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:share_api/composers/facebook_story.dart';
-import 'package:share_api/share_api.dart';
+//import 'package:share_api/composers/facebook_story.dart';
+//import 'package:share_api/share_api.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
@@ -161,19 +161,19 @@ class _F_ProfileState extends State<F_Profile> {
                                             });
                                             Uint8List bytes =
                                                 image.readAsBytesSync();
-                                            var composer =
-                                                FacebookStoryComposer(
-                                              backgroundAsset: bytes,
-                                              backgroundMediaType: 'image/*',
-                                              // stickerAsset: stickerdata,
-                                              stickerMediaType: 'image/*',
-                                              topBackgroundColor:
-                                                  Color(0xFFFF0000),
-                                              bottomBackgroundColor:
-                                                  Color(0xFF00FF00),
-                                            );
-                                            ShareApi.viaInstagram
-                                                .shareToStory(composer);
+//                                            var composer =
+//                                                FacebookStoryComposer(
+//                                              backgroundAsset: bytes,
+//                                              backgroundMediaType: 'image/*',
+//                                              // stickerAsset: stickerdata,
+//                                              stickerMediaType: 'image/*',
+//                                              topBackgroundColor:
+//                                                  Color(0xFFFF0000),
+//                                              bottomBackgroundColor:
+//                                                  Color(0xFF00FF00),
+//                                            );
+//                                            ShareApi.viaInstagram
+//                                                .shareToStory(composer);
 
                                             // await SocialSharePlugin.shareToFeedInstagram(path: image.path,onCancel: () async {
                                             //   print('Cancelled');

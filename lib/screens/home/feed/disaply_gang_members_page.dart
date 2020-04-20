@@ -312,7 +312,7 @@ void showFancyCustomDialog(BuildContext context) {
                         ),
                         child: Container(
                           child: Padding(
-                            padding: const EdgeInsets.all(15.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -321,7 +321,7 @@ void showFancyCustomDialog(BuildContext context) {
                                   child: Row(
                                     children: [
                                       Icon(Icons.delete_forever),
-                                      SizedBox(width: getDynamicWidth(10),),
+                                      SizedBox(width: getDynamicWidth(5),),
                                       Text("Delete Group",style: answerStyleBlur,),
                                     ],
                                   ),
@@ -335,7 +335,7 @@ void showFancyCustomDialog(BuildContext context) {
                                   child: Row(
                                     children: [
                                       Icon(Icons.clear),
-                                      SizedBox(width: getDynamicWidth(10),),
+                                      SizedBox(width: getDynamicWidth(5),),
                                       Text("Leave Group",style: answerStyleBlur,),
                                     ],
                                   ),
@@ -349,7 +349,7 @@ void showFancyCustomDialog(BuildContext context) {
                                   child: Row(
                                     children: [
                                       Icon(Icons.edit),
-                                      SizedBox(width: getDynamicWidth(10),),
+                                      SizedBox(width: getDynamicWidth(5),),
                                       Text("Edit Name",style: answerStyleBlur,),
                                     ],
                                   ),

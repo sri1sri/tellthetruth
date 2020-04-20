@@ -54,6 +54,11 @@ var questionStyle = TextStyle(
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w800,
     fontSize: getDynamicTextSize(24),decoration: TextDecoration.none);
+var questionStyle2 = TextStyle(
+    color: Colors.white,
+    fontFamily: 'Montserrat',
+    fontWeight: FontWeight.w600,
+    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none);
 
 var questionStyle1 = TextStyle(
     color: Colors.white,

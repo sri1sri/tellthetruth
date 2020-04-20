@@ -174,15 +174,6 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                                       ),
                                     ],
                                   ),
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage("images/male.png"),
-                                    radius: 40,
-                                    backgroundColor: Colors.transparent,
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
                                   TyperAnimatedTextKit(
                                     onTap: () {
                                       print("Tap Event");

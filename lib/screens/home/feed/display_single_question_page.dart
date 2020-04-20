@@ -272,7 +272,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         builder: (context, snapshot) {
                           final userDetails = snapshot.data;
 
-                          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? userDetails.username : 'fetching...');
+                          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? userDetails.username : 'fetching...',style: answerStyle);
                         }
                     ),
 
@@ -459,7 +459,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all( 15.0 ),
+                padding: const EdgeInsets.all( 10.0 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -601,7 +601,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         borderRadius: BorderRadius.circular( 5 ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only( left: 15.0, right: 15.0 ,top:20,bottom:20),
+        padding: const EdgeInsets.only( left: 15.0, right: 15.0 ,top:10,bottom:10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

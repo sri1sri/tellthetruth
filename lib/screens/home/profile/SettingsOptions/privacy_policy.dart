@@ -41,8 +41,9 @@ class _F_PrivacyPolicy extends State<F_PrivacyPolicy> {
 
   Widget _buildContent(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(getDynamicHeight(80)),
+        preferredSize: Size.fromHeight(80),
         child: CustomAppBar(
           leftActionBar: Container(
             child: Icon(Icons.arrow_back_ios,color: subBackgroundColor,),
@@ -51,7 +52,7 @@ class _F_PrivacyPolicy extends State<F_PrivacyPolicy> {
             Navigator.pop(context, true);
           },
           rightActionBar: Container(
-              child: Text(".............",style: TextStyle(color: Colors.white),)
+              child: Text("......",style: TextStyle(color: Colors.white),)
           ),
           rightAction: () {
             print('right action bar is pressed in appbar');

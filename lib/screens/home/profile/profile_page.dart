@@ -78,7 +78,7 @@ class _F_ProfileState extends State<F_Profile> {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(350)),
+                  preferredSize: Size.fromHeight(getDynamicHeight(375)),
                   child: ControlledAnimation(
                     playback: Playback.MIRROR,
                     tween: tween,
@@ -118,7 +118,7 @@ class _F_ProfileState extends State<F_Profile> {
                                         decoration: TextDecoration.none),
                                   ),
                                   SizedBox(
-                                    height: getDynamicHeight(20),
+                                    height: getDynamicHeight(10),
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -207,14 +207,12 @@ class _F_ProfileState extends State<F_Profile> {
         color: Colors.white,
         child:   Column(
           children: <Widget>[
-            SizedBox(
-              height: getDynamicHeight(20),
-            ),
+
             Column(
               children: <Widget>[
                 _settingsCard("Notifications","images/settingsNotification.png",Notifications()),
                 _settingsCard("FAQ's","images/settingsFAQ.png",FAQ()),
-                _settingsCard("Privacy Policy","images/settingsTermsAndConditions.png",PrivacyPolicy()),
+                _settingsCard("Privacy Policy","images/settingsPrivacy.png",PrivacyPolicy()),
                 _settingsCard("Terms & Conditions","images/settingsTermsAndConditions.png",TermsAndServices()),
                 _settingsCard("Support","images/settingsSupport.png",Support()),
                 _settingsCard("Log Out","images/settingsLogout.png",null),

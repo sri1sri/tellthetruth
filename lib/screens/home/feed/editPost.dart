@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
-class Notifications extends StatelessWidget {
+class EditPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_Notifications(),
+      child: F_EditPost(),
     );
   }
 }
 
-class F_Notifications extends StatefulWidget {
+class F_EditPost extends StatefulWidget {
   @override
-  _F_Notifications createState() => _F_Notifications();
+  _F_EditPost createState() => _F_EditPost();
 }
 
-class _F_Notifications extends State<F_Notifications> {
+class _F_EditPost extends State<F_EditPost> {
   bool isSwitched = true;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class _F_Notifications extends State<F_Notifications> {
   Widget _buildContent(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: Size.fromHeight(getDynamicHeight(80)),
         child: CustomAppBar(
           leftActionBar: Container(
             child: Icon(Icons.arrow_back_ios,color: subBackgroundColor,),
@@ -56,21 +57,24 @@ class _F_Notifications extends State<F_Notifications> {
           rightAction: () {
             print('right action bar is pressed in appbar');
           },
-          primaryText: 'Notifications',
+          primaryText: 'Edit Post',
           secondaryText: null,
         ),
       ),
       body: Container(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard(),
-              SizedBox(height: getDynamicHeight(20),),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                SizedBox(height: getDynamicHeight(10),),
+                Lottie.network('https://assets3.lottiefiles.com/private_files/lf30_mAyV0V.json',height: getDynamicHeight(400),width: getDynamicWidth(400)),
+                SizedBox(height: getDynamicHeight(20),),
+                Text("This Feature is not yet build, we are working on it....!",style: boldStyle,)
 
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -78,37 +82,5 @@ class _F_Notifications extends State<F_Notifications> {
     );
   }
 
-  _Notificationcard()
-  {
-    return Container(
-      height: 70,
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-
-            isSwitched != true ? Text("Enable Notification",style: answerStyleBlur1,)
-            :
-            Text("Disable Notification",style: answerStyleBlur1,),
-
-
-            Switch(
-              value: isSwitched,
-              onChanged: (value) {
-                setState(() {
-                  isSwitched = value;
-                });
-              },
-              activeTrackColor: Colors.lightGreenAccent,
-              activeColor: Colors.green,
-            ),
-          ],
-        ),
-      )
-    );
-
-  }
 
 }

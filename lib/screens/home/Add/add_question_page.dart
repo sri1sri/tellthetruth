@@ -100,7 +100,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
         resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 50, 15, 50),
+            padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: Column(

@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
-import 'package:social_share_plugin/social_share_plugin.dart';
+//import 'package:social_share_plugin/social_share_plugin.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -135,25 +135,24 @@ class _F_ProfileState extends State<F_Profile> {
                                         ),
                                         onTap: (){
                                           screenshotController.capture().then((File image) async {
-                                            //Capture Done
+//                                            //Capture Done
                                             setState(() {
                                               print(_imageFile);
                                               _imageFile = image;
                                               print(_imageFile);
                                               final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
-                                             
 
                                               print(result);
                                             });
-                                            await SocialSharePlugin.shareToFeedInstagram(path: image.path,onCancel: () async {
-                                              print('Cancelled');
-                                            },
-                                            onSuccess: (value) async{
-                                              print('Success $value');
-                                            }
-                                            );
-                                            //  Uint8List bytes = image.readAsBytesSync();
-                                            //  await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
+//                                            await SocialSharePlugin.shareToFeedInstagram(path: image.path,onCancel: () async {
+//                                              print('Cancelled');
+//                                            },
+//                                            onSuccess: (value) async{
+//                                              print('Success $value');
+//                                            }
+//                                            );
+//                                            //  Uint8List bytes = image.readAsBytesSync();
+//                                            //  await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
                                           }).catchError((onError) {
                                             print(onError);
                                           });

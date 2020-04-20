@@ -16,6 +16,7 @@ import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dar
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/screens/home/feed/test.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'display_single_question_page.dart';
 import 'disaply_gang_members_page.dart';
 
@@ -50,6 +51,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
   @override
   void initState() {
     super.initState();
+    print(whtsAppMessage.replaceAll(' ', '%20'));
 
   }
 
@@ -188,10 +190,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                     )),
                 RawMaterialButton(
                     onPressed: () {
-                      FlutterOpenWhatsapp.sendSingleMessage("",whtsAppMessage.replaceAll(' ', '%20'));
-                        //
-                      //_showSnackBar(context, "Share Via WhatsApp");
-                    },
+                      launch("https://api.whatsapp.com/send?phone=&text=I%20want%20you%20to%20join%20our%20gang%20in%20Tell%20The%20Truth%21%20Please%20install%20from%20Android%3a%20https%3a%2f%2fplay.google.com%2fstore%2fapps%2fdetails%3fid%3dcom.ludo.king%20iOS%3a%20https%3a%2f%2fitunes.apple.com%2fin%2fapp%2fludo-king%2fid993090598%20.Click%20on%20‘%20’%20go%20to%20join%20gang%20and%20enter%20gang%20code%20%2712345%27.Believe%20me%20this%20is%20awesome%20game%21&source=&data=&app_absent=");
+                      },
                     shape: CircleBorder(),
                     padding: const EdgeInsets.all(24.0),
                     child: Container(

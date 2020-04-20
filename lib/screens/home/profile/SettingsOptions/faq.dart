@@ -68,18 +68,46 @@ class _F_FAQ extends State<F_FAQ> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+
+              _Notificationcard("Things to remember",
+                  "ALl questions will be available to poll for 24hours. After 24hours questions cant be polled but can be viewed. After 48hours questions will be removed permenantly."),
+
               SizedBox(height: getDynamicHeight(5),),
-              _Notificationcard("STEP 1"," Login to app using your phone number"),
+              _Notificationcard("How to Create gang?",
+                  "Go to + tab. Click on Create gang, Add your gang name gang icon. That\'s it your gang will be created."
+              ),
+
               SizedBox(height: getDynamicHeight(5),),
-              _Notificationcard("STEP 2","Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app"),
+              _Notificationcard("How to add question?",
+                  "Go to + tab. Click on create question. Now add your question, options and select in which group you need to post it. Also add mode (Anonymous or public)."),
+
               SizedBox(height: getDynamicHeight(5),),
-              _Notificationcard("STEP 3","Open the app "),
+              _Notificationcard("How to reveal question identity?",
+                  "In polling the question at bottom center you will find an anonymous icon. If you click on that your question identity will be revealed."),
+
               SizedBox(height: getDynamicHeight(5),),
-              _Notificationcard("STEP 1"," Login to app using your phone number"),
+              _Notificationcard("How to reveal answer identity?",
+                  "In polling the question at top right you will find an anonymous icon. If you click on that your answered identity will be revealed."),
+
               SizedBox(height: getDynamicHeight(5),),
-              _Notificationcard("STEP 2","Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app Open the app"),
+              _Notificationcard("Where can I find gang code?",
+                  "In home screen behind gang name you will find the gang code."),
+
               SizedBox(height: getDynamicHeight(5),),
-              _Notificationcard("STEP 3","Open the app "),
+              _Notificationcard("How can I share my gang code?",
+                  "In home page click on gang names. Bottom right you will fing more icon click on that. Later you will be provided with 3 options. View gang, Share, My questions. Here if you click on share it will navigate you to whtsapp so that you can share you gang code with your friends and family."),
+
+              SizedBox(height: getDynamicHeight(5),),
+              _Notificationcard("How can I see who are there in my gang?",
+                  "In home page click on gang names. Bottom right you will fing more icon click on that. Later you will be provided with 3 options. View gang, Share, My questions.  Here click on View gang. Here you will find all the users in you gang."),
+
+              SizedBox(height: getDynamicHeight(5),),
+              _Notificationcard("How to join gang?",
+                  "Go to + tab. Click on Join gang, Add your gang code. That\'s it you will be joined in that gang."),
+
+              SizedBox(height: getDynamicHeight(5),),
+              _Notificationcard("How to add question?",
+                  "Go to + tab. Click on create question. Now add your question, options and select in which group you need to post it. Also add mode (Anonymous or public)."),
 
             ],
           ),

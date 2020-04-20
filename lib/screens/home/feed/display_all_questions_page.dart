@@ -286,7 +286,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                         Container(height: getDynamicHeight(300.0)),
                         Positioned(
                           child: Container(
-                            height: getDynamicHeight(350),
+                            height: getDynamicHeight(310),
                             width: getDynamicWidth(200.0),
                             child: Container(
                               decoration: BoxDecoration(

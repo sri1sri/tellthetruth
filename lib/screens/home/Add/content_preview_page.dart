@@ -365,18 +365,38 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-//                Text("Select Gang",style: TextStyle(
-//                    color: Colors.white,
-//                    fontFamily: 'Montserrat',
-//                    fontWeight: FontWeight.w600,
-//                    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Select Gang",style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
+              SizedBox(height: getDynamicHeight(10),),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.black.withOpacity(0.1),
+                ),
+                height: getDynamicHeight(140),
+                width: getDynamicWidth(380),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height:100,
+                          child: getVariableScaleCrousel(gangName),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
 //
 //                      Column(
@@ -384,19 +404,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 //                    Text(data.gangName),
 //                    ]
 //                  ),
-                      Container(
-                        height: getDynamicHeight(50),
-                        child: Flex(
-                          direction: Axis.vertical,
-                          children: [
-                            Expanded(
-                              child: SizedBox(
-                                child: getVariableScaleCrousel(gangName),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
 
 
 //          StreamBuilder<List<GangDetails>>(
@@ -479,7 +486,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     return FinitePager(
       scaleX: 0.8,
       scaleY: 0.7,
-      scrollDirection: Axis.horizontal,
+      rotationY: 30,
+      scrollDirection: Axis.vertical,
       onPageChanged: (index){
         setState(() {
           selectedGangID = gangIDs[index];
@@ -510,36 +518,30 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 //  }
 
   Widget _buildImage(String gangName) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 7, right: 7),
-      child: GestureDetector(
-        onTap: () {},
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          height: getDynamicHeight(50),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  GradientText(
-                    gangName,
-                    style: questionStyle1,
-                    gradient: LinearGradient(
-                      colors: [
-                        Color(0XffFD8B1F),
-                        Color(0XffD152E0),
-                        Color(0Xff30D0DB),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                ]),
-          ),
-        ),
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+      height: getDynamicHeight(50),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              GradientText(
+                gangName,
+                style: questionStyle1,
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0XffFD8B1F),
+                    Color(0XffD152E0),
+                    Color(0Xff30D0DB),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ]),
       ),
     );
   }

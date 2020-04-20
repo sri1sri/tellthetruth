@@ -1,12 +1,14 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
+//import 'package:share_api/composers/facebook_story.dart';
+//import 'package:share_api/share_api.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
-//import 'package:social_share_plugin/social_share_plugin.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -44,15 +46,13 @@ class F_Profile extends StatefulWidget {
 }
 
 class _F_ProfileState extends State<F_Profile> {
-
   ScreenshotController screenshotController = ScreenshotController();
   File _imageFile;
 
   @override
   Widget build(BuildContext context) {
     return Screenshot(
-      controller: screenshotController,
-        child: offlineWidget(context));
+        controller: screenshotController, child: offlineWidget(context));
   }
 
   Widget offlineWidget(BuildContext context) {
@@ -70,11 +70,11 @@ class _F_ProfileState extends State<F_Profile> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        animation["color1"],
-                        animation["color2"],
-                        animation["color3"],
-                        animation["color4"]
-                      ])),
+                    animation["color1"],
+                    animation["color2"],
+                    animation["color3"],
+                    animation["color4"]
+                  ])),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
@@ -86,9 +86,12 @@ class _F_ProfileState extends State<F_Profile> {
                     builder: (context, animation) {
                       return Container(
                         color: Colors.transparent,
-                        child:  Column(
+                        child: Column(
                           children: <Widget>[
-                            Lottie.network('https://assets6.lottiefiles.com/packages/lf20_bRHk7X.json',height: getDynamicHeight(200),width: getDynamicWidth(200)),
+                            Lottie.network(
+                                'https://assets6.lottiefiles.com/packages/lf20_bRHk7X.json',
+                                height: getDynamicHeight(200),
+                                width: getDynamicWidth(200)),
                             SizedBox(
                               height: getDynamicHeight(10),
                             ),
@@ -96,7 +99,8 @@ class _F_ProfileState extends State<F_Profile> {
                               padding: const EdgeInsets.only(left: 10.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(USER_NAME,
                                       style: TextStyle(
@@ -126,46 +130,81 @@ class _F_ProfileState extends State<F_Profile> {
                                       GestureDetector(
                                         child: Column(
                                           children: [
-                                            Text(USER_QUESTION_COUNT,style: heavyStyle,),
+                                            Text(
+                                              USER_QUESTION_COUNT,
+                                              style: heavyStyle,
+                                            ),
                                             SizedBox(
                                               height: getDynamicHeight(10),
                                             ),
-                                            Text("Questions Posted",style: answerStyle,),
+                                            Text(
+                                              "Questions Posted",
+                                              style: answerStyle,
+                                            ),
                                           ],
                                         ),
-                                        onTap: (){
-                                          screenshotController.capture().then((File image) async {
-//                                            //Capture Done
+                                        onTap: () {
+                                          screenshotController
+                                              .capture()
+                                              .then((File image) async {
+                                            //Capture Done
                                             setState(() {
                                               print(_imageFile);
                                               _imageFile = image;
                                               print(_imageFile);
-                                              final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+                                              final result =
+                                                  ImageGallerySaver.saveImage(
+                                                      _imageFile
+                                                          .readAsBytesSync());
 
                                               print(result);
                                             });
-//                                            await SocialSharePlugin.shareToFeedInstagram(path: image.path,onCancel: () async {
-//                                              print('Cancelled');
-//                                            },
-//                                            onSuccess: (value) async{
-//                                              print('Success $value');
-//                                            }
+                                            Uint8List bytes =
+                                                image.readAsBytesSync();
+//                                            var composer =
+//                                                FacebookStoryComposer(
+//                                              backgroundAsset: bytes,
+//                                              backgroundMediaType: 'image/*',
+//                                              // stickerAsset: stickerdata,
+//                                              stickerMediaType: 'image/*',
+//                                              topBackgroundColor:
+//                                                  Color(0xFFFF0000),
+//                                              bottomBackgroundColor:
+//                                                  Color(0xFF00FF00),
 //                                            );
-//                                            //  Uint8List bytes = image.readAsBytesSync();
-//                                            //  await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
+//                                            ShareApi.viaInstagram
+//                                                .shareToStory(composer);
+
+                                            // await SocialSharePlugin.shareToFeedInstagram(path: image.path,onCancel: () async {
+                                            //   print('Cancelled');
+                                            // },
+                                            // onSuccess: (value) async{
+                                            //   print('Success $value');
+                                            // }
+                                            // );
+
+                                            //  await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
                                           }).catchError((onError) {
                                             print(onError);
                                           });
                                         },
                                       ),
-                                      SizedBox(width: getDynamicWidth(50),),
+                                      SizedBox(
+                                        width: getDynamicWidth(50),
+                                      ),
                                       Column(
                                         children: [
-                                          Text(USER_POINTS,style: heavyStyle,),
+                                          Text(
+                                            USER_POINTS,
+                                            style: heavyStyle,
+                                          ),
                                           SizedBox(
                                             height: getDynamicHeight(10),
                                           ),
-                                          Text("Poins Earned",style: answerStyle,),
+                                          Text(
+                                            "Poins Earned",
+                                            style: answerStyle,
+                                          ),
                                         ],
                                       )
                                     ],
@@ -173,8 +212,6 @@ class _F_ProfileState extends State<F_Profile> {
                                 ],
                               ),
                             ),
-
-
                           ],
                         ),
                       );
@@ -186,9 +223,7 @@ class _F_ProfileState extends State<F_Profile> {
                       topRight: Radius.circular(30.0),
                       topLeft: Radius.circular(30.0)),
                   child: Container(
-                      color: Colors.white,
-                      child: _buildContent(context)
-                  ),
+                      color: Colors.white, child: _buildContent(context)),
                 ),
               ),
             );
@@ -199,30 +234,35 @@ class _F_ProfileState extends State<F_Profile> {
   }
 
   Widget _buildContent(BuildContext context) {
-
-
     return SingleChildScrollView(
       child: Container(
         color: Colors.white,
-        child:   Column(
+        child: Column(
           children: <Widget>[
-
             Column(
               children: <Widget>[
-                _settingsCard("Notifications","images/settingsNotification.png",Notifications()),
-                _settingsCard("FAQ's","images/settingsFAQ.png",FAQ()),
-                _settingsCard("Privacy Policy","images/settingsPrivacy.png",PrivacyPolicy()),
-                _settingsCard("Terms & Conditions","images/settingsTermsAndConditions.png",TermsAndServices()),
-                _settingsCard("Support","images/settingsSupport.png",Support()),
-                _settingsCard("Log Out","images/settingsLogout.png",null),
+                _settingsCard("Notifications",
+                    "images/settingsNotification.png", Notifications()),
+                _settingsCard("FAQ's", "images/settingsFAQ.png", FAQ()),
+                _settingsCard("Privacy Policy", "images/settingsPrivacy.png",
+                    PrivacyPolicy()),
+                _settingsCard(
+                    "Terms & Conditions",
+                    "images/settingsTermsAndConditions.png",
+                    TermsAndServices()),
+                _settingsCard(
+                    "Support", "images/settingsSupport.png", Support()),
+                _settingsCard("Log Out", "images/settingsLogout.png", null),
               ],
             ),
             Container(
               child: Padding(
-                padding: EdgeInsets.fromLTRB( 30,20,30,20 ),
+                padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
                 child: Column(
                   children: <Widget>[
-                    SizedBox( height: getDynamicHeight(10), ),
+                    SizedBox(
+                      height: getDynamicHeight(10),
+                    ),
                     Text(
                       'Version 1.0.0',
                       style: TextStyle(
@@ -232,7 +272,9 @@ class _F_ProfileState extends State<F_Profile> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox( height: getDynamicHeight(10), ),
+                    SizedBox(
+                      height: getDynamicHeight(10),
+                    ),
                   ],
                 ),
               ),
@@ -242,7 +284,6 @@ class _F_ProfileState extends State<F_Profile> {
       ),
     );
   }
-
 
   Future<void> _signOut(BuildContext context) async {
     try {
@@ -266,29 +307,31 @@ class _F_ProfileState extends State<F_Profile> {
     }
   }
 
-  Widget _settingsCard(String title,String imgPath,Widget route) {
+  Widget _settingsCard(String title, String imgPath, Widget route) {
     return Container(
       width: double.infinity,
       child: FlatButton(
         onPressed: () {
           route == null ? _confirmSignOut(context) : GoToPage(context, route);
         },
-        padding: EdgeInsets.only(left:40.0 ,top: 50),
+        padding: EdgeInsets.only(left: 40.0, top: 50),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular( 0.0 ),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CircleAvatar(
-              backgroundImage:
-              AssetImage(imgPath),
+              backgroundImage: AssetImage(imgPath),
               radius: 20,
               backgroundColor: Colors.transparent,
             ),
-            SizedBox(width: getDynamicWidth(20),),
-            Text(title,
+            SizedBox(
+              width: getDynamicWidth(20),
+            ),
+            Text(
+              title,
               style: TextStyle(
                 color: Colors.black87,
                 letterSpacing: 1.5,

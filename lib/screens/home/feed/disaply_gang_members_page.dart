@@ -3,6 +3,9 @@ import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/firebase/database.dart';
+import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -21,8 +24,10 @@ class GangMembers extends StatelessWidget {
 }
 
 class F_GangMembers extends StatefulWidget {
-  F_GangMembers({@required this.gangDetails});
+  F_GangMembers({@required this.gangDetails, @required this.questionsCount});
   GangDetails gangDetails;
+  int questionsCount;
+
 
   @override
   _F_GangMembersState createState() => _F_GangMembersState();
@@ -78,6 +83,9 @@ class _F_GangMembersState extends State<F_GangMembers> {
 
   @override
   Widget build(BuildContext context) {
+
+    print(widget.gangDetails.gangUserIDS);
+
     return offlineWidget(context);
   }
 
@@ -86,62 +94,71 @@ class _F_GangMembersState extends State<F_GangMembers> {
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
-            body: CustomScrollView(
-              slivers: <Widget>[
-                SliverAppBar(
-                  actions: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.more_vert,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {showFancyCustomDialog( context );
-                      },
-                      color: Colors.white,
+          body: CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                actions: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.more_vert,
+                      color: Colors.black,
                     ),
-                  ],
-                  backgroundColor: Colors.white,
-                  elevation: 0,
-                  centerTitle: true,
-                  pinned: true,
-                  expandedHeight: getDynamicHeight(400.0),
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: MyFlexiableAppBar(gangDetails: widget.gangDetails,),
+                    onPressed: () {showFancyCustomDialog( context );
+                    },
+                    color: Colors.white,
                   ),
+                ],
+                backgroundColor: Colors.white,
+                elevation: 0,
+                centerTitle: true,
+                pinned: true,
+                expandedHeight: getDynamicHeight(400.0),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: MyFlexiableAppBar(gangDetails: widget.gangDetails,),
                 ),
-                SliverList(
-                  delegate: SliverChildListDelegate(
-                    <Widget>[
-                      SingleChildScrollView(
-                        child: Container(
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(height: 10,),
-                                MemberCard("images/boy.png","Vasanthakumar",),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  <Widget>[
+                    _buildContent(),
 
-                    ],
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          floatingActionButton: buildBoomMenu(),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget MemberCard(String imgPath,String name)
-  {
+  Widget _buildContent(){
+    StreamBuilder<List<UserDetails>>(
+        stream: DBreference.readGangUsers(widget.gangDetails.gangUserIDS),
+        builder: (context, snapshots) {
+          return ListItemsBuilder<UserDetails>(
+              snapshot: snapshots,
+              itemBuilder: (context, data) => SingleChildScrollView(
+                child: Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: 10,),
+                        MemberCard("images/boy.png",data.username,),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          );
+        }
+    );
+  }
+
+  Widget MemberCard(String imgPath,String name) {
     return GestureDetector(
       child: Card(
         elevation: 0,
@@ -213,7 +230,7 @@ class MyFlexiableAppBar extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       SizedBox(height: getDynamicHeight(30),),
-    Lottie.network("https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json",height: getDynamicHeight(150),width: getDynamicWidth(150)),
+    Lottie.network(gangDetails.gangIconURL,height: getDynamicHeight(150),width: getDynamicWidth(150)),
       GradientText(
         gangDetails.gangName,
         style: heavyStyle,

@@ -226,32 +226,12 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     );
   }
 
-//  void _showSnackBar(BuildContext context, String message) {
-//    Scaffold.of(context).showSnackBar(SnackBar(
-//      content: Text(message, style: questionStyle1),
-//      duration: const Duration(milliseconds: 1000),
-//    ));
-//  }
 
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<List<QuestionDetails>>(
       stream: DBreference.readQuestions(widget.gangDetails.gangID),
       builder: (context, questionsSnapshot) {
-//        StreamBuilder<List<QuestionDetails>>(
-//          stream: DBreference.deleteQuestionsList(widget.gangID),
-//          builder: (context, snapshot) {
-//            if (snapshot.hasData) {
-//              List<QuestionDetails> data = snapshot.data;
-//              data.forEach(
-//                    (f) {
-//                  DBreference.deleteQuestion(widget.gangID, f.questionID);
-//                  print('${f.questionID} - question id');
-//                },
-//              );
-//            }
-//            return null;
-//          },
-//        );
+
         return questionsSnapshot.data != null
             ? questionsSnapshot.data.length != 0
                 ? GridView.count(

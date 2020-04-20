@@ -27,6 +27,7 @@ abstract class Database {
   Future<void> deleteQuestion(String gangID, String questionID);
   Stream<List<QuestionDetails>> deleteQuestionsList(String gangID);
   Future<void> updateAppInsights(CommonFiles commonFiles);
+  Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS);
 }
 
 Database DBreference;

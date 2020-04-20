@@ -85,6 +85,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 
   Future<void> _saveData() async {
     final userDetails = UserDetails(
+      userID: USER_ID,
       emailID: widget.email,
       password: widget.password,
       joinedDate: Timestamp.fromDate(DateTime.now()),

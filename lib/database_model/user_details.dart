@@ -27,7 +27,7 @@ class UserDetails{
     if(data == null){
       return null;
     }
-    final String userID = documentID;
+    final String userID = data['user_id'];
 
     final String username = data['username'];
     final String gender = data['gender'];
@@ -53,6 +53,7 @@ class UserDetails{
 
   Map<String, dynamic> toMap(){
     return {
+      userID != null ? 'user_id': 'empty' : userID,
       username != null ? 'username': 'empty' : username,
       gender != null ? 'gender': 'empty' : gender,
       dateOfBirth != null ? 'date_of_birth': 'empty' : dateOfBirth,

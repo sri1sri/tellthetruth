@@ -386,11 +386,16 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 //                  ),
                       Container(
                         height: getDynamicHeight(50),
-                        child: Expanded(
-                    child: SizedBox(
-                        child: getVariableScaleCrousel(gangName),
-                    ),
-                  ),
+                        child: Flex(
+                          direction: Axis.vertical,
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                child: getVariableScaleCrousel(gangName),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
 

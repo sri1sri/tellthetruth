@@ -29,6 +29,9 @@ class FirestoreService {
     await reference.delete();
   }
 
+
+  
+
   Stream<List<T>> collectionStream<T>({
     @required String path,
     @required T builder(Map<String, dynamic> data, String documentID),
@@ -39,9 +42,13 @@ class FirestoreService {
     if (queryBuilder != null) {
       query = queryBuilder(query);
     }
-    print('query : ${query}');
-    final Stream<QuerySnapshot> snapshots = query.snapshots();
+    print('query : $path');
+    final Stream<QuerySnapshot> snapshots =  query.snapshots();
+    
     return snapshots.map((snapshot) {
+      snapshots.forEach((f){
+        print(' hello world $f');
+      });
       final result = snapshot.documents
           .map((snapshot) => builder(snapshot.data, snapshot.documentID))
           .where((value) => value != null)

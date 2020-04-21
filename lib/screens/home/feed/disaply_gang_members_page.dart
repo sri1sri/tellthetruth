@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -11,6 +12,9 @@ import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
+import '../../../database_model/user_details.dart';
+import '../../../firebase/api_path.dart';
+
 class GangMembers extends StatelessWidget {
   GangMembers({@required this.gangDetails});
   GangDetails gangDetails;
@@ -18,7 +22,7 @@ class GangMembers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_GangMembers(gangDetails:gangDetails),
+      child: F_GangMembers(gangDetails: gangDetails),
     );
   }
 }
@@ -27,7 +31,6 @@ class F_GangMembers extends StatefulWidget {
   F_GangMembers({@required this.gangDetails, @required this.questionsCount});
   GangDetails gangDetails;
   int questionsCount;
-
 
   @override
   _F_GangMembersState createState() => _F_GangMembersState();
@@ -76,14 +79,11 @@ class _F_GangMembersState extends State<F_GangMembers> {
             backgroundColor: Colors.blue,
             onTap: () => print('FOURTH CHILD'),
           )
-        ]
-    );
+        ]);
   }
-
 
   @override
   Widget build(BuildContext context) {
-
     print(widget.gangDetails.gangUserIDS);
 
     return offlineWidget(context);
@@ -103,7 +103,8 @@ class _F_GangMembersState extends State<F_GangMembers> {
                       Icons.more_vert,
                       color: Colors.black,
                     ),
-                    onPressed: () {showFancyCustomDialog( context );
+                    onPressed: () {
+                      showFancyCustomDialog(context);
                     },
                     color: Colors.white,
                   ),
@@ -114,14 +115,15 @@ class _F_GangMembersState extends State<F_GangMembers> {
                 pinned: true,
                 expandedHeight: getDynamicHeight(400.0),
                 flexibleSpace: FlexibleSpaceBar(
-                  background: MyFlexiableAppBar(gangDetails: widget.gangDetails,),
+                  background: MyFlexiableAppBar(
+                    gangDetails: widget.gangDetails,
+                  ),
                 ),
               ),
               SliverList(
                 delegate: SliverChildListDelegate(
                   <Widget>[
-                    _buildContent(),
-
+                    Container(height: 500, child: _buildContent()),
                   ],
                 ),
               ),
@@ -132,45 +134,75 @@ class _F_GangMembersState extends State<F_GangMembers> {
     );
   }
 
-  Widget _buildContent(){
-    return StreamBuilder<List<UserDetails>>(
-        stream: DBreference.readGangUsers(widget.gangDetails.gangUserIDS),
+  Widget _buildContent() {
+    return FutureBuilder<List<UserDetails>>(
+        future: getUsersDetails(widget.gangDetails.gangUserIDS),
         builder: (context, snapshots) {
-          print(snapshots.data.length);
-          return ListItemsBuilder<UserDetails>(
-              snapshot: snapshots,
-              itemBuilder: (context, data) => SingleChildScrollView(
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(height: 10,),
-                        MemberCard("images/boy.png",data.username,),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-          );
-        }
-    );
+          if (!snapshots.hasData) {
+            return Text('test');
+          }
+          List<UserDetails> users = snapshots.data;
+          print('users length ${users.length}');
+          return ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(users[index].username),
+                );
+              });
+          // return ListItemsBuilder<UserDetails>(
+          //   snapshot: snapshots,
+          //   itemBuilder: (context, data) => SingleChildScrollView(
+          //     child: Container(
+          //       color: Colors.white,
+          //       child: Padding(
+          //         padding: const EdgeInsets.all(15.0),
+          //         child: Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: <Widget>[
+          //             SizedBox(
+          //               height: 10,
+          //             ),
+          //             MemberCard(
+          //               "images/boy.png",
+          //               data.username,
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // );
+        });
   }
 
-  Widget MemberCard(String imgPath,String name) {
+  Future<List<UserDetails>> getUsersDetails(usersList) async {
+    List<UserDetails> details = [];
+    usersList.forEach((f) async {
+      print('user ID IS $f');
+      var doc = await Firestore.instance
+          .collection(APIPath.usersList())
+          .document(f)
+          .get();
+      if (doc.exists) {
+        print(doc.data);
+        details.add(UserDetails.fromMap(doc.data, doc.documentID));
+      }
+    });
+    return details;
+  }
+
+  Widget MemberCard(String imgPath, String name) {
     return GestureDetector(
       child: Card(
         elevation: 0,
         child: Container(
-          child:Padding(
+          child: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-
                   Row(
                     children: <Widget>[
                       Column(
@@ -181,22 +213,25 @@ class _F_GangMembersState extends State<F_GangMembers> {
                           ),
                         ],
                       ),
-                      SizedBox(width: getDynamicWidth(15) ,),
+                      SizedBox(
+                        width: getDynamicWidth(15),
+                      ),
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(name,style: answerStyleBlur1,),
-                          ]
-                      ),
+                            Text(
+                              name,
+                              style: answerStyleBlur1,
+                            ),
+                          ]),
                     ],
                   ),
-                ]
-            ),
+                ]),
           ),
         ),
       ),
-      onTap: (){
+      onTap: () {
 //        Navigator.push(
 //          context,
 //          MaterialPageRoute(
@@ -205,7 +240,6 @@ class _F_GangMembersState extends State<F_GangMembers> {
       },
     );
   }
-
 }
 
 class MyFlexiableAppBar extends StatelessWidget {
@@ -218,56 +252,73 @@ class MyFlexiableAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double statusBarHeight = MediaQuery
-        .of(context)
-        .padding
-        .top;
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return new Container(
       padding: new EdgeInsets.only(top: statusBarHeight),
       height: statusBarHeight + appBarHeight,
       child: new Center(
-          child: Column(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      SizedBox(height: getDynamicHeight(30),),
-    Lottie.network(gangDetails.gangIconURL,height: getDynamicHeight(150),width: getDynamicWidth(150)),
-      GradientText(
-        gangDetails.gangName,
-        style: heavyStyle,
-        gradient: LinearGradient(
-          colors: [
-            Color(0XffFD8B1F),
-            Color(0XffD152E0),
-            Color(0Xff30D0DB),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              height: getDynamicHeight(30),
+            ),
+            Lottie.network(gangDetails.gangIconURL,
+                height: getDynamicHeight(150), width: getDynamicWidth(150)),
+            GradientText(
+              gangDetails.gangName,
+              style: heavyStyle,
+              gradient: LinearGradient(
+                colors: [
+                  Color(0XffFD8B1F),
+                  Color(0XffD152E0),
+                  Color(0Xff30D0DB),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            Text(
+              gangDetails.gangCode,
+              style: answerStyleBlur,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Icon(
+                      Icons.art_track,
+                      size: 30,
+                      color: Colors.black54,
+                    ),
+                    Text(
+                      gangDetails.gangUserIDS.length.toString(),
+                      style: boldStyle,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  width: getDynamicWidth(50),
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.account_circle,
+                      size: 30,
+                      color: Colors.black54,
+                    ),
+                    Text(
+                      "10",
+                      style: boldStyle,
+                    )
+                  ],
+                )
+              ],
+            )
           ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
         ),
-      ),
-    Text(gangDetails.gangCode,style: answerStyleBlur,),
-    Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-    Column(
-    children: [
-    Icon(Icons.art_track,size: 30,color: Colors.black54,),
-    Text(gangDetails.gangUserIDS.length.toString(),style: boldStyle,)
-    ],
-    ),
-    SizedBox(width: getDynamicWidth(50),),
-    Column(
-    children: [
-    Icon(Icons.account_circle,size: 30,color: Colors.black54,),
-    Text("10",style: boldStyle,)
-    ],
-    )
-    ],
-
-    )
-    ],
-
-    ),
       ),
       decoration: new BoxDecoration(
         color: Colors.white,
@@ -276,9 +327,7 @@ class MyFlexiableAppBar extends StatelessWidget {
   }
 }
 
-
 void showFancyCustomDialog(BuildContext context) {
-
   showGeneralDialog(
       context: context,
       pageBuilder: (context, anim1, anim2) {},
@@ -291,7 +340,7 @@ void showFancyCustomDialog(BuildContext context) {
           child: Opacity(
             opacity: anim1.value,
             child: Padding(
-              padding: const EdgeInsets.only(left:150.0,bottom: 400),
+              padding: const EdgeInsets.only(left: 150.0, bottom: 400),
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),
@@ -318,12 +367,17 @@ void showFancyCustomDialog(BuildContext context) {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap: () {},
                                   child: Row(
                                     children: [
                                       Icon(Icons.delete_forever),
-                                      SizedBox(width: getDynamicWidth(5),),
-                                      Text("Delete Group",style: answerStyleBlur,),
+                                      SizedBox(
+                                        width: getDynamicWidth(5),
+                                      ),
+                                      Text(
+                                        "Delete Group",
+                                        style: answerStyleBlur,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -332,12 +386,17 @@ void showFancyCustomDialog(BuildContext context) {
                                   color: Colors.black54,
                                 ),
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap: () {},
                                   child: Row(
                                     children: [
                                       Icon(Icons.clear),
-                                      SizedBox(width: getDynamicWidth(5),),
-                                      Text("Leave Group",style: answerStyleBlur,),
+                                      SizedBox(
+                                        width: getDynamicWidth(5),
+                                      ),
+                                      Text(
+                                        "Leave Group",
+                                        style: answerStyleBlur,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -346,12 +405,17 @@ void showFancyCustomDialog(BuildContext context) {
                                   color: Colors.black54,
                                 ),
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap: () {},
                                   child: Row(
                                     children: [
                                       Icon(Icons.edit),
-                                      SizedBox(width: getDynamicWidth(5),),
-                                      Text("Edit Name",style: answerStyleBlur,),
+                                      SizedBox(
+                                        width: getDynamicWidth(5),
+                                      ),
+                                      Text(
+                                        "Edit Name",
+                                        style: answerStyleBlur,
+                                      ),
                                     ],
                                   ),
                                 )

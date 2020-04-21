@@ -38,6 +38,8 @@ class F_GangMembers extends StatefulWidget {
 
 class _F_GangMembersState extends State<F_GangMembers> {
   bool scrollVisible = true;
+  bool loading = true;
+  List<UserDetails> users = [];
   BoomMenu buildBoomMenu() {
     return BoomMenu(
         animatedIcon: AnimatedIcons.menu_close,
@@ -83,6 +85,12 @@ class _F_GangMembersState extends State<F_GangMembers> {
   }
 
   @override
+  void initState() {
+    getUsersDetails(widget.gangDetails.gangUserIDS);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     print(widget.gangDetails.gangUserIDS);
 
@@ -117,13 +125,20 @@ class _F_GangMembersState extends State<F_GangMembers> {
                 flexibleSpace: FlexibleSpaceBar(
                   background: MyFlexiableAppBar(
                     gangDetails: widget.gangDetails,
+                    usersCount: users.length
                   ),
                 ),
               ),
               SliverList(
                 delegate: SliverChildListDelegate(
                   <Widget>[
-                    Container(height: 500, child: _buildContent()),
+                    Container(
+                        height: 500,
+                        child: loading
+                            ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                            : _buildContent()),
                   ],
                 ),
               ),
@@ -135,51 +150,17 @@ class _F_GangMembersState extends State<F_GangMembers> {
   }
 
   Widget _buildContent() {
-    return FutureBuilder<List<UserDetails>>(
-        future: getUsersDetails(widget.gangDetails.gangUserIDS),
-        builder: (context, snapshots) {
-          if (!snapshots.hasData) {
-            return Text('test');
-          }
-          List<UserDetails> users = snapshots.data;
-          print('users length ${users.length}');
-          return ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(users[index].username),
-                );
-              },
+    return ListView.builder(
+        itemCount: users.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(users[index].username),
           );
-          // return ListItemsBuilder<UserDetails>(
-          //   snapshot: snapshots,
-          //   itemBuilder: (context, data) => SingleChildScrollView(
-          //     child: Container(
-          //       color: Colors.white,
-          //       child: Padding(
-          //         padding: const EdgeInsets.all(15.0),
-          //         child: Column(
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           children: <Widget>[
-          //             SizedBox(
-          //               height: 10,
-          //             ),
-          //             MemberCard(
-          //               "images/boy.png",
-          //               data.username,
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // );
         },
     );
   }
 
-  Future<List<UserDetails>> getUsersDetails(usersList) async {
-    List<UserDetails> details = [];
+  getUsersDetails(usersList) async {
     usersList.forEach((f) async {
       print('user ID IS $f');
       var doc = await Firestore.instance
@@ -187,11 +168,14 @@ class _F_GangMembersState extends State<F_GangMembers> {
           .document(f)
           .get();
       if (doc.exists) {
-        print(doc.data);
-        details.add(UserDetails.fromMap(doc.data, doc.documentID));
+        setState(() {
+          users.add(UserDetails.fromMap(doc.data, doc.documentID));
+          loading = false;
+        },
+        );
       }
-    });
-    return details;
+    },
+    );
   }
 
   Widget MemberCard(String imgPath, String name) {
@@ -234,23 +218,18 @@ class _F_GangMembersState extends State<F_GangMembers> {
         ),
       ),
       onTap: () {
-//        Navigator.push(
-//          context,
-//          MaterialPageRoute(
-//              builder: (context) => ViewPolicyDetails() ),
-//        );
       },
     );
   }
 }
 
 class MyFlexiableAppBar extends StatelessWidget {
-  MyFlexiableAppBar({@required this.gangDetails});
+  MyFlexiableAppBar({@required this.gangDetails, @required this.usersCount});
   GangDetails gangDetails;
+  int usersCount;
 
   final double appBarHeight = 66.0;
 
-//  const MyFlexiableAppBar();
 
   @override
   Widget build(BuildContext context) {
@@ -312,7 +291,7 @@ class MyFlexiableAppBar extends StatelessWidget {
                       color: Colors.black54,
                     ),
                     Text(
-                      "10",
+                      usersCount.toString(),
                       style: boldStyle,
                     )
                   ],

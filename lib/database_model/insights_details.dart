@@ -33,6 +33,7 @@ class InsightsDetails{
 
 
     return InsightsDetails(
+      userID: userID,
       isViewed: isViewed,
       isAnonymos:isAnonymos,
       optionSelected:optionSelected,

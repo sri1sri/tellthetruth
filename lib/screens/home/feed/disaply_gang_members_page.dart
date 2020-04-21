@@ -149,7 +149,8 @@ class _F_GangMembersState extends State<F_GangMembers> {
                 return ListTile(
                   title: Text(users[index].username),
                 );
-              });
+              },
+          );
           // return ListItemsBuilder<UserDetails>(
           //   snapshot: snapshots,
           //   itemBuilder: (context, data) => SingleChildScrollView(
@@ -173,7 +174,8 @@ class _F_GangMembersState extends State<F_GangMembers> {
           //     ),
           //   ),
           // );
-        });
+        },
+    );
   }
 
   Future<List<UserDetails>> getUsersDetails(usersList) async {

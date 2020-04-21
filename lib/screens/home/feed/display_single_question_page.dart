@@ -5,6 +5,7 @@ import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
@@ -12,7 +13,7 @@ import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/screens/home/feed/revealIdentity.dart';
+import 'package:tellthetruth/screens/home/feed/polled_users_page.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -262,7 +263,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               setState(() {
                                 isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
                               });
-                              showFancyCustomDialog( context );
+                              showFancyCustomDialog(context, isAnswerAnonymos ? 'Now you are in anonymous mode, No one can know what you polled.' : 'Now you revealed you\'r identity, Everyone can see what you polled.');
                             },
                           ),
                         ],
@@ -274,7 +275,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         builder: (context, snapshot) {
                           final userDetails = snapshot.data;
 
-                          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? userDetails.username : 'fetching...',style: answerStyle);
+                          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? '${userDetails.username}\'s question' : 'fetching...',style: answerStyle);
                         }
                     ),
 
@@ -307,7 +308,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(80),width: getDynamicWidth(80)),
+                             //   Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(80),width: getDynamicWidth(80)),
                                 SizedBox( height: getDynamicHeight(15) ),
                                 GradientText(
                                   '${widget.questionDetails.question}?'.capitalize(),
@@ -484,7 +485,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                             PageTransition(
                                 type: PageTransitionType.rippleRightUp,
                                 duration: Duration(seconds: 1),
-                                child: RevealIdentity()));
+                                child: RevealIdentity(gangID: widget.gangID, questionID: widget.questionDetails.questionID,)));
                       },
                       child: Row(
                         children: [
@@ -513,12 +514,12 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         backgroundColor: Colors.transparent,
                       ),
                       onTap: () {
-                        showFancyCustomDialogBottom(context);
                         final updateQuestionDetails = QuestionDetails(isAnonymous: isQuestionAnonymos ? false : true);
                         DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
                         setState(() {
                           isQuestionAnonymos ? isQuestionAnonymos = false : isQuestionAnonymos = true;
                         });
+                        showFancyCustomDialogBottom(context , isQuestionAnonymos ? 'Now you are in anonymous mode, No one can know who asked this question.' : 'Now you revealed you\'r identity, Everyone can know asked this question.' );
                       },
                     ) : Row(
                       children: [
@@ -532,19 +533,36 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
                     GestureDetector(
                       onTap: () {
-                        showFancyCustomDialogShare(context);
                         screenshotController.capture().then((File image) {
                           //Capture Done
-                          setState(() {
+                          setState(() async{
                             print(_imageFile);
                             _imageFile = image;
                             print(_imageFile);
-                            final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+                            final result = await ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
                             print(result);
+
+                            showFancyCustomDialogShare(context, _imageFile);
+
+
                           });
                         }).catchError((onError) {
                           print(onError);
                         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         //  showFancyCustomDialog( context );
                       },
                       child: Row(
@@ -716,70 +734,7 @@ class TimerText extends StatelessWidget {
   }
 }
 
-//
-//////////
-//////////////
-//Please dont clear this
-//////////////
-/////////
-//
-
-
-//ScreenshotController screenshotController = ScreenshotController();
-//File _imageFile;
-//
-//
-//@override
-//Widget build(BuildContext context) {
-//  return Screenshot(child: offlineWidget(context), controller: screenshotController,);
-//}
-
-//Widget _buildContent(BuildContext context) {
-//  return new MaterialApp(
-//    debugShowCheckedModeBanner: false,
-//    screens.home: new Scaffold(
-//        backgroundColor:Colors.white,
-//        body: Row(
-//          children: <Widget>[
-//            Container(
-//              decoration: new BoxDecoration(
-//                  gradient: new LinearGradient(
-//                    begin: Alignment.topCenter,
-//                    end: Alignment.bottomCenter,
-//                    colors: [
-//                      Color(0XffFD8B1F),
-//                      Color(0XffD152E0),
-//                      Color(0Xff30D0DB),
-//                    ],
-//                  )),
-//            ),
-//            InkWell(onTap: (){
-//              screenshotController.capture().then((File image) {
-//                //Capture Done
-//                setState(() {
-//                  print(_imageFile);
-//                  _imageFile = image;
-//                  print(_imageFile);
-//                  final result = ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
-//                  print(result);
-//                });
-//              }).catchError((onError) {
-//                print(onError);
-//              });
-//            },
-//              child: Text('take screenshot'),),
-//
-//            _imageFile != null ? Image.file(_imageFile) : Container(height: 10,width: 10,color: Colors.red,),
-//
-//          ],
-//        )
-//    ),
-//  );
-//}
-
-
-
-void showFancyCustomDialog(BuildContext context) {
+void showFancyCustomDialog(BuildContext context, String message) {
 
   showGeneralDialog(
       context: context,
@@ -819,7 +774,7 @@ void showFancyCustomDialog(BuildContext context) {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("This is the test notification message for user for details.",style: answerStyleBlur,),
+                                Text(message,style: answerStyleBlur,),
                               ],
                             ),
                           ),
@@ -856,7 +811,7 @@ void showFancyCustomDialog(BuildContext context) {
 }
 
 
-void showFancyCustomDialogShare(BuildContext context) {
+void showFancyCustomDialogShare(BuildContext context, File image) {
 
   showGeneralDialog(
       context: context,
@@ -911,7 +866,9 @@ void showFancyCustomDialogShare(BuildContext context) {
                                     end: Alignment.bottomRight,
                                   ),
                                 ),
-                                Image(image: AssetImage('images/settingsPrivacy.png'),height: getDynamicHeight(200),width: getDynamicWidth(200),),
+
+                                image != null ? Image(image: FileImage(image),height: getDynamicHeight(200),width: getDynamicWidth(200),)
+                                    : Container(height: getDynamicHeight(200),width: getDynamicWidth(200),),
                                 Padding(
                                   padding: const EdgeInsets.only(left:20.0),
                                   child: Column(
@@ -930,7 +887,9 @@ void showFancyCustomDialogShare(BuildContext context) {
                                       ),
                                       SizedBox(height: getDynamicHeight(15),),
                                       GestureDetector(
-                                        onTap: (){
+                                        onTap: () async{
+                                          await SocialShare.shareFacebookStory(image.path,"#B21F1F","#FDBB2D", "https://deep-link-url",  appId: "168006534448917");
+
                                           Navigator.pop(context);
                                         },
                                         child: Row(
@@ -943,7 +902,9 @@ void showFancyCustomDialogShare(BuildContext context) {
                                       ),
                                       SizedBox(height: getDynamicHeight(15),),
                                       GestureDetector(
-                                        onTap: (){
+                                        onTap: () async{
+                                          await SocialShare.shareInstagramStory(image.path, "#B21F1F", "#FDBB2D", "https://deep-link-url");
+
                                           Navigator.pop(context);
                                         },
                                         child: Row(
@@ -956,7 +917,8 @@ void showFancyCustomDialogShare(BuildContext context) {
                                       ),
                                       SizedBox(height: getDynamicHeight(15),),
                                       GestureDetector(
-                                        onTap: (){
+                                        onTap: () async {
+                                          await ImageGallerySaver.saveImage(image.readAsBytesSync());
                                           Navigator.pop(context);
                                         },
                                         child: Row(
@@ -1006,7 +968,7 @@ void showFancyCustomDialogShare(BuildContext context) {
 }
 
 
-void showFancyCustomDialogBottom(BuildContext context) {
+void showFancyCustomDialogBottom(BuildContext context, String message) {
 
   showGeneralDialog(
       context: context,
@@ -1046,7 +1008,7 @@ void showFancyCustomDialogBottom(BuildContext context) {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("This is the test notification message for user for details.",style: answerStyleBlur,),
+                                Text(message,style: answerStyleBlur,),
                               ],
                             ),
                           ),

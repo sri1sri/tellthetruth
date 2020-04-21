@@ -76,7 +76,7 @@ var answerStyle = TextStyle(
     color: Colors.white,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w600,
-    fontSize: getDynamicTextSize(15),decoration: TextDecoration.none);
+    fontSize: getDynamicTextSize(16),decoration: TextDecoration.none);
 
 
 var answerStyleBlur = TextStyle(

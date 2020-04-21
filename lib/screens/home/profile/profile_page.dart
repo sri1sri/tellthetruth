@@ -1,17 +1,10 @@
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
-//import 'package:share_api/composers/facebook_story.dart';
-//import 'package:share_api/share_api.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
-import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
-import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -147,46 +140,17 @@ class _F_ProfileState extends State<F_Profile> {
                                           screenshotController
                                               .capture()
                                               .then((File image) async {
-                                            //Capture Done
-                                            setState(() {
-                                              print(_imageFile);
-                                              _imageFile = image;
-                                              print(_imageFile);
-                                              final result =
-                                                  ImageGallerySaver.saveImage(
-                                                      _imageFile
-                                                          .readAsBytesSync());
+//                                            setState(() async{
+//                                              _imageFile = image;
+//                                            });
 
-                                              print(result);
-                                            });
-                                            Uint8List bytes =
-                                                image.readAsBytesSync();
-//                                            var composer =
-//                                                FacebookStoryComposer(
-//                                              backgroundAsset: bytes,
-//                                              backgroundMediaType: 'image/*',
-//                                              // stickerAsset: stickerdata,
-//                                              stickerMediaType: 'image/*',
-//                                              topBackgroundColor:
-//                                                  Color(0xFFFF0000),
-//                                              bottomBackgroundColor:
-//                                                  Color(0xFF00FF00),
-//                                            );
-//                                            ShareApi.viaInstagram
-//                                                .shareToStory(composer);
-
-                                            // await SocialSharePlugin.shareToFeedInstagram(path: image.path,onCancel: () async {
-                                            //   print('Cancelled');
-                                            // },
-                                            // onSuccess: (value) async{
-                                            //   print('Success $value');
-                                            // }
-                                            // );
-
-                                            //  await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png', text: 'My optional text.');
                                           }).catchError((onError) {
                                             print(onError);
                                           });
+
+
+//                                          final ByteData bytess = await rootBundle.load(_imageFile.path);
+//                                          await Share.file('esys image', 'esys.png', bytess.buffer.asUint8List(), 'image/png', text: 'He');
                                         },
                                       ),
                                       SizedBox(

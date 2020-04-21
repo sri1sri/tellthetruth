@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
@@ -190,7 +191,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                     )),
                 RawMaterialButton(
                     onPressed: () {
-                      launch("https://api.whatsapp.com/send?phone=&text=I%20want%20you%20to%20join%20our%20gang%20in%20Tell%20The%20Truth%21%20Please%20install%20from%20Android%3a%20https%3a%2f%2fplay.google.com%2fstore%2fapps%2fdetails%3fid%3dcom.ludo.king%20iOS%3a%20https%3a%2f%2fitunes.apple.com%2fin%2fapp%2fludo-king%2fid993090598%20.Click%20on%20‘%20’%20go%20to%20join%20gang%20and%20enter%20gang%20code%20%2712345%27.Believe%20me%20this%20is%20awesome%20game%21&source=&data=&app_absent=");
+                      SocialShare.shareWhatsapp("I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '12345'. Believe me this is awesome game");
+                     // launch("https://api.whatsapp.com/send?phone=&text=jkhfjdhfjkhfjkhfjkd");
                       },
                     shape: CircleBorder(),
                     padding: const EdgeInsets.all(24.0),

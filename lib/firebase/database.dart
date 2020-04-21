@@ -28,6 +28,7 @@ abstract class Database {
   Stream<List<QuestionDetails>> deleteQuestionsList(String gangID);
   Future<void> updateAppInsights(CommonFiles commonFiles);
   Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS);
+  Stream<List<InsightsDetails>> readQuestionsInsights(String gangID, String questionID);
 }
 
 Database DBreference;
@@ -153,6 +154,13 @@ class FirestoreDatabase implements Database {
     builder: (data, documentId) => UserDetails.fromMap(data, documentId),
     queryBuilder: (query) =>
         query.where('user_id', whereIn: usersIDS),
+  );
+
+  @override
+  Stream<List<InsightsDetails>> readQuestionsInsights(String gangID, String questionID) => _service.collectionStream(
+    path: APIPath.questionInsightDetails(gangID, questionID),
+    builder: (data, documentId) => InsightsDetails.fromMap(data, documentId),
+    queryBuilder: (query) => query.where('is_anonyous', isEqualTo: false),
   );
 
   @override

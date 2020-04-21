@@ -156,15 +156,19 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                             color: Colors.white,
                             onPressed: () {Navigator.pop(context, true);},
                           ),
+                          Container(),
+                          GestureDetector(
+                              onTap: (){
+                                print(questions[_questionCountIndex]);
+                                changeQuestion();
+                              },
+                              child: Image(image: AssetImage('images/dice.png'),height: getDynamicHeight(50),width: getDynamicWidth(50),)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-//                                  Container(
-//                                    child: Text(""),
-//                                  ),
+//
                               GestureDetector(
                                 child: Container(
-                                  width: getDynamicWidth(180.0),
                                   padding: EdgeInsets.all(15.0),
                                   child: Center(
                                       child: Row(
@@ -197,18 +201,6 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(),
-                          GestureDetector(
-                            onTap: (){
-                              print(questions[_questionCountIndex]);
-                              changeQuestion();
-                            },
-                              child: Image(image: AssetImage('images/dice.png'),height: getDynamicHeight(50),width: getDynamicWidth(50),)),
                         ],
                       ),
                       Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),

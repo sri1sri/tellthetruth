@@ -139,10 +139,11 @@ class _F_GangMembersState extends State<F_GangMembers> {
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
                         color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             color: Colors.grey[300],
-                            blurRadius: 3,
+                            blurRadius: 1,
                             spreadRadius: 2,
                           )
                         ],

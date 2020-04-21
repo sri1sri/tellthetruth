@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:animated_widgets/widgets/translation_animated.dart';
+import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
@@ -11,6 +12,7 @@ import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/screens/home/feed/revealIdentity.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
@@ -475,21 +477,31 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         Text('${addPollCount ? 1 + widget.questionDetails.viewCount : widget.questionDetails.viewCount}', style: countStyle, ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage(
-                              'images/poll.png' ),
-                          radius: 12,
-                        ),
-                        SizedBox( width: getDynamicWidth(5), ),
-                        Text( '${(addPollCount ?
-                        1 + widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
-                            : widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
-                        ).toString()}',
-                          style: countStyle, ),
-                      ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.rippleRightUp,
+                                duration: Duration(seconds: 1),
+                                child: RevealIdentity()));
+                      },
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            backgroundImage: AssetImage(
+                                'images/poll.png' ),
+                            radius: 12,
+                          ),
+                          SizedBox( width: getDynamicWidth(5), ),
+                          Text( '${(addPollCount ?
+                          1 + widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
+                              : widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
+                          ).toString()}',
+                            style: countStyle, ),
+                        ],
+                      ),
                     ),
 
 

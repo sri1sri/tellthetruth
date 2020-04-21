@@ -29,6 +29,7 @@ abstract class Database {
   Future<void> updateAppInsights(CommonFiles commonFiles);
   Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS);
   Stream<List<InsightsDetails>> readQuestionsInsights(String gangID, String questionID);
+  Future<void> deleteGang(String gangID);
 }
 
 Database DBreference;
@@ -139,6 +140,12 @@ class FirestoreDatabase implements Database {
       String gangID, String questionID) async =>
       await _service.deleteData(
         path: APIPath.questionDetails(gangID, questionID),
+      );
+
+  @override
+  Future<void> deleteGang(String gangID) async =>
+      await _service.deleteData(
+        path: APIPath.gangDetails(gangID),
       );
 
   @override

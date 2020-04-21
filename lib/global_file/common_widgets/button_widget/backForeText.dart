@@ -84,7 +84,9 @@ class BackForeTextInput extends StatelessWidget {
         this.onFieldSubmitted,
         this.showCounterStyle,
         this.initialValue,
+        this.controller,
       });
+  final TextEditingController controller;
   final String initialValue;
   final String validationText;
   final double height;
@@ -122,6 +124,7 @@ class BackForeTextInput extends StatelessWidget {
         ),
         Positioned(
           child:TextFormField(
+            controller: controller,
             initialValue: initialValue,
             onChanged: onChanged,
             maxLines: lines,

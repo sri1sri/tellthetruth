@@ -272,13 +272,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
-  flutter_open_whatsapp:
-    dependency: "direct main"
-    description:
-      name: flutter_open_whatsapp
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   flutter_page_transition:
     dependency: "direct main"
     description:
@@ -416,7 +409,7 @@ packages:
     source: hosted
     version: "1.6.4"
   path_provider:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: path_provider
       url: "https://pub.dartlang.org"
@@ -588,6 +581,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
+  vibration:
+    dependency: "direct main"
+    description:
+      name: vibration
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.4"
   xml:
     dependency: transitive
     description:

@@ -33,9 +33,12 @@ class F_AddQuestion extends StatefulWidget {
 
 class _F_AddQuestionState extends State<F_AddQuestion> {
 
+  final TextEditingController _questionController = TextEditingController();
+  final FocusNode _questionFocusNode = FocusNode();
+
   int _questionCountIndex = 0;
 
-  List<String> qusetions = [
+  List<String> questions = [
     "",
     "who is the father of nation ?",
     "Can u touch ur feet ??",
@@ -46,8 +49,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
 
 
   changeQuestion() {
-    //update with a new color when the user taps button
-    int questionCount = qusetions.length;
+    int questionCount = questions.length;
 
     setState(() {
       if (_questionCountIndex == questionCount - 1) {
@@ -55,7 +57,8 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
       } else {
         _questionCountIndex += 1;
       }
-      print(_questionCountIndex);
+      _questionController.text = questions[_questionCountIndex];
+//      print(_questionCountIndex);
     });
   }
 
@@ -101,6 +104,20 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
         isLoading = false;
       });
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _questionController.text = '';
+  }
+
+  @override
+  void dispose() {
+    _questionController.dispose();
+    _questionFocusNode.dispose();
+    super.dispose();
   }
 
 
@@ -193,18 +210,48 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                           Container(),
                           GestureDetector(
                             onTap: (){
-                              print(qusetions[_questionCountIndex]);
+                              print(questions[_questionCountIndex]);
                               changeQuestion();
                             },
                               child: Image(image: AssetImage('images/dice.png'),height: getDynamicHeight(50),width: getDynamicWidth(50),)),
                         ],
                       ),
                       Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
-                      Text(qusetions[_questionCountIndex]),
+//                      Text(qusetions[_questionCountIndex]),
+//
+//                  TextFormField(
+//                    controller: _questionController,
+//                    textInputAction: TextInputAction.next,
+//                    obscureText: false,
+//                    focusNode: _questionFocusNode,
+//                    autocorrect: false,
+//                    keyboardType: TextInputType.emailAddress,
+//                    onEditingComplete: () =>
+//                        _submit,
+//                    onChanged: model.updateEmail,
+//                    decoration: new InputDecoration(
+//                      labelText: "Enter your email",
+//                      labelStyle: regularStyle,
+//                      errorText: model.emailErrorText,
+//                      enabled: model.isLoading == false,
+//                      //fillColor: Colors.redAccent,
+//                      border: new OutlineInputBorder(
+//                        borderRadius:
+//                        new BorderRadius.circular(5.0),
+//                        borderSide: new BorderSide(),
+//                      ),
+//                    ),
+//                    style: new TextStyle(
+//                      fontFamily: "Poppins",
+//                    ),
+//                  ),
+
+
                       Form(
                         key: _formKey,
                         child: BackForeTextInput(
-                          initialValue: qusetions[_questionCountIndex],
+                          controller: _questionController,
+//                          initialValue: questions[_questionCountIndex],
                           backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                           onChanged: (value)=> _question = value,
                           onEditingComplete: _submit,

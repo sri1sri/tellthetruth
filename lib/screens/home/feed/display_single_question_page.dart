@@ -17,6 +17,7 @@ import 'package:tellthetruth/screens/home/feed/polled_users_page.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:vibration/vibration.dart';
 
 
 class SingleQuestion extends StatelessWidget {
@@ -344,8 +345,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               Offset(0, 0) //enabled value
                             ],
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () async{
                                 if(!isPolled){
+                                  if (await Vibration.hasAmplitudeControl()) {
+                                    Vibration.vibrate(amplitude: 128);
+                                  }
                                   updateInsights(1);
                                   setState(() {
                                     optionOneBackgroundColor = Colors.white;
@@ -375,9 +379,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               Offset(0, 0) //enabled value
                             ],
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () async{
                                 if(!isPolled){
-
+                                  if (await Vibration.hasAmplitudeControl()) {
+                                    Vibration.vibrate(amplitude: 128);
+                                  }
                                   updateInsights(2);
                                   setState(() {
                                     optionTwoBackgroundColor = Colors.white;
@@ -405,8 +411,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               Offset(0, 0) //enabled value
                             ],
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () async{
                                 if(!isPolled){
+                                  if (await Vibration.hasAmplitudeControl()) {
+                                    Vibration.vibrate(amplitude: 128);
+                                  }
                                   updateInsights(3);
                                   setState(() {
                                     optionThreeBackgroundColor = Colors.white;
@@ -435,8 +444,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               Offset(0, 0) //enabled value
                             ],
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () async{
                                 if(!isPolled){
+                                  if (await Vibration.hasAmplitudeControl()) {
+                                    Vibration.vibrate(amplitude: 128);
+                                  }
                                   updateInsights(4);
                                   setState(() {
                                     optionFourBackgroundColor = Colors.white;

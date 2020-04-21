@@ -51,15 +51,14 @@ dependencies:
   animated_widgets: ^1.0.3
   auto_size_text: ^2.1.0
   fab_circular_menu: ^1.0.0
-  flutter_open_whatsapp: ^0.1.2
   flutter_slidable: ^0.5.4
   flutter_boom_menu: ^1.0.2
   screenshot: ^0.1.1
-  path_provider: ^1.5.1
   image_gallery_saver: ^1.2.2
   url_launcher: ^5.4.2
   social_share: ^2.0.4
   esys_flutter_share: ^1.0.2
+  vibration: ^1.2.4
   overlay_container: ^0.0.4+1
 
 
@@ -122,8 +121,8 @@ flutter:
     - images/gallery.png
     - images/instagram.png
     - images/settingsPrivacy.png
+    - images/dice-1.png
     - images/dice.png
-
 
 
 

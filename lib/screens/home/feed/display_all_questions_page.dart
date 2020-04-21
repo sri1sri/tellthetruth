@@ -3,7 +3,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_share/social_share.dart';
@@ -17,7 +16,6 @@ import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dar
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/screens/home/feed/test.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'display_single_question_page.dart';
 import 'disaply_gang_members_page.dart';
 
@@ -125,7 +123,6 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                         context,
                         MaterialPageRoute(builder: (context) => MyApp()),
                       );
-                      //_showSnackBar(context, "Edit Post");
                     },
                     shape: CircleBorder(),
                     padding: const EdgeInsets.all(24.0),

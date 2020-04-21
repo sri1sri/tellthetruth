@@ -513,6 +513,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         backgroundColor: Colors.transparent,
                       ),
                       onTap: () {
+                        showFancyCustomDialogBottom(context);
                         final updateQuestionDetails = QuestionDetails(isAnonymous: isQuestionAnonymos ? false : true);
                         DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
                         setState(() {
@@ -531,7 +532,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
                     GestureDetector(
                       onTap: () {
-
+                        showFancyCustomDialogShare(context);
                         screenshotController.capture().then((File image) {
                           //Capture Done
                           setState(() {
@@ -793,6 +794,233 @@ void showFancyCustomDialog(BuildContext context) {
             opacity: anim1.value,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 500),
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  height: getDynamicHeight(100.0),
+                  width: getDynamicWidth(400.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        height: getDynamicHeight(250),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text("This is the test notification message for user for details.",style: answerStyleBlur,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        // These values are based on trial & error method
+                        alignment: Alignment(1.05, -1.05),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionDuration: Duration(milliseconds: 300));
+}
+
+
+void showFancyCustomDialogShare(BuildContext context) {
+
+  showGeneralDialog(
+      context: context,
+      pageBuilder: (context, anim1, anim2) {},
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.4),
+      barrierLabel: '',
+      transitionBuilder: (context, anim1, anim2, child) {
+        return Transform.rotate(
+          angle: math.radians(anim1.value * 360),
+          child: Opacity(
+            opacity: anim1.value,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 0),
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  height: getDynamicHeight(500.0),
+                  width: getDynamicWidth(400.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        height: getDynamicHeight(500),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                            crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                GradientText(
+                                  'Share',
+                                  textAlign: TextAlign.center,
+                                  style: boldStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color( 0XffFD8B1F ),
+                                      Color( 0XffD152E0 ),
+                                      Color( 0Xff30D0DB ),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                Image(image: AssetImage('images/settingsPrivacy.png'),height: getDynamicHeight(200),width: getDynamicWidth(200),),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:20.0),
+                                  child: Column(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (){
+                                          Navigator.pop(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Image(image: AssetImage('images/whatsapp.png'),height: getDynamicHeight(40),width: getDynamicWidth(40),),
+                                            SizedBox(width: getDynamicWidth(15),),
+                                            Text("Share via WhatsApp",style: mediumStyle,),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: getDynamicHeight(15),),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Navigator.pop(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Image(image: AssetImage('images/facebook.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
+                                            SizedBox(width: getDynamicWidth(15),),
+                                            Text("Share via Facebook",style: mediumStyle,),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: getDynamicHeight(15),),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Navigator.pop(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Image(image: AssetImage('images/instagram.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
+                                            SizedBox(width: getDynamicWidth(15),),
+                                            Text("Share via Instagram",style: mediumStyle,),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: getDynamicHeight(15),),
+                                      GestureDetector(
+                                        onTap: (){
+                                          Navigator.pop(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Image(image: AssetImage('images/gallery.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
+                                            SizedBox(width: getDynamicWidth(15),),
+                                            Text("Save to Gallery",style: mediumStyle,),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        // These values are based on trial & error method
+                        alignment: Alignment(1.05, -1.05),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionDuration: Duration(milliseconds: 300));
+}
+
+
+void showFancyCustomDialogBottom(BuildContext context) {
+
+  showGeneralDialog(
+      context: context,
+      pageBuilder: (context, anim1, anim2) {},
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.4),
+      barrierLabel: '',
+      transitionBuilder: (context, anim1, anim2, child) {
+        return Transform.rotate(
+          angle: math.radians(anim1.value * 360),
+          child: Opacity(
+            opacity: anim1.value,
+            child: Padding(
+              padding: const EdgeInsets.only(top:500),
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),

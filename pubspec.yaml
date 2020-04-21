@@ -117,6 +117,9 @@ flutter:
     - images/walk.flr
     - images/welcome.flr
     - images/whatsapp.png
+    - images/facebook.png
+    - images/gallery.png
+    - images/instagram.png
     - images/settingsPrivacy.png
 
 

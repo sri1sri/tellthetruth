@@ -68,9 +68,16 @@ class _F_PrivacyPolicy extends State<F_PrivacyPolicy> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               SizedBox(height: getDynamicHeight(10),),
-              _Notificationcard(),
-              SizedBox(height: getDynamicHeight(20),),
-
+              _Notificationcard("DISCLAIMER","Tell The Truth is committed to honoring the privacy of its customers and visitors. Question & Answer which you are provided will not sell or share your personal information with third party organizations other than in the ways listed in this Privacy Policy. Question the Answer only collects some basic information to better their experience by communicating eachother, events and updating the knowledge. This Privacy Policy applies to the entire Question the Answer application: www.tellthetruth.com app."),
+              SizedBox(height: getDynamicHeight(10),),
+              _Notificationcard("THIRD PARTY SERVICES","Tell The truth will not use any third party payment processor to accept payments when you use the application. Such third party processor's use of your personal information is not suppored and managed by their privacy policy. For these service providers, Question the Answer recommends that you read their privacy policy to better understand how they use your personal information. "),
+              SizedBox(height: getDynamicHeight(10),),
+              _Notificationcard("DISCLAIMER","Tell The Truth is committed to honoring the privacy of its customers and visitors. Question & Answer which you are provided will not sell or share your personal information with third party organizations other than in the ways listed in this Privacy Policy. Question the Answer only collects some basic information to better their experience by communicating eachother, events and updating the knowledge. This Privacy Policy applies to the entire Question the Answer application: www.tellthetruth.com app."),
+              SizedBox(height: getDynamicHeight(10),),
+              _Notificationcard("SECURITY", "Tell The Truth – as a application hosted by Herms & Touth – stores all user information in a secure database protected by a variety of industry standard access controls. Secure passwords, SSL encryption, diskbased encryption, firewalls, and other measures are in place to help (Firebase) protect your data. However, no company, can fully eliminate security risks associated with the transmission of personal information through online transactions, and you do so at your own risk."),
+              SizedBox(height: getDynamicHeight(10),),
+              _Notificationcard("COOKIES","While navigating the Tell The Truth application your web browser may use 'cookies' to analyze trends and track your movement to gather information about the site as a whole. Tell The Truth allows Firebase to use cookies for authentication, tracking user sessions, preferences, and movements around the site to understand the site's marketing and performance analytics. Users can control the use of cookies at the individual browser level. If you decide to reject cookies, it may limit your ability to use some features of the site."),
+              SizedBox(height: getDynamicHeight(10),),
             ],
           ),
         ),
@@ -79,22 +86,26 @@ class _F_PrivacyPolicy extends State<F_PrivacyPolicy> {
     );
   }
 
-  _Notificationcard()
+  _Notificationcard(String title,String description)
   {
     return Container(
+      width: double.infinity,
 
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Center(
-            child: Text(
-              'THIS PRIVACY POLICY APPLIES TO THE USE OF THE SERVICES (AS DEFINED BELOW) AND INFORMATION COLLECTED THROUGH THE SERVICES. PLEASE READ THIS PRIVACY POLICY CAREFULLY. IF YOU USE THE SERVICES IT MEANS YOU ARE ACCEPTING THIS PRIVACY POLICY AND AGREEING TO BE BOUND BY IT IN THE SAME MANNER AS IF YOU SIGNED YOUR NAME ON THIS PRIVACY POLICY. \n 1. General. This privacy policy (referred to in this document as this “Privacy Policy”) governs information that you provide or that we collect in connection with your use of the following (collectively, the “Services”): \n (a) www.truckast.com and all other Internet websites owned or operated by TRUCKAST, INC., or any of its affiliates (referred to in this document as “Company”) on which this Privacy Policy is posted (all such sites are collectively referred to in this document as the “Site”), as well as any content, products, services, features, functions or other resources offered on any of those sites ; and \n (b) any Company-branded application for your mobile, tablet or other device (“Truckast Application”), including any services made available through the Truckast Application. By accessing or using any of the Services, you are acknowledging that you have received notice of, and are accepting the practices described in, this Privacy Policy. References in this Privacy Policy to “you” or “your” or variations thereof shall mean individual users of the Services, and references to “we,” “our,” “us” or variations of any of these, shall mean the Company. For the avoidance of doubt, this Privacy Policy does not apply to information collected from customers who purchase or subscribe to our products or services and enter into a signed written agreement governing such products or services (“Agreements”), except to the extent otherwise expressly provided in such Agreements. In such cases, use of information collected in connection with the purchase of products and/or services shall be governed by the applicable Agreement.',
-              style: answerStyleBlur,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(title,
+              style: answerStyleBlur1,
+
             ),
-          ),
+            SizedBox(height: getDynamicHeight(10),),
+            Text(description,
+              style: answerStyleBlur,)
+          ],
         ),
       ),
-
     );
 
   }

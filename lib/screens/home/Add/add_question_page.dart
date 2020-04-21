@@ -34,7 +34,6 @@ class F_AddQuestion extends StatefulWidget {
 class _F_AddQuestionState extends State<F_AddQuestion> {
 
   final TextEditingController _questionController = TextEditingController();
-  final FocusNode _questionFocusNode = FocusNode();
 
   int _questionCountIndex = 0;
 
@@ -58,15 +57,12 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
         _questionCountIndex += 1;
       }
       _questionController.text = questions[_questionCountIndex];
-//      print(_questionCountIndex);
     });
   }
 
-//  final String = qusetion;
 
 
   final _formKey = GlobalKey<FormState>();
-  String _question;
   bool isLoading = false;
 
   final Shader linearGradient = LinearGradient(
@@ -94,7 +90,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
           PageTransition(type: PageTransitionType.rippleMiddle,
               duration: Duration(seconds: 2),
               alignment: Alignment.bottomCenter,
-              child: AddOptions(question: '${_question}?'.capitalize(),
+              child: AddOptions(question: '${_questionController.text}?'.capitalize(),
               ),
           ),
       );
@@ -116,7 +112,6 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
   @override
   void dispose() {
     _questionController.dispose();
-    _questionFocusNode.dispose();
     super.dispose();
   }
 
@@ -217,43 +212,13 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                         ],
                       ),
                       Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
-//                      Text(qusetions[_questionCountIndex]),
-//
-//                  TextFormField(
-//                    controller: _questionController,
-//                    textInputAction: TextInputAction.next,
-//                    obscureText: false,
-//                    focusNode: _questionFocusNode,
-//                    autocorrect: false,
-//                    keyboardType: TextInputType.emailAddress,
-//                    onEditingComplete: () =>
-//                        _submit,
-//                    onChanged: model.updateEmail,
-//                    decoration: new InputDecoration(
-//                      labelText: "Enter your email",
-//                      labelStyle: regularStyle,
-//                      errorText: model.emailErrorText,
-//                      enabled: model.isLoading == false,
-//                      //fillColor: Colors.redAccent,
-//                      border: new OutlineInputBorder(
-//                        borderRadius:
-//                        new BorderRadius.circular(5.0),
-//                        borderSide: new BorderSide(),
-//                      ),
-//                    ),
-//                    style: new TextStyle(
-//                      fontFamily: "Poppins",
-//                    ),
-//                  ),
-
 
                       Form(
                         key: _formKey,
                         child: BackForeTextInput(
                           controller: _questionController,
-//                          initialValue: questions[_questionCountIndex],
                           backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                          onChanged: (value)=> _question = value,
+                          onChanged: (value)=> _questionController.text = value,
                           onEditingComplete: _submit,
                           textInputAction: TextInputAction.done,
                           lines:3,

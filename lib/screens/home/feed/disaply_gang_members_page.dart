@@ -133,9 +133,10 @@ class _F_GangMembersState extends State<F_GangMembers> {
   }
 
   Widget _buildContent(){
-    StreamBuilder<List<UserDetails>>(
+    return StreamBuilder<List<UserDetails>>(
         stream: DBreference.readGangUsers(widget.gangDetails.gangUserIDS),
         builder: (context, snapshots) {
+          print(snapshots.data.length);
           return ListItemsBuilder<UserDetails>(
               snapshot: snapshots,
               itemBuilder: (context, data) => SingleChildScrollView(

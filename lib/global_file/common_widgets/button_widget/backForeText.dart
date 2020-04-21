@@ -83,8 +83,9 @@ class BackForeTextInput extends StatelessWidget {
         this.focusNode,
         this.onFieldSubmitted,
         this.showCounterStyle,
+        this.initialValue,
       });
-
+  final String initialValue;
   final String validationText;
   final double height;
   final TextStyle backTextStyle;
@@ -121,6 +122,7 @@ class BackForeTextInput extends StatelessWidget {
         ),
         Positioned(
           child:TextFormField(
+            initialValue: initialValue,
             onChanged: onChanged,
             maxLines: lines,
             textInputAction: textInputAction,

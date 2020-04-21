@@ -33,6 +33,35 @@ class F_AddQuestion extends StatefulWidget {
 
 class _F_AddQuestionState extends State<F_AddQuestion> {
 
+  int _questionCountIndex = 0;
+
+  List<String> qusetions = [
+    "",
+    "who is the father of nation ?",
+    "Can u touch ur feet ??",
+    "Do u have corona ?",
+  ];
+
+
+
+
+  changeQuestion() {
+    //update with a new color when the user taps button
+    int questionCount = qusetions.length;
+
+    setState(() {
+      if (_questionCountIndex == questionCount - 1) {
+        _questionCountIndex = 0;
+      } else {
+        _questionCountIndex += 1;
+      }
+      print(_questionCountIndex);
+    });
+  }
+
+//  final String = qusetion;
+
+
   final _formKey = GlobalKey<FormState>();
   String _question;
   bool isLoading = false;
@@ -158,10 +187,24 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                           ),
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(),
+                          GestureDetector(
+                            onTap: (){
+                              print(qusetions[_questionCountIndex]);
+                              changeQuestion();
+                            },
+                              child: Image(image: AssetImage('images/dice.png'),height: getDynamicHeight(50),width: getDynamicWidth(50),)),
+                        ],
+                      ),
                       Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
+                      Text(qusetions[_questionCountIndex]),
                       Form(
                         key: _formKey,
                         child: BackForeTextInput(
+                          initialValue: qusetions[_questionCountIndex],
                           backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
                           onChanged: (value)=> _question = value,
                           onEditingComplete: _submit,

@@ -49,49 +49,6 @@ class _F_GangMembersState extends State<F_GangMembers> {
   bool scrollVisible = true;
   bool loading = true;
   List<UserDetails> users = [];
-  BoomMenu buildBoomMenu() {
-    return BoomMenu(
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22.0),
-        //child: Icon(Icons.add),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        foregroundColor: Colors.black54,
-        onOpen: () => print('OPENING DIAL'),
-        onClose: () => print('DIAL CLOSED'),
-        scrollVisible: scrollVisible,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.7,
-        children: [
-          MenuItem(
-            child: Image.asset('images/people.png'),
-            title: "List",
-            titleColor: Colors.white,
-            subtitle: "Lorem ipsum dolor sit amet, consectetur",
-            subTitleColor: Colors.white,
-            backgroundColor: Colors.pinkAccent,
-            onTap: () => print('FOURTH CHILD'),
-          ),
-          MenuItem(
-            child: Image.asset('images/people.png'),
-            title: "Team",
-            titleColor: Colors.grey[850],
-            subtitle: "Lorem ipsum dolor sit amet, consectetur",
-            subTitleColor: Colors.grey[850],
-            backgroundColor: Colors.grey[50],
-            onTap: () => print('THIRD CHILD'),
-          ),
-          MenuItem(
-            child: Image.asset('images/people.png'),
-            title: "Profile",
-            titleColor: Colors.white,
-            subtitle: "Lorem ipsum dolor sit amet, consectetur",
-            subTitleColor: Colors.white,
-            backgroundColor: Colors.blue,
-            onTap: () => print('FOURTH CHILD'),
-          )
-        ]);
-  }
 
   @override
   void initState() {
@@ -111,6 +68,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
@@ -229,7 +187,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                 delegate: SliverChildListDelegate(
                   <Widget>[
                     Container(
-                        height: 500,
+                        height: getDynamicHeight(500),
                         child: loading
                             ? Center(
                           child: CircularProgressIndicator(),
@@ -249,8 +207,12 @@ class _F_GangMembersState extends State<F_GangMembers> {
     return ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(users[index].username),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              leading: Image.asset("images/boy.png"),
+              title: Text(users[index].username,style: answerStyleBlur1,),
+            ),
           );
         },
     );

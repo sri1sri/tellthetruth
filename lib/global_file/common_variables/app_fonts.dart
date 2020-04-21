@@ -26,25 +26,25 @@ var backgroundText1 = TextStyle(
 
 
 var boldStyle = TextStyle(
-    color: Color(0xFF253949),
+    color: Colors.black54,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w700,
     fontSize: getDynamicTextSize(26),decoration: TextDecoration.none);
 
 var mediumStyle = TextStyle(
-    color: Color(0xFF253949),
+    color: Colors.black87,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w600,
     fontSize: getDynamicTextSize(20),decoration: TextDecoration.none);
 
 var regularStyle = TextStyle(
-    color: Color(0xFF253949),
+    color: Colors.black54,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w400,
     fontSize: getDynamicTextSize(17),decoration: TextDecoration.none);
 
 var boldStyleLight = TextStyle(
-    color: Color(0xFF253949),
+    color: Colors.black87,
     fontFamily: 'Montserrat',
     fontWeight: FontWeight.w700,
     fontSize: getDynamicTextSize(26),decoration: TextDecoration.none);

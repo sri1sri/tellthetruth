@@ -14,18 +14,18 @@ class Slide {
 
 final slideList = [
   Slide(
-    imageUrl: 'images/image1.jpg',
-    title: 'A Cool Way to Get Start',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus tincidunt bibendum. Maecenas eu viverra orci. Duis diam leo, porta at justo vitae, euismod aliquam nulla.',
+    imageUrl: 'https://assets10.lottiefiles.com/packages/lf20_M9wchH.json',
+    title: 'Anonymous Q&A',
+    description: "- Add polls\n- Make friends\n- Reveal identity\n- Share your Q&A result",
   ),
   Slide(
-    imageUrl: 'images/image2.jpg',
-    title: 'Design Interactive App UI',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus tincidunt bibendum. Maecenas eu viverra orci. Duis diam leo, porta at justo vitae, euismod aliquam nulla.',
+    imageUrl: 'https://assets4.lottiefiles.com/packages/lf20_y1wVa2.json',
+    title: 'Polling',
+    description: 'Poll questions, the words will move and grow as more responses are entered, creating a lively interactive presentation. The cluster of words and colors are a fun way to illustrate your audience’s thoughts.',
   ),
   Slide(
-    imageUrl: 'images/image3.jpg',
-    title: 'It\'s Just the Beginning',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus tincidunt bibendum. Maecenas eu viverra orci. Duis diam leo, porta at justo vitae, euismod aliquam nulla.',
+    imageUrl: 'https://assets8.lottiefiles.com/packages/lf20_bb4Swi.json',
+    title: 'Build your Gangs',
+    description: 'Create your own gang with multiple friends,families and others. Shoot your questions and bring the truth by them, Share your knowledge in fun environment.',
   ),
 ];

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
+import 'package:overlay_container/overlay_container.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -37,6 +38,14 @@ class F_GangMembers extends StatefulWidget {
 }
 
 class _F_GangMembersState extends State<F_GangMembers> {
+  bool _dropdownShown = false;
+
+  void _toggleDropdown() {
+    setState(() {
+      _dropdownShown = !_dropdownShown;
+    });
+  }
+
   bool scrollVisible = true;
   bool loading = true;
   List<UserDetails> users = [];
@@ -111,10 +120,96 @@ class _F_GangMembersState extends State<F_GangMembers> {
                       Icons.more_vert,
                       color: Colors.black,
                     ),
-                    onPressed: () {
-                      showFancyCustomDialog(context);
-                    },
+                    onPressed: _toggleDropdown,
                     color: Colors.white,
+                  ),
+                  OverlayContainer(
+                    show: _dropdownShown,
+                    // Let's position this overlay to the right of the button.
+                    position: OverlayContainerPosition(
+                      // Left position.
+                      -200,
+                      -50,
+                      // Bottom position.
+                    ),
+                    // The content inside the overlay.
+                    child: Container(
+                      height: getDynamicHeight(200),
+                      padding: const EdgeInsets.all(20),
+                      margin: const EdgeInsets.only(top: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.grey[300],
+                            blurRadius: 3,
+                            spreadRadius: 2,
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.delete_forever),
+                                SizedBox(
+                                  width: getDynamicWidth(5),
+                                ),
+                                Text(
+                                  "Delete Group",
+                                  style: answerStyleBlur,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1,
+                            color: Colors.black54,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.clear),
+                                SizedBox(
+                                  width: getDynamicWidth(5),
+                                ),
+                                Text(
+                                  "Leave Group",
+                                  style: answerStyleBlur,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1,
+                            color: Colors.black54,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.edit),
+                                SizedBox(
+                                  width: getDynamicWidth(5),
+                                ),
+                                Text(
+                                  "Edit Name",
+                                  style: answerStyleBlur,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ],
                 backgroundColor: Colors.white,

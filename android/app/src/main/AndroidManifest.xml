@@ -49,7 +49,7 @@
             android:value="ca-app-pub-9543395526409232~7748868325"/>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.com.shekarmudaliyar.social_share"
+            android:authorities="${applicationId}.com.kondasri.tellthetruth"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:replace="android:authorities">

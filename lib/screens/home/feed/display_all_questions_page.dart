@@ -4,6 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:overlay_container/overlay_container.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
@@ -42,6 +43,15 @@ class F_AllQuestions extends StatefulWidget {
 }
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
+
+  bool _dropdownShown = false;
+
+  void _toggleDropdown() {
+    setState(() {
+      _dropdownShown = !_dropdownShown;
+    });
+  }
+
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   String whtsAppMessage = "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!";
@@ -76,6 +86,140 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 Navigator.pop(context, true);
               },
             ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.more_vert,
+                  color: Colors.black,
+                ),
+                onPressed: _toggleDropdown,
+                color: Colors.white,
+              ),
+              OverlayContainer(
+                show: _dropdownShown,
+                // Let's position this overlay to the right of the button.
+                position: OverlayContainerPosition(
+                  // Left position.
+                  -200,
+                  -50,
+                  // Bottom position.
+                ),
+                // The content inside the overlay.
+                child: Container(
+                  height: getDynamicHeight(200),
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.only(top: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.grey[300],
+                        blurRadius: 1,
+                        spreadRadius: 2,
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          SocialShare.shareWhatsapp("I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '12345'. Believe me this is awesome game");
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "images/whatsapp.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                            SizedBox(
+                             width: getDynamicWidth(20),
+                            ),
+                            Text(
+                              "Share",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: getDynamicTextSize(17),
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.black54,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                         // Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.rotate,
+                                  duration: Duration(seconds: 1),
+                                  child: GangMembers(gangDetails: widget.gangDetails,)));
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "images/myGang.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                            SizedBox(
+                              width: getDynamicWidth(20),
+                            ),
+                            Text(
+                              "View Gang",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: getDynamicTextSize(17),
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Colors.black54,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              "images/myQuestions.png",
+                              height: 30,
+                              width: 30,
+                            ),
+                            SizedBox(
+                              width: getDynamicWidth(20),
+                            ),
+                            Text(
+                              "Edit Post",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: getDynamicTextSize(17),
+                                  decoration: TextDecoration.none),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
             centerTitle: true,
             title: GradientText(
               widget.gangDetails.gangName,
@@ -94,132 +238,132 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             backgroundColor: Colors.white,
           ),
           body: _buildContent(context),
-          floatingActionButton: Builder(
-            builder: (context) => FabCircularMenu(
-              key: fabKey,
-              // Cannot be `Alignment.center`
-              alignment: Alignment.bottomRight,
-              ringColor: Colors.black.withOpacity(0.2),
-              ringDiameter: 500.0,
-              ringWidth: 150.0,
-              fabSize: 64.0,
-              fabElevation: 20.0,
-
-              // Also can use specific color based on wether
-              // the menu is open or not:
-              fabOpenColor: Colors.black54,
-              fabCloseColor: Colors.grey,
-              // These properties take precedence over fabColor
-              fabColor: Colors.white,
-              fabOpenIcon: Icon(Icons.menu, color: Colors.white),
-              fabCloseIcon: Icon(Icons.close, color: primaryColor),
-              fabMargin: const EdgeInsets.all(16.0),
-              animationDuration: const Duration(milliseconds: 800),
-              animationCurve: Curves.easeInOutCirc,
-              children: <Widget>[
-                RawMaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyApp()),
-                      );
-                    },
-                    shape: CircleBorder(),
-                    padding: const EdgeInsets.all(24.0),
-                    child: Container(
-                      height: 100,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            "images/myQuestions.png",
-                            height: 50,
-                            width: 50,
-                          ),
-                          SizedBox(
-                            height: getDynamicHeight(5),
-                          ),
-                          Text(
-                            "Edit Post",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w600,
-                                fontSize: getDynamicTextSize(17),
-                                decoration: TextDecoration.none),
-                          )
-                        ],
-                      ),
-                    )),
-                RawMaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              type: PageTransitionType.rotate,
-                              duration: Duration(seconds: 1),
-                              child: GangMembers(gangDetails: widget.gangDetails,)));
-                      // _showSnackBar(context, "View Gang");
-                    },
-                    shape: CircleBorder(),
-                    padding: const EdgeInsets.all(24.0),
-                    child: Container(
-                      height: 100,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            "images/myGang.png",
-                            height: 50,
-                            width: 50,
-                          ),
-                          SizedBox(
-                            height: getDynamicHeight(5),
-                          ),
-                          Text(
-                            "View Gang",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w600,
-                                fontSize: getDynamicTextSize(17),
-                                decoration: TextDecoration.none),
-                          )
-                        ],
-                      ),
-                    )),
-                RawMaterialButton(
-                    onPressed: () {
-                      SocialShare.shareWhatsapp("I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '12345'. Believe me this is awesome game");
-                     // launch("https://api.whatsapp.com/send?phone=&text=jkhfjdhfjkhfjkhfjkd");
-                      },
-                    shape: CircleBorder(),
-                    padding: const EdgeInsets.all(24.0),
-                    child: Container(
-                      height: 100,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            "images/whatsapp.png",
-                            height: 50,
-                            width: 50,
-                          ),
-                          SizedBox(
-                            height: getDynamicHeight(5),
-                          ),
-                          Text(
-                            "Share",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w600,
-                                fontSize: getDynamicTextSize(17),
-                                decoration: TextDecoration.none),
-                          )
-                        ],
-                      ),
-                    )),
-              ],
-            ),
-          ),
+//          floatingActionButton: Builder(
+//            builder: (context) => FabCircularMenu(
+//              key: fabKey,
+//              // Cannot be `Alignment.center`
+//              alignment: Alignment.bottomRight,
+//              ringColor: Colors.black.withOpacity(0.2),
+//              ringDiameter: 500.0,
+//              ringWidth: 150.0,
+//              fabSize: 64.0,
+//              fabElevation: 20.0,
+//
+//              // Also can use specific color based on wether
+//              // the menu is open or not:
+//              fabOpenColor: Colors.black54,
+//              fabCloseColor: Colors.grey,
+//              // These properties take precedence over fabColor
+//              fabColor: Colors.white,
+//              fabOpenIcon: Icon(Icons.menu, color: Colors.white),
+//              fabCloseIcon: Icon(Icons.close, color: primaryColor),
+//              fabMargin: const EdgeInsets.all(16.0),
+//              animationDuration: const Duration(milliseconds: 800),
+//              animationCurve: Curves.easeInOutCirc,
+//              children: <Widget>[
+//                RawMaterialButton(
+//                    onPressed: () {
+//                      Navigator.push(
+//                        context,
+//                        MaterialPageRoute(builder: (context) => MyApp()),
+//                      );
+//                    },
+//                    shape: CircleBorder(),
+//                    padding: const EdgeInsets.all(24.0),
+//                    child: Container(
+//                      height: 100,
+//                      child: Column(
+//                        children: [
+//                          Image.asset(
+//                            "images/myQuestions.png",
+//                            height: 50,
+//                            width: 50,
+//                          ),
+//                          SizedBox(
+//                            height: getDynamicHeight(5),
+//                          ),
+//                          Text(
+//                            "Edit Post",
+//                            style: TextStyle(
+//                                color: Colors.black,
+//                                fontFamily: 'Montserrat',
+//                                fontWeight: FontWeight.w600,
+//                                fontSize: getDynamicTextSize(17),
+//                                decoration: TextDecoration.none),
+//                          )
+//                        ],
+//                      ),
+//                    )),
+//                RawMaterialButton(
+//                    onPressed: () {
+//                      Navigator.push(
+//                          context,
+//                          PageTransition(
+//                              type: PageTransitionType.rotate,
+//                              duration: Duration(seconds: 1),
+//                              child: GangMembers(gangDetails: widget.gangDetails,)));
+//                      // _showSnackBar(context, "View Gang");
+//                    },
+//                    shape: CircleBorder(),
+//                    padding: const EdgeInsets.all(24.0),
+//                    child: Container(
+//                      height: 100,
+//                      child: Column(
+//                        children: [
+//                          Image.asset(
+//                            "images/myGang.png",
+//                            height: 50,
+//                            width: 50,
+//                          ),
+//                          SizedBox(
+//                            height: getDynamicHeight(5),
+//                          ),
+//                          Text(
+//                            "View Gang",
+//                            style: TextStyle(
+//                                color: Colors.black,
+//                                fontFamily: 'Montserrat',
+//                                fontWeight: FontWeight.w600,
+//                                fontSize: getDynamicTextSize(17),
+//                                decoration: TextDecoration.none),
+//                          )
+//                        ],
+//                      ),
+//                    )),
+//                RawMaterialButton(
+//                    onPressed: () {
+//                      SocialShare.shareWhatsapp("I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '12345'. Believe me this is awesome game");
+//                     // launch("https://api.whatsapp.com/send?phone=&text=jkhfjdhfjkhfjkhfjkd");
+//                      },
+//                    shape: CircleBorder(),
+//                    padding: const EdgeInsets.all(24.0),
+//                    child: Container(
+//                      height: 100,
+//                      child: Column(
+//                        children: [
+//                          Image.asset(
+//                            "images/whatsapp.png",
+//                            height: 50,
+//                            width: 50,
+//                          ),
+//                          SizedBox(
+//                            height: getDynamicHeight(5),
+//                          ),
+//                          Text(
+//                            "Share",
+//                            style: TextStyle(
+//                                color: Colors.black,
+//                                fontFamily: 'Montserrat',
+//                                fontWeight: FontWeight.w600,
+//                                fontSize: getDynamicTextSize(17),
+//                                decoration: TextDecoration.none),
+//                          )
+//                        ],
+//                      ),
+//                    )),
+//              ],
+//            ),
+//          ),
         ),
       ),
     );

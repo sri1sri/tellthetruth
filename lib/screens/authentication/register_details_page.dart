@@ -56,12 +56,11 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   bool isLoading = false;
 
   Future<Null> showPicker(BuildContext context) async {
-    print(DateTime.now().year-17);
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: DateTime(2006),
+      initialDate: DateTime(2003),
       firstDate: DateTime(1930),
-      lastDate: DateTime(2010),
+      lastDate: DateTime(2003),
     );
     if (picked != null) {
       setState(() {
@@ -363,11 +362,14 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: getDynamicHeight(30),
+                                    height: getDynamicHeight(10),
                                   ),
                                   Text(
                                     "Note: Age requriment is 17years.",
-                                    style: mediumStyle,
+                                    style: regularStyle,
+                                  ),
+                                  SizedBox(
+                                    height: getDynamicHeight(30),
                                   ),
                                   Text(
                                     "Gender",

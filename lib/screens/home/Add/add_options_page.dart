@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
@@ -98,6 +99,46 @@ class _F_AddOptionsState extends State<F_AddOptions> {
         key: _formKey,
         child: Column(
           children: [
+
+
+            TextFormField(
+              onChanged: (value) => _optionOne = value,
+              textInputAction: TextInputAction.next,
+              onFieldSubmitted: (value) => value == ''
+                  ? null
+                  : FocusScope.of(context)
+                  .requestFocus(_optionTwoFocusNode),
+              autocorrect: false,
+              obscureText: false,
+              focusNode: _optionOneFocusNode,
+              decoration: new InputDecoration(
+                prefixIcon: Icon(
+                  Icons.account_circle,
+                  color: subBackgroundColor,
+                ),
+                labelText: "Enter username",
+                labelStyle: regularStyle,
+                border: new OutlineInputBorder(
+                  borderRadius:
+                  new BorderRadius.circular(5.0),
+                  borderSide: new BorderSide(),
+                ),
+              ),
+              style: new TextStyle(
+                fontFamily: "Poppins",
+              ),
+              keyboardType: TextInputType.text,
+              keyboardAppearance: Brightness.dark,
+              validator: (value) {
+                print(value);
+                if (value.isEmpty) {
+                  return 'Please enter username';
+                }
+                return null;
+              },
+            ),
+
+
             TranslationAnimatedWidget(
               enabled: true,
               duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation

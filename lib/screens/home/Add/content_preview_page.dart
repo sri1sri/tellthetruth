@@ -183,6 +183,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
+            SizedBox(height: getDynamicHeight(50),),
             Padding(
               padding: const EdgeInsets.only(left: 15.0, right: 15, top: 20),
               child: Row(
@@ -204,23 +205,23 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         Container(
                           child: isAnonymous
                               ? Text(
-                                  'Anonymous mode',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getDynamicTextSize(20),
-                                      decoration: TextDecoration.none),
-                                )
+                            'Anonymous mode',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w700,
+                                fontSize: getDynamicTextSize(20),
+                                decoration: TextDecoration.none),
+                          )
                               : Text(
-                                  'Reveal identity ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getDynamicTextSize(20),
-                                      decoration: TextDecoration.none),
-                                ),
+                            'Reveal identity ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w700,
+                                fontSize: getDynamicTextSize(20),
+                                decoration: TextDecoration.none),
+                          ),
                         ),
                         Text('Tap here to change',
                             style: TextStyle(
@@ -249,7 +250,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                         border: Border.all(
                           color:
-                              Colors.white, //                   <--- border color
+                          Colors.white, //                   <--- border color
                           width: getDynamicWidth(3),
                         ),
                         borderRadius: BorderRadius.circular(30.0),
@@ -262,6 +263,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 ],
               ),
             ),
+            SizedBox(height: getDynamicHeight(50),),
             Container(
               child: Column(
                 children: [
@@ -305,7 +307,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                           enabled: true,
                           duration: Duration(
                               seconds:
-                                  2), //// update this boolean to forward/reverse the animation
+                              2), //// update this boolean to forward/reverse the animation
                           values: [
                             Offset(0, -250), // disabled value value
                             Offset(0, -250), //intermediate value
@@ -320,7 +322,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                           enabled: true,
                           duration: Duration(
                               seconds:
-                                  2), //// update this boolean to forward/reverse the animation
+                              2), //// update this boolean to forward/reverse the animation
                           values: [
                             Offset(-200, 250), // disabled value value
                             Offset(-200, 250), //intermediate value
@@ -335,7 +337,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                           enabled: true,
                           duration: Duration(
                               seconds:
-                                  2), //// update this boolean to forward/reverse the animation
+                              2), //// update this boolean to forward/reverse the animation
                           values: [
                             Offset(400, -250), // disabled value value
                             Offset(400, -250), //intermediate value
@@ -351,7 +353,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                           enabled: true,
                           duration: Duration(
                               seconds:
-                                  2), //// update this boolean to forward/reverse the animation
+                              2), //// update this boolean to forward/reverse the animation
                           values: [
                             Offset(0, 250), // disabled value value
                             Offset(0, 250), //intermediate value
@@ -366,6 +368,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 ],
               ),
             ),
+            SizedBox(height: getDynamicHeight(50),),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -399,6 +402,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 ),
               ],
             ),
+
 //
 //                      Column(
 //                    children: <Widget>[
@@ -429,6 +433,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 //          ),
 //
 
+            SizedBox(height: getDynamicHeight(50),),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -440,27 +446,27 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                          Container(),
-                          GradientText(
-                            'Ask',
-                            style: mediumStyle,
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0XffFD8B1F),
-                                Color(0XffD152E0),
-                                Color(0Xff30D0DB),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.blue,
-                            size: getDynamicTextSize(15),
-                          ),
-                          Container(),
-                        ])),
+                              Container(),
+                              GradientText(
+                                'Ask',
+                                style: mediumStyle,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0XffFD8B1F),
+                                    Color(0XffD152E0),
+                                    Color(0Xff30D0DB),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.blue,
+                                size: getDynamicTextSize(15),
+                              ),
+                              Container(),
+                            ])),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30.0),

@@ -4,7 +4,6 @@ import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
-import 'package:overlay_container/overlay_container.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
@@ -77,14 +76,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   ScreenshotController screenshotController = ScreenshotController();
   File _imageFile;
-
-  bool _dropdownShown = false;
-
-  void _toggleDropdown() {
-    setState(() {
-      _dropdownShown = !_dropdownShown;
-    });
-  }
 
   void handleTick() {
 
@@ -226,455 +217,386 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                     Color(int.tryParse(widget.questionDetails.color2)),
                   ],
                 ) ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all( 15.0 ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              child: Icon(
-                                Icons.arrow_back_ios, color: Colors.white, ),
-                              onTap: () {
-                                Navigator.pop( context, true );
-                              },
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                TimerText(
-                                    label: 'HRS',
-                                    value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[0].toString( ).padLeft( 2, '0' ) ),
-                                TimerText(
-                                    label: 'MIN',
-                                    value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[1].toString( ).padLeft(
-                                        2, '0' ) ),
-                                TimerText(
-                                    label: 'SEC',
-                                    value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[2].toString( ).padLeft(
-                                        2, '0' ) ),
-                              ],
-                            ),
-
-                            IconButton(
-                              icon: Icon(
-                                Icons.more_vert,
-                                color: Colors.white,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  SizedBox(height: getDynamicHeight(50),),
+                  Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all( 15.0 ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                child: Icon(
+                                  Icons.arrow_back_ios, color: Colors.white, ),
+                                onTap: () {
+                                  Navigator.pop( context, true );
+                                },
                               ),
-                              onPressed: _toggleDropdown,
-                              color: Colors.white,
-                            ),
-                            OverlayContainer(
-                              show: _dropdownShown,
-                              position: OverlayContainerPosition(
-                                -200,
-                                -50,
-                              ),
-                              child: Container(
-                                height: 130,
-                                padding: const EdgeInsets.all(20),
-                                margin: const EdgeInsets.only(top: 5),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                      color: Colors.grey[300],
-                                      blurRadius: 1,
-                                      spreadRadius: 2,
-                                    )
-                                  ],
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _dropdownShown = false;
-                                        });
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                                        child: Text(
-                                          "Report",
-                                          style: TextStyle(
-                                              color: Colors.grey,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: getDynamicTextSize(18),
-                                              decoration: TextDecoration.none),
-                                        ),
-                                      ),
-                                    ),
-                                    Divider(
-                                      thickness: 1,
-                                      color: Colors.black54,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _dropdownShown = false;
-                                        });
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                                        child: Text(
-                                          "Delete",
-                                          style: TextStyle(
-                                              color: Colors.red,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: getDynamicTextSize(18),
-                                              decoration: TextDecoration.none),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-
-
-
-                          ],
-                        ),
-                      ),
-
-                      StreamBuilder<UserDetails>(
-                          stream: DBreference.getUserDetails(widget.questionDetails.createdBy),
-                          builder: (context, snapshot) {
-                            final userDetails = snapshot.data;
-
-                            return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? '${userDetails.username}\'s question' : 'fetching...',style: answerStyle);
-                          }
-                      ),
-
-
-
-                    ],
-                  ),
-                ),
-                Container(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child:TranslationAnimatedWidget(
-                          enabled: true,
-                          duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
-                          values: [
-                            Offset(0, -250), // disabled value value
-                            Offset(0, -250), //intermediate value
-                            Offset(0, 0) //enabled value
-                          ],
-                          child:Container(
-                            width: getDynamicWidth(MediaQuery.of(context).size.width),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular( 5 ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all( 20.0 ),
-                              child: Column(
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                               //   Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(80),width: getDynamicWidth(80)),
-                                  SizedBox( height: getDynamicHeight(15) ),
-                                  GradientText(
-                                    '${widget.questionDetails.question}?'.capitalize(),
-                                    textAlign: TextAlign.center,
-                                    style: mediumStyle,
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color( 0XffFD8B1F ),
-                                        Color( 0XffD152E0 ),
-                                        Color( 0Xff30D0DB ),
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                  ),
+                                  TimerText(
+                                      label: 'HRS',
+                                      value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[0].toString( ).padLeft( 2, '0' ) ),
+                                  TimerText(
+                                      label: 'MIN',
+                                      value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[1].toString( ).padLeft(
+                                          2, '0' ) ),
+                                  TimerText(
+                                      label: 'SEC',
+                                      value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[2].toString( ).padLeft(
+                                          2, '0' ) ),
                                 ],
                               ),
-                            ),
+                              GestureDetector(
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                  AssetImage(isAnswerAnonymos ? 'images/questionAskedAnonymous.png' :'images/questionNotAskedAnonymous.png' ),
+                                  radius: 20,
+                                  backgroundColor: Colors.transparent,
+                                ),
+                                onTap: () {
+                                  final updateInsightDetails = InsightsDetails(isAnonymous: isAnswerAnonymos ? false : true);
+                                  DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
+                                  setState(() {
+                                    isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
+                                  });
+                                  showFancyCustomDialog(context, isAnswerAnonymos ? 'Now you are in anonymous mode, No one can know what you polled.' : 'Now you revealed you\'r identity, Everyone can see what you polled.');
+                                },
+                              ),
+                            ],
                           ),
                         ),
-                      ),
 
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          children: [
-                            TranslationAnimatedWidget(
-                              enabled: true,
-                              duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
-                              values: [
-                                Offset(0, -250), // disabled value value
-                                Offset(0, -250), //intermediate value
-                                Offset(0, 0) //enabled value
-                              ],
-                              child: GestureDetector(
-                                onTap: () async{
-                                  if(!isPolled){
-                                    if (await Vibration.hasAmplitudeControl()) {
-                                      Vibration.vibrate(amplitude: 128);
-                                    }
-                                    updateInsights(1);
-                                    setState(() {
-                                      optionOneBackgroundColor = Colors.white;
-                                      isPolled = true;
-                                      optionOnePolledCount = optionOnePolledCount + 1;
-                                      isOptionOneSelected = true;
-                                      addPollCount = true;
-                                    });
-                                  }
-                                },
-                                child: OptionCard(
-                                  0,
-                                  '${optionOnePolledCount.toString()} votes',
-                                  selectedOption == 0 ? optionOneBackgroundColor : selectedOption == 1 ? Colors.white : optionOneBackgroundColor,
-                                  isOptionOneSelected,
-                                ),
-                              ),
-                            ),
+                        StreamBuilder<UserDetails>(
+                            stream: DBreference.getUserDetails(widget.questionDetails.createdBy),
+                            builder: (context, snapshot) {
+                              final userDetails = snapshot.data;
 
-                            SizedBox(height: getDynamicHeight(8),),
-                            TranslationAnimatedWidget(
-                              enabled: true,
-                              duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
-                              values: [
-                                Offset(-200, 250), // disabled value value
-                                Offset(-200, 250), //intermediate value
-                                Offset(0, 0) //enabled value
-                              ],
-                              child: GestureDetector(
-                                onTap: () async{
-                                  if(!isPolled){
-                                    if (await Vibration.hasAmplitudeControl()) {
-                                      Vibration.vibrate(amplitude: 128);
-                                    }
-                                    updateInsights(2);
-                                    setState(() {
-                                      optionTwoBackgroundColor = Colors.white;
-                                      isPolled = true;
-                                      optionTwoPolledCount = optionTwoPolledCount + 1;
-                                      isOptionTwoSelected = true;
-                                      addPollCount = true;
-                                    });
-                                  }
-                                },
-                                child: OptionCard(1,
-                                  '${optionTwoPolledCount.toString()} votes',
-                                  selectedOption == 0 ? optionTwoBackgroundColor : selectedOption == 2 ? Colors.white : optionTwoBackgroundColor,
-                                  isOptionTwoSelected,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: getDynamicHeight(8),),
-                            TranslationAnimatedWidget(
-                              enabled: true,
-                              duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
-                              values: [
-                                Offset(400, -250), // disabled value value
-                                Offset(400, -250),  //intermediate value
-                                Offset(0, 0) //enabled value
-                              ],
-                              child: GestureDetector(
-                                onTap: () async{
-                                  if(!isPolled){
-                                    if (await Vibration.hasAmplitudeControl()) {
-                                      Vibration.vibrate(amplitude: 128);
-                                    }
-                                    updateInsights(3);
-                                    setState(() {
-                                      optionThreeBackgroundColor = Colors.white;
-                                      isPolled = true;
-                                      optionThreePolledCount = optionThreePolledCount + 1;
-                                      isOptionThreeSelected = true;
-                                      addPollCount = true;
-                                    });
-                                  }
-
-                                },
-                                child: OptionCard(2,
-                                  '${optionThreePolledCount.toString()} votes',
-                                  selectedOption == 0 ? optionThreeBackgroundColor : selectedOption == 3 ? Colors.white : optionThreeBackgroundColor,
-                                  isOptionThreeSelected,
-                                ),
-                              ),/* your widget */
-                            ),
-                            SizedBox(height: getDynamicHeight(8),),
-                            TranslationAnimatedWidget(
-                              enabled: true,
-                              duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
-                              values: [
-                                Offset(0, 250), // disabled value value
-                                Offset(0, 250), //intermediate value
-                                Offset(0, 0) //enabled value
-                              ],
-                              child: GestureDetector(
-                                onTap: () async{
-                                  if(!isPolled){
-                                    if (await Vibration.hasAmplitudeControl()) {
-                                      Vibration.vibrate(amplitude: 128);
-                                    }
-                                    updateInsights(4);
-                                    setState(() {
-                                      optionFourBackgroundColor = Colors.white;
-                                      isPolled = true;
-                                      optionFourPolledCount = optionFourPolledCount + 1;
-                                      isOptionFourSelected = true;
-                                      addPollCount = true;
-                                    });
-                                  }
-                                },
-                                child: OptionCard(3,
-                                  '${optionFourPolledCount.toString()} votes',
-                                  selectedOption == 0 ? optionFourBackgroundColor : selectedOption == 4 ? Colors.white : optionFourBackgroundColor,
-                                  isOptionFourSelected,
-                                ),
-                              ),/* your widget */
-                            ),
-                          ],
+                              return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? '${userDetails.username}\'s question' : 'fetching...',style: answerStyle);
+                            }
                         ),
-                      ),
 
-                    ],
+
+
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all( 10.0 ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: AssetImage(
-                                'images/seen.png' ),
-                            radius: 14,
+                  SizedBox(height: getDynamicHeight(50),),
+                  Container(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child:TranslationAnimatedWidget(
+                            enabled: true,
+                            duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                            values: [
+                              Offset(0, -250), // disabled value value
+                              Offset(0, -250), //intermediate value
+                              Offset(0, 0) //enabled value
+                            ],
+                            child:Container(
+                              width: getDynamicWidth(MediaQuery.of(context).size.width),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular( 5 ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all( 20.0 ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    //   Lottie.network('https://assets7.lottiefiles.com/packages/lf20_O2YdXL.json',height: getDynamicHeight(80),width: getDynamicWidth(80)),
+                                    SizedBox( height: getDynamicHeight(15) ),
+                                    GradientText(
+                                      '${widget.questionDetails.question}?'.capitalize(),
+                                      textAlign: TextAlign.center,
+                                      style: mediumStyle,
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color( 0XffFD8B1F ),
+                                          Color( 0XffD152E0 ),
+                                          Color( 0Xff30D0DB ),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                          SizedBox( width: getDynamicWidth(5), ),
-                          Text('${addPollCount ? 1 + widget.questionDetails.viewCount : widget.questionDetails.viewCount}', style: countStyle, ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.rippleRightUp,
-                                  duration: Duration(seconds: 1),
-                                  child: RevealIdentity(gangID: widget.gangID, questionID: widget.questionDetails.questionID,)));
-                        },
-                        child: Row(
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            children: [
+                              TranslationAnimatedWidget(
+                                enabled: true,
+                                duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                                values: [
+                                  Offset(0, -250), // disabled value value
+                                  Offset(0, -250), //intermediate value
+                                  Offset(0, 0) //enabled value
+                                ],
+                                child: GestureDetector(
+                                  onTap: () async{
+                                    if(!isPolled){
+                                      if (await Vibration.hasAmplitudeControl()) {
+                                        Vibration.vibrate(amplitude: 128);
+                                      }
+                                      updateInsights(1);
+                                      setState(() {
+                                        optionOneBackgroundColor = Colors.white;
+                                        isPolled = true;
+                                        optionOnePolledCount = optionOnePolledCount + 1;
+                                        isOptionOneSelected = true;
+                                        addPollCount = true;
+                                      });
+                                    }
+                                  },
+                                  child: OptionCard(
+                                    0,
+                                    '${optionOnePolledCount.toString()} votes',
+                                    selectedOption == 0 ? optionOneBackgroundColor : selectedOption == 1 ? Colors.white : optionOneBackgroundColor,
+                                    isOptionOneSelected,
+                                  ),
+                                ),
+                              ),
+
+                              SizedBox(height: getDynamicHeight(8),),
+                              TranslationAnimatedWidget(
+                                enabled: true,
+                                duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                                values: [
+                                  Offset(-200, 250), // disabled value value
+                                  Offset(-200, 250), //intermediate value
+                                  Offset(0, 0) //enabled value
+                                ],
+                                child: GestureDetector(
+                                  onTap: () async{
+                                    if(!isPolled){
+                                      if (await Vibration.hasAmplitudeControl()) {
+                                        Vibration.vibrate(amplitude: 128);
+                                      }
+                                      updateInsights(2);
+                                      setState(() {
+                                        optionTwoBackgroundColor = Colors.white;
+                                        isPolled = true;
+                                        optionTwoPolledCount = optionTwoPolledCount + 1;
+                                        isOptionTwoSelected = true;
+                                        addPollCount = true;
+                                      });
+                                    }
+                                  },
+                                  child: OptionCard(1,
+                                    '${optionTwoPolledCount.toString()} votes',
+                                    selectedOption == 0 ? optionTwoBackgroundColor : selectedOption == 2 ? Colors.white : optionTwoBackgroundColor,
+                                    isOptionTwoSelected,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: getDynamicHeight(8),),
+                              TranslationAnimatedWidget(
+                                enabled: true,
+                                duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                                values: [
+                                  Offset(400, -250), // disabled value value
+                                  Offset(400, -250),  //intermediate value
+                                  Offset(0, 0) //enabled value
+                                ],
+                                child: GestureDetector(
+                                  onTap: () async{
+                                    if(!isPolled){
+                                      if (await Vibration.hasAmplitudeControl()) {
+                                        Vibration.vibrate(amplitude: 128);
+                                      }
+                                      updateInsights(3);
+                                      setState(() {
+                                        optionThreeBackgroundColor = Colors.white;
+                                        isPolled = true;
+                                        optionThreePolledCount = optionThreePolledCount + 1;
+                                        isOptionThreeSelected = true;
+                                        addPollCount = true;
+                                      });
+                                    }
+
+                                  },
+                                  child: OptionCard(2,
+                                    '${optionThreePolledCount.toString()} votes',
+                                    selectedOption == 0 ? optionThreeBackgroundColor : selectedOption == 3 ? Colors.white : optionThreeBackgroundColor,
+                                    isOptionThreeSelected,
+                                  ),
+                                ),/* your widget */
+                              ),
+                              SizedBox(height: getDynamicHeight(8),),
+                              TranslationAnimatedWidget(
+                                enabled: true,
+                                duration: Duration(seconds: 2),//// update this boolean to forward/reverse the animation
+                                values: [
+                                  Offset(0, 250), // disabled value value
+                                  Offset(0, 250), //intermediate value
+                                  Offset(0, 0) //enabled value
+                                ],
+                                child: GestureDetector(
+                                  onTap: () async{
+                                    if(!isPolled){
+                                      if (await Vibration.hasAmplitudeControl()) {
+                                        Vibration.vibrate(amplitude: 128);
+                                      }
+                                      updateInsights(4);
+                                      setState(() {
+                                        optionFourBackgroundColor = Colors.white;
+                                        isPolled = true;
+                                        optionFourPolledCount = optionFourPolledCount + 1;
+                                        isOptionFourSelected = true;
+                                        addPollCount = true;
+                                      });
+                                    }
+                                  },
+                                  child: OptionCard(3,
+                                    '${optionFourPolledCount.toString()} votes',
+                                    selectedOption == 0 ? optionFourBackgroundColor : selectedOption == 4 ? Colors.white : optionFourBackgroundColor,
+                                    isOptionFourSelected,
+                                  ),
+                                ),/* your widget */
+                              ),
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: getDynamicHeight(50),),
+                  Padding(
+                    padding: const EdgeInsets.all( 10.0 ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
                           children: [
                             CircleAvatar(
                               backgroundColor: Colors.transparent,
                               backgroundImage: AssetImage(
-                                  'images/poll.png' ),
-                              radius: 12,
+                                  'images/seen.png' ),
+                              radius: 14,
                             ),
                             SizedBox( width: getDynamicWidth(5), ),
-                            Text( '${(addPollCount ?
-                            1 + widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
-                                : widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
-                            ).toString()}',
-                              style: countStyle, ),
+                            Text('${addPollCount ? 1 + widget.questionDetails.viewCount : widget.questionDetails.viewCount}', style: countStyle, ),
                           ],
                         ),
-                      ),
-
-
-                      widget.questionDetails.createdBy == USER_ID ? GestureDetector(
-                        child: CircleAvatar(
-                          backgroundImage:
-                          AssetImage(isQuestionAnonymos ? 'images/questionAskedAnonymous.png' : 'images/questionNotAskedAnonymous.png'),
-                          radius: 20,
-                          backgroundColor: Colors.transparent,
-                        ),
-                        onTap: () {
-                          final updateQuestionDetails = QuestionDetails(isAnonymous: isQuestionAnonymos ? false : true);
-                          DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
-                          setState(() {
-                            isQuestionAnonymos ? isQuestionAnonymos = false : isQuestionAnonymos = true;
-                          });
-                          showFancyCustomDialogBottom(context , isQuestionAnonymos ? 'Now you are in anonymous mode, No one can know who asked this question.' : 'Now you revealed you\'r identity, Everyone can know asked this question.' );
-                        },
-                      ) : Row(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            radius: 14,
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.rippleRightUp,
+                                    duration: Duration(seconds: 1),
+                                    child: RevealIdentity(gangID: widget.gangID, questionID: widget.questionDetails.questionID,)));
+                          },
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                backgroundImage: AssetImage(
+                                    'images/poll.png' ),
+                                radius: 12,
+                              ),
+                              SizedBox( width: getDynamicWidth(5), ),
+                              Text( '${(addPollCount ?
+                              1 + widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
+                                  : widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
+                              ).toString()}',
+                                style: countStyle, ),
+                            ],
                           ),
-                          SizedBox( width: getDynamicWidth(5), ),
-                        ],
-                      ),
-
-                      GestureDetector(
-                        child: CircleAvatar(
-                          backgroundImage:
-                          AssetImage(isAnswerAnonymos ? 'images/questionAskedAnonymous.png' :'images/questionNotAskedAnonymous.png' ),
-                          radius: 20,
-                          backgroundColor: Colors.transparent,
                         ),
-                        onTap: () {
-                          final updateInsightDetails = InsightsDetails(isAnonymous: isAnswerAnonymos ? false : true);
-                          DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
-                          setState(() {
-                            isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
-                          });
-                          showFancyCustomDialog(context, isAnswerAnonymos ? 'Now you are in anonymous mode, No one can know what you polled.' : 'Now you revealed you\'r identity, Everyone can see what you polled.');
-                        },
-                      ),
 
-                      GestureDetector(
-                        onTap: () {
-                          screenshotController.capture().then((File image) {
-                            //Capture Done
-                            setState(() async{
-                              print(_imageFile);
-                              _imageFile = image;
-                              print(_imageFile);
-                              final result = await ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
-                              print(result);
 
-                              showFancyCustomDialogShare(context, _imageFile);
-
+                        widget.questionDetails.createdBy == USER_ID ? GestureDetector(
+                          child: CircleAvatar(
+                            backgroundImage:
+                            AssetImage(isQuestionAnonymos ? 'images/questionAskedAnonymous.png' : 'images/questionNotAskedAnonymous.png'),
+                            radius: 20,
+                            backgroundColor: Colors.transparent,
+                          ),
+                          onTap: () {
+                            final updateQuestionDetails = QuestionDetails(isAnonymous: isQuestionAnonymos ? false : true);
+                            DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+                            setState(() {
+                              isQuestionAnonymos ? isQuestionAnonymos = false : isQuestionAnonymos = true;
                             });
-                          }).catchError((onError) {
-                            print(onError);
-                          });
-                        },
-                        child: Row(
+                            showFancyCustomDialogBottom(context , isQuestionAnonymos ? 'Now you are in anonymous mode, No one can know who asked this question.' : 'Now you revealed you\'r identity, Everyone can know asked this question.' );
+                          },
+                        ) : Row(
                           children: [
                             CircleAvatar(
                               backgroundColor: Colors.transparent,
-                              child: Icon(
-                                Icons.share, color: Colors.white, ),
+                              radius: 14,
                             ),
-//
+                            SizedBox( width: getDynamicWidth(5), ),
                           ],
                         ),
-                      ),
+
+                        GestureDetector(
+                          onTap: () {
+                            screenshotController.capture().then((File image) {
+                              //Capture Done
+                              setState(() async{
+                                print(_imageFile);
+                                _imageFile = image;
+                                print(_imageFile);
+                                final result = await ImageGallerySaver.saveImage(_imageFile.readAsBytesSync());
+                                print(result);
+
+                                showFancyCustomDialogShare(context, _imageFile);
+
+
+                              });
+                            }).catchError((onError) {
+                              print(onError);
+                            });
 
 
 
 
 
-                    ],
+
+
+
+
+
+
+
+
+
+                            //  showFancyCustomDialog( context );
+                          },
+                          child: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                child: Icon(
+                                  Icons.share, color: Colors.white, ),
+                              ),
+                              SizedBox( width: getDynamicWidth(5), ),
+                              Text( "Share", style: countStyle, ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
 
 
 //              RaisedButton(
@@ -698,7 +620,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 //                child: Text('Show SnackBar'),
 //              ),
 
-              ],
+                ],
+              ),
             ),
 
           ),

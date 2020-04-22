@@ -1003,7 +1003,7 @@ void showFancyCustomDialogBottom(BuildContext context, String message) {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  height: getDynamicHeight(100.0),
+                  height: getDynamicHeight(110.0),
                   width: getDynamicWidth(400.0),
                   child: Stack(
                     children: <Widget>[

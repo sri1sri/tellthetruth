@@ -78,9 +78,10 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 70.0,left: 20),
+                padding: const EdgeInsets.only(top: 0.0,left: 20),
                 child: Row(
                   children: [
+                    SizedBox(height: getDynamicHeight(70),),
                     Row(
                       children: [
                         GradientText(
@@ -242,7 +243,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 26.0,decoration: TextDecoration.none),
+                                      fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
                                 ),
                               )
                             ],

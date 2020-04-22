@@ -116,7 +116,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
           resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 25, 15, 0),
+            padding: const EdgeInsets.fromLTRB(15, 18, 15, 0),
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: Column(

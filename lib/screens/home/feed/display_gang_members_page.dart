@@ -93,7 +93,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                     ),
                     // The content inside the overlay.
                     child: Container(
-                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 250 : 155),
+                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 200 : 155),
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
@@ -112,30 +112,30 @@ class _F_GangMembersState extends State<F_GangMembers> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          widget.gangDetails.createBy == USER_ID ? GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                showRemove = true;
-                                _dropdownShown = false;
-                              });
-                            },
-                            child: Row(
-                              children: [
-                                Icon(Icons.delete_forever),
-                                SizedBox(
-                                  width: getDynamicWidth(5),
-                                ),
-                                Text(
-                                  "Remove people",
-                                  style: answerStyleBlur,
-                                ),
-                              ],
-                            ),
-                          ) : Container(height: 0, width: 0,),
-                          Divider(
-                            thickness: 1,
-                            color: Colors.black54,
-                          ),
+//                          widget.gangDetails.createBy == USER_ID ? GestureDetector(
+//                            onTap: () {
+//                              setState(() {
+//                                showRemove = true;
+//                                _dropdownShown = false;
+//                              });
+//                            },
+//                            child: Row(
+//                              children: [
+//                                Icon(Icons.delete_forever),
+//                                SizedBox(
+//                                  width: getDynamicWidth(5),
+//                                ),
+//                                Text(
+//                                  "Remove people",
+//                                  style: answerStyleBlur,
+//                                ),
+//                              ],
+//                            ),
+//                          ) : Container(height: 0, width: 0,),
+//                          Divider(
+//                            thickness: 1,
+//                            color: Colors.black54,
+//                          ),
 
 
 
@@ -194,7 +194,10 @@ class _F_GangMembersState extends State<F_GangMembers> {
                           ),
                           widget.gangDetails.createBy == USER_ID ? GestureDetector(
                             onTap: () {
-                              editNameDialogue(context);
+                              setState(() {
+                                _dropdownShown = false;
+                              });
+                              editNameDialogue(context, widget.gangDetails);
                             },
                             child: Row(
                               children: [
@@ -426,7 +429,10 @@ class MyFlexiableAppBar extends StatelessWidget {
   }
 }
 
-void editNameDialogue(BuildContext context) {
+void editNameDialogue(BuildContext context, GangDetails gangDetails) {
+
+  final _formKey = GlobalKey<FormState>();
+  String _updatedGangName;
 
   showGeneralDialog(
       context: context,
@@ -481,58 +487,60 @@ void editNameDialogue(BuildContext context) {
                                     end: Alignment.bottomRight,
                                   ),
                                 ),
-                                TextFormField(
-                                  //controller: controller,
-                                  //onChanged: onChanged,
-                                  maxLines: 1,
-                                  //textInputAction: textInputAction,
-                                  autocorrect: true,
-                                  obscureText: false,
-                                  keyboardType: TextInputType.text,
-                                  keyboardAppearance: Brightness.light,
-                                  autofocus: true,
-                                  //focusNode: focusNode,
-                                 // onFieldSubmitted: onFieldSubmitted,
-                                  cursorColor: Colors.blue,
-                                  maxLength: 15,
-                                 // onEditingComplete: onEditingComplete,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w600,
+                                Form(
+                                  key: _formKey,
+                                  child: TextFormField(
+                                    onChanged: (value) => _updatedGangName = value,
+                                    maxLines: 1,
+                                    autocorrect: true,
+                                    obscureText: false,
+                                    keyboardType: TextInputType.text,
+                                    keyboardAppearance: Brightness.light,
+                                    autofocus: true,
+                                    cursorColor: Colors.blue,
+                                    maxLength: 15,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600,
+                                        ),
+                                    decoration:  InputDecoration(
+                                      counterStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
                                       ),
-                                  decoration:  InputDecoration(
-                                    counterStyle: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: const BorderSide(color: Colors.transparent),
+                                      ),
+                                      hintText: "New gang name",
+                                      hintStyle: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 22,),
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide:
+                                        const BorderSide(color: Colors.transparent, width: 0.0),
+                                      ),
                                     ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(color: Colors.transparent),
-                                    ),
-                                    hintText: "New Gang Name",
-                                    hintStyle: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 22,),
-                                    enabledBorder: const OutlineInputBorder(
-                                      borderSide:
-                                      const BorderSide(color: Colors.transparent, width: 0.0),
-                                    ),
+                                    validator: (value) {
+                                      print(value);
+                                      if (value.isEmpty) {
+                                        return 'Please enter new gang name.';
+                                      }
+                                      return null;
+                                    },
                                   ),
-                                  validator: (value) {
-                                    print(value);
-                                    if (value.isEmpty) {
-                                     // return validationText;
-                                    }
-                                    return null;
-                                  },
                                 ),
                                 Container(
                                   height: getDynamicHeight(55),
                                   width: getDynamicWidth(180),
                                   child: GestureDetector(
                                     onTap: () {
+                                      final updatedGangDetails  = GangDetails(gangName: _updatedGangName);
+                                      DBreference.updateGang(updatedGangDetails, gangDetails.gangID);
+
+                                      GoToPage(context, LandingPage());
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -554,8 +562,8 @@ void editNameDialogue(BuildContext context) {
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: 'Montserrat',
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: getDynamicTextSize(22),decoration: TextDecoration.none),
                                             ),
                                           )
                                         ],

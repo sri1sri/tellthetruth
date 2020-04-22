@@ -4,8 +4,10 @@ class InsightsDetails{
   InsightsDetails({
     this.userID,
     this.isViewed,
-    this.isAnonymos,
+    this.isAnonymous,
+    this.isReported,
     this.optionSelected,
+
 
     this.empty,
   });
@@ -13,8 +15,9 @@ class InsightsDetails{
   final String userID;
 
   final bool isViewed;
-  final bool isAnonymos;
+  final bool isAnonymous;
   final int optionSelected;
+  final bool isReported;
 
 
   final Null empty;
@@ -26,7 +29,7 @@ class InsightsDetails{
 
     final String userID = documentID;
     final bool isViewed = data['is_viewed'];
-    final bool isAnonymos = data['is_anonyous'];
+    final bool isAnonymous = data['is_anonymous'];
     final int optionSelected = data['option_selected'];
 
     final Null empty = data['empty'];
@@ -35,7 +38,7 @@ class InsightsDetails{
     return InsightsDetails(
       userID: userID,
       isViewed: isViewed,
-      isAnonymos:isAnonymos,
+      isAnonymous:isAnonymous,
       optionSelected:optionSelected,
       empty: empty,
 
@@ -45,7 +48,7 @@ class InsightsDetails{
   Map<String, dynamic> toMap(){
     return {
       isViewed != null ? 'is_viewed': 'empty' : isViewed,
-      isAnonymos != null ? 'is_anonyous': 'empty' : isAnonymos,
+      isAnonymous != null ? 'is_anonymous': 'empty' : isAnonymous,
       optionSelected != null ? 'option_selected': 'empty' : optionSelected,
     };
   }

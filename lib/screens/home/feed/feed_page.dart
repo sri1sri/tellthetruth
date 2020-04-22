@@ -16,7 +16,6 @@ import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_i
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 import '../../../global_file/common_variables/app_functions.dart';
-import '../../../global_file/common_variables/app_functions.dart';
 import 'display_gang_members_page.dart';
 import 'display_all_questions_page.dart';
 

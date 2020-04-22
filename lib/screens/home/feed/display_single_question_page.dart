@@ -136,7 +136,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     optionThreePolledCount = widget.questionDetails.optionThreePolledCount;
     optionFourPolledCount = widget.questionDetails.optionFourPolledCount;
 
-    isAnswerAnonymos = widget.insightsDetails == null ? true : widget.insightsDetails.isAnonymos != null ? widget.insightsDetails.isAnonymos : true;
+    isAnswerAnonymos = widget.insightsDetails == null ? true : widget.insightsDetails.isAnonymous != null ? widget.insightsDetails.isAnonymous : true;
     isQuestionAnonymos = widget.questionDetails.isAnonymous;
   }
 
@@ -161,7 +161,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         break;
     }
 
-    final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymos: true);
+    final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymous: true);
     DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
   }
 
@@ -259,7 +259,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               backgroundColor: Colors.transparent,
                             ),
                             onTap: () {
-                              final updateInsightDetails = InsightsDetails(isAnonymos: isAnswerAnonymos ? false : true);
+                              final updateInsightDetails = InsightsDetails(isAnonymous: isAnswerAnonymos ? false : true);
                               DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
                               setState(() {
                                 isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;

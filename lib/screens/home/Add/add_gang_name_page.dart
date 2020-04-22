@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +9,6 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
-import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/global_file/common_widgets/loading_page.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
@@ -18,8 +16,8 @@ import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/screens/home/profile/profile_page.dart';
-
 import 'add_gang_icon_page.dart';
+
 
 class AddGangName extends StatelessWidget {
   @override
@@ -69,12 +67,14 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                       isLoading = false;
                       check = false;
                     }),
-                    GoToPage(
+                    generateGroupID != null ? GoToPage(
                         context,
                         AddGangIcon(
                           gangCode: generateGroupID.toString(),
                           gangName: _gangName,
-                        )),
+                        )) : CustomAlertBox(context, 'Oops..!!', 'Something went wrong please try again...', true, (){
+                          Navigator.pop(context);
+                    }),
                   }
                 else
                   {

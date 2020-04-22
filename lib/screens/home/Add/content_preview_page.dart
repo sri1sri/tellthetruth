@@ -179,225 +179,226 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
           Color(int.parse(_colors2[_currentColorIndex])),
         ], begin: Alignment.topLeft, end: Alignment.bottomRight),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context, true);
-                  },
-                ),
-                GestureDetector(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: isAnonymous
-                            ? Text(
-                                'Anonymous mode',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getDynamicTextSize(20),
-                                    decoration: TextDecoration.none),
-                              )
-                            : Text(
-                                'Reveal identity ',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getDynamicTextSize(20),
-                                    decoration: TextDecoration.none),
-                              ),
-                      ),
-                      Text('Tap here to change',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w400,
-                              fontSize: getDynamicTextSize(12),
-                              decoration: TextDecoration.none))
-                    ],
-                  ),
-                  onTap: () {
-                    setState(() {
-                      isAnonymous ? isAnonymous = false : isAnonymous = true;
-                    });
-                  },
-                ),
-                GestureDetector(
-                  child: Container(
-                    width: getDynamicWidth(40),
-                    height: getDynamicHeight(40),
-                    padding: EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: <Color>[
-                        Color(int.parse(_colors1[_currentColorIndex])),
-                        Color(int.parse(_colors2[_currentColorIndex])),
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                      border: Border.all(
-                        color:
-                            Colors.white, //                   <--- border color
-                        width: getDynamicWidth(3),
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                  onTap: () {
-                    changeBackground();
-                  },
-                ),
-              ],
-            ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    width: getDynamicWidth(MediaQuery.of(context).size.width),
-                    decoration: BoxDecoration(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15, top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    child: Icon(
+                      Icons.close,
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
+                      size: 30,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          GradientText(
-                            widget.question,
-                            textAlign: TextAlign.center,
-                            style: mediumStyle,
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0XffFD8B1F),
-                                Color(0XffD152E0),
-                                Color(0Xff30D0DB),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                        ],
+                    onTap: () {
+                      Navigator.pop(context, true);
+                    },
+                  ),
+                  GestureDetector(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: isAnonymous
+                              ? Text(
+                                  'Anonymous mode',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getDynamicTextSize(20),
+                                      decoration: TextDecoration.none),
+                                )
+                              : Text(
+                                  'Reveal identity ',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getDynamicTextSize(20),
+                                      decoration: TextDecoration.none),
+                                ),
+                        ),
+                        Text('Tap here to change',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400,
+                                fontSize: getDynamicTextSize(12),
+                                decoration: TextDecoration.none))
+                      ],
+                    ),
+                    onTap: () {
+                      setState(() {
+                        isAnonymous ? isAnonymous = false : isAnonymous = true;
+                      });
+                    },
+                  ),
+                  GestureDetector(
+                    child: Container(
+                      width: getDynamicWidth(40),
+                      height: getDynamicHeight(40),
+                      padding: EdgeInsets.all(20.0),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: <Color>[
+                          Color(int.parse(_colors1[_currentColorIndex])),
+                          Color(int.parse(_colors2[_currentColorIndex])),
+                        ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                        border: Border.all(
+                          color:
+                              Colors.white, //                   <--- border color
+                          width: getDynamicWidth(3),
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
+                    onTap: () {
+                      changeBackground();
+                    },
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      TranslationAnimatedWidget(
-                        enabled: true,
-                        duration: Duration(
-                            seconds:
-                                2), //// update this boolean to forward/reverse the animation
-                        values: [
-                          Offset(0, -250), // disabled value value
-                          Offset(0, -250), //intermediate value
-                          Offset(0, 0) //enabled value
-                        ],
-                        child: OptionCard(context, widget.optionOne),
-                      ),
-                      SizedBox(
-                        height: getDynamicHeight(8),
-                      ),
-                      TranslationAnimatedWidget(
-                        enabled: true,
-                        duration: Duration(
-                            seconds:
-                                2), //// update this boolean to forward/reverse the animation
-                        values: [
-                          Offset(-200, 250), // disabled value value
-                          Offset(-200, 250), //intermediate value
-                          Offset(0, 0) //enabled value
-                        ],
-                        child: OptionCard(context, widget.optionTwo),
-                      ),
-                      SizedBox(
-                        height: getDynamicHeight(8),
-                      ),
-                      TranslationAnimatedWidget(
-                        enabled: true,
-                        duration: Duration(
-                            seconds:
-                                2), //// update this boolean to forward/reverse the animation
-                        values: [
-                          Offset(400, -250), // disabled value value
-                          Offset(400, -250), //intermediate value
-                          Offset(0, 0) //enabled value
-                        ],
-                        child: OptionCard(
-                            context, widget.optionThree), /* your widget */
-                      ),
-                      SizedBox(
-                        height: getDynamicHeight(8),
-                      ),
-                      TranslationAnimatedWidget(
-                        enabled: true,
-                        duration: Duration(
-                            seconds:
-                                2), //// update this boolean to forward/reverse the animation
-                        values: [
-                          Offset(0, 250), // disabled value value
-                          Offset(0, 250), //intermediate value
-                          Offset(0, 0) //enabled value
-                        ],
-                        child: OptionCard(
-                            context, widget.optionFour), /* your widget */
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Select Gang",style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
-              SizedBox(height: getDynamicHeight(10),),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.black.withOpacity(0.1),
-                ),
-                height: getDynamicHeight(140),
-                width: getDynamicWidth(380),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Flex(
-                    direction: Axis.horizontal,
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height:100,
-                          child: getVariableScaleCrousel(gangName),
+            Container(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      width: getDynamicWidth(MediaQuery.of(context).size.width),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            GradientText(
+                              widget.question,
+                              textAlign: TextAlign.center,
+                              style: mediumStyle,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        TranslationAnimatedWidget(
+                          enabled: true,
+                          duration: Duration(
+                              seconds:
+                                  2), //// update this boolean to forward/reverse the animation
+                          values: [
+                            Offset(0, -250), // disabled value value
+                            Offset(0, -250), //intermediate value
+                            Offset(0, 0) //enabled value
+                          ],
+                          child: OptionCard(context, widget.optionOne),
+                        ),
+                        SizedBox(
+                          height: getDynamicHeight(8),
+                        ),
+                        TranslationAnimatedWidget(
+                          enabled: true,
+                          duration: Duration(
+                              seconds:
+                                  2), //// update this boolean to forward/reverse the animation
+                          values: [
+                            Offset(-200, 250), // disabled value value
+                            Offset(-200, 250), //intermediate value
+                            Offset(0, 0) //enabled value
+                          ],
+                          child: OptionCard(context, widget.optionTwo),
+                        ),
+                        SizedBox(
+                          height: getDynamicHeight(8),
+                        ),
+                        TranslationAnimatedWidget(
+                          enabled: true,
+                          duration: Duration(
+                              seconds:
+                                  2), //// update this boolean to forward/reverse the animation
+                          values: [
+                            Offset(400, -250), // disabled value value
+                            Offset(400, -250), //intermediate value
+                            Offset(0, 0) //enabled value
+                          ],
+                          child: OptionCard(
+                              context, widget.optionThree), /* your widget */
+                        ),
+                        SizedBox(
+                          height: getDynamicHeight(8),
+                        ),
+                        TranslationAnimatedWidget(
+                          enabled: true,
+                          duration: Duration(
+                              seconds:
+                                  2), //// update this boolean to forward/reverse the animation
+                          values: [
+                            Offset(0, 250), // disabled value value
+                            Offset(0, 250), //intermediate value
+                            Offset(0, 0) //enabled value
+                          ],
+                          child: OptionCard(
+                              context, widget.optionFour), /* your widget */
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Select Gang",style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
+                SizedBox(height: getDynamicHeight(10),),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black.withOpacity(0.1),
+                  ),
+                  height: getDynamicHeight(140),
+                  width: getDynamicWidth(380),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height:100,
+                            child: getVariableScaleCrousel(gangName),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
 //
 //                      Column(
 //                    children: <Widget>[
@@ -428,56 +429,57 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 //          ),
 //
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              GestureDetector(
-                child: Container(
-                  width: getDynamicWidth(180.0),
-                  padding: EdgeInsets.all(15.0),
-                  child: Center(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                        Container(),
-                        GradientText(
-                          'Ask',
-                          style: mediumStyle,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                GestureDetector(
+                  child: Container(
+                    width: getDynamicWidth(180.0),
+                    padding: EdgeInsets.all(15.0),
+                    child: Center(
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                          Container(),
+                          GradientText(
+                            'Ask',
+                            style: mediumStyle,
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0XffFD8B1F),
+                                Color(0XffD152E0),
+                                Color(0Xff30D0DB),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.blue,
-                          size: getDynamicTextSize(15),
-                        ),
-                        Container(),
-                      ])),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30.0),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(2, 1),
-                            blurRadius: 6.0,
-                            spreadRadius: 1.0),
-                      ]),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.blue,
+                            size: getDynamicTextSize(15),
+                          ),
+                          Container(),
+                        ])),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30.0),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(2, 1),
+                              blurRadius: 6.0,
+                              spreadRadius: 1.0),
+                        ]),
+                  ),
+                  onTap: () {
+                    _submit();
+                  },
                 ),
-                onTap: () {
-                  _submit();
-                },
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

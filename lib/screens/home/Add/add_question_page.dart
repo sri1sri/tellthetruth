@@ -140,92 +140,99 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
       home: new Scaffold(
         resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 40, 15, 15),
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30,),
-                            color: Colors.white,
-                            onPressed: () {Navigator.pop(context, true);},
-                          ),
-                          Container(),
-                          GestureDetector(
-                              onTap: (){
-                                print(questions[_questionCountIndex]);
-                                changeQuestion();
-                              },
-                              child: Image(image: AssetImage('images/dice.png'),height: getDynamicHeight(50),width: getDynamicWidth(50),)),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-//
-                              GestureDetector(
-                                child: Container(
-                                  padding: EdgeInsets.all(15.0),
-                                  child: Center(
-                                      child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                          children: <Widget>[
-                                            Container(),
-                                            GradientText(
-                                              'Next',
-                                              style: mediumStyle,
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0XffFD8B1F),
-                                                  Color(0XffD152E0),
-                                                  Color(0Xff30D0DB),
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
-                                            ),
-                                          ])),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                ),
-                                onTap: () {
-                                  _submit();
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30,),
+                              color: Colors.white,
+                              onPressed: () {Navigator.pop(context, true);},
+                            ),
+                            Container(),
+                            GestureDetector(
+                                onTap: (){
+                                  print(questions[_questionCountIndex]);
+                                  changeQuestion();
                                 },
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
-
-                      Form(
-                        key: _formKey,
-                        child: BackForeTextInput(
-                          controller: _questionController,
-                          backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                          onChanged: (value)=> _questionController.text = value,
-                          onEditingComplete: _submit,
-                          textInputAction: TextInputAction.done,
-                          lines:3,
-                          length:64,
-                          textFont:24,
-                          validationText:"Please enter question",
-                          hintText:"Add your Question",
-                          topPadding:25,
-                          hintFont: 24,
-                          backTextStyle: backgroundText,
-                          height: 180,
-                          showCounterStyle: true,
+                                child: Image(image: AssetImage('images/dice.png'),height: getDynamicHeight(50),width: getDynamicWidth(50),)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+//
+                                GestureDetector(
+                                  child: Container(
+                                    padding: EdgeInsets.all(15.0),
+                                    child: Center(
+                                        child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              Container(),
+                                              GradientText(
+                                                'Next',
+                                                style: mediumStyle,
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Color(0XffFD8B1F),
+                                                    Color(0XffD152E0),
+                                                    Color(0Xff30D0DB),
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                              ),
+                                            ])),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15.0),
+                                        ),
+                                  ),
+                                  onTap: () {
+                                    _submit();
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                ],
+                        Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
+
+                        Form(
+                          key: _formKey,
+                          child: BackForeTextInput(
+                            controller: _questionController,
+                            backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
+                            onChanged: (value)=> _questionController.text = value,
+                            onEditingComplete: _submit,
+                            textInputAction: TextInputAction.done,
+                            lines:3,
+                            length:64,
+                            textFont:24,
+                            validationText:"Please enter question",
+                            hintText:"Add your Question",
+                            topPadding:25,
+                            hintFont: 24,
+                            backTextStyle: backgroundText,
+                            height: 180,
+                            showCounterStyle: true,
+                          ),
+                        ),
+                    
+                    SizedBox(height: getDynamicHeight(100))
+
+
+
+                  ],
+                ),
               ),
             ),
           )

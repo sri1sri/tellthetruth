@@ -443,6 +443,20 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               onPressed: openContainer,
               padding: EdgeInsets.only(left: 0.0, right: 0.0),
               child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  gradient: LinearGradient(
+                      colors: <Color>[
+                        Color(int.tryParse(questionData != null
+                            ? questionData.color1
+                            : 0Xff30DD76)),
+                        Color(int.tryParse(questionData != null
+                            ? questionData.color2
+                            : 0Xff30DD76)),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight),
+                ),
                 height: getDynamicHeight(350),
                 width: getDynamicWidth(200.0),
                 child: Column(

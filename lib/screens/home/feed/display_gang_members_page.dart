@@ -93,7 +93,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                     ),
                     // The content inside the overlay.
                     child: Container(
-                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 250 : 100),
+                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 250 : 155),
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
@@ -194,6 +194,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                           ),
                           widget.gangDetails.createBy == USER_ID ? GestureDetector(
                             onTap: () {
+                              editNameDialogue(context);
                             },
                             child: Row(
                               children: [
@@ -423,4 +424,176 @@ class MyFlexiableAppBar extends StatelessWidget {
       ),
     );
   }
+}
+
+void editNameDialogue(BuildContext context) {
+
+  showGeneralDialog(
+      context: context,
+      pageBuilder: (context, anim1, anim2) {},
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.4),
+      barrierLabel: '',
+      transitionBuilder: (context, anim1, anim2, child) {
+        return Transform.rotate(
+          angle: math.radians(anim1.value * 360),
+          child: Opacity(
+            opacity: anim1.value,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 0),
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  height: getDynamicHeight(300.0),
+                  width: getDynamicWidth(400.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        height: getDynamicHeight(300),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                            crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                GradientText(
+                                  'Edit Gang Name',
+                                  textAlign: TextAlign.center,
+                                  style: boldStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color( 0XffFD8B1F ),
+                                      Color( 0XffD152E0 ),
+                                      Color( 0Xff30D0DB ),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                                TextFormField(
+                                  //controller: controller,
+                                  //onChanged: onChanged,
+                                  maxLines: 1,
+                                  //textInputAction: textInputAction,
+                                  autocorrect: true,
+                                  obscureText: false,
+                                  keyboardType: TextInputType.text,
+                                  keyboardAppearance: Brightness.light,
+                                  autofocus: true,
+                                  //focusNode: focusNode,
+                                 // onFieldSubmitted: onFieldSubmitted,
+                                  cursorColor: Colors.blue,
+                                  maxLength: 15,
+                                 // onEditingComplete: onEditingComplete,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                      ),
+                                  decoration:  InputDecoration(
+                                    counterStyle: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: const BorderSide(color: Colors.transparent),
+                                    ),
+                                    hintText: "New Gang Name",
+                                    hintStyle: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 22,),
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide:
+                                      const BorderSide(color: Colors.transparent, width: 0.0),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    print(value);
+                                    if (value.isEmpty) {
+                                     // return validationText;
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                Container(
+                                  height: getDynamicHeight(55),
+                                  width: getDynamicWidth(180),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            begin: Alignment.topLeft, end: Alignment.bottomRight,
+                                            colors: [
+                                              Color(0XffFD8B1F),
+                                              Color(0XffD152E0),
+                                              Color(0Xff30D0DB),
+                                            ]),
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Center(
+                                            child: Text(
+                                              "Change",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        // These values are based on trial & error method
+                        alignment: Alignment(1.05, -1.05),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionDuration: Duration(milliseconds: 300));
 }

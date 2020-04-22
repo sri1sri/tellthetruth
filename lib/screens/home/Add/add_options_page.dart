@@ -117,6 +117,55 @@ class _F_AddOptionsState extends State<F_AddOptions> {
       home: new Scaffold(
           resizeToAvoidBottomPadding: false,
           backgroundColor:Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30,),
+              color: Colors.white,
+              onPressed: () {Navigator.pop(context, true);},
+            ),
+            elevation: 0,
+            actions: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  GestureDetector(
+                    child: Container(
+                      width: getDynamicWidth(180.0),
+                      padding: EdgeInsets.all(15.0),
+                      child: Center(
+                          child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.end,
+                              children: <Widget>[
+                                Container(),
+                                GradientText(
+                                  'Continue',
+                                  style: mediumStyle,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ),
+                                ),
+                              ])),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                    ),
+                    onTap: () {
+                      _submit();
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
           body: Padding(
             padding: const EdgeInsets.fromLTRB(15, 18, 15, 0),
             child: Container(
@@ -125,54 +174,6 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_ios,color: Colors.black,size: 30,),
-                          color: Colors.white,
-                          onPressed: () {Navigator.pop(context, true);},
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            GestureDetector(
-                              child: Container(
-                                width: getDynamicWidth(180.0),
-                                padding: EdgeInsets.all(15.0),
-                                child: Center(
-                                    child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.end,
-                                        children: <Widget>[
-                                          Container(),
-                                          GradientText(
-                                            'Continue',
-                                            style: mediumStyle,
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0XffFD8B1F),
-                                                Color(0XffD152E0),
-                                                Color(0Xff30D0DB),
-                                              ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                            ),
-                                          ),
-                                        ])),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                              ),
-                              onTap: () {
-                                _submit();
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
                     Form(
                       key: _formKey,
                       child: Column(

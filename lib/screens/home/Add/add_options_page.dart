@@ -199,7 +199,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             topPadding:20,
                             hintFont: 16,
                             backTextStyle: backgroundText1,
-                            height: 40,
+                            height: 50,
                             showCounterStyle: false,
 
                           ),
@@ -281,7 +281,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                             textInputAction: TextInputAction.done,
                             focusNode: _optionFourFocusNode,
                             onEditingComplete: _submit,
-                            lines:2,
+                            lines:1,
                             length:48,
                             textFont:16,
                             validationText:"Add your options",

@@ -106,7 +106,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 ),
                 // The content inside the overlay.
                 child: Container(
-                  height: getDynamicHeight(200),
+                  height: 200,
                   padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(

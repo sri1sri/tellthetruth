@@ -7,12 +7,11 @@ import 'package:overlay_container/overlay_container.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
-import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
+import 'package:tellthetruth/landing_page.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
-
 import '../../../database_model/user_details.dart';
 import '../../../firebase/api_path.dart';
 
@@ -49,17 +48,19 @@ class _F_GangMembersState extends State<F_GangMembers> {
   bool scrollVisible = true;
   bool loading = true;
   List<UserDetails> users = [];
+//  List<dynamic> gangUsersID = [];
+
+  bool showRemove = false;
 
   @override
   void initState() {
+//    gangUsersID = widget.gangDetails.gangUserIDS;
     getUsersDetails(widget.gangDetails.gangUserIDS);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.gangDetails.gangUserIDS);
-
     return offlineWidget(context);
   }
 
@@ -92,7 +93,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                     ),
                     // The content inside the overlay.
                     child: Container(
-                      height: getDynamicHeight(200),
+                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 250 : 100),
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
@@ -110,8 +111,13 @@ class _F_GangMembersState extends State<F_GangMembers> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GestureDetector(
+
+                          widget.gangDetails.createBy == USER_ID ? GestureDetector(
                             onTap: () {
+                              setState(() {
+                                showRemove = true;
+                                _dropdownShown = false;
+                              });
                             },
                             child: Row(
                               children: [
@@ -120,19 +126,55 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                   width: getDynamicWidth(5),
                                 ),
                                 Text(
+                                  "Remove people",
+                                  style: answerStyleBlur,
+                                ),
+                              ],
+                            ),
+                          ) : Container(height: 0, width: 0,),
+                          Divider(
+                            thickness: 1,
+                            color: Colors.black54,
+                          ),
+
+
+
+                          widget.gangDetails.createBy == USER_ID ? GestureDetector(
+                            onTap: () {
+                              DBreference.deleteGang(widget.gangDetails.gangID);
+                              setState(() {
+                                _dropdownShown = false;
+                              });
+                              GoToPage(context, LandingPage());
+                            },
+                            child: Row(
+                              children: [
+                                Icon(Icons.delete_forever),
+                                SizedBox(
+                                  width: getDynamicWidth(5),
+                                ),
+                                 Text(
                                   "Delete Group",
                                   style: answerStyleBlur,
                                 ),
                               ],
                             ),
-                          ),
+                          ) : Container(height: 0, width: 0,),
                           Divider(
                             thickness: 1,
                             color: Colors.black54,
                           ),
                           GestureDetector(
-                            onTap: () {
-                            },
+                            onTap: () async {
+                              widget.gangDetails.gangUserIDS.remove(USER_ID);
+                              setState(() {
+                                _dropdownShown = false;
+                              });
+                              final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
+                              DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+
+                              GoToPage(context, LandingPage());
+                              },
                             child: Row(
                               children: [
                                 Icon(Icons.clear),
@@ -150,7 +192,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                             thickness: 1,
                             color: Colors.black54,
                           ),
-                          GestureDetector(
+                          widget.gangDetails.createBy == USER_ID ? GestureDetector(
                             onTap: () {
                             },
                             child: Row(
@@ -165,7 +207,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                 ),
                               ],
                             ),
-                          )
+                          ) : Container(height: 0, width: 0,)
                         ],
                       ),
                     ),
@@ -210,8 +252,25 @@ class _F_GangMembersState extends State<F_GangMembers> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              leading: Image.asset("images/boy.png"),
+              leading: Image.asset(users[index].gender == 'Male' ? "images/boy.png" : "images/girl.png"),
               title: Text(users[index].username,style: answerStyleBlur1,),
+              trailing: showRemove ?
+              GestureDetector(
+                onTap: (){
+
+                  widget.gangDetails.gangUserIDS.remove(users[index].userID);
+
+                  final gangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
+                  DBreference.updateGang(gangDetails, widget.gangDetails.gangID);
+
+//                  setState(() {
+//                    gangUsersID = widget.gangDetails.gangUserIDS;
+//                  });
+
+                },
+                  child: Text('remove'))
+                  :
+              Container(height: 0, width: 0,),
             ),
           );
         },
@@ -364,131 +423,4 @@ class MyFlexiableAppBar extends StatelessWidget {
       ),
     );
   }
-}
-
-void showFancyCustomDialog(BuildContext context) {
-  showGeneralDialog(
-      context: context,
-      pageBuilder: (context, anim1, anim2) {},
-      barrierDismissible: true,
-      barrierColor: Colors.black.withOpacity(0.4),
-      barrierLabel: '',
-      transitionBuilder: (context, anim1, anim2, child) {
-        return Transform.rotate(
-          angle: math.radians(anim1.value * 360),
-          child: Opacity(
-            opacity: anim1.value,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 150.0, bottom: 400),
-              child: Dialog(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  height: getDynamicHeight(250.0),
-                  width: getDynamicWidth(250.0),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: double.infinity,
-                        height: getDynamicHeight(250),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.delete_forever),
-                                      SizedBox(
-                                        width: getDynamicWidth(5),
-                                      ),
-                                      Text(
-                                        "Delete Group",
-                                        style: answerStyleBlur,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: Colors.black54,
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.clear),
-                                      SizedBox(
-                                        width: getDynamicWidth(5),
-                                      ),
-                                      Text(
-                                        "Leave Group",
-                                        style: answerStyleBlur,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Divider(
-                                  thickness: 1,
-                                  color: Colors.black54,
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.edit),
-                                      SizedBox(
-                                        width: getDynamicWidth(5),
-                                      ),
-                                      Text(
-                                        "Edit Name",
-                                        style: answerStyleBlur,
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        // These values are based on trial & error method
-                        alignment: Alignment(1.05, -1.05),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Icon(
-                              Icons.close,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-      transitionDuration: Duration(milliseconds: 300));
 }

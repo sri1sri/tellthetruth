@@ -177,7 +177,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                                           children: <Widget>[
                                             Container(),
                                             GradientText(
-                                              'Continue',
+                                              'Next',
                                               style: mediumStyle,
                                               gradient: LinearGradient(
                                                 colors: [

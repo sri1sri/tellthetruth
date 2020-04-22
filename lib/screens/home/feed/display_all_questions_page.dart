@@ -1,7 +1,9 @@
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
+import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:overlay_container/overlay_container.dart';
@@ -11,6 +13,7 @@ import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
+import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
@@ -18,17 +21,18 @@ import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/screens/home/feed/test.dart';
 import 'display_single_question_page.dart';
-import 'disaply_gang_members_page.dart';
+import 'display_gang_members_page.dart';
 
 class AllQuestions extends StatelessWidget {
   AllQuestions({@required this.gangDetails});
   GangDetails gangDetails;
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_AllQuestions(gangDetails: gangDetails,),
+      child: F_AllQuestions(
+        gangDetails: gangDetails,
+      ),
     );
   }
 }
@@ -37,14 +41,13 @@ class F_AllQuestions extends StatefulWidget {
   F_AllQuestions({@required this.gangDetails});
   GangDetails gangDetails;
 
-
   @override
   _F_AllQuestionsState createState() => _F_AllQuestionsState();
 }
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
-
   bool _dropdownShown = false;
+  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   void _toggleDropdown() {
     setState(() {
@@ -52,16 +55,28 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     });
   }
 
-  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
-
-  String whtsAppMessage = "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!";
-
+  String whtsAppMessage =
+      "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!";
 
   @override
   void initState() {
     super.initState();
-    print(whtsAppMessage.replaceAll(' ', '%20'));
 
+    print(widget.gangDetails.gangID);
+
+    Firestore.instance
+        .collection('${API_SUFFIX}gangs')
+        .document(widget.gangDetails.gangID)
+        .collection('questions')
+        .where('delete_at',
+            isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
+        .snapshots()
+        .listen((data) => data.documents.forEach(
+              (element) {
+                DBreference.deleteQuestion(
+                    widget.gangDetails.gangID, element.documentID);
+              },
+            ));
   }
 
   @override
@@ -97,14 +112,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               ),
               OverlayContainer(
                 show: _dropdownShown,
-                // Let's position this overlay to the right of the button.
                 position: OverlayContainerPosition(
-                  // Left position.
                   -200,
                   -50,
-                  // Bottom position.
                 ),
-                // The content inside the overlay.
                 child: Container(
                   height: 200,
                   padding: const EdgeInsets.all(20),
@@ -126,7 +137,11 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          SocialShare.shareWhatsapp("I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '12345'. Believe me this is awesome game");
+                          SocialShare.shareWhatsapp(
+                              "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '${widget.gangDetails.gangCode}'. Believe me this is awesome game");
+                          setState(() {
+                            _dropdownShown = false;
+                          });
                         },
                         child: Row(
                           children: [
@@ -136,10 +151,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                               width: 30,
                             ),
                             SizedBox(
-                             width: getDynamicWidth(20),
+                              width: getDynamicWidth(20),
                             ),
                             Text(
-                              "Share",
+                              "Share code",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: 'Montserrat',
@@ -156,13 +171,19 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                       ),
                       GestureDetector(
                         onTap: () {
-                         // Navigator.pop(context);
                           Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.rotate,
-                                  duration: Duration(seconds: 1),
-                                  child: GangMembers(gangDetails: widget.gangDetails,)));
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rotate,
+                              duration: Duration(seconds: 1),
+                              child: GangMembers(
+                                gangDetails: widget.gangDetails,
+                              ),
+                            ),
+                          );
+                          setState(() {
+                            _dropdownShown = false;
+                          });
                         },
                         child: Row(
                           children: [
@@ -192,6 +213,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          setState(() {
+                            _dropdownShown = false;
+                          });
                         },
                         child: Row(
                           children: [
@@ -369,12 +393,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     );
   }
 
-
   Widget _buildContent(BuildContext context) {
     return StreamBuilder<List<QuestionDetails>>(
       stream: DBreference.readQuestions(widget.gangDetails.gangID),
       builder: (context, questionsSnapshot) {
-
         return questionsSnapshot.data != null
             ? questionsSnapshot.data.length != 0
                 ? GridView.count(
@@ -402,7 +424,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
   Widget _QuestionListCard(QuestionDetails questionData) {
     return StreamBuilder<InsightsDetails>(
-      stream: DBreference.myInsight(widget.gangDetails.gangID, questionData.questionID),
+      stream: DBreference.myInsight(
+          widget.gangDetails.gangID, questionData.questionID),
       builder: (context, snapshot) {
         final insightsData = snapshot.data;
         return ExpandPageTransition(

@@ -17,7 +17,7 @@ import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_
 
 import '../../../global_file/common_variables/app_functions.dart';
 import '../../../global_file/common_variables/app_functions.dart';
-import 'disaply_gang_members_page.dart';
+import 'display_gang_members_page.dart';
 import 'display_all_questions_page.dart';
 
 class FeedPage extends StatelessWidget {

@@ -47,7 +47,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
       ..load()
       ..show(
         anchorType: AnchorType.bottom,
-        anchorOffset: 40.0,
+        anchorOffset: 50.0,
       );
 
     return offlineWidget(context);

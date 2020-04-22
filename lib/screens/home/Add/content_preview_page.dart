@@ -376,7 +376,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                     color: Colors.white,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w600,
-                    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none),),
+                    fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),),
                 SizedBox(height: getDynamicHeight(10),),
                 Container(
                   decoration: BoxDecoration(
@@ -403,37 +403,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
               ],
             ),
 
-//
-//                      Column(
-//                    children: <Widget>[
-//                    Text(data.gangName),
-//                    ]
-//                  ),
-
-
-//          StreamBuilder<List<GangDetails>>(
-//              stream: DBreference.readGangs(),
-//              builder: (context, snapshot) {
-//                return ListItemsBuilder<GangDetails>(
-//                  snapshot: snapshot,
-//                  itemBuilder: (context, data) => g
-//
-////                      Column(
-////                    children: <Widget>[
-////                    Text(data.gangName),
-////                    ]
-////                  ),
-////                      Expanded(
-////                    child: SizedBox(
-////                      child: getVariableScaleCrousel(data),
-////                    ),
-////                  ),
-//                );
-//              },
-//          ),
-//
-
-            SizedBox(height: getDynamicHeight(50),),
+            SizedBox(height: getDynamicHeight(20),),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

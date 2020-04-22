@@ -200,11 +200,13 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height - 300,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    SizedBox(height: 50,),
                     Lottie.network("https://assets8.lottiefiles.com/packages/lf20_ssIwdK.json",height: getDynamicHeight(210),width: getDynamicWidth(210)),
+                   SizedBox(height: 50,),
                     Form(
                       key: _formKey,
                       child: BackForeTextInput(
@@ -225,6 +227,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                         showCounterStyle: true,
                       ),
                     ),
+                    SizedBox(height: 50,),
                   ],
                 ),
               ),

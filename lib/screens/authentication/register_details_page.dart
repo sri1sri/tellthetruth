@@ -56,6 +56,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   bool isLoading = false;
 
   Future<Null> showPicker(BuildContext context) async {
+    print(DateTime.now().year-17);
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: DateTime(2006),
@@ -321,11 +322,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                           color:
                                                               backgroundColor,
                                                         ),
-                                                        SizedBox(
-                                                          width:
-                                                              getDynamicWidth(
-                                                                  10),
-                                                        ),
+                                                        SizedBox(width: getDynamicWidth(10),),
                                                         Text(
                                                             customFormat2.format(
                                                                         selectedDate) ==
@@ -355,14 +352,11 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
-                                                width: getDynamicWidth(10),
-                                              ),
+                                              SizedBox(width: getDynamicWidth(10),),
                                             ],
                                           ),
                                         ),
                                         onPressed: () {
-                                          //FocusScope.of(context).unfocus();
                                           showPicker(context);
                                         },
                                       ),
@@ -370,6 +364,10 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                   ),
                                   SizedBox(
                                     height: getDynamicHeight(30),
+                                  ),
+                                  Text(
+                                    "Note: Age requriment is 17years.",
+                                    style: mediumStyle,
                                   ),
                                   Text(
                                     "Gender",

@@ -4,6 +4,7 @@ import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:lottie/lottie.dart';
+import 'package:overlay_container/overlay_container.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
@@ -76,6 +77,14 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   ScreenshotController screenshotController = ScreenshotController();
   File _imageFile;
+
+  bool _dropdownShown = false;
+
+  void _toggleDropdown() {
+    setState(() {
+      _dropdownShown = !_dropdownShown;
+    });
+  }
 
   void handleTick() {
 
@@ -252,22 +261,90 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                         2, '0' ) ),
                               ],
                             ),
-                            GestureDetector(
-                              child: CircleAvatar(
-                                backgroundImage:
-                                AssetImage(isAnswerAnonymos ? 'images/questionAskedAnonymous.png' :'images/questionNotAskedAnonymous.png' ),
-                                radius: 20,
-                                backgroundColor: Colors.transparent,
+
+                            IconButton(
+                              icon: Icon(
+                                Icons.more_vert,
+                                color: Colors.white,
                               ),
-                              onTap: () {
-                                final updateInsightDetails = InsightsDetails(isAnonymous: isAnswerAnonymos ? false : true);
-                                DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
-                                setState(() {
-                                  isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
-                                });
-                                showFancyCustomDialog(context, isAnswerAnonymos ? 'Now you are in anonymous mode, No one can know what you polled.' : 'Now you revealed you\'r identity, Everyone can see what you polled.');
-                              },
+                              onPressed: _toggleDropdown,
+                              color: Colors.white,
                             ),
+                            OverlayContainer(
+                              show: _dropdownShown,
+                              position: OverlayContainerPosition(
+                                -200,
+                                -50,
+                              ),
+                              child: Container(
+                                height: 130,
+                                padding: const EdgeInsets.all(20),
+                                margin: const EdgeInsets.only(top: 5),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.grey[300],
+                                      blurRadius: 1,
+                                      spreadRadius: 2,
+                                    )
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _dropdownShown = false;
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                                        child: Text(
+                                          "Report",
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: getDynamicTextSize(18),
+                                              decoration: TextDecoration.none),
+                                        ),
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: 1,
+                                      color: Colors.black54,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _dropdownShown = false;
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                              color: Colors.red,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: getDynamicTextSize(18),
+                                              decoration: TextDecoration.none),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+
+
+
                           ],
                         ),
                       ),
@@ -545,6 +622,23 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                       ),
 
                       GestureDetector(
+                        child: CircleAvatar(
+                          backgroundImage:
+                          AssetImage(isAnswerAnonymos ? 'images/questionAskedAnonymous.png' :'images/questionNotAskedAnonymous.png' ),
+                          radius: 20,
+                          backgroundColor: Colors.transparent,
+                        ),
+                        onTap: () {
+                          final updateInsightDetails = InsightsDetails(isAnonymous: isAnswerAnonymos ? false : true);
+                          DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
+                          setState(() {
+                            isAnswerAnonymos ? isAnswerAnonymos = false : isAnswerAnonymos = true;
+                          });
+                          showFancyCustomDialog(context, isAnswerAnonymos ? 'Now you are in anonymous mode, No one can know what you polled.' : 'Now you revealed you\'r identity, Everyone can see what you polled.');
+                        },
+                      ),
+
+                      GestureDetector(
                         onTap: () {
                           screenshotController.capture().then((File image) {
                             //Capture Done
@@ -557,26 +651,10 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
                               showFancyCustomDialogShare(context, _imageFile);
 
-
                             });
                           }).catchError((onError) {
                             print(onError);
                           });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          //  showFancyCustomDialog( context );
                         },
                         child: Row(
                           children: [
@@ -585,11 +663,15 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               child: Icon(
                                 Icons.share, color: Colors.white, ),
                             ),
-                            SizedBox( width: getDynamicWidth(5), ),
-                            Text( "Share", style: countStyle, ),
+//
                           ],
                         ),
                       ),
+
+
+
+
+
                     ],
                   ),
                 ),

@@ -49,15 +49,15 @@ class _F_FeedPageState extends State<F_FeedPage> {
     print('hello world admob test$appId');
     // FirebaseAdMob.instance.initialize(appId: getAppId());
 
-    bannerAd
-      ..load().then((loaded) {
-        if (loaded && this.mounted) {
-          bannerAd
-            ..show(
-              anchorOffset: 80.0,
-            );
-        }
-      });
+//    bannerAd
+//      ..load().then((loaded) {
+//        if (loaded && this.mounted) {
+//          bannerAd
+//            ..show(
+//              anchorOffset: 80.0,
+//            );
+//        }
+//      });
     super.initState();
   }
 

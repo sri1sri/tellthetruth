@@ -152,7 +152,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     setState(() {
       selectedGangID = gangIDs[0];
     });
-
   }
 
   @override

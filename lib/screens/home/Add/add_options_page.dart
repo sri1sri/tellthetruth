@@ -63,18 +63,25 @@ class _F_AddOptionsState extends State<F_AddOptions> {
 
     if (_validateAndSaveForm()) {
 
-      Navigator.push(context,
-          PageTransition(type: PageTransitionType.rippleRightDown,
-              duration: Duration(seconds: 1),
-              alignment: Alignment.bottomCenter,
-              child: ContentPreview(question: widget.question,
-                optionOne: _optionOne,
-                optionTwo: _optionTwo,
-                optionThree: _optionThree,
-                optionFour: _optionFour,
-              ),
-          ),
-      );
+      GoToPage(context, ContentPreview(question: widget.question,
+        optionOne: _optionOne,
+        optionTwo: _optionTwo,
+        optionThree: _optionThree,
+        optionFour: _optionFour,
+      ));
+
+//      Navigator.push(context,
+//          PageTransition(type: PageTransitionType.rippleRightDown,
+//              duration: Duration(seconds: 1),
+//              alignment: Alignment.bottomCenter,
+//              child: ContentPreview(question: widget.question,
+//                optionOne: _optionOne,
+//                optionTwo: _optionTwo,
+//                optionThree: _optionThree,
+//                optionFour: _optionFour,
+//              ),
+//          ),
+//      );
     } else {
       setState(() {
         isLoading = false;

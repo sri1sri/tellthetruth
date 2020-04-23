@@ -149,7 +149,9 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     // TODO: implement initState
     super.initState();
 
-    selectedGangID = gangIDs[0];
+    setState(() {
+      selectedGangID = gangIDs[0];
+    });
 
   }
 
@@ -188,7 +190,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
               padding: const EdgeInsets.only(left: 15.0, right: 15, top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: <Widget>[
                   GestureDetector(
                     child: Icon(
                       Icons.close,
@@ -203,9 +205,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          child: isAnonymous
-                              ? Text(
-                            'Anonymous mode',
+                          child: Text(
+                            isAnonymous ? 'Anonymous mode' : 'Reveal identity',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Montserrat',
@@ -213,15 +214,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                                 fontSize: getDynamicTextSize(20),
                                 decoration: TextDecoration.none),
                           )
-                              : Text(
-                            'Reveal identity ',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700,
-                                fontSize: getDynamicTextSize(20),
-                                decoration: TextDecoration.none),
-                          ),
                         ),
                         Text('Tap here to change',
                             style: TextStyle(
@@ -234,7 +226,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                     ),
                     onTap: () {
                       setState(() {
-                        isAnonymous ? isAnonymous = false : isAnonymous = true;
+                        isAnonymous = !isAnonymous;
                       });
                     },
                   ),
@@ -266,7 +258,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
             SizedBox(height: getDynamicHeight(50),),
             Container(
               child: Column(
-                children: [
+                children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
@@ -302,7 +294,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
-                      children: [
+                      children: <Widget>[
                         TranslationAnimatedWidget(
                           enabled: true,
                           duration: Duration(
@@ -371,7 +363,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
             SizedBox(height: getDynamicHeight(50),),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 Text("Select Gang",style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'Montserrat',
@@ -389,7 +381,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Flex(
                       direction: Axis.horizontal,
-                      children: [
+                      children: <Widget>[
                         Expanded(
                           child: SizedBox(
                             height:100,
@@ -480,20 +472,6 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     );
   }
 
-//  Widget getVariableScaleCrousel(GangDetails gangDetails) {
-//    return gangDetails != null ? FinitePager(
-//      scaleX: 0.8,
-//      scaleY: 0.7,
-//      scrollDirection: Axis.horizontal,
-//      onPageChanged: (index){
-//        //selectedIcon = icons[index];
-//      },
-//      children: <Widget>[
-//        for (var iconURL in icons)
-//          Lottie.network(iconURL,height: getDynamicHeight(200),width: getDynamicWidth(200))
-//      ],
-//    ) : Container(child: Text('Loading'),);
-//  }
 
   Widget _buildImage(String gangName) {
     return Container(
@@ -588,7 +566,7 @@ Widget OptionCard(BuildContext context, String Option) {
           const EdgeInsets.only(left: 15.0, right: 15.0, top: 20, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: <Widget>[
           Container(
             width: getDynamicWidth(MediaQuery.of(context).size.width / 1.3),
             child: GradientText(

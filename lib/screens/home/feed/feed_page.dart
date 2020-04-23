@@ -15,7 +15,9 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
+import '../../../firebase/admobs.dart';
 import '../../../global_file/common_variables/app_functions.dart';
+import '../../../main.dart';
 import 'display_gang_members_page.dart';
 import 'display_all_questions_page.dart';
 
@@ -41,15 +43,32 @@ class F_FeedPage extends StatefulWidget {
 
 class _F_FeedPageState extends State<F_FeedPage> {
   @override
-  Widget build(BuildContext context) {
-    FirebaseAdMob.instance.initialize(appId: getAppId());
-    createBannerAd()
-      ..load()
-      ..show(
-        anchorType: AnchorType.bottom,
-        anchorOffset: 50.0,
-      );
 
+  void initState() {
+    String appId = getAppId();
+    print('hello world admob test$appId');
+    // FirebaseAdMob.instance.initialize(appId: getAppId());
+
+    bannerAd
+      ..load().then((loaded) {
+        if (loaded && this.mounted) {
+          bannerAd
+            ..show(
+              anchorOffset: 80.0,
+            );
+        }
+      });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    print('disposed is called');
+    bannerAd?.dispose();
+    super.dispose();
+  }
+
+  Widget build(BuildContext context) {
     return offlineWidget(context);
   }
 
@@ -60,128 +79,129 @@ class _F_FeedPageState extends State<F_FeedPage> {
         child: Scaffold(
           backgroundColor: Color(0Xff30D0DB),
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(getDynamicHeight(240)),
-              child: ControlledAnimation(
-                  playback: Playback.MIRROR,
-                  tween: tween,
-                  duration: tween.duration,
-                  builder: (context, animation) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
+            preferredSize: Size.fromHeight(getDynamicHeight(240)),
+            child: ControlledAnimation(
+              playback: Playback.MIRROR,
+              tween: tween,
+              duration: tween.duration,
+              builder: (context, animation) {
+                return Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
                             animation["color1"],
                             animation["color2"],
                             animation["color3"],
                             // animation["color4"]
                           ])),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 40.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "........",
+                              style: TextStyle(color: Colors.transparent),
+                            ),
+                            Row(
                               children: [
                                 Text(
-                                  "........",
-                                  style: TextStyle(color: Colors.transparent),
+                                  'T',
+                                  style: logoStyle1,
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'T',
-                                      style: logoStyle1,
-                                    ),
-                                    Text('ell', style: logoStyle2),
-                                    SizedBox(
-                                      width: getDynamicWidth(5),
-                                    ),
-                                    Text(
-                                      'T',
-                                      style: logoStyle1,
-                                    ),
-                                    Text(
-                                      'he',
-                                      style: logoStyle2,
-                                    ),
-                                    SizedBox(
-                                      width: getDynamicWidth(5),
-                                    ),
-                                    Text(
-                                      'T',
-                                      style: logoStyle1,
-                                    ),
-                                    Text(
-                                      'ruth',
-                                      style: logoStyle2,
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.notifications,
-                                    color: Colors.white,
-                                    size: 30,
-                                  ),
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType
-                                              .rippleRightDown,
-                                          duration: Duration(seconds: 1),
-                                          child: GangMembers()),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: getDynamicHeight(30),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(greeting(),
-                                    style: TextStyle(
-                                        color: Colors.white38,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: getDynamicTextSize(40),
-                                        decoration: TextDecoration.none)),
+                                Text('ell', style: logoStyle2),
                                 SizedBox(
-                                  height: getDynamicHeight(5),
+                                  width: getDynamicWidth(5),
                                 ),
                                 Text(
-                                  "$USER_NAME",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getDynamicTextSize(26),
-                                      decoration: TextDecoration.none),
+                                  'T',
+                                  style: logoStyle1,
+                                ),
+                                Text(
+                                  'he',
+                                  style: logoStyle2,
+                                ),
+                                SizedBox(
+                                  width: getDynamicWidth(5),
+                                ),
+                                Text(
+                                  'T',
+                                  style: logoStyle1,
+                                ),
+                                Text(
+                                  'ruth',
+                                  style: logoStyle2,
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                            IconButton(
+                              icon: Icon(
+                                Icons.notifications,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              color: Colors.white,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.rippleRightDown,
+                                      duration: Duration(seconds: 1),
+                                      child: GangMembers()),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                    );
-                  })),
+                      SizedBox(
+                        height: getDynamicHeight(30),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(greeting(),
+                                style: TextStyle(
+                                    color: Colors.white38,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: getDynamicTextSize(40),
+                                    decoration: TextDecoration.none)),
+                            SizedBox(
+                              height: getDynamicHeight(5),
+                            ),
+                            Text(
+                              "$USER_NAME",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: getDynamicTextSize(26),
+                                  decoration: TextDecoration.none),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
           body: ClipRRect(
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(40.0),
                 topLeft: Radius.circular(40.0)),
             child:
-                Container(color: Colors.white, child: _buildContent(context)),
+            Container(color: Colors.white, child: _buildContent(context)),
           ),
         ),
       ),
@@ -192,7 +212,6 @@ class _F_FeedPageState extends State<F_FeedPage> {
     return StreamBuilder<List<GangDetails>>(
       stream: DBreference.readGangs(),
       builder: (context, snapshot) {
-
         if (snapshot.hasData) {
           List<GangDetails> data = snapshot.data;
           List<String> gName = [];
@@ -245,8 +264,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
           PageTransition(
             type: PageTransitionType.rippleLeftUp,
             duration: Duration(seconds: 1),
-            child: AllQuestions(
-                gangDetails: data),
+            child: AllQuestions(gangDetails: data),
           ),
         );
         //GoToPage(context, QuestionsPage());

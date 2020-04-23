@@ -1,7 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:firebase_admob/firebase_admob.dart';
 
-
+import '../main.dart';
 
 MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
   keywords: <String>['games'],
@@ -13,10 +13,13 @@ MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
 BannerAd createBannerAd() {
   return BannerAd(
     adUnitId: BannerAd.testAdUnitId,
-    size: AdSize.banner,
+
+    size: AdSize.smartBanner,
     targetingInfo: targetingInfo,
     listener: (MobileAdEvent event) {
-      print("BannerAd event $event");
+      // if (event == MobileAdEvent.loaded) {
+      //   bannerAd.show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
+      // }
     },
   );
 }
@@ -29,6 +32,7 @@ String getAppId() {
   }
   return null;
 }
+
 String getBannerAdUnitId() {
   if (Platform.isIOS) {
     return IOS_AD_UNIT_BANNER;
@@ -43,3 +47,4 @@ String ANDROID_APP_ID = 'ca-app-pub-9543395526409232~7748868325';
 
 String IOS_AD_UNIT_BANNER = 'ca-app-pub-9543395526409232/1973797468';
 String ANDROID_AD_UNIT_BANNER = 'ca-app-pub-9543395526409232/9656205735';
+

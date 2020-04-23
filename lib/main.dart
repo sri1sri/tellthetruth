@@ -1,9 +1,11 @@
 
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase/admobs.dart';
 import 'firebase/auth.dart';
 import 'landing_page.dart';
-
+BannerAd bannerAd;
 const MaterialColor white = const MaterialColor(
   0Xff30D0DB,
   const <int, Color>{
@@ -21,7 +23,10 @@ const MaterialColor white = const MaterialColor(
 );
 
 
-void main() => runApp(MyApp());
+void main(){
+  bannerAd = createBannerAd();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
 

@@ -143,7 +143,8 @@ class BackForeTextInput extends StatelessWidget {
             style: TextStyle(
                 fontSize: textFont,
                 fontWeight: FontWeight.w600,
-                foreground: Paint()..shader = linearGradient),
+//                foreground: Paint()..shader = linearGradient
+            ),
             decoration:  InputDecoration(
               counterStyle: TextStyle(
                 fontFamily: 'Montserrat',

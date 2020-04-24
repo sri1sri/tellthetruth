@@ -155,7 +155,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                 ),
                                  Text(
                                   "Delete Group",
-                                  style: answerStyleBlur,
+                                  style: smallTextStyleDark,
                                 ),
                               ],
                             ),
@@ -183,7 +183,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                 ),
                                 Text(
                                   "Leave Group",
-                                  style: answerStyleBlur,
+                                  style: smallTextStyleDark,
                                 ),
                               ],
                             ),
@@ -207,7 +207,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                 ),
                                 Text(
                                   "Edit Name",
-                                  style: answerStyleBlur,
+                                  style: smallTextStyleDark,
                                 ),
                               ],
                             ),
@@ -257,7 +257,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: Image.asset(users[index].gender == 'Male' ? "images/boy.png" : "images/girl.png"),
-              title: Text(users[index].username,style: answerStyleBlur1,),
+              title: Text(users[index].username,style: smallTextStyleDark,),
               trailing: showRemove ?
               GestureDetector(
                 onTap: (){
@@ -329,7 +329,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                           children: <Widget>[
                             Text(
                               name,
-                              style: answerStyleBlur1,
+                              style: smallTextStyleDark,
                             ),
                           ]),
                     ],
@@ -370,7 +370,7 @@ class MyFlexiableAppBar extends StatelessWidget {
                 height: getDynamicHeight(150), width: getDynamicWidth(150)),
             GradientText(
               gangDetails.gangName,
-              style: heavyStyle,
+                style: foregroundTextStyleLight,
               gradient: LinearGradient(
                 colors: [
                   Color(0XffFD8B1F),
@@ -383,7 +383,7 @@ class MyFlexiableAppBar extends StatelessWidget {
             ),
             Text(
               gangDetails.gangCode,
-              style: answerStyleBlur,
+              style: smallTextStyleDark,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -397,7 +397,7 @@ class MyFlexiableAppBar extends StatelessWidget {
                     ),
                     Text(
                       gangDetails.gangUserIDS.length.toString(),
-                      style: boldStyle,
+                      style: foregroundTextStyleDark,
                     )
                   ],
                 ),
@@ -413,7 +413,7 @@ class MyFlexiableAppBar extends StatelessWidget {
                     ),
                     Text(
                       usersCount.toString(),
-                      style: boldStyle,
+                      style: foregroundTextStyleDark,
                     )
                   ],
                 )
@@ -476,7 +476,7 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                                 GradientText(
                                   'Edit Gang Name',
                                   textAlign: TextAlign.center,
-                                  style: boldStyle,
+                                  style: foregroundTextStyleDark,
                                   gradient: LinearGradient(
                                     colors: [
                                       Color( 0XffFD8B1F ),
@@ -506,7 +506,7 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                                         ),
                                     decoration:  InputDecoration(
                                       counterStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
+                                        fontFamily: mainFontFamily,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18,
                                       ),
@@ -515,7 +515,7 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                                       ),
                                       hintText: "New gang name",
                                       hintStyle: TextStyle(
-                                        fontFamily: 'Montserrat',
+                                        fontFamily: mainFontFamily,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 22,),
                                       enabledBorder: const OutlineInputBorder(
@@ -561,7 +561,7 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                                               "Change",
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontFamily: 'Montserrat',
+                                                  fontFamily: mainFontFamily,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: getDynamicTextSize(22),decoration: TextDecoration.none),
                                             ),

@@ -10,6 +10,7 @@ import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -135,9 +136,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
+//    show_interstitial_ad += show_interstitial_ad;
+//    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
+//    Ads.showBannerAd();
     secondsLeft = ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch - DateTime.now().millisecondsSinceEpoch)~/1000).toInt();
 
     updateData();
@@ -174,12 +175,15 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
     final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymous: true);
     DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
+
+    super.initState();
   }
 
   @override
   void dispose() {
     super.dispose();
   }
+
 
 
   @override
@@ -301,12 +305,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         builder: (context, snapshot) {
                           final userDetails = snapshot.data;
 
-                          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? '${userDetails.username}\'s question' : 'fetching...',style: answerStyle);
+                          return isQuestionAnonymos ? Container(height: 0,width: 0,) : Text(userDetails.username != null ? '${userDetails.username}\'s question' : 'fetching...',style: smallTextStyleLight);
                         }
                     ),
-
-
-
                   ],
                 ),
               ),
@@ -340,7 +341,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                   GradientText(
                                     '${widget.questionDetails.question}?'.capitalize(),
                                     textAlign: TextAlign.center,
-                                    style: mediumStyle,
+                                    style: mediumTextStyleLight,
                                     gradient: LinearGradient(
                                       colors: [
                                         Color( 0XffFD8B1F ),
@@ -372,11 +373,12 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               ],
                               child: GestureDetector(
                                 onTap: () async{
-                                  if(!isPolled){
+                                  print(isPolled);
+                                  if(isPolled == false){
                                     if (await Vibration.hasAmplitudeControl()) {
                                       Vibration.vibrate(amplitude: 128);
                                     }
-                                    updateInsights(1);
+
                                     setState(() {
                                       optionOneBackgroundColor = Colors.white;
                                       isPolled = true;
@@ -384,6 +386,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                       isOptionOneSelected = true;
                                       addPollCount = true;
                                     });
+                                    updateInsights(1);
+
                                   }
                                 },
                                 child: OptionCard(
@@ -410,7 +414,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                     if (await Vibration.hasAmplitudeControl()) {
                                       Vibration.vibrate(amplitude: 128);
                                     }
-                                    updateInsights(2);
+
                                     setState(() {
                                       optionTwoBackgroundColor = Colors.white;
                                       isPolled = true;
@@ -418,6 +422,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                       isOptionTwoSelected = true;
                                       addPollCount = true;
                                     });
+                                    updateInsights(2);
                                   }
                                 },
                                 child: OptionCard(1,
@@ -442,7 +447,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                     if (await Vibration.hasAmplitudeControl()) {
                                       Vibration.vibrate(amplitude: 128);
                                     }
-                                    updateInsights(3);
+
                                     setState(() {
                                       optionThreeBackgroundColor = Colors.white;
                                       isPolled = true;
@@ -450,6 +455,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                       isOptionThreeSelected = true;
                                       addPollCount = true;
                                     });
+                                    updateInsights(3);
                                   }
 
                                 },
@@ -475,7 +481,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                     if (await Vibration.hasAmplitudeControl()) {
                                       Vibration.vibrate(amplitude: 128);
                                     }
-                                    updateInsights(4);
                                     setState(() {
                                       optionFourBackgroundColor = Colors.white;
                                       isPolled = true;
@@ -483,6 +488,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                       isOptionFourSelected = true;
                                       addPollCount = true;
                                     });
+                                    updateInsights(4);
                                   }
                                 },
                                 child: OptionCard(3,
@@ -514,7 +520,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           radius: 14,
                         ),
                         SizedBox( width: getDynamicWidth(5), ),
-                        Text('${addPollCount ? 1 + widget.questionDetails.viewCount : widget.questionDetails.viewCount}', style: countStyle, ),
+                        Text('${addPollCount ? 1 + widget.questionDetails.viewCount : widget.questionDetails.viewCount}', style: verySmallTextStyleLight, ),
                       ],
                     ),
                     GestureDetector(
@@ -539,7 +545,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           1 + widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
                               : widget.questionDetails.optionOnePolledCount+widget.questionDetails.optionTwoPolledCount+widget.questionDetails.optionThreePolledCount+widget.questionDetails.optionFourPolledCount
                           ).toString()}',
-                            style: countStyle, ),
+                            style: verySmallTextStyleLight, ),
                         ],
                       ),
                     ),
@@ -655,7 +661,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
               child: GradientText(
                 '${widget.questionDetails.options[optionIndex]}'.capitalize(),
-                style: answerStyle,
+                style: smallTextStyleLight,
                 gradient: LinearGradient(
                   colors: isOptionSelected ? [
                     Color( 0XffFD8B1F ),
@@ -673,7 +679,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
             ),
             GradientText(
               polledCount,
-              style: answerStyle,
+              style: smallTextStyleLight,
               gradient: LinearGradient(
                 colors: isOptionSelected ? [
                   Color( 0XffFD8B1F ),
@@ -718,7 +724,7 @@ class TimerText extends StatelessWidget {
           GradientText(
             '$value',
             textAlign: TextAlign.center,
-            style: boldStyle,
+            style: foregroundTextStyleLight,
             gradient: LinearGradient(
               colors: [
                 Color( 0XffFD8B1F ),
@@ -731,7 +737,7 @@ class TimerText extends StatelessWidget {
           ),
           GradientText(
             '$label',
-            style: answerStyle,
+            style: smallTextStyleLight,
             gradient: LinearGradient(
               colors: [
                 Color( 0XffFD8B1F ),
@@ -788,7 +794,7 @@ void showFancyCustomDialog(BuildContext context, String message) {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(message,style: answerStyleBlur,),
+                                Text(message,style: smallTextStyleDark,),
                               ],
                             ),
                           ),
@@ -869,7 +875,7 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                 GradientText(
                                   'Share',
                                   textAlign: TextAlign.center,
-                                  style: boldStyle,
+                                  style: foregroundTextStyleDark,
                                   gradient: LinearGradient(
                                     colors: [
                                       Color( 0XffFD8B1F ),
@@ -895,14 +901,15 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                           children: [
                                             Image(image: AssetImage('images/whatsapp.png'),height: getDynamicHeight(40),width: getDynamicWidth(40),),
                                             SizedBox(width: getDynamicWidth(15),),
-                                            Text("Share via WhatsApp",style: mediumStyle,),
+                                            Text("Share via WhatsApp",style: mediumTextStyleDark,),
                                           ],
                                         ),
                                       ),
                                       SizedBox(height: getDynamicHeight(15),),
                                       GestureDetector(
                                         onTap: () async{
-                                          await SocialShare.shareFacebookStory(image.path,"#B21F1F","#FDBB2D", "https://deep-link-url",  appId: "168006534448917");
+
+                                          await SocialShare.shareFacebookStory(image.path,"#B21F1F","#FDBB2D", "https://deep-link-url");
 
                                           Navigator.pop(context);
                                         },
@@ -910,7 +917,7 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                           children: [
                                             Image(image: AssetImage('images/facebook.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
                                             SizedBox(width: getDynamicWidth(15),),
-                                            Text("Share via Facebook",style: mediumStyle,),
+                                            Text("Share via Facebook",style: mediumTextStyleDark,),
                                           ],
                                         ),
                                       ),
@@ -925,7 +932,7 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                           children: [
                                             Image(image: AssetImage('images/instagram.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
                                             SizedBox(width: getDynamicWidth(15),),
-                                            Text("Share via Instagram",style: mediumStyle,),
+                                            Text("Share via Instagram",style: mediumTextStyleDark,),
                                           ],
                                         ),
                                       ),
@@ -939,7 +946,7 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                           children: [
                                             Image(image: AssetImage('images/gallery.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
                                             SizedBox(width: getDynamicWidth(15),),
-                                            Text("Save to Gallery",style: mediumStyle,),
+                                            Text("Save to Gallery",style: mediumTextStyleDark,),
                                           ],
                                         ),
                                       )
@@ -1022,7 +1029,7 @@ void showFancyCustomDialogBottom(BuildContext context, String message) {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(message,style: answerStyleBlur,),
+                                Text(message,style: smallTextStyleDark,),
                               ],
                             ),
                           ),

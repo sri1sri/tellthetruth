@@ -2,15 +2,14 @@ import 'dart:async';
 import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
-import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
-import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import '../../../landing_page.dart';
 
@@ -146,12 +145,11 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-
     setState(() {
       selectedGangID = gangIDs[0];
     });
+//    Ads.hideBannerAd();
+    super.initState();
   }
 
   @override
@@ -206,21 +204,11 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                         Container(
                           child: Text(
                             isAnonymous ? 'Anonymous mode' : 'Reveal identity',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700,
-                                fontSize: getDynamicTextSize(20),
-                                decoration: TextDecoration.none),
+                            style: mediumTextStyleLight,
                           )
                         ),
                         Text('Tap here to change',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w400,
-                                fontSize: getDynamicTextSize(12),
-                                decoration: TextDecoration.none))
+                            style: verySmallTextStyleLight)
                       ],
                     ),
                     onTap: () {
@@ -274,7 +262,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                             GradientText(
                               widget.question,
                               textAlign: TextAlign.center,
-                              style: mediumStyle,
+                              style: foregroundTextStyleLight,
                               gradient: LinearGradient(
                                 colors: [
                                   Color(0XffFD8B1F),
@@ -363,11 +351,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("Select Gang",style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    fontSize: getDynamicTextSize(17),decoration: TextDecoration.none),),
+                Text("Select Gang",
+                  style: mediumTextStyleLight,),
                 SizedBox(height: getDynamicHeight(10),),
                 Container(
                   decoration: BoxDecoration(
@@ -402,7 +387,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 GestureDetector(
                   child: Container(
                     width: getDynamicWidth(180.0),
-                    padding: EdgeInsets.all(15.0),
+                    padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 5, bottom: 5),
                     child: Center(
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -410,7 +395,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                               Container(),
                               GradientText(
                                 'Ask',
-                                style: mediumStyle,
+                                style: foregroundTextStyleLight,
                                 gradient: LinearGradient(
                                   colors: [
                                     Color(0XffFD8B1F),
@@ -430,14 +415,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                             ])),
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(30.0),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey,
-                              offset: Offset(2, 1),
-                              blurRadius: 6.0,
-                              spreadRadius: 1.0),
-                        ]),
+                        borderRadius: BorderRadius.circular(45.0),
+                      ),
                   ),
                   onTap: () {
                     _submit();
@@ -445,6 +424,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                 ),
               ],
             ),
+
+SizedBox(height: 30,)
           ],
         ),
       ),
@@ -485,7 +466,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
             children: <Widget>[
               GradientText(
                 gangName,
-                style: questionStyle1,
+                style: foregroundTextStyleLight,
                 gradient: LinearGradient(
                   colors: [
                     Color(0XffFD8B1F),
@@ -502,56 +483,56 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   }
 }
 
-class LabelText extends StatelessWidget {
-  LabelText({this.label, this.value});
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          GradientText(
-            '$value',
-            textAlign: TextAlign.center,
-            style: boldStyle,
-            gradient: LinearGradient(
-              colors: [
-                Color(0XffFD8B1F),
-                Color(0XffD152E0),
-                Color(0Xff30D0DB),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          GradientText(
-            '$label',
-            style: answerStyle,
-            gradient: LinearGradient(
-              colors: [
-                Color(0XffFD8B1F),
-                Color(0XffD152E0),
-                Color(0Xff30D0DB),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//class LabelText extends StatelessWidget {
+//  LabelText({this.label, this.value});
+//
+//  final String label;
+//  final String value;
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Container(
+//      margin: EdgeInsets.symmetric(horizontal: 5),
+//      padding: EdgeInsets.all(10),
+//      decoration: BoxDecoration(
+//        borderRadius: BorderRadius.circular(15),
+//        color: Colors.white,
+//      ),
+//      child: Column(
+//        mainAxisSize: MainAxisSize.min,
+//        children: <Widget>[
+//          GradientText(
+//            '$value',
+//            textAlign: TextAlign.center,
+//            style: boldStyle,
+//            gradient: LinearGradient(
+//              colors: [
+//                Color(0XffFD8B1F),
+//                Color(0XffD152E0),
+//                Color(0Xff30D0DB),
+//              ],
+//              begin: Alignment.topLeft,
+//              end: Alignment.bottomRight,
+//            ),
+//          ),
+//          GradientText(
+//            '$label',
+//            style: answerStyle,
+//            gradient: LinearGradient(
+//              colors: [
+//                Color(0XffFD8B1F),
+//                Color(0XffD152E0),
+//                Color(0Xff30D0DB),
+//              ],
+//              begin: Alignment.topLeft,
+//              end: Alignment.bottomRight,
+//            ),
+//          ),
+//        ],
+//      ),
+//    );
+//  }
+//}
 
 Widget OptionCard(BuildContext context, String Option) {
   return Container(
@@ -570,7 +551,7 @@ Widget OptionCard(BuildContext context, String Option) {
             width: getDynamicWidth(MediaQuery.of(context).size.width / 1.3),
             child: GradientText(
               Option,
-              style: answerStyle,
+              style: mediumTextStyleLight,
               gradient: LinearGradient(
                 colors: [
                   Color(0XffFD8B1F),

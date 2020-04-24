@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -23,6 +24,13 @@ class F_TermsAndServices extends StatefulWidget {
 
 class _F_TermsAndServices extends State<F_TermsAndServices> {
   int _n = 0;
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
@@ -98,12 +106,12 @@ class _F_TermsAndServices extends State<F_TermsAndServices> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(title,
-              style: answerStyleBlur1,
+              style: mediumTextStyleDark,
 
             ),
             SizedBox(height: getDynamicHeight(10),),
             Text(description,
-              style: answerStyleBlur,)
+              style: smallTextStyleDark,)
           ],
         ),
       ),

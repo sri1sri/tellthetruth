@@ -71,7 +71,7 @@ class _F_EditPost extends State<F_EditPost> {
                 SizedBox(height: getDynamicHeight(10),),
                 Lottie.network('https://assets3.lottiefiles.com/private_files/lf30_mAyV0V.json',height: getDynamicHeight(400),width: getDynamicWidth(400)),
                 SizedBox(height: getDynamicHeight(20),),
-                Text("This Feature is not yet build, we are working on it....!",style: boldStyle,)
+                Text("This Feature is not yet build, we are working on it....!",style: foregroundTextStyleDark,)
 
               ],
             ),

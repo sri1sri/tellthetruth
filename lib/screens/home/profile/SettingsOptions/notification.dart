@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -22,6 +23,13 @@ class F_Notifications extends StatefulWidget {
 
 class _F_Notifications extends State<F_Notifications> {
   bool isSwitched = true;
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
@@ -89,9 +97,9 @@ class _F_Notifications extends State<F_Notifications> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
 
-            isSwitched != true ? Text("Enable Notification",style: answerStyleBlur1,)
+            isSwitched != true ? Text("Enable Notification",style: mediumTextStyleDark,)
             :
-            Text("Disable Notification",style: answerStyleBlur1,),
+            Text("Disable Notification",style: mediumTextStyleDark,),
 
 
             Switch(

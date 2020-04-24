@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -42,6 +43,12 @@ class _F_JoinGangState extends State<F_JoinGang> {
       return true;
     }
     return false;
+  }
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
   }
 
   Future<void> _submit() async {
@@ -165,6 +172,9 @@ class _F_JoinGangState extends State<F_JoinGang> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                            SizedBox(
+                              height: 20,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -182,11 +192,11 @@ class _F_JoinGangState extends State<F_JoinGang> {
                                 ),
                               ],
                             ),
-                            CircleAvatar(
-                              backgroundImage: AssetImage("images/male.png"),
-                              radius: 40,
-                              backgroundColor: Colors.transparent,
-                            ),
+//                            CircleAvatar(
+//                              backgroundImage: AssetImage("images/male.png"),
+//                              radius: 40,
+//                              backgroundColor: Colors.transparent,
+//                            ),
                             SizedBox(
                               height: 20,
                             ),
@@ -197,12 +207,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                               text: [
                                 "${greeting()} $USER_NAME, Let's join a new gang....!",
                               ],
-                              textStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getDynamicTextSize(26),
-                                  decoration: TextDecoration.none),
+                              textStyle: foregroundTextStyleLight,
                               textAlign: TextAlign.start,
                               alignment: AlignmentDirectional.topStart,
                               isRepeatingAnimation:
@@ -223,13 +228,8 @@ class _F_JoinGangState extends State<F_JoinGang> {
                           autofocus: true,
                           cursorColor: Colors.white,
                           onEditingComplete: _submit,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w700,
-                              fontSize: 26,
-                              decoration: TextDecoration.none),
-                          decoration: const InputDecoration(
+                          style: foregroundTextStyleLight,
+                          decoration: InputDecoration(
                             counterStyle: TextStyle(
                               color: Colors.white,
                             ),
@@ -237,12 +237,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                               borderSide: const BorderSide(color: Colors.white),
                             ),
                             hintText: 'Add gang code',
-                            hintStyle: TextStyle(
-                                color: Colors.white30,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 26,
-                                decoration: TextDecoration.none),
+                            hintStyle: foregroundTextStyleLight,
                             enabledBorder: const OutlineInputBorder(
                               borderSide: const BorderSide(
                                   color: Colors.transparent, width: 0.0),
@@ -262,8 +257,8 @@ class _F_JoinGangState extends State<F_JoinGang> {
                         children: <Widget>[
                           GestureDetector(
                             child: Container(
-                              width: getDynamicWidth(180.0),
-                              padding: EdgeInsets.all(15.0),
+                              width: getDynamicWidth(150.0),
+                              padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 5.0, bottom: 5.0),
                               child: Center(
                                   child: Row(
                                       mainAxisAlignment:
@@ -272,7 +267,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                                     Container(),
                                     GradientText(
                                       'Join',
-                                      style: mediumStyle,
+                                      style: foregroundTextStyleLight,
                                       gradient: LinearGradient(
                                         colors: [
                                           Color(0XffFD8B1F),
@@ -292,7 +287,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                                   ])),
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30.0),),
+                                  borderRadius: BorderRadius.circular(45.0),),
                             ),
                             onTap: () {
                               _submit();

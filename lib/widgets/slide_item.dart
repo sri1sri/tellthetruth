@@ -50,14 +50,14 @@ class SlideItem extends StatelessWidget {
                 ),
                 Text(
                   slideList[index].title,
-                  style: boldStyle,
+                  style: foregroundTextStyleDark,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
                   slideList[index].description,
-                  style: regularStyle,
+                  style: smallTextStyleDark,
                 ),
                 SizedBox(
                   height: 20,

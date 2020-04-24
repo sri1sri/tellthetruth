@@ -4,12 +4,15 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:social_share/social_share.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/global_file/common_widgets/platform_alert/platform_alert_dialog.dart';
+import 'package:tellthetruth/global_file/social_share.dart';
 import 'package:tellthetruth/screens/home/profile/SettingsOptions/faq.dart';
 import 'package:tellthetruth/screens/home/profile/SettingsOptions/notification.dart';
 import 'package:tellthetruth/screens/home/profile/SettingsOptions/privacy_policy.dart';
@@ -40,7 +43,12 @@ class F_Profile extends StatefulWidget {
 
 class _F_ProfileState extends State<F_Profile> {
   ScreenshotController screenshotController = ScreenshotController();
-  File _imageFile;
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +79,7 @@ class _F_ProfileState extends State<F_Profile> {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(375)),
+                  preferredSize: Size.fromHeight(getDynamicHeight(335)),
                   child: ControlledAnimation(
                     playback: Playback.MIRROR,
                     tween: tween,
@@ -95,84 +103,74 @@ class _F_ProfileState extends State<F_Profile> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(USER_NAME,
-                                      style: TextStyle(
-                                          color: Colors.white54,
-                                          fontFamily: 'Montserrat',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: getDynamicTextSize(40),
-                                          decoration: TextDecoration.none)),
-                                  SizedBox(
-                                    height: getDynamicHeight(5),
+                                  Container(
+                                    child: Text(USER_NAME,
+                                        style: backgroundTextStyleMedium,),
+                                    height: 80,
                                   ),
                                   Text(
                                     USER_EMAIL,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: getDynamicTextSize(18),
-                                        decoration: TextDecoration.none),
+                                    style: foregroundTextStyleLight,
                                   ),
-                                  SizedBox(
-                                    height: getDynamicHeight(10),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      GestureDetector(
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              USER_QUESTION_COUNT,
-                                              style: heavyStyle,
-                                            ),
-                                            SizedBox(
-                                              height: getDynamicHeight(10),
-                                            ),
-                                            Text(
-                                              "Questions Posted",
-                                              style: answerStyle,
-                                            ),
-                                          ],
-                                        ),
-                                        onTap: () {
-                                          screenshotController
-                                              .capture()
-                                              .then((File image) async {
-//                                            setState(() async{
-//                                              _imageFile = image;
-//                                            });
-
-                                          }).catchError((onError) {
-                                            print(onError);
-                                          });
-
-
-//                                          final ByteData bytess = await rootBundle.load(_imageFile.path);
-//                                          await Share.file('esys image', 'esys.png', bytess.buffer.asUint8List(), 'image/png', text: 'He');
-                                        },
-                                      ),
-                                      SizedBox(
-                                        width: getDynamicWidth(50),
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            USER_POINTS,
-                                            style: heavyStyle,
-                                          ),
-                                          SizedBox(
-                                            height: getDynamicHeight(10),
-                                          ),
-                                          Text(
-                                            "Poins Earned",
-                                            style: answerStyle,
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  )
+//                                  Row(
+//                                    mainAxisAlignment: MainAxisAlignment.center,
+//                                    children: [
+//                                      GestureDetector(
+//                                        child: Column(
+//                                          children: [
+//                                            Text(
+//                                              USER_QUESTION_COUNT,
+//                                              style: heavyStyle,
+//                                            ),
+//                                            SizedBox(
+//                                              height: getDynamicHeight(10),
+//                                            ),
+//                                            Text(
+//                                              "Questions Posted",
+//                                              style: answerStyle,
+//                                            ),
+//                                          ],
+//                                        ),
+//                                        onTap: () {
+//                                          screenshotController
+//                                              .capture()
+//                                              .then((File image) async {
+////                                            setState(() async{
+////                                              _imageFile = image;
+////                                            });
+//                                            await SocialShare.shareInstagramStory(image.path, "#B21F1F", "#FDBB2D", "https://deep-link-url");
+//
+//
+//                                          }).catchError((onError) {
+//                                            print(onError);
+//                                          });
+//
+//
+//
+////                                          final ByteData bytess = await rootBundle.load(_imageFile.path);
+////                                          await Share.file('esys image', 'esys.png', bytess.buffer.asUint8List(), 'image/png', text: 'He');
+//                                        },
+//                                      ),
+//                                      SizedBox(
+//                                        width: getDynamicWidth(50),
+//                                      ),
+//                                      Column(
+//                                        children: [
+//                                          Text(
+//                                            USER_POINTS,
+//                                            style: heavyStyle,
+//                                          ),
+//                                          SizedBox(
+//                                            height: getDynamicHeight(10),
+//                                          ),
+//                                          Text(
+//                                            "Poins Earned",
+//                                            style: answerStyle,
+//                                          ),
+//                                        ],
+//                                      )
+//                                    ],
+//                                  )
                                 ],
                               ),
                             ),
@@ -231,7 +229,7 @@ class _F_ProfileState extends State<F_Profile> {
                       'Version 1.0.0',
                       style: TextStyle(
                         color: Colors.black45,
-                        fontFamily: 'Montserrat',
+                        fontFamily: mainFontFamily,
                         fontSize: getDynamicTextSize(15),
                         fontWeight: FontWeight.w600,
                       ),
@@ -296,14 +294,7 @@ class _F_ProfileState extends State<F_Profile> {
             ),
             Text(
               title,
-              style: TextStyle(
-                color: Colors.black87,
-                letterSpacing: 1.5,
-                fontSize: getDynamicTextSize(20),
-                fontWeight: FontWeight.w600,
-                //fontWeight: FontWeight.bold,
-                fontFamily: 'Montserrat',
-              ),
+              style: mediumTextStyleDark,
             ),
           ],
         ),

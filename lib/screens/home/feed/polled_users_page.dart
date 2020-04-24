@@ -130,7 +130,7 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(userData.username,style: answerStyleBlur1,),
+                      Text(userData.username,style: mediumTextStyleDark,),
                     ]
                 ),
               ],
@@ -138,7 +138,7 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Option ${insightData.optionSelected != null ? insightData.optionSelected.toString() : 'not selected'}',style: answerStyleBlur,),
+                  Text('Option ${insightData.optionSelected != null ? insightData.optionSelected.toString() : 'not selected'}',style: smallTextStyleDark,),
                 ]
             ),
           ],

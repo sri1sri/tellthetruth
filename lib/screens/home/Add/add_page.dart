@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -40,7 +41,7 @@ class _F_AddPageState extends State<F_AddPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+//    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -100,13 +101,9 @@ class _F_AddPageState extends State<F_AddPage> {
                                   print("Tap Event");
                                 },
                                 text: [
-                                  "Good evening $USER_NAME, ready to do something exiciting ?",
+                                  "${greeting()} $USER_NAME, ready to do something exiciting ?",
                                 ],
-                                textStyle: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                textStyle:foregroundTextStyleLight,
                                 textAlign: TextAlign.center,
                                 alignment: AlignmentDirectional.topCenter,
                                 isRepeatingAnimation: false,// or Alignment.topLeft

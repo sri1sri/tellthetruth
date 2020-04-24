@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -34,6 +35,13 @@ class F_Support extends StatefulWidget {
 
 class _F_Support extends State<F_Support> {
   int _n = 0;
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
@@ -103,7 +111,7 @@ class _F_Support extends State<F_Support> {
               children: [
                 Text(
                   "For any queries please contact us",
-                  style: answerStyleBlur,
+                  style: smallTextStyleDark,
                 ),
                 SizedBox(height: getDynamicHeight(20),),
                 Padding(
@@ -135,7 +143,7 @@ class _F_Support extends State<F_Support> {
                                 Center(
                                   child: GradientText(
                                     '209tellthetruth@gmail.com',
-                                    style: regularStyle,
+                                    style: smallTextStyleDark,
                                     gradient: LinearGradient(
                                       colors: [
                                         Color(0XffFD8B1F),

@@ -162,16 +162,15 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
 //
                   GestureDetector(
                     child: Container(
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
                       child: Center(
                           child: Row(
                               mainAxisAlignment:
                               MainAxisAlignment.end,
                               children: <Widget>[
-                                Container(),
                                 GradientText(
                                   'Next',
-                                  style: mediumStyle,
+                                  style: foregroundTextStyleLight,
                                   gradient: LinearGradient(
                                     colors: [
                                       Color(0XffFD8B1F),
@@ -183,8 +182,8 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                                   ),
                                 ),
                               ])),
+//                      color: Colors.red,
                       decoration: BoxDecoration(
-                        color: Colors.white,
                         borderRadius: BorderRadius.circular(15.0),
                       ),
                     ),
@@ -200,7 +199,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: Container(
-                height: MediaQuery.of(context).size.height - 300,
+                height: MediaQuery.of(context).size.height - 200,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -212,7 +211,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                       child: BackForeTextInput(
                         controller: _questionController,
                         backText: ["Question", "Frage", "Domanda","प्रश्न","Funso","Pertanyaan","Quaestio","Demando"],
-                        onChanged: (value)=> _questionController.text = value,
+//                        onChanged: (value)=> _questionController.text = value,
                         onEditingComplete: _submit,
                         textInputAction: TextInputAction.done,
                         lines:3,
@@ -222,7 +221,7 @@ class _F_AddQuestionState extends State<F_AddQuestion> {
                         hintText:"Add your Question",
                         topPadding:25,
                         hintFont: 24,
-                        backTextStyle: backgroundText,
+                        backTextStyle: backgroundTextStyleMedium,
                         height: 180,
                         showCounterStyle: true,
                       ),

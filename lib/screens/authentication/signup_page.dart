@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +59,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
     super.dispose();
   }
 
+
   Future<void> _submit() async {
     try {
       await model.submit();
@@ -83,6 +85,12 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
         : _emailFocusNode;
 
     FocusScope.of(context).requestFocus(newFocus);
+  }
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
   }
 
   @override
@@ -121,7 +129,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                       ),
                       GradientText(
                         'Sign Up',
-                        style: heavyStyle,
+                        style: backgroundTextStyleLight,
                         gradient: LinearGradient(
                           colors: [
                             Color(0XffFD8B1F),
@@ -196,7 +204,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                                           color: subBackgroundColor,
                                         ),
                                         labelText: "Register your email",
-                                        labelStyle: regularStyle,
+                                        labelStyle: smallTextStyleDark,
                                         errorText: model.emailErrorText,
                                         enabled: model.isLoading == false,
                                         //fillColor: Colors.redAccent,
@@ -248,7 +256,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                                           color: subBackgroundColor,
                                         ),
                                         labelText: "Enter your Password",
-                                        labelStyle: regularStyle,
+                                        labelStyle: smallTextStyleDark,
                                         errorText: model.passwordErrorText,
                                         enabled: model.isLoading == false,
                                         //fillColor: Colors.redAccent,
@@ -298,7 +306,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                                   Container(),
                                   GradientText(
                                     'Next',
-                                    style: boldStyle,
+                                    style: foregroundTextStyleDark,
                                     gradient: LinearGradient(
                                       colors: [
                                         Color(0XffFD8B1F),
@@ -341,11 +349,11 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text("Already have an account?", style: mediumStyle),
+                        Text("Already have an account?", style: mediumTextStyleDark),
                         FlatButton(
                           child: GradientText(
                             'Login',
-                            style: mediumStyle,
+                            style: mediumTextStyleDark,
                             gradient: LinearGradient(
                               colors: [
                                 Color(0XffFD8B1F),

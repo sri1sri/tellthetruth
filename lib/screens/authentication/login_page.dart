@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -83,7 +84,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+//    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -124,7 +125,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                       ),
                       GradientText(
                         'LogIn',
-                        style: heavyStyle,
+                        style: backgroundTextStyleLight,
                         gradient: LinearGradient(
                           colors: [
                             Color(0XffFD8B1F),
@@ -198,7 +199,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                                         color: subBackgroundColor,
                                       ),
                                       labelText: "Enter your email",
-                                      labelStyle: regularStyle,
+                                      labelStyle: smallTextStyleDark,
                                       errorText: model.emailErrorText,
                                       enabled: model.isLoading == false,
                                       //fillColor: Colors.redAccent,
@@ -248,7 +249,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                                         color: subBackgroundColor,
                                       ),
                                       labelText: "Enter your Password",
-                                      labelStyle: regularStyle,
+                                      labelStyle: smallTextStyleDark,
                                       border: new OutlineInputBorder(
                                         borderRadius:
                                             new BorderRadius.circular(5.0),
@@ -267,7 +268,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                                 FlatButton(
                                   child: GradientText(
                                     'Forgot password?',
-                                    style: mediumStyle,
+                                    style: mediumTextStyleDark,
                                     gradient: LinearGradient(
                                       colors: [
                                         Color(0XffFD8B1F),
@@ -319,7 +320,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                                   Container(),
                                   GradientText(
                                     'Login',
-                                    style: boldStyle,
+                                    style: foregroundTextStyleDark,
                                     gradient: LinearGradient(
                                       colors: [
                                         Color(0XffFD8B1F),
@@ -368,11 +369,11 @@ class _F_LoginPageState extends State<F_LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text("Don't have an account?", style: mediumStyle),
+                        Text("Don't have an account?", style: mediumTextStyleDark),
                         FlatButton(
                           child: GradientText(
                             'Sign Up',
-                            style: mediumStyle,
+                            style: mediumTextStyleDark,
                             gradient: LinearGradient(
                               colors: [
                                 Color(0XffFD8B1F),

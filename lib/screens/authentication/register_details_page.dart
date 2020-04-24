@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gender_selection/gender_selection.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/firebase/firestore_service.dart';
@@ -165,6 +166,12 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   }
 
   @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
   }
@@ -197,7 +204,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                 ),
                 GradientText(
                   'Register',
-                  style: heavyStyle,
+                  style: backgroundTextStyleLight,
                   gradient: LinearGradient(
                     colors: [
                       Color(0XffFD8B1F),
@@ -264,7 +271,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                           color: subBackgroundColor,
                                         ),
                                         labelText: "Enter username",
-                                        labelStyle: regularStyle,
+                                        labelStyle: smallTextStyleDark,
                                         border: new OutlineInputBorder(
                                           borderRadius:
                                               new BorderRadius.circular(5.0),
@@ -290,7 +297,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                   ),
                                   Text(
                                     "Date Of Birth",
-                                    style: mediumStyle,
+                                    style: mediumTextStyleDark,
                                   ),
                                   SizedBox(
                                     height: getDynamicHeight(10),
@@ -331,13 +338,13 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                                                 ? 'Add birthday'
                                                                 : '${customFormat2.format(selectedDate)}',
                                                             style:
-                                                                regularStyle),
+                                                                smallTextStyleDark),
                                                       ],
                                                     ),
                                                   ),
                                                   GradientText(
                                                     'Change',
-                                                    style: mediumStyle,
+                                                    style: mediumTextStyleDark,
                                                     gradient: LinearGradient(
                                                       colors: [
                                                         Color(0XffFD8B1F),
@@ -366,14 +373,14 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                   ),
                                   Text(
                                     "Note: Age requriment is 17years.",
-                                    style: regularStyle,
+                                    style: smallTextStyleDark,
                                   ),
                                   SizedBox(
                                     height: getDynamicHeight(30),
                                   ),
                                   Text(
                                     "Gender",
-                                    style: mediumStyle,
+                                    style: mediumTextStyleDark,
                                   ),
 //                              SizedBox(height: 20,),
                                   GenderSelection(
@@ -433,7 +440,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                               Container(),
                               GradientText(
                                 'Submit',
-                                style: boldStyle,
+                                style: foregroundTextStyleDark,
                                 gradient: LinearGradient(
                                   colors: [
                                     Color(0XffFD8B1F),

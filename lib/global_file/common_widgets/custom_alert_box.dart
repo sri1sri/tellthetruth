@@ -25,19 +25,19 @@ CustomAlertBox(BuildContext context, String title, String desctiption, bool isSu
                         Lottie.network("https://assets8.lottiefiles.com/packages/lf20_BkscO3.json",height: getDynamicHeight(150),width: getDynamicWidth(150))
                     ),
                     SizedBox(height: getDynamicHeight(10),),
-                    Text(title,textAlign: TextAlign.center,style: questionStyleThin,),
+                    Text(title,textAlign: TextAlign.center,style: foregroundTextStyleDark,),
                     SizedBox(height: getDynamicHeight(20),),
-                    Text(desctiption,textAlign: TextAlign.center,style: answerStyleBlur,),
+                    Text(desctiption,textAlign: TextAlign.center,style: mediumTextStyleMedium,),
                     SizedBox(height: getDynamicHeight(20),),
                     GestureDetector(
                       onTap: onPressed,
 
                       child: Container(
                         child: isSuccess == true ? Text("OK Cool",style: TextStyle(color: Colors.green,
-                          fontFamily: 'Montserrat',
+                          fontFamily: mainFontFamily,
                           fontWeight: FontWeight.w600,
                           fontSize: getDynamicTextSize(20),)) : Text("Try Again",style: TextStyle(color: Colors.red,
-                          fontFamily: 'Montserrat',
+                          fontFamily: mainFontFamily,
                           fontWeight: FontWeight.w600,
                           fontSize: getDynamicTextSize(20),)),
                       ),

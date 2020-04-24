@@ -163,16 +163,11 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                         text: [
                                           "${widget.gangCode} is your gang code.\nSelect a dodo for your gang ...!",
                                         ],
-                                        textStyle: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                                        textStyle: foregroundTextStyleLight,
                                         textAlign: TextAlign.start,
                                         alignment: AlignmentDirectional.topStart,
                                         isRepeatingAnimation: false,// or Alignment.topLeft
                                       ),
-//
                                     ],
                                   ),
                                 ),
@@ -189,8 +184,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                   children: <Widget>[
                                     GestureDetector(
                                       child: Container(
-                                        width: getDynamicWidth(200.0),
-                                        padding: EdgeInsets.all(15.0),
+                                        width: getDynamicWidth(180.0),
+                                        padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 5.0, bottom: 5.0),
                                         child: Center(
                                             child: Row(
                                                 mainAxisAlignment:
@@ -199,7 +194,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                                   Container(),
                                                   GradientText(
                                                     'Create',
-                                                    style: mediumStyle,
+                                                    style: foregroundTextStyleLight,
                                                     gradient: LinearGradient(
                                                       colors: [
                                                         Color(0XffFD8B1F),
@@ -214,7 +209,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
                                                 ])),
                                         decoration: BoxDecoration(
                                             color: Colors.white,
-                                            borderRadius: BorderRadius.circular(30.0),),
+                                            borderRadius: BorderRadius.circular(45.0),),
                                       ),
                                       onTap: () {
                                         _submit();

@@ -35,7 +35,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
             color: Colors.grey, //                   <--- border color
             width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(45),
           color: Color(0xFFEFF4F8),
           boxShadow: softUiShadow,
           gradient: _active ? activeGradient : null,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 class Settings extends StatelessWidget {
@@ -22,6 +23,13 @@ class F_Settings extends StatefulWidget {
 }
 
 class _F_SettingsState extends State<F_Settings> {
+
+
+  @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

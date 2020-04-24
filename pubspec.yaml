@@ -82,6 +82,17 @@ flutter:
     - family: FingerPaint
       fonts:
         - asset: fonts/FingerPaint-Regular.ttf
+    - family: BalooBhaina2
+      fonts:
+        - asset: fonts/BalooBhaina2-Bold.ttf
+        - asset: fonts/BalooBhaina2-ExtraBold.ttf
+        - asset: fonts/BalooBhaina2-SemiBold.ttf
+        - asset: fonts/BalooBhaina2-Medium.ttf
+        - asset: fonts/BalooBhaina2-Regular.ttf
+
+
+
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

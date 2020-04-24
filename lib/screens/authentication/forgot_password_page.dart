@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -81,6 +82,12 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
   }
 
   @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
   }
@@ -118,7 +125,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                       ),
                       GradientText(
                         'Forgot Password',
-                        style: heavyStyle,
+                        style: backgroundTextStyleLight,
                         gradient: LinearGradient(
                           colors: [
                             Color(0XffFD8B1F),
@@ -186,7 +193,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                                           color: subBackgroundColor,
                                         ),
                                         labelText: "Enter registered email",
-                                        labelStyle: regularStyle,
+                                        labelStyle: smallTextStyleDark,
                                         border: new OutlineInputBorder(
                                           borderRadius:
                                           new BorderRadius.circular(5.0),
@@ -243,7 +250,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                                       Container(),
                                       GradientText(
                                         'Submit',
-                                        style: boldStyle,
+                                        style: foregroundTextStyleDark,
                                         gradient: LinearGradient(
                                           colors: [
                                             Color(0XffFD8B1F),
@@ -288,7 +295,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                         FlatButton(
                           child: GradientText(
                             'Go back to login',
-                            style: mediumStyle,
+                            style: mediumTextStyleDark,
                             gradient: LinearGradient(
                               colors: [
                                 Color(0XffFD8B1F),

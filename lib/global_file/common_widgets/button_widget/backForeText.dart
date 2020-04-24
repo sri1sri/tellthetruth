@@ -37,7 +37,7 @@ class BackForeText extends StatelessWidget {
             top: 18,
             child:FadeAnimatedTextKit(
                 text: backText,
-                textStyle: backgroundText,
+                textStyle: backgroundTextStyleMedium,
                 textAlign: TextAlign.center,
                 alignment: AlignmentDirectional.center // or Alignment.topLeft
             ),
@@ -45,7 +45,7 @@ class BackForeText extends StatelessWidget {
           Positioned(
             child: GradientText(
               foreText,
-              style: questionStyle1,
+              style: foregroundTextStyleLight,
               gradient: LinearGradient(
                 colors: [
                   Color(0XffFD8B1F),
@@ -117,7 +117,7 @@ class BackForeTextInput extends StatelessWidget {
           top: -10,
           child:FadeAnimatedTextKit(
               text: backText,
-              textStyle: backTextStyle,
+              textStyle: backgroundTextStyleMedium,
               textAlign: TextAlign.center,
               alignment: AlignmentDirectional.center // or Alignment.topLeft
           ),
@@ -140,14 +140,17 @@ class BackForeTextInput extends StatelessWidget {
             maxLength: length,
             onEditingComplete: onEditingComplete,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: textFont,
-                fontWeight: FontWeight.w600,
-//                foreground: Paint()..shader = linearGradient
-            ),
+            style: foregroundTextStyleDark,
+
+
+//            TextStyle(
+//                fontSize: textFont,
+//                fontWeight: FontWeight.w600,
+////                foreground: Paint()..shader = linearGradient
+//            ),
             decoration:  InputDecoration(
               counterStyle: TextStyle(
-                fontFamily: 'Montserrat',
+                fontFamily: mainFontFamily,
                 fontWeight: FontWeight.w600,
                 fontSize: showCounterStyle ? 17 : 0,
               ),
@@ -155,10 +158,7 @@ class BackForeTextInput extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.transparent),
               ),
               hintText: hintText,
-              hintStyle: TextStyle(
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w600,
-                fontSize: hintFont,),
+              hintStyle: foregroundTextStyleMedium,
               enabledBorder: const OutlineInputBorder(
                 borderSide:
                 const BorderSide(color: Colors.transparent, width: 0.0),

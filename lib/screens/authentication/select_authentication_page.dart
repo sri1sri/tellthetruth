@@ -1,6 +1,7 @@
 
 import 'package:gradient_text/gradient_text.dart';
 import 'package:flutter/material.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
@@ -50,6 +51,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
 
   @override
   void initState() {
+//    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -241,7 +243,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                                   "Log In",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: mainFontFamily,
                                       fontWeight: FontWeight.w700,
                                       fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
                                 ),
@@ -259,9 +261,9 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   Text("___________________",style: answerStyleBlur,),
-                   Text(" Or ",style: answerStyleBlur,),
-                    Text("___________________",style: answerStyleBlur,),
+                   Text("___________________",style: smallTextStyleDark,),
+                   Text(" Or ",style: smallTextStyleDark,),
+                    Text("___________________",style: smallTextStyleDark,),
                   ],
                 ),
               ),
@@ -269,11 +271,11 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text("Don't have an account?", style: mediumStyle),
+                  Text("Don't have an account?", style: mediumTextStyleDark),
                   FlatButton(
                     child: GradientText(
                       'Sign Up',
-                      style: mediumStyle,
+                      style: mediumTextStyleDark,
                       gradient: LinearGradient(
                         colors: [
                           Color(0XffFD8B1F),

@@ -18,7 +18,7 @@ class EmptyQuestions extends StatelessWidget {
               Lottie.network("https://assets4.lottiefiles.com/private_files/lf30_lmwiE8.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
               GradientText(
                 'You don\'t have any questions to play.',
-                style: boldStyle,
+                style: foregroundTextStyleDark,
                 textAlign: TextAlign.center,
                 gradient: LinearGradient(
                   colors: [
@@ -34,19 +34,19 @@ class EmptyQuestions extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Rules :', style: answerStyleBlur1),
+                  Text('Rules :', style: mediumTextStyleDark),
                   SizedBox(height: getDynamicHeight(10.0),),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        Text('- After 24hrs of add question polling will be closed. But questions can be viewed for 48hrs. After that questions will be removed.', style: answerStyleBlur,),
+                        Text('- After 24hrs of add question polling will be closed. But questions can be viewed for 48hrs. After that questions will be removed.', style: smallTextStyleDark,),
                         SizedBox(height: getDynamicHeight(10.0),),
-                        Text('- By default questioned & polled users identity will anonymous.', style: answerStyleBlur),
+                        Text('- By default questioned & polled users identity will anonymous.', style: smallTextStyleDark),
                         SizedBox(height: getDynamicHeight(10.0),),
-                        Text('- If you want you can reveal your identity any time while answering or while adding question.', style: answerStyleBlur),
+                        Text('- If you want you can reveal your identity any time while answering or while adding question.', style: smallTextStyleDark),
                         SizedBox(height: getDynamicHeight(10.0),),
-                        Text('- You can share the question status directly to whatsapp, facebook, instagram stories from our app itself.', style: answerStyleBlur,),
+                        Text('- You can share the question status directly to whatsapp, facebook, instagram stories from our app itself.', style: smallTextStyleDark,),
                         SizedBox(height: getDynamicHeight(40.0),),
                       ],
                     ),

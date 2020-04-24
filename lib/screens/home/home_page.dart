@@ -17,8 +17,8 @@ const backgroundGradient = LinearGradient(colors: <Color>[
   Color(0XffD152E0),
   Color(0Xff30D0DB),
 ], begin: Alignment.topLeft, end: Alignment.bottomRight);
-class HomePage extends StatelessWidget {
 
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,8 +39,8 @@ class _F_HomePageState extends State<F_HomePage> {
   final Profile _profilePage = Profile();
 
   Widget _showPage = new FeedPage();
-  Widget _pageChooser(int page){
-    switch(page){
+  Widget _pageChooser(int page) {
+    switch (page) {
       case 0:
         return _dashboardPage;
         break;
@@ -56,8 +56,9 @@ class _F_HomePageState extends State<F_HomePage> {
         );
     }
   }
+
   GlobalKey _bottomNavigationKey = GlobalKey();
-  
+
   @override
   void initState() {
     // TODO: implement initState
@@ -66,62 +67,63 @@ class _F_HomePageState extends State<F_HomePage> {
       DBreference = Provider.of<Database>(context, listen: false);
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder<UserDetails>(
         stream: DBreference.getUserDetails(USER_ID),
         builder: (context, snapshot) {
           final userDetails = snapshot.data;
-          USER_NAME = userDetails != null ? userDetails.username : 'fetching...';
-          USER_GENDER = userDetails != null ? userDetails.gender : 'fetching...';
-          USER_EMAIL = userDetails != null ? userDetails.emailID : 'fetching...';
+          USER_NAME =
+              userDetails != null ? userDetails.username : 'fetching...';
+          USER_GENDER =
+              userDetails != null ? userDetails.gender : 'fetching...';
+          USER_EMAIL =
+              userDetails != null ? userDetails.emailID : 'fetching...';
 
-        return offlineWidget(context);
-      }
-    );
+          return offlineWidget(context);
+        });
   }
 
-  Widget offlineWidget (BuildContext context) {
+  Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: ControlledAnimation(
-          playback: Playback.MIRROR,
-          tween: tween,
-          duration: tween.duration,
-    builder: (context, animation) {
-      return Container(
-        child: Scaffold(
-            bottomNavigationBar: CurvedNavigationBar(
-              key: _bottomNavigationKey,
-              index: pageIndex,
-              height: getDynamicHeight(70),
-              items: <Widget>[
-                Icon(Icons.dashboard, size: 30),
-                Icon(Icons.add, size: 30),
-                Icon(Icons.account_circle, size: 30),
-              ],
-              color: Colors.black12,
-              buttonBackgroundColor: Colors.white,
-              backgroundColor: Colors.white,
-              animationCurve: Curves.easeInOut,
-              animationDuration: Duration(milliseconds: 600),
-              onTap: (int tappedIndex) {
-                setState(() {
-                  _showPage = _pageChooser(tappedIndex);
-                });
-              },
-            ),
-            body: Container(
-              child: Center(
-                child: _showPage,
-              ),
-            )
-        ),
-      );
-    }
+            playback: Playback.MIRROR,
+            tween: tween,
+            duration: tween.duration,
+            builder: (context, animation) {
+              return Container(
+                child: Scaffold(
+                    bottomNavigationBar: CurvedNavigationBar(
+                      key: _bottomNavigationKey,
+                      index: pageIndex,
+                      height: getDynamicHeight(70),
+                      items: <Widget>[
+                        Icon(Icons.dashboard, size: 30),
+                        Icon(Icons.add, size: 30),
+                        Icon(Icons.account_circle, size: 30),
+                      ],
+                      color: Colors.black12,
+                      buttonBackgroundColor: Colors.white,
+                      backgroundColor: Colors.white,
+                      animationCurve: Curves.easeInOut,
+                      animationDuration: Duration(milliseconds: 600),
+                      onTap: (int tappedIndex) {
+                        setState(() {
+                          _showPage = _pageChooser(tappedIndex);
+                        });
+                      },
+                    ),
+                    body: Container(
+                      child: Center(
+                        child: _showPage,
+                      ),
+                    ),
+                ),
+              );
+            },
         ),
       ),
     );

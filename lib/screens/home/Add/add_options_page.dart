@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -90,6 +91,12 @@ class _F_AddOptionsState extends State<F_AddOptions> {
   }
 
   @override
+  void initState() {
+//    Ads.hideBannerAd();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     // TODO: implement initState
     _optionOneFocusNode.dispose();
@@ -127,7 +134,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                   GestureDetector(
                     child: Container(
                       width: getDynamicWidth(180.0),
-                      padding: EdgeInsets.all(15.0),
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
                       child: Center(
                           child: Row(
                               mainAxisAlignment:
@@ -136,7 +143,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                                 Container(),
                                 GradientText(
                                   'Continue',
-                                  style: mediumStyle,
+                                  style: foregroundTextStyleLight,
                                   gradient: LinearGradient(
                                     colors: [
                                       Color(0XffFD8B1F),
@@ -203,7 +210,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                     hintText:"Add your Options",
                     topPadding:20,
                     hintFont: 16,
-                    backTextStyle: backgroundText1,
+                    backTextStyle: backgroundTextStyleMedium,
                     height: 50,
                     showCounterStyle: false,
 
@@ -234,7 +241,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                     hintText:"Add your options",
                     topPadding:20,
                     hintFont: 16,
-                    backTextStyle: backgroundText1,
+                    backTextStyle: backgroundTextStyleMedium,
                     height: 50,
                     showCounterStyle: false,
 
@@ -265,7 +272,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                     hintText:"Add your options",
                     topPadding:20,
                     hintFont: 16,
-                    backTextStyle: backgroundText1,
+                    backTextStyle: backgroundTextStyleMedium,
                     height: 50,
                     showCounterStyle: false,
 
@@ -293,7 +300,7 @@ class _F_AddOptionsState extends State<F_AddOptions> {
                     hintText:"Add your options",
                     topPadding:20,
                     hintFont: 16,
-                    backTextStyle: backgroundText1,
+                    backTextStyle: backgroundTextStyleMedium,
                     height: 50,
                     showCounterStyle: false,
                   ),/* your widget */

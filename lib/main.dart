@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'firebase/admobs.dart';
 import 'firebase/auth.dart';
+import 'global_file/common_variables/app_functions.dart';
 import 'landing_page.dart';
-BannerAd bannerAd;
+//BannerAd bannerAd;
 const MaterialColor white = const MaterialColor(
   0Xff30D0DB,
   const <int, Color>{
@@ -24,7 +25,7 @@ const MaterialColor white = const MaterialColor(
 
 
 void main(){
-  bannerAd = createBannerAd();
+//  bannerAd = createBannerAd();
   runApp(MyApp());
 }
 

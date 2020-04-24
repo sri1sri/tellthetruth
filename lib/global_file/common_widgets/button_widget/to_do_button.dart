@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'custom_raised_button.dart';
 
 class ToDoButton extends CustomRaisedButton{
@@ -18,7 +19,7 @@ class ToDoButton extends CustomRaisedButton{
           children: <Widget>[
             Image.asset(assetName),
             Text(text,
-              style: TextStyle(fontSize:20 , fontWeight: FontWeight.w600,fontFamily: 'Montserrat'),
+              style: TextStyle(fontSize:20 , fontWeight: FontWeight.w600,fontFamily: mainFontFamily),
             ),
             Opacity(
               opacity: 0.0,

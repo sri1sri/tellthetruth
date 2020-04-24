@@ -42,11 +42,17 @@ class F_FeedPage extends StatefulWidget {
 }
 
 class _F_FeedPageState extends State<F_FeedPage> {
-  @override
 
+  @override
   void initState() {
-    String appId = getAppId();
-    print('hello world admob test$appId');
+
+//    show_interstitial_ad = show_interstitial_ad + 1;
+//    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
+//
+//    Ads.showBannerAd();
+
+//    String appId = getAppId();
+//    print('hello world admob test$appId');
     // FirebaseAdMob.instance.initialize(appId: getAppId());
 
 //    bannerAd
@@ -64,7 +70,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
   @override
   void dispose() {
     print('disposed is called');
-    bannerAd?.dispose();
+//    bannerAd?.dispose();
     super.dispose();
   }
 
@@ -168,24 +174,14 @@ class _F_FeedPageState extends State<F_FeedPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(greeting(),
-                                style: TextStyle(
-                                    color: Colors.white38,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: getDynamicTextSize(40),
-                                    decoration: TextDecoration.none)),
-                            SizedBox(
-                              height: getDynamicHeight(5),
+                            Container(
+                              height: 70,
+                              child: Text(greeting(),
+                                  style: backgroundTextStyleMedium),
                             ),
                             Text(
                               "$USER_NAME",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getDynamicTextSize(26),
-                                  decoration: TextDecoration.none),
+                              style: foregroundTextStyleLight,
                             ),
                           ],
                         ),
@@ -291,7 +287,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                           top: 7,
                           child: Text(
                             data != null ? '${data.gangCode}' : 'fetching...',
-                            style: backgroundText,
+                            style: backgroundTextStyleMedium,
                           ),
                           //Text("Question",style: backgroundText,),
                         ),
@@ -299,7 +295,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                           top: 40,
                           child: GradientText(
                             data != null ? data.gangName : 'fetching...',
-                            style: questionStyle1,
+                            style: foregroundTextStyleLight,
                             gradient: LinearGradient(
                               colors: [
                                 Color(0XffFD8B1F),

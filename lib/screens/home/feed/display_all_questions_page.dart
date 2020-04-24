@@ -12,6 +12,7 @@ import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -19,7 +20,6 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
-import 'package:tellthetruth/screens/home/feed/test.dart';
 import 'display_single_question_page.dart';
 import 'display_gang_members_page.dart';
 
@@ -46,7 +46,7 @@ class F_AllQuestions extends StatefulWidget {
 }
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
-    bool _dropdownShown = false;
+  bool _dropdownShown = false;
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   void _toggleDropdown() {
@@ -60,10 +60,10 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
   @override
   void initState() {
-    super.initState();
-
-    print(widget.gangDetails.gangID);
-
+//    show_interstitial_ad += show_interstitial_ad;
+//    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
+//
+//    Ads.showBannerAd();
     Firestore.instance
         .collection('${API_SUFFIX}gangs')
         .document(widget.gangDetails.gangID)
@@ -71,12 +71,15 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
         .where('delete_at',
             isLessThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
         .snapshots()
-        .listen((data) => data.documents.forEach(
-              (element) {
-                DBreference.deleteQuestion(
-                    widget.gangDetails.gangID, element.documentID);
-              },
-            ));
+        .listen(
+          (data) => data.documents.forEach(
+            (element) {
+              DBreference.deleteQuestion(
+                  widget.gangDetails.gangID, element.documentID);
+            },
+          ),
+        );
+    super.initState();
   }
 
   @override
@@ -155,12 +158,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                             ),
                             Text(
                               "Share code",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: getDynamicTextSize(17),
-                                  decoration: TextDecoration.none),
+                              style: mediumTextStyleDark,
                             )
                           ],
                         ),
@@ -197,12 +195,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                             ),
                             Text(
                               "View Gang",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: getDynamicTextSize(17),
-                                  decoration: TextDecoration.none),
+                              style: mediumTextStyleDark,
                             )
                           ],
                         ),
@@ -229,12 +222,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                             ),
                             Text(
                               "Edit Post",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: getDynamicTextSize(17),
-                                  decoration: TextDecoration.none),
+                              style: mediumTextStyleDark,
                             )
                           ],
                         ),
@@ -247,7 +235,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             centerTitle: true,
             title: GradientText(
               widget.gangDetails.gangName,
-              style: boldStyle,
+              style: foregroundTextStyleLight,
               gradient: LinearGradient(
                 colors: [
                   Color(0XffFD8B1F),
@@ -262,132 +250,6 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             backgroundColor: Colors.white,
           ),
           body: _buildContent(context),
-//          floatingActionButton: Builder(
-//            builder: (context) => FabCircularMenu(
-//              key: fabKey,
-//              // Cannot be `Alignment.center`
-//              alignment: Alignment.bottomRight,
-//              ringColor: Colors.black.withOpacity(0.2),
-//              ringDiameter: 500.0,
-//              ringWidth: 150.0,
-//              fabSize: 64.0,
-//              fabElevation: 20.0,
-//
-//              // Also can use specific color based on wether
-//              // the menu is open or not:
-//              fabOpenColor: Colors.black54,
-//              fabCloseColor: Colors.grey,
-//              // These properties take precedence over fabColor
-//              fabColor: Colors.white,
-//              fabOpenIcon: Icon(Icons.menu, color: Colors.white),
-//              fabCloseIcon: Icon(Icons.close, color: primaryColor),
-//              fabMargin: const EdgeInsets.all(16.0),
-//              animationDuration: const Duration(milliseconds: 800),
-//              animationCurve: Curves.easeInOutCirc,
-//              children: <Widget>[
-//                RawMaterialButton(
-//                    onPressed: () {
-//                      Navigator.push(
-//                        context,
-//                        MaterialPageRoute(builder: (context) => MyApp()),
-//                      );
-//                    },
-//                    shape: CircleBorder(),
-//                    padding: const EdgeInsets.all(24.0),
-//                    child: Container(
-//                      height: 100,
-//                      child: Column(
-//                        children: [
-//                          Image.asset(
-//                            "images/myQuestions.png",
-//                            height: 50,
-//                            width: 50,
-//                          ),
-//                          SizedBox(
-//                            height: getDynamicHeight(5),
-//                          ),
-//                          Text(
-//                            "Edit Post",
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontFamily: 'Montserrat',
-//                                fontWeight: FontWeight.w600,
-//                                fontSize: getDynamicTextSize(17),
-//                                decoration: TextDecoration.none),
-//                          )
-//                        ],
-//                      ),
-//                    )),
-//                RawMaterialButton(
-//                    onPressed: () {
-//                      Navigator.push(
-//                          context,
-//                          PageTransition(
-//                              type: PageTransitionType.rotate,
-//                              duration: Duration(seconds: 1),
-//                              child: GangMembers(gangDetails: widget.gangDetails,)));
-//                      // _showSnackBar(context, "View Gang");
-//                    },
-//                    shape: CircleBorder(),
-//                    padding: const EdgeInsets.all(24.0),
-//                    child: Container(
-//                      height: 100,
-//                      child: Column(
-//                        children: [
-//                          Image.asset(
-//                            "images/myGang.png",
-//                            height: 50,
-//                            width: 50,
-//                          ),
-//                          SizedBox(
-//                            height: getDynamicHeight(5),
-//                          ),
-//                          Text(
-//                            "View Gang",
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontFamily: 'Montserrat',
-//                                fontWeight: FontWeight.w600,
-//                                fontSize: getDynamicTextSize(17),
-//                                decoration: TextDecoration.none),
-//                          )
-//                        ],
-//                      ),
-//                    )),
-//                RawMaterialButton(
-//                    onPressed: () {
-//                      SocialShare.shareWhatsapp("I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '12345'. Believe me this is awesome game");
-//                     // launch("https://api.whatsapp.com/send?phone=&text=jkhfjdhfjkhfjkhfjkd");
-//                      },
-//                    shape: CircleBorder(),
-//                    padding: const EdgeInsets.all(24.0),
-//                    child: Container(
-//                      height: 100,
-//                      child: Column(
-//                        children: [
-//                          Image.asset(
-//                            "images/whatsapp.png",
-//                            height: 50,
-//                            width: 50,
-//                          ),
-//                          SizedBox(
-//                            height: getDynamicHeight(5),
-//                          ),
-//                          Text(
-//                            "Share",
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontFamily: 'Montserrat',
-//                                fontWeight: FontWeight.w600,
-//                                fontSize: getDynamicTextSize(17),
-//                                decoration: TextDecoration.none),
-//                          )
-//                        ],
-//                      ),
-//                    )),
-//              ],
-//            ),
-//          ),
         ),
       ),
     );
@@ -445,17 +307,14 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
-                  gradient: LinearGradient(
-                      colors: <Color>[
-                        Color(int.tryParse(questionData != null
-                            ? questionData.color1
-                            : 0Xff30DD76)),
-                        Color(int.tryParse(questionData != null
-                            ? questionData.color2
-                            : 0Xff30DD76)),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight),
+                  gradient: LinearGradient(colors: <Color>[
+                    Color(int.tryParse(questionData != null
+                        ? questionData.color1
+                        : 0Xff30DD76)),
+                    Color(int.tryParse(questionData != null
+                        ? questionData.color2
+                        : 0Xff30DD76)),
+                  ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                 ),
                 height: getDynamicHeight(350),
                 width: getDynamicWidth(200.0),
@@ -521,13 +380,13 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                     TyperAnimatedTextKit(
                                       onTap: openContainer,
                                       text: [
-                                        'Ready',
-                                        'Get Set',
-                                        'Your Question',
+//                                        'Ready',
+//                                        'Get Set',
+//                                        'Your Question',
                                         '${questionData.question}?'
                                             .capitalize(),
                                       ],
-                                      textStyle: questionStyle2,
+                                      textStyle: mediumTextStyleLight,
                                       textAlign: TextAlign.center,
                                       alignment: AlignmentDirectional.topCenter,
                                       isRepeatingAnimation:
@@ -567,7 +426,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                             ),
                                             Text(
                                               questionData.viewCount.toString(),
-                                              style: countStyle,
+                                              style: verySmallTextStyleLight,
                                             ),
                                           ],
                                         ),
@@ -588,7 +447,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                             ),
                                             Text(
                                               '${questionData != null ? (questionData.optionOnePolledCount + questionData.optionTwoPolledCount + questionData.optionThreePolledCount + questionData.optionFourPolledCount).toString() : '0'}',
-                                              style: countStyle,
+                                              style: verySmallTextStyleLight,
                                             ),
                                           ],
                                         ),

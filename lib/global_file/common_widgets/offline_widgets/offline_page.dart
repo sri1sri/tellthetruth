@@ -35,7 +35,7 @@ class CustomOfflinePage extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: GradientText(
                 'Tell The Truth',
-                style: heavyStyle,
+                style: backgroundTextStyleLight,
                 gradient: LinearGradient(
                   colors: [
                     Color(0XffFD8B1F),
@@ -55,7 +55,7 @@ class CustomOfflinePage extends StatelessWidget {
             //Splash(),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Text('No Internet connection.\nPlease check connection!!!',style: boldStyle,),
+              child: Text('No Internet connection.\nPlease check connection!!!',style: foregroundTextStyleDark,),
             ),
 
           ],

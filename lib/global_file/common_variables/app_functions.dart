@@ -31,6 +31,9 @@ Size SCREEN_SIZE;
 double IPHONE_11_PRO_MAX_HEIGHT = 896;
 double IPHONE_11_PRO_MAX_Width = 414;
 
+int show_interstitial_ad = 0;
+
+
 String getDateTime(int timestamp) {
   var format = new DateFormat('dd MMM yyyy, hh:mm a');
   var date = new DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);

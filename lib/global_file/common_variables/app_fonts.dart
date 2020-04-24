@@ -48,7 +48,8 @@ var mediumTextStyleDark = TextStyle(
     color: Colors.black,
     fontFamily: mainFontFamily,
     fontWeight: FontWeight.w600,
-    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none);
+    fontSize: getDynamicTextSize(20),decoration: TextDecoration.none,
+    height: 1.5);
 
 var mediumTextStyleMedium = TextStyle(
     color: Colors.black54,
@@ -78,6 +79,7 @@ var smallTextStyleLight = TextStyle(
     color: Colors.white,
     fontFamily: mainFontFamily,
     fontWeight: FontWeight.w600,
+    height: 1.5,
     fontSize: getDynamicTextSize(16),decoration: TextDecoration.none);
 
 var verySmallTextStyleLight = TextStyle(

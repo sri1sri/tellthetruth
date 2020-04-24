@@ -85,7 +85,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
         child: Scaffold(
           backgroundColor: Color(0Xff30D0DB),
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(getDynamicHeight(240)),
+            preferredSize: Size.fromHeight(getDynamicHeight(260)),
             child: ControlledAnimation(
               playback: Playback.MIRROR,
               tween: tween,
@@ -164,9 +164,6 @@ class _F_FeedPageState extends State<F_FeedPage> {
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: getDynamicHeight(30),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0),

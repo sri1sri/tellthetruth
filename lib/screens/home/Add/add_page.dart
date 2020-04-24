@@ -73,7 +73,7 @@ class _F_AddPageState extends State<F_AddPage> {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(332)),
+                  preferredSize: Size.fromHeight(getDynamicHeight(342)),
                   child: ControlledAnimation(
                     playback: Playback.MIRROR,
                     tween: tween,

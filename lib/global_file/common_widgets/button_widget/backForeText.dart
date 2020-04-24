@@ -43,6 +43,7 @@ class BackForeText extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: 55,
             child: GradientText(
               foreText,
               style: foregroundTextStyleLight,
@@ -141,13 +142,6 @@ class BackForeTextInput extends StatelessWidget {
             onEditingComplete: onEditingComplete,
             textAlign: TextAlign.center,
             style: foregroundTextStyleDark,
-
-
-//            TextStyle(
-//                fontSize: textFont,
-//                fontWeight: FontWeight.w600,
-////                foreground: Paint()..shader = linearGradient
-//            ),
             decoration:  InputDecoration(
               counterStyle: TextStyle(
                 fontFamily: mainFontFamily,

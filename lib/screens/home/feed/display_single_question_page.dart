@@ -24,9 +24,11 @@ import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:vibration/vibration.dart';
 
-
 class SingleQuestion extends StatelessWidget {
-  SingleQuestion({@required this.questionDetails, @required this.gangID, @required this.insightsDetails});
+  SingleQuestion(
+      {@required this.questionDetails,
+      @required this.gangID,
+      @required this.insightsDetails});
   String gangID;
   QuestionDetails questionDetails;
   InsightsDetails insightsDetails;
@@ -34,13 +36,19 @@ class SingleQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_SingleQuestion(questionDetails: questionDetails, gangID: gangID, insightsDetails:insightsDetails),
+      child: F_SingleQuestion(
+          questionDetails: questionDetails,
+          gangID: gangID,
+          insightsDetails: insightsDetails),
     );
   }
 }
 
 class F_SingleQuestion extends StatefulWidget {
-  F_SingleQuestion({@required this.questionDetails, @required this.gangID, @required this.insightsDetails});
+  F_SingleQuestion(
+      {@required this.questionDetails,
+      @required this.gangID,
+      @required this.insightsDetails});
   String gangID;
   QuestionDetails questionDetails;
   InsightsDetails insightsDetails;
@@ -50,7 +58,7 @@ class F_SingleQuestion extends StatefulWidget {
 }
 
 class _F_SingleQuestionState extends State<F_SingleQuestion> {
-  static const duration = const Duration( seconds: 1 );
+  static const duration = const Duration(seconds: 1);
 
   bool isActive = true;
   Timer timer;
@@ -91,7 +99,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   }
 
   void handleTick() {
-
     if (isActive) {
       if (this.mounted) {
         setState(() {
@@ -101,37 +108,42 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     }
   }
 
-  Future<bool> updateData() async{
+  Future<bool> updateData() async {
+    if (widget.insightsDetails == null) {
+      final updateQuestionDetails = QuestionDetails(
+        viewCount: widget.questionDetails.viewCount + 1,
+      );
+      final createInsightDetails =
+          InsightsDetails(isViewed: true, isReported: false);
 
-    if(widget.insightsDetails == null) {
-      final updateQuestionDetails = QuestionDetails(viewCount: widget.questionDetails.viewCount + 1,);
-      final createInsightDetails = InsightsDetails(isViewed: true, isReported: false);
-
-      await DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
-      await DBreference.createInsights(createInsightDetails, widget.gangID,widget.questionDetails.questionID);
+      await DBreference.updateQuestionDetails(updateQuestionDetails,
+          widget.gangID, widget.questionDetails.questionID);
+      await DBreference.createInsights(createInsightDetails, widget.gangID,
+          widget.questionDetails.questionID);
     }
-    widget.insightsDetails.optionSelected == null ? setState(() {
-      isPolled = false;
-    }) : setState(() {
-      selectedOption = widget.insightsDetails.optionSelected;
-      isPolled = true;
+    widget.insightsDetails.optionSelected == null
+        ? setState(() {
+            isPolled = false;
+          })
+        : setState(() {
+            selectedOption = widget.insightsDetails.optionSelected;
+            isPolled = true;
 
-      switch(selectedOption){
-        case 1:
-          isOptionOneSelected = true;
-          break;
-        case 2:
-          isOptionTwoSelected = true;
-          break;
-        case 3:
-          isOptionThreeSelected = true;
-          break;
-        case 4:
-          isOptionFourSelected = true;
-          break;
-
-      }
-    });
+            switch (selectedOption) {
+              case 1:
+                isOptionOneSelected = true;
+                break;
+              case 2:
+                isOptionTwoSelected = true;
+                break;
+              case 3:
+                isOptionThreeSelected = true;
+                break;
+              case 4:
+                isOptionFourSelected = true;
+                break;
+            }
+          });
     return true;
   }
 
@@ -139,8 +151,12 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   void initState() {
 //    show_interstitial_ad += show_interstitial_ad;
 //    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
-//    Ads.showBannerAd();
-    secondsLeft = ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch - DateTime.now().millisecondsSinceEpoch)~/1000).toInt();
+    Ads.showBannerAd();
+    secondsLeft =
+        ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch -
+                    DateTime.now().millisecondsSinceEpoch) ~/
+                1000)
+            .toInt();
 
     updateData();
 
@@ -149,33 +165,52 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     optionThreePolledCount = widget.questionDetails.optionThreePolledCount;
     optionFourPolledCount = widget.questionDetails.optionFourPolledCount;
 
-    isAnswerAnonymos = widget.insightsDetails == null ? true : widget.insightsDetails.isAnonymous != null ? widget.insightsDetails.isAnonymous : true;
+    isAnswerAnonymos = widget.insightsDetails == null
+        ? true
+        : widget.insightsDetails.isAnonymous != null
+            ? widget.insightsDetails.isAnonymous
+            : true;
     isQuestionAnonymos = widget.questionDetails.isAnonymous;
   }
 
-  void updateInsights(int optionSelected){
-
-    switch(optionSelected){
+  void updateInsights(int optionSelected) {
+    switch (optionSelected) {
       case 1:
-        final updateQuestionDetails = QuestionDetails(optionOnePolledCount: widget.questionDetails.optionOnePolledCount + 1,);
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+        final updateQuestionDetails = QuestionDetails(
+          optionOnePolledCount: widget.questionDetails.optionOnePolledCount + 1,
+        );
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+            widget.questionDetails.questionID);
         break;
       case 2:
-        final updateQuestionDetails = QuestionDetails(optionTwoPolledCount: widget.questionDetails.optionTwoPolledCount + 1,);
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+        final updateQuestionDetails = QuestionDetails(
+          optionTwoPolledCount: widget.questionDetails.optionTwoPolledCount + 1,
+        );
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+            widget.questionDetails.questionID);
         break;
       case 3:
-        final updateQuestionDetails = QuestionDetails(optionThreePolledCount: widget.questionDetails.optionThreePolledCount + 1,);
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+        final updateQuestionDetails = QuestionDetails(
+          optionThreePolledCount:
+              widget.questionDetails.optionThreePolledCount + 1,
+        );
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+            widget.questionDetails.questionID);
         break;
       case 4:
-        final updateQuestionDetails = QuestionDetails(optionFourPolledCount: widget.questionDetails.optionFourPolledCount + 1,);
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,widget.questionDetails.questionID);
+        final updateQuestionDetails = QuestionDetails(
+          optionFourPolledCount:
+              widget.questionDetails.optionFourPolledCount + 1,
+        );
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+            widget.questionDetails.questionID);
         break;
     }
 
-    final updateInsightDetails = InsightsDetails(optionSelected: optionSelected, isAnonymous: true);
-    DBreference.updateInsights(updateInsightDetails, widget.gangID,widget.questionDetails.questionID);
+    final updateInsightDetails =
+        InsightsDetails(optionSelected: optionSelected, isAnonymous: true);
+    DBreference.updateInsights(
+        updateInsightDetails, widget.gangID, widget.questionDetails.questionID);
 
     super.initState();
   }
@@ -185,21 +220,20 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Screenshot(
       child: offlineWidget(context),
-      controller: screenshotController,);
+      controller: screenshotController,
+    );
   }
 
   Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(
       onlineChild: Padding(
-        padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0 ),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
-          body: _buildContent( context ),
+          body: _buildContent(context),
         ),
       ),
     );
@@ -207,231 +241,246 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   Widget _buildContent(BuildContext context) {
     if (timer == null) {
-      timer = Timer.periodic( duration, (Timer t) {
-        handleTick( );
-      } );
+      timer = Timer.periodic(duration, (Timer t) {
+        handleTick();
+      });
     }
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: new Scaffold(
-        body: Container(
-          width: MediaQuery
-              .of( context )
-              .size
-              .width,
-          height: MediaQuery
-              .of( context )
-              .size
-              .height,
-          decoration: new BoxDecoration(
-              gradient: new LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color(int.tryParse(widget.questionDetails.color1)),
-                  Color(int.tryParse(widget.questionDetails.color2)),
-                ],
-              ) ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-
-          Padding(
-          padding: const EdgeInsets.all( 15.0 ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                child: Icon(
-                  Icons.arrow_back_ios, color: Colors.white, ),
-                onTap: () {
-                  Navigator.pop( context, true );
-                },
-              ),
-              SizedBox(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  TimerText(
-                      label: 'HRS',
-                      value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[0].toString( ).padLeft( 2, '0' ) ),
-                  TimerText(
-                      label: 'MIN',
-                      value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[1].toString( ).padLeft(
-                          2, '0' ) ),
-                  TimerText(
-                      label: 'SEC',
-                      value: convertSeconds(secondsLeft >0 ? secondsLeft : 0)[2].toString( ).padLeft(
-                          2, '0' ) ),
-                ],
-              ),
-
-              widget.questionDetails.createdBy != USER_ID ? IconButton(
-                icon: Icon(
-                  Icons.report,
-                  color: Colors.white,
-                  size: 30,
-                ),
-                onPressed: (){
-                  CustomAlertBox(context, 'Report', 'Are you sure what to report this question ? Uploader will be notified and this question will be removed.', true, (){
-                    final updateInsightDetails = InsightsDetails(isReported: true);
-                    DBreference.updateInsights(updateInsightDetails, widget.gangID, widget.questionDetails.questionID);
-                    GoToPage(context, LandingPage());
-                  });
-                },
-                color: Colors.white,
-              ) : IconButton(
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                  size: 30,
-                ),
-                onPressed: (){
-                  CustomAlertBox(context, 'Delete', 'Are you sure what to delete this question ?', true, (){
-                    DBreference.deleteQuestion(widget.gangID, widget.questionDetails.questionID);
-                    GoToPage(context, LandingPage());
-                  });
-                },
-                color: Colors.white,
-              ),
+    return  Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: new BoxDecoration(
+          gradient: new LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: <Color>[
+              Color(int.tryParse(widget.questionDetails.color1)),
+              Color(int.tryParse(widget.questionDetails.color2)),
             ],
+          )),
+      child: Column(
+//        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          SizedBox(height: getDynamicHeight(30),),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context, true);
+                  },
+                ),
+                TimerText(secondsLeft: secondsLeft),
+//                    SizedBox(),
+//                    Row(
+//                      mainAxisAlignment: MainAxisAlignment.center,
+//                      children: <Widget>[
+//
+////                        TimerText(
+////                            value: convertSeconds(
+////                                    secondsLeft > 0 ? secondsLeft : 0)[1]
+////                                .toString()
+////                                .padLeft(2, '0')),
+////                        TimerText(
+////                            value: convertSeconds(
+////                                    secondsLeft > 0 ? secondsLeft : 0)[2]
+////                                .toString()
+////                                .padLeft(2, '0')),
+//                      ],
+//                    ),
+                widget.questionDetails.createdBy != USER_ID
+                    ? IconButton(
+                  icon: Icon(
+                    Icons.report,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    CustomAlertBox(
+                        context,
+                        'Report',
+                        'Are you sure what to report this question ? Uploader will be notified and this question will be removed.',
+                        true, () {
+                      final updateInsightDetails =
+                      InsightsDetails(isReported: true);
+                      DBreference.updateInsights(
+                          updateInsightDetails,
+                          widget.gangID,
+                          widget.questionDetails.questionID);
+                      GoToPage(context, LandingPage());
+                    });
+                  },
+                  color: Colors.white,
+                )
+                    : IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    CustomAlertBox(
+                        context,
+                        'Delete',
+                        'Are you sure what to delete this question ?',
+                        true, () {
+                      DBreference.deleteQuestion(widget.gangID,
+                          widget.questionDetails.questionID);
+                      GoToPage(context, LandingPage());
+                    });
+                  },
+                  color: Colors.white,
+                ),
+              ],
+            ),
           ),
-        ),
 
-              Column(
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
+              child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: Text('Anonymous question',
-                      style: mediumTextStyleLight,
+                  GestureDetector(
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: getDynamicHeight(15.0)),
+                      child: Text(
+                        'Anonymous question',
+                        style: mediumTextStyleLight,
+                      ),
                     ),
                   ),
-
-
-
-
                   Padding(
-                    padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+                    padding: EdgeInsets.only(left: getDynamicWidth(25.0), right: getDynamicWidth(25.0)),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(15.0),),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(25.0, 10, 25.0,0.0),
+                        padding: EdgeInsets.fromLTRB(getDynamicWidth(25.0), getDynamicHeight(15.0), getDynamicWidth(25.0), 0.0),
                         child: Column(
                           children: <Widget>[
-
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(5.0, 20, 5.0,0.0),
+                              padding: EdgeInsets.fromLTRB(
+                                  getDynamicWidth(10.0), getDynamicHeight(10.0), getDynamicWidth(10.0), getDynamicHeight(5.0)),
                               child: AutoSizeText(
-                                'Who has the best personality in our class?',
-                                style: foregroundTextStyleDark,
+                                'Who has the best personality in our in our class?',
+                                style: mediumTextStyleDark,
                                 maxLines: 2,
                               ),
                             ),
-
-
                             Container(
                               decoration: BoxDecoration(
-                                color: Colors.black26,
-                                borderRadius: BorderRadius.circular(15.0),),
+                                color: Colors.grey[400],
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
                               child: Column(
                                 children: <Widget>[
-
-
-
                                   Padding(
-                                    padding: const EdgeInsets.all(25.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: AutoSizeText(
-                                      'whi hytbf juolkj hytgbd dhfdjid ?',
-                                      style: mediumTextStyleLight,
+                                      'personality in our in our class xlass class class our',
+                                      style: smallTextStyleLight,
                                       maxLines: 2,
                                     ),
                                   ),
-
-                                  SizedBox(height: 1, width: 350, child: Container(color: Colors.white,)),
-
-
+                                  SizedBox(
+                                      height: 1,
+                                      width: getDynamicWidth(350),
+                                      child: Container(
+                                        color: Colors.white,
+                                      )),
                                   Padding(
-                                    padding: const EdgeInsets.all(25.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: AutoSizeText(
-                                      'whi hytbf juolkj hytgbd dhfdjid ?',
-                                      style: mediumTextStyleLight,
+                                      'personality in our in our class xlass class class our',
+                                      style: smallTextStyleLight,
                                       maxLines: 2,
                                     ),
                                   ),
-                                  SizedBox(height: 1, width: 350, child: Container(color: Colors.white,)),
-
-
+                                  SizedBox(
+                                      height: 1,
+                                      width: getDynamicWidth(350),
+                                      child: Container(
+                                        color: Colors.white,
+                                      )),
                                   Padding(
-                                    padding: const EdgeInsets.all(25.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: AutoSizeText(
-                                      'whi hytbf juolkj hytgbd dhfdjid ?',
-                                      style: mediumTextStyleLight,
+                                      'personality in our in our class xlass class class our',
+                                      style: smallTextStyleLight,
                                       maxLines: 2,
                                     ),
                                   ),
-
-                                  SizedBox(height: 1, width: 350, child: Container(color: Colors.white,)),
-
-
+                                  SizedBox(
+                                      height: 1,
+                                      width: getDynamicWidth(350),
+                                      child: Container(
+                                        color: Colors.white,
+                                      )),
                                   Padding(
-                                    padding: const EdgeInsets.all(25.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: AutoSizeText(
-                                      'whi hytbf juolkj hytgbd dhfdjid ?',
-                                      style: mediumTextStyleLight,
+                                      'personality in our in our class xlass is is is class class our',
+                                      style: smallTextStyleLight,
                                       maxLines: 2,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-
                             Padding(
-                              padding: const EdgeInsets.all(25),
+                              padding: EdgeInsets.fromLTRB(
+                                  getDynamicWidth(10.0), getDynamicHeight(20.0), getDynamicWidth(10.0), getDynamicHeight(15.0)),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-
-                                  Text('30 views', style: smallTextStyleDark,),
-
-                                  Text('30 votes', style: smallTextStyleDark,),
-
-                                  Text('30 votes', style: smallTextStyleLight,),
-
-                                  Text('share', style: smallTextStyleDark,),
-
+                                  Text(
+                                    '30 views',
+                                    style: smallTextStyleDark,
+                                  ),
+                                  Text(
+                                    '30 votes',
+                                    style: smallTextStyleDark,
+                                  ),
+                                  Text(
+                                    '30 votes',
+                                    style: smallTextStyleLight,
+                                  ),
+                                  Text(
+                                    'share',
+                                    style: smallTextStyleDark,
+                                  ),
                                 ],
                               ),
                             )
-
-
-
                           ],
                         ),
                       ),
-
                     ),
                   ),
-
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Text('Anonymous answer',
-                      style: mediumTextStyleLight,),
+                  GestureDetector(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
+                      child: Text(
+                        'Anonymous answer',
+                        style: mediumTextStyleLight,
+                      ),
+                    ),
                   ),
+//                  SizedBox(height: 60,),
                 ],
               ),
+            ),
+          ),
 
-
-
-            Container(),
-
-
-
-
+          Container(),
 
 //              Center(
 //                child: Column(
@@ -829,48 +878,45 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 //                  ],
 //                ),
 //              ),
-            ],
-          ),
-
-        ),
-
+        ],
       ),
     );
   }
 
-
   Color selectBackgroundColor = Colors.white;
   Color textColor = Colors.red;
 
-
-  Widget OptionCard(int optionIndex, String polledCount, Color backgroundColor, bool isOptionSelected) {
+  Widget OptionCard(int optionIndex, String polledCount, Color backgroundColor,
+      bool isOptionSelected) {
     return Container(
       //height: getDynamicHeight(55),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular( 5 ),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: Padding(
-        padding: const EdgeInsets.only( left: 15.0, right: 15.0 ,top:10,bottom:10),
+        padding:
+            const EdgeInsets.only(left: 15.0, right: 15.0, top: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: getDynamicWidth(MediaQuery.of(context).size.width/1.5),
-
+              width: getDynamicWidth(MediaQuery.of(context).size.width / 1.5),
               child: GradientText(
                 '${widget.questionDetails.options[optionIndex]}'.capitalize(),
                 style: smallTextStyleLight,
                 gradient: LinearGradient(
-                  colors: isOptionSelected ? [
-                    Color( 0XffFD8B1F ),
-                    Color( 0XffD152E0 ),
-                    Color( 0Xff30D0DB ),
-                  ] : [
-                    Colors.white,
-                    Colors.white,
-                    Colors.white,
-                  ],
+                  colors: isOptionSelected
+                      ? [
+                          Color(0XffFD8B1F),
+                          Color(0XffD152E0),
+                          Color(0Xff30D0DB),
+                        ]
+                      : [
+                          Colors.white,
+                          Colors.white,
+                          Colors.white,
+                        ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -880,15 +926,17 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
               polledCount,
               style: smallTextStyleLight,
               gradient: LinearGradient(
-                colors: isOptionSelected ? [
-                  Color( 0XffFD8B1F ),
-                  Color( 0XffD152E0 ),
-                  Color( 0Xff30D0DB ),
-                ] : [
-                  Colors.white,
-                  Colors.white,
-                  Colors.white,
-                ],
+                colors: isOptionSelected
+                    ? [
+                        Color(0XffFD8B1F),
+                        Color(0XffD152E0),
+                        Color(0Xff30D0DB),
+                      ]
+                    : [
+                        Colors.white,
+                        Colors.white,
+                        Colors.white,
+                      ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -897,56 +945,62 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         ),
       ),
     );
-
   }
-
 }
 
 class TimerText extends StatelessWidget {
-  TimerText({this.label, this.value});
+  TimerText({ this.secondsLeft});
 
-  final String label;
-  final String value;
+  final int secondsLeft;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric( horizontal: 5 ),
-      padding: EdgeInsets.all( 10 ),
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular( 15 ),
+        borderRadius: BorderRadius.circular(15),
         color: Colors.white,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           GradientText(
-            '$value',
+            '${convertSeconds(
+                secondsLeft > 0 ? secondsLeft : 0)[0]
+                .toString()
+                .padLeft(2, '0')} : ${convertSeconds(
+                secondsLeft > 0 ? secondsLeft : 0)[1]
+                .toString()
+                .padLeft(2, '0')} : ${convertSeconds(
+                secondsLeft > 0 ? secondsLeft : 0)[2]
+                .toString()
+                .padLeft(2, '0')}',
             textAlign: TextAlign.center,
             style: foregroundTextStyleLight,
             gradient: LinearGradient(
               colors: [
-                Color( 0XffFD8B1F ),
-                Color( 0XffD152E0 ),
-                Color( 0Xff30D0DB ),
+                Color(0XffFD8B1F),
+                Color(0XffD152E0),
+                Color(0Xff30D0DB),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
-          GradientText(
-            '$label',
-            style: smallTextStyleLight,
-            gradient: LinearGradient(
-              colors: [
-                Color( 0XffFD8B1F ),
-                Color( 0XffD152E0 ),
-                Color( 0Xff30D0DB ),
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
+//          GradientText(
+//            '$label',
+//            style: smallTextStyleLight,
+//            gradient: LinearGradient(
+//              colors: [
+//                Color(0XffFD8B1F),
+//                Color(0XffD152E0),
+//                Color(0Xff30D0DB),
+//              ],
+//              begin: Alignment.topLeft,
+//              end: Alignment.bottomRight,
+//            ),
+//          ),
         ],
       ),
     );
@@ -954,7 +1008,6 @@ class TimerText extends StatelessWidget {
 }
 
 void showFancyCustomDialog(BuildContext context, String message) {
-
   showGeneralDialog(
       context: context,
       pageBuilder: (context, anim1, anim2) {},
@@ -993,7 +1046,10 @@ void showFancyCustomDialog(BuildContext context, String message) {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(message,style: smallTextStyleDark,),
+                                Text(
+                                  message,
+                                  style: smallTextStyleDark,
+                                ),
                               ],
                             ),
                           ),
@@ -1029,9 +1085,7 @@ void showFancyCustomDialog(BuildContext context, String message) {
       transitionDuration: Duration(milliseconds: 300));
 }
 
-
 void showFancyCustomDialogShare(BuildContext context, File image) {
-
   showGeneralDialog(
       context: context,
       pageBuilder: (context, anim1, anim2) {},
@@ -1068,7 +1122,7 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Column(
-                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //                            crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 GradientText(
@@ -1077,75 +1131,136 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                   style: foregroundTextStyleDark,
                                   gradient: LinearGradient(
                                     colors: [
-                                      Color( 0XffFD8B1F ),
-                                      Color( 0XffD152E0 ),
-                                      Color( 0Xff30D0DB ),
+                                      Color(0XffFD8B1F),
+                                      Color(0XffD152E0),
+                                      Color(0Xff30D0DB),
                                     ],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                   ),
                                 ),
-
-                                image != null ? Image(image: FileImage(image),height: getDynamicHeight(200),width: getDynamicWidth(200),)
-                                    : Container(height: getDynamicHeight(200),width: getDynamicWidth(200),),
+                                image != null
+                                    ? Image(
+                                        image: FileImage(image),
+                                        height: getDynamicHeight(200),
+                                        width: getDynamicWidth(200),
+                                      )
+                                    : Container(
+                                        height: getDynamicHeight(200),
+                                        width: getDynamicWidth(200),
+                                      ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left:20.0),
+                                  padding: const EdgeInsets.only(left: 20.0),
                                   child: Column(
                                     children: [
                                       GestureDetector(
-                                        onTap: (){
+                                        onTap: () {
                                           Navigator.pop(context);
                                         },
                                         child: Row(
                                           children: [
-                                            Image(image: AssetImage('images/whatsapp.png'),height: getDynamicHeight(40),width: getDynamicWidth(40),),
-                                            SizedBox(width: getDynamicWidth(15),),
-                                            Text("Share via WhatsApp",style: mediumTextStyleDark,),
+                                            Image(
+                                              image: AssetImage(
+                                                  'images/whatsapp.png'),
+                                              height: getDynamicHeight(40),
+                                              width: getDynamicWidth(40),
+                                            ),
+                                            SizedBox(
+                                              width: getDynamicWidth(15),
+                                            ),
+                                            Text(
+                                              "Share via WhatsApp",
+                                              style: mediumTextStyleDark,
+                                            ),
                                           ],
                                         ),
                                       ),
-                                      SizedBox(height: getDynamicHeight(15),),
-                                      GestureDetector(
-                                        onTap: () async{
-
-                                          await SocialShare.shareFacebookStory(image.path,"#B21F1F","#FDBB2D", "https://deep-link-url");
-
-                                          Navigator.pop(context);
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Image(image: AssetImage('images/facebook.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
-                                            SizedBox(width: getDynamicWidth(15),),
-                                            Text("Share via Facebook",style: mediumTextStyleDark,),
-                                          ],
-                                        ),
+                                      SizedBox(
+                                        height: getDynamicHeight(15),
                                       ),
-                                      SizedBox(height: getDynamicHeight(15),),
-                                      GestureDetector(
-                                        onTap: () async{
-                                          await SocialShare.shareInstagramStory(image.path, "#B21F1F", "#FDBB2D", "https://deep-link-url");
-
-                                          Navigator.pop(context);
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Image(image: AssetImage('images/instagram.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
-                                            SizedBox(width: getDynamicWidth(15),),
-                                            Text("Share via Instagram",style: mediumTextStyleDark,),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(height: getDynamicHeight(15),),
                                       GestureDetector(
                                         onTap: () async {
-                                          await ImageGallerySaver.saveImage(image.readAsBytesSync());
+                                          await SocialShare.shareFacebookStory(
+                                              image.path,
+                                              "#B21F1F",
+                                              "#FDBB2D",
+                                              "https://deep-link-url");
+
                                           Navigator.pop(context);
                                         },
                                         child: Row(
                                           children: [
-                                            Image(image: AssetImage('images/gallery.png'),height: getDynamicHeight(35),width: getDynamicWidth(35),),
-                                            SizedBox(width: getDynamicWidth(15),),
-                                            Text("Save to Gallery",style: mediumTextStyleDark,),
+                                            Image(
+                                              image: AssetImage(
+                                                  'images/facebook.png'),
+                                              height: getDynamicHeight(35),
+                                              width: getDynamicWidth(35),
+                                            ),
+                                            SizedBox(
+                                              width: getDynamicWidth(15),
+                                            ),
+                                            Text(
+                                              "Share via Facebook",
+                                              style: mediumTextStyleDark,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: getDynamicHeight(15),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          await SocialShare.shareInstagramStory(
+                                              image.path,
+                                              "#B21F1F",
+                                              "#FDBB2D",
+                                              "https://deep-link-url");
+
+                                          Navigator.pop(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Image(
+                                              image: AssetImage(
+                                                  'images/instagram.png'),
+                                              height: getDynamicHeight(35),
+                                              width: getDynamicWidth(35),
+                                            ),
+                                            SizedBox(
+                                              width: getDynamicWidth(15),
+                                            ),
+                                            Text(
+                                              "Share via Instagram",
+                                              style: mediumTextStyleDark,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: getDynamicHeight(15),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          await ImageGallerySaver.saveImage(
+                                              image.readAsBytesSync());
+                                          Navigator.pop(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Image(
+                                              image: AssetImage(
+                                                  'images/gallery.png'),
+                                              height: getDynamicHeight(35),
+                                              width: getDynamicWidth(35),
+                                            ),
+                                            SizedBox(
+                                              width: getDynamicWidth(15),
+                                            ),
+                                            Text(
+                                              "Save to Gallery",
+                                              style: mediumTextStyleDark,
+                                            ),
                                           ],
                                         ),
                                       )
@@ -1187,9 +1302,7 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
       transitionDuration: Duration(milliseconds: 300));
 }
 
-
 void showFancyCustomDialogBottom(BuildContext context, String message) {
-
   showGeneralDialog(
       context: context,
       pageBuilder: (context, anim1, anim2) {},
@@ -1202,7 +1315,7 @@ void showFancyCustomDialogBottom(BuildContext context, String message) {
           child: Opacity(
             opacity: anim1.value,
             child: Padding(
-              padding: const EdgeInsets.only(top:500),
+              padding: const EdgeInsets.only(top: 500),
               child: Dialog(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),
@@ -1228,7 +1341,10 @@ void showFancyCustomDialogBottom(BuildContext context, String message) {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(message,style: smallTextStyleDark,),
+                                Text(
+                                  message,
+                                  style: smallTextStyleDark,
+                                ),
                               ],
                             ),
                           ),
@@ -1263,9 +1379,6 @@ void showFancyCustomDialogBottom(BuildContext context, String message) {
       },
       transitionDuration: Duration(milliseconds: 300));
 }
-
-
-
 
 /*
 

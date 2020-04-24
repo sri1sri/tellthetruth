@@ -238,6 +238,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                                     controller: _passwordController,
                                     focusNode: _passwordFocusNode,
                                     obscureText: true,
+                                    enableSuggestions: false,
                                     textInputAction: TextInputAction.done,
                                     onEditingComplete: _submit,
                                     onChanged: model.updatePassword,

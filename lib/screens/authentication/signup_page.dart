@@ -245,6 +245,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                                       controller: _passwordController,
                                       textInputAction: TextInputAction.done,
                                       obscureText: true,
+                                      enableSuggestions: false,
                                       focusNode: _passwordFocusNode,
                                       autocorrect: false,
                                       keyboardType: TextInputType.emailAddress,

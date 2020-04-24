@@ -151,7 +151,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   void initState() {
 //    show_interstitial_ad += show_interstitial_ad;
 //    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
-//    Ads.showBannerAd();
+    Ads.showBannerAd();
     secondsLeft =
         ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch -
                     DateTime.now().millisecondsSinceEpoch) ~/
@@ -340,140 +340,143 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
             ),
           ),
 
-          Padding(
-            padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
-            child: Column(
-              children: [
-                GestureDetector(
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: getDynamicHeight(15.0)),
-                    child: Text(
-                      'Anonymous question',
-                      style: mediumTextStyleLight,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: getDynamicWidth(25.0), right: getDynamicWidth(25.0)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
+              child: Column(
+                children: [
+                  GestureDetector(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(getDynamicWidth(25.0), getDynamicHeight(15.0), getDynamicWidth(25.0), 0.0),
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                getDynamicWidth(10.0), getDynamicHeight(10.0), getDynamicWidth(10.0), getDynamicHeight(5.0)),
-                            child: AutoSizeText(
-                              'Who has the best personality in our in our class?',
-                              style: mediumTextStyleDark,
-                              maxLines: 2,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[400],
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: AutoSizeText(
-                                    'personality in our in our class xlass class class our',
-                                    style: smallTextStyleLight,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                SizedBox(
-                                    height: 1,
-                                    width: getDynamicWidth(350),
-                                    child: Container(
-                                      color: Colors.white,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: AutoSizeText(
-                                    'personality in our in our class xlass class class our',
-                                    style: smallTextStyleLight,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                SizedBox(
-                                    height: 1,
-                                    width: getDynamicWidth(350),
-                                    child: Container(
-                                      color: Colors.white,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: AutoSizeText(
-                                    'personality in our in our class xlass class class our',
-                                    style: smallTextStyleLight,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                                SizedBox(
-                                    height: 1,
-                                    width: getDynamicWidth(350),
-                                    child: Container(
-                                      color: Colors.white,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: AutoSizeText(
-                                    'personality in our in our class xlass is is is class class our',
-                                    style: smallTextStyleLight,
-                                    maxLines: 2,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                getDynamicWidth(10.0), getDynamicHeight(20.0), getDynamicWidth(10.0), getDynamicHeight(15.0)),
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  '30 views',
-                                  style: smallTextStyleDark,
-                                ),
-                                Text(
-                                  '30 votes',
-                                  style: smallTextStyleDark,
-                                ),
-                                Text(
-                                  '30 votes',
-                                  style: smallTextStyleLight,
-                                ),
-                                Text(
-                                  'share',
-                                  style: smallTextStyleDark,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                      padding: EdgeInsets.only(bottom: getDynamicHeight(15.0)),
+                      child: Text(
+                        'Anonymous question',
+                        style: mediumTextStyleLight,
                       ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
-                    child: Text(
-                      'Anonymous answer',
-                      style: mediumTextStyleLight,
+                  Padding(
+                    padding: EdgeInsets.only(left: getDynamicWidth(25.0), right: getDynamicWidth(25.0)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(getDynamicWidth(25.0), getDynamicHeight(15.0), getDynamicWidth(25.0), 0.0),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  getDynamicWidth(10.0), getDynamicHeight(10.0), getDynamicWidth(10.0), getDynamicHeight(5.0)),
+                              child: AutoSizeText(
+                                'Who has the best personality in our in our class?',
+                                style: mediumTextStyleDark,
+                                maxLines: 2,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[400],
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: AutoSizeText(
+                                      'personality in our in our class xlass class class our',
+                                      style: smallTextStyleLight,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height: 1,
+                                      width: getDynamicWidth(350),
+                                      child: Container(
+                                        color: Colors.white,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: AutoSizeText(
+                                      'personality in our in our class xlass class class our',
+                                      style: smallTextStyleLight,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height: 1,
+                                      width: getDynamicWidth(350),
+                                      child: Container(
+                                        color: Colors.white,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: AutoSizeText(
+                                      'personality in our in our class xlass class class our',
+                                      style: smallTextStyleLight,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height: 1,
+                                      width: getDynamicWidth(350),
+                                      child: Container(
+                                        color: Colors.white,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: AutoSizeText(
+                                      'personality in our in our class xlass is is is class class our',
+                                      style: smallTextStyleLight,
+                                      maxLines: 2,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  getDynamicWidth(10.0), getDynamicHeight(20.0), getDynamicWidth(10.0), getDynamicHeight(15.0)),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Text(
+                                    '30 views',
+                                    style: smallTextStyleDark,
+                                  ),
+                                  Text(
+                                    '30 votes',
+                                    style: smallTextStyleDark,
+                                  ),
+                                  Text(
+                                    '30 votes',
+                                    style: smallTextStyleLight,
+                                  ),
+                                  Text(
+                                    'share',
+                                    style: smallTextStyleDark,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                )
-              ],
+                  GestureDetector(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
+                      child: Text(
+                        'Anonymous answer',
+                        style: mediumTextStyleLight,
+                      ),
+                    ),
+                  ),
+//                  SizedBox(height: 60,),
+                ],
+              ),
             ),
           ),
 

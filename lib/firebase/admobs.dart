@@ -87,25 +87,25 @@ class Ads {
     );
   }
 
-//  static void showBannerAd([State state]) {
-//    if (state != null && !state.mounted) return;
-//    if (_bannerAd == null) setBannerAd();
-//    if (!isShown && !_isGoingToBeShown) {
-//      _isGoingToBeShown = true;
-//      _bannerAd
-//        ..load()
-//        ..show(anchorOffset: 50.0, anchorType: AnchorType.bottom);
-//    }
-//  }
+  static void showBannerAd([State state]) {
+    if (state != null && !state.mounted) return;
+    if (_bannerAd == null) setBannerAd();
+    if (!isShown && !_isGoingToBeShown) {
+      _isGoingToBeShown = true;
+      _bannerAd
+        ..load()
+        ..show(anchorOffset: 50.0, anchorType: AnchorType.bottom);
+    }
+  }
 
-//  static void hideBannerAd() {
-//    if (_bannerAd != null && !_isGoingToBeShown) {
-//      _bannerAd.dispose().then((disposed) {
-//        isShown = !disposed;
-//      });
-//      _bannerAd = null;
-//    }
-//  }
+  static void hideBannerAd() {
+    if (_bannerAd != null && !_isGoingToBeShown) {
+      _bannerAd.dispose().then((disposed) {
+        isShown = !disposed;
+      });
+      _bannerAd = null;
+    }
+  }
 
   static void showInterstitialAd() {
     var interstitialAd = InterstitialAd(

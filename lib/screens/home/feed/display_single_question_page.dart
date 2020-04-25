@@ -1,16 +1,12 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_page_transition/flutter_page_transition.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:lottie/lottie.dart';
-import 'package:overlay_container/overlay_container.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
-import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -69,11 +65,6 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   List<String> optionThreeBackgroundColor = ['E3E3E3', 'E3E3E3'];
   List<String> optionFourBackgroundColor = ['E3E3E3', 'E3E3E3'];
 
-//  Color optionOneBackgroundColor = Colors.black54;
-//  Color optionTwoBackgroundColor = Colors.black54;
-//  Color optionThreeBackgroundColor = Colors.black54;
-//  Color optionFourBackgroundColor = Colors.black54;
-
   int optionOnePolledCount = 0;
   int optionTwoPolledCount = 0;
   int optionThreePolledCount = 0;
@@ -96,15 +87,16 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   bool isQuestionAnonymos = true;
 
   ScreenshotController screenshotController = ScreenshotController();
-//  File _imageFile;
 
-  bool _dropdownShown = false;
+  bool canAnswer = true;
 
-  void _toggleDropdown() {
-    setState(() {
-      _dropdownShown = !_dropdownShown;
-    });
-  }
+//  bool _dropdownShown = false;
+//
+//  void _toggleDropdown() {
+//    setState(() {
+//      _dropdownShown = !_dropdownShown;
+//    });
+//  }
 
   void handleTick() {
     if (isActive) {
@@ -117,6 +109,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   }
 
   Future<bool> updateData() async {
+
     viewCount = widget.questionDetails.viewCount;
     polledCount = widget.questionDetails.optionOnePolledCount +
         widget.questionDetails.optionTwoPolledCount +
@@ -464,24 +457,26 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                     children: <Widget>[
                                       GestureDetector(
                                         onTap: () async {
-                                          if (!isPolled) {
-                                            if (await Vibration
-                                                .hasAmplitudeControl()) {
-                                              Vibration.vibrate(amplitude: 128);
+                                          if(secondsLeft > 0){
+                                            if (!isPolled) {
+                                              if (await Vibration
+                                                  .hasAmplitudeControl()) {
+                                                Vibration.vibrate(amplitude: 128);
+                                              }
+                                              setState(() {
+                                                polledCount = polledCount + 1;
+                                                optionOneBackgroundColor = [
+                                                  widget.questionDetails.color1,
+                                                  widget.questionDetails.color2
+                                                ];
+                                                isPolled = true;
+                                                optionOnePolledCount =
+                                                    optionOnePolledCount + 1;
+                                                isOptionOneSelected = true;
+                                                addPollCount = true;
+                                              });
+                                              updateInsights(1);
                                             }
-                                            setState(() {
-                                              polledCount = polledCount + 1;
-                                              optionOneBackgroundColor = [
-                                                widget.questionDetails.color1,
-                                                widget.questionDetails.color2
-                                              ];
-                                              isPolled = true;
-                                              optionOnePolledCount =
-                                                  optionOnePolledCount + 1;
-                                              isOptionOneSelected = true;
-                                              addPollCount = true;
-                                            });
-                                            updateInsights(1);
                                           }
                                         },
                                         child: optionsStyle(
@@ -506,24 +501,26 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                           )),
                                       GestureDetector(
                                         onTap: () async {
-                                          if (!isPolled) {
-                                            if (await Vibration
-                                                .hasAmplitudeControl()) {
-                                              Vibration.vibrate(amplitude: 128);
+                                          if(secondsLeft > 0){
+                                            if (!isPolled) {
+                                              if (await Vibration
+                                                  .hasAmplitudeControl()) {
+                                                Vibration.vibrate(amplitude: 128);
+                                              }
+                                              setState(() {
+                                                polledCount = polledCount + 1;
+                                                optionTwoBackgroundColor = [
+                                                  widget.questionDetails.color1,
+                                                  widget.questionDetails.color2
+                                                ];
+                                                isPolled = true;
+                                                optionTwoPolledCount =
+                                                    optionTwoPolledCount + 1;
+                                                isOptionTwoSelected = true;
+                                                addPollCount = true;
+                                              });
+                                              updateInsights(2);
                                             }
-                                            setState(() {
-                                              polledCount = polledCount + 1;
-                                              optionTwoBackgroundColor = [
-                                                widget.questionDetails.color1,
-                                                widget.questionDetails.color2
-                                              ];
-                                              isPolled = true;
-                                              optionTwoPolledCount =
-                                                  optionTwoPolledCount + 1;
-                                              isOptionTwoSelected = true;
-                                              addPollCount = true;
-                                            });
-                                            updateInsights(2);
                                           }
                                         },
                                         child: optionsStyle(
@@ -548,24 +545,26 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                           )),
                                       GestureDetector(
                                         onTap: () async {
-                                          if (!isPolled) {
-                                            if (await Vibration
-                                                .hasAmplitudeControl()) {
-                                              Vibration.vibrate(amplitude: 128);
+                                          if(secondsLeft > 0){
+                                            if (!isPolled) {
+                                              if (await Vibration
+                                                  .hasAmplitudeControl()) {
+                                                Vibration.vibrate(amplitude: 128);
+                                              }
+                                              setState(() {
+                                                polledCount = polledCount + 1;
+                                                optionThreeBackgroundColor = [
+                                                  widget.questionDetails.color1,
+                                                  widget.questionDetails.color2
+                                                ];
+                                                isPolled = true;
+                                                optionThreePolledCount =
+                                                    optionThreePolledCount + 1;
+                                                isOptionThreeSelected = true;
+                                                addPollCount = true;
+                                              });
+                                              updateInsights(3);
                                             }
-                                            setState(() {
-                                              polledCount = polledCount + 1;
-                                              optionThreeBackgroundColor = [
-                                                widget.questionDetails.color1,
-                                                widget.questionDetails.color2
-                                              ];
-                                              isPolled = true;
-                                              optionThreePolledCount =
-                                                  optionThreePolledCount + 1;
-                                              isOptionThreeSelected = true;
-                                              addPollCount = true;
-                                            });
-                                            updateInsights(3);
                                           }
                                         },
                                         child: optionsStyle(
@@ -590,24 +589,26 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                           )),
                                       GestureDetector(
                                         onTap: () async {
-                                          if (!isPolled) {
-                                            if (await Vibration
-                                                .hasAmplitudeControl()) {
-                                              Vibration.vibrate(amplitude: 128);
+                                          if(secondsLeft > 0){
+                                            if (!isPolled) {
+                                              if (await Vibration
+                                                  .hasAmplitudeControl()) {
+                                                Vibration.vibrate(amplitude: 128);
+                                              }
+                                              setState(() {
+                                                polledCount = polledCount + 1;
+                                                optionFourBackgroundColor = [
+                                                  widget.questionDetails.color1,
+                                                  widget.questionDetails.color2
+                                                ];
+                                                isPolled = true;
+                                                optionFourPolledCount =
+                                                    optionFourPolledCount + 1;
+                                                isOptionFourSelected = true;
+                                                addPollCount = true;
+                                              });
+                                              updateInsights(4);
                                             }
-                                            setState(() {
-                                              polledCount = polledCount + 1;
-                                              optionFourBackgroundColor = [
-                                                widget.questionDetails.color1,
-                                                widget.questionDetails.color2
-                                              ];
-                                              isPolled = true;
-                                              optionFourPolledCount =
-                                                  optionFourPolledCount + 1;
-                                              isOptionFourSelected = true;
-                                              addPollCount = true;
-                                            });
-                                            updateInsights(4);
                                           }
                                         },
                                         child: optionsStyle(

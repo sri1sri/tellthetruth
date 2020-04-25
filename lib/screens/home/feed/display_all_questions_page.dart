@@ -88,7 +88,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
   }
 
   Widget offlineWidget(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
+//    final primaryColor = Theme.of(context).primaryColor;
     return CustomOfflineWidget(
       onlineChild: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -101,6 +101,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               ),
               color: Colors.white,
               onPressed: () {
+                _toggleDropdown();
                 Navigator.pop(context, true);
               },
             ),
@@ -120,7 +121,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                   -50,
                 ),
                 child: Container(
-                  height: 200,
+                  height: 150,
                   padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(
@@ -140,11 +141,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          _toggleDropdown();
                           SocialShare.shareWhatsapp(
                               "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '${widget.gangDetails.gangCode}'. Believe me this is awesome game");
-                          setState(() {
-                            _dropdownShown = false;
-                          });
                         },
                         child: Row(
                           children: [
@@ -169,6 +168,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          _toggleDropdown();
                           Navigator.push(
                             context,
                             PageTransition(
@@ -179,9 +179,6 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                               ),
                             ),
                           );
-                          setState(() {
-                            _dropdownShown = false;
-                          });
                         },
                         child: Row(
                           children: [
@@ -204,29 +201,29 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                         thickness: 1,
                         color: Colors.black54,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _dropdownShown = false;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              "images/myQuestions.png",
-                              height: 30,
-                              width: 30,
-                            ),
-                            SizedBox(
-                              width: getDynamicWidth(20),
-                            ),
-                            Text(
-                              "Edit Post",
-                              style: mediumTextStyleDark,
-                            )
-                          ],
-                        ),
-                      )
+//                      GestureDetector(
+//                        onTap: () {
+//                          setState(() {
+//                            _dropdownShown = false;
+//                          });
+//                        },
+//                        child: Row(
+//                          children: [
+//                            Image.asset(
+//                              "images/myQuestions.png",
+//                              height: 30,
+//                              width: 30,
+//                            ),
+////                            SizedBox(
+////                              width: getDynamicWidth(20),
+////                            ),
+////                            Text(
+////                              "Edit Post",
+////                              style: mediumTextStyleDark,
+////                            )
+//                          ],
+//                        ),
+//                      )
                     ],
                   ),
                 ),
@@ -295,14 +292,15 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             gangID: widget.gangDetails.gangID,
             questionDetails: questionData,
             insightsDetails: insightsData,
-
-//            insightsDetails: insightsData != null ? insightsData : null,
           ),
           transitionType: ContainerTransitionType.fade,
           closedBuilder: (BuildContext _, VoidCallback openContainer) {
             return FlatButton(
               disabledColor: Colors.white,
-              onPressed: openContainer,
+              onPressed: (){
+                _toggleDropdown();
+                openContainer();
+              },
               padding: EdgeInsets.only(left: 0.0, right: 0.0),
               child: Container(
                 decoration: BoxDecoration(
@@ -409,50 +407,50 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                             height: 0,
                                             width: 0,
                                           ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              backgroundImage:
-                                                  AssetImage('images/seen.png'),
-                                              radius: 14,
-                                            ),
-                                            SizedBox(
-                                              width: getDynamicWidth(5),
-                                            ),
-                                            Text(
-                                              questionData.viewCount.toString(),
-                                              style: verySmallTextStyleLight,
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          width: getDynamicWidth(20),
-                                        ),
-                                        Row(
-                                          children: [
-                                            CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              backgroundImage:
-                                                  AssetImage('images/poll.png'),
-                                              radius: 12,
-                                            ),
-                                            SizedBox(
-                                              width: getDynamicWidth(5),
-                                            ),
-                                            Text(
-                                              '${questionData != null ? (questionData.optionOnePolledCount + questionData.optionTwoPolledCount + questionData.optionThreePolledCount + questionData.optionFourPolledCount).toString() : '0'}',
-                                              style: verySmallTextStyleLight,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+//                                    Row(
+//                                      mainAxisAlignment: MainAxisAlignment.end,
+//                                      children: [
+//                                        Row(
+//                                          children: [
+//                                            CircleAvatar(
+//                                              backgroundColor:
+//                                                  Colors.transparent,
+//                                              backgroundImage:
+//                                                  AssetImage('images/seen.png'),
+//                                              radius: 14,
+//                                            ),
+//                                            SizedBox(
+//                                              width: getDynamicWidth(5),
+//                                            ),
+//                                            Text(
+//                                              questionData.viewCount.toString(),
+//                                              style: verySmallTextStyleLight,
+//                                            ),
+//                                          ],
+//                                        ),
+////                                        SizedBox(
+////                                          width: getDynamicWidth(20),
+////                                        ),
+////                                        Row(
+////                                          children: [
+////                                            CircleAvatar(
+////                                              backgroundColor:
+////                                                  Colors.transparent,
+////                                              backgroundImage:
+////                                                  AssetImage('images/poll.png'),
+////                                              radius: 12,
+////                                            ),
+////                                            SizedBox(
+////                                              width: getDynamicWidth(5),
+////                                            ),
+////                                            Text(
+////                                              '${questionData != null ? (questionData.optionOnePolledCount + questionData.optionTwoPolledCount + questionData.optionThreePolledCount + questionData.optionFourPolledCount).toString() : '0'}',
+////                                              style: verySmallTextStyleLight,
+////                                            ),
+////                                          ],
+////                                        ),
+//                                      ],
+//                                    ),
                                   ],
                                 ),
                               ),

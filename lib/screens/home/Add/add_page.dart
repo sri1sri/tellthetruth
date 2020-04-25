@@ -86,8 +86,8 @@ class _F_AddPageState extends State<F_AddPage> {
                           children: <Widget>[
                             Center(
                               child: SizedBox(
-                                width: getDynamicWidth(200),
-                                height: getDynamicHeight(200),
+                                width: getDynamicWidth(180),
+                                height: getDynamicHeight(180),
                                 child: Container(
                                     child: FlareActor("images/welcome.flr",
                                         alignment: Alignment.center,
@@ -110,7 +110,7 @@ class _F_AddPageState extends State<F_AddPage> {
                                 isRepeatingAnimation: false,// or Alignment.topLeft
                               ),
                             ),
-                            SizedBox(height: getDynamicHeight(40),),
+                            SizedBox(height: getDynamicHeight(20),),
 
                           ],
                         ),

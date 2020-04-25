@@ -20,9 +20,9 @@ class EmptyPolledContent extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Lottie.network("https://assets4.lottiefiles.com/private_files/lf30_YWyaYi.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
+              Lottie.network("https://assets10.lottiefiles.com/packages/lf20_EHugAD.json",height: getDynamicHeight(300),width: getDynamicWidth(300)),
               GradientText(
-                'You don\'t have any gangs to display.',
+                "No user's has revealed their status",
                 style: foregroundTextStyleDark,
                 textAlign: TextAlign.center,
                 gradient: LinearGradient(
@@ -35,11 +35,27 @@ class EmptyPolledContent extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              SizedBox(height: getDynamicHeight(20.0),),
+              SizedBox(height: getDynamicHeight(40.0),),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
+                  Text('How to reveal indentity :', style: mediumTextStyleDark),
+                  SizedBox(height: getDynamicHeight(10.0),),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        Text('- ', style: smallTextStyleMedium,),
+                        SizedBox(height: getDynamicHeight(10.0),),
+                        Text('- ', style: smallTextStyleMedium),
+                        SizedBox(height: getDynamicHeight(10.0),),
+                        Text('- ', style: smallTextStyleMedium),
+                        SizedBox(height: getDynamicHeight(10.0),),
+                        Text('- ', style: smallTextStyleMedium,),
+                        SizedBox(height: getDynamicHeight(40.0),),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],

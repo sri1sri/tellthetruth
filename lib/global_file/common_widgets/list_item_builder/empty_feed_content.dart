@@ -20,7 +20,7 @@ class EmptyFeedContent extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Lottie.network("https://assets4.lottiefiles.com/private_files/lf30_YWyaYi.json",height: getDynamicHeight(250),width: getDynamicWidth(250)),
+              Lottie.network("https://assets4.lottiefiles.com/private_files/lf30_YWyaYi.json",height: getDynamicHeight(300),width: getDynamicWidth(300)),
               GradientText(
                 'You don\'t have any gangs to display.',
                 style: foregroundTextStyleDark,
@@ -41,33 +41,33 @@ class EmptyFeedContent extends StatelessWidget {
                 children: [
                   Text('How to create gang?', style: mediumTextStyleDark),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Go to + tab below.', style: smallTextStyleDark),
+                  Text('     - Go to + tab below.', style: smallTextStyleMedium),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Click on Create new gang & have fun.', style: smallTextStyleDark),
+                  Text('     - Click on Create new gang & have fun.', style: smallTextStyleMedium),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Enter your gang name & icon.', style: smallTextStyleDark),
+                  Text('     - Enter your gang name & icon.', style: smallTextStyleMedium),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - You will be providing with gang code.', style: smallTextStyleDark),
+                  Text('     - You will be providing with gang code.', style: smallTextStyleMedium),
                   SizedBox(height: getDynamicHeight(40.0),),
 
 
                   SizedBox(height: getDynamicHeight(20.0),),
                   Text('How to know gang codes?', style: mediumTextStyleDark),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Select gang title.', style: smallTextStyleDark,),
+                  Text('     - Select gang title.', style: smallTextStyleMedium,),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - After navigating to next screen, On top right ', style: smallTextStyleDark),
+                  Text('     - After navigating to next screen, On top right ', style: smallTextStyleMedium),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Enter you gang code. That\'s it..!!!', style: smallTextStyleDark,),
+                  Text('     - Enter you gang code. That\'s it..!!!', style: smallTextStyleMedium,),
                   SizedBox(height: getDynamicHeight(40.0),),
 
                   Text('How to join gang?', style: mediumTextStyleDark),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Go to + tab below.', style: smallTextStyleDark,),
+                  Text('     - Go to + tab below.', style: smallTextStyleMedium,),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Click on Join your gang.', style: smallTextStyleDark),
+                  Text('     - Click on Join your gang.', style: smallTextStyleMedium),
                   SizedBox(height: getDynamicHeight(10.0),),
-                  Text('     - Enter you gang code. That\'s it..!!!', style: smallTextStyleDark,),
+                  Text('     - Enter you gang code. That\'s it..!!!', style: smallTextStyleMedium,),
                   SizedBox(height: getDynamicHeight(40.0),),
                 ],
               ),

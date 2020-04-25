@@ -45,22 +45,14 @@ class SlideItem extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                SizedBox(
-                  height: 20,
-                ),
                 Text(
                   slideList[index].title,
                   style: foregroundTextStyleDark,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+
                 Text(
                   slideList[index].description,
                   style: smallTextStyleDark,
-                ),
-                SizedBox(
-                  height: 20,
                 ),
               ],
             ),

@@ -324,397 +324,407 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
           Color(int.tryParse(widget.questionDetails.color2)),
         ],
       )),
-      child: Column(
-//        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          SizedBox(
-            height: getDynamicHeight(40),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    Navigator.pop(context, true);
-                  },
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(58.0),
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: GestureDetector(
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
                 ),
+                onTap: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+              actions: [
                 TimerText(secondsLeft: secondsLeft),
+                SizedBox(width: getDynamicWidth(70),),
                 widget.questionDetails.createdBy != USER_ID
                     ? IconButton(
-                        icon: Icon(
-                          Icons.report,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          CustomAlertBox(
-                              context,
-                              'Report',
-                              'Are you sure what to report this question ? Uploader will be notified and this question will be removed.',
-                              true, () {
-                            final updateInsightDetails =
-                                InsightsDetails(isReported: true);
-                            DBreference.updateInsights(
-                                updateInsightDetails,
-                                widget.gangID,
-                                widget.questionDetails.questionID);
-                            GoToPage(context, LandingPage());
-                          });
-                        },
-                        color: Colors.white,
-                      )
+                  icon: Icon(
+                    Icons.report,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    CustomAlertBox(
+                        context,
+                        'Report',
+                        'Are you sure what to report this question ? Uploader will be notified and this question will be removed.',
+                        true, () {
+                      final updateInsightDetails =
+                      InsightsDetails(isReported: true);
+                      DBreference.updateInsights(
+                          updateInsightDetails,
+                          widget.gangID,
+                          widget.questionDetails.questionID);
+                      GoToPage(context, LandingPage());
+                    });
+                  },
+                  color: Colors.white,
+                )
                     : IconButton(
-                        icon: Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        onPressed: () {
-                          CustomAlertBox(
-                              context,
-                              'Delete',
-                              'Are you sure what to delete this question ?',
-                              true, () {
-                            DBreference.deleteQuestion(widget.gangID,
-                                widget.questionDetails.questionID);
-                            GoToPage(context, LandingPage());
-                          });
-                        },
-                        color: Colors.white,
-                      ),
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    CustomAlertBox(
+                        context,
+                        'Delete',
+                        'Are you sure what to delete this question ?',
+                        true, () {
+                      DBreference.deleteQuestion(widget.gangID,
+                          widget.questionDetails.questionID);
+                      GoToPage(context, LandingPage());
+                    });
+                  },
+                  color: Colors.white,
+                ),
               ],
             ),
-          ),
+        ),
 
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
-              child: Column(
-                children: [
-                  widget.questionDetails.createdBy == USER_ID
-                      ? GestureDetector(
-                          onTap: () {
-                            final updateQuestionDetails = QuestionDetails(
-                                isAnonymous: !isQuestionAnonymos);
-                            DBreference.updateQuestionDetails(
-                                updateQuestionDetails,
-                                widget.gangID,
-                                widget.questionDetails.questionID);
-                            setState(() {
-                              isQuestionAnonymos = !isQuestionAnonymos;
-                            });
-                          },
+        body: SingleChildScrollView(
+          child: Column(
+//        mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(
+                height: getDynamicHeight(20),
+              ),
+              Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      widget.questionDetails.createdBy == USER_ID
+                          ? GestureDetector(
+                        onTap: () {
+                          final updateQuestionDetails = QuestionDetails(
+                              isAnonymous: !isQuestionAnonymos);
+                          DBreference.updateQuestionDetails(
+                              updateQuestionDetails,
+                              widget.gangID,
+                              widget.questionDetails.questionID);
+                          setState(() {
+                            isQuestionAnonymos = !isQuestionAnonymos;
+                          });
+                        },
+                        child: Padding(
+                          padding:
+                          EdgeInsets.only(bottom: getDynamicHeight(15.0)),
+                          child: Text(
+                            isQuestionAnonymos
+                                ? 'Questioned anonymous'
+                                : '${USER_NAME}\'s question',
+                            style: mediumTextStyleLight,
+                          ),
+                        ),
+                      )
+                          : Container(
+                        height: 0,
+                        width: 0,
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: getDynamicWidth(25.0),
+                            right: getDynamicWidth(25.0)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
                           child: Padding(
-                            padding:
-                                EdgeInsets.only(bottom: getDynamicHeight(15.0)),
-                            child: Text(
-                              isQuestionAnonymos
-                                  ? 'Questioned anonymous'
-                                  : '${USER_NAME}\'s question',
-                              style: mediumTextStyleLight,
+                            padding: EdgeInsets.fromLTRB(getDynamicWidth(25.0),
+                                getDynamicHeight(15.0), getDynamicWidth(25.0), 0.0),
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      getDynamicWidth(10.0),
+                                      getDynamicHeight(10.0),
+                                      getDynamicWidth(10.0),
+                                      getDynamicHeight(5.0)),
+                                  child: AutoSizeText(
+                                    widget.questionDetails.question,
+                                    style: mediumTextStyleDark,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                  child: Column(
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        onTap: () async {
+                                          if (!isPolled) {
+                                            if (await Vibration
+                                                .hasAmplitudeControl()) {
+                                              Vibration.vibrate(amplitude: 128);
+                                            }
+                                            setState(() {
+                                              polledCount = polledCount + 1;
+                                              optionOneBackgroundColor = [
+                                                widget.questionDetails.color1,
+                                                widget.questionDetails.color2
+                                              ];
+                                              isPolled = true;
+                                              optionOnePolledCount =
+                                                  optionOnePolledCount + 1;
+                                              isOptionOneSelected = true;
+                                              addPollCount = true;
+                                            });
+                                            updateInsights(1);
+                                          }
+                                        },
+                                        child: optionsStyle(
+                                          0,
+                                          '${optionOnePolledCount.toString()} votes',
+                                          selectedOption == 0
+                                              ? optionOneBackgroundColor
+                                              : selectedOption == 1
+                                              ? [
+                                            widget.questionDetails.color1,
+                                            widget.questionDetails.color2
+                                          ]
+                                              : optionOneBackgroundColor,
+                                          isOptionOneSelected,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: 1,
+                                          width: getDynamicWidth(350),
+                                          child: Container(
+                                            color: Colors.white,
+                                          )),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          if (!isPolled) {
+                                            if (await Vibration
+                                                .hasAmplitudeControl()) {
+                                              Vibration.vibrate(amplitude: 128);
+                                            }
+                                            setState(() {
+                                              polledCount = polledCount + 1;
+                                              optionTwoBackgroundColor = [
+                                                widget.questionDetails.color1,
+                                                widget.questionDetails.color2
+                                              ];
+                                              isPolled = true;
+                                              optionTwoPolledCount =
+                                                  optionTwoPolledCount + 1;
+                                              isOptionTwoSelected = true;
+                                              addPollCount = true;
+                                            });
+                                            updateInsights(2);
+                                          }
+                                        },
+                                        child: optionsStyle(
+                                          1,
+                                          '${optionTwoPolledCount.toString()} votes',
+                                          selectedOption == 0
+                                              ? optionTwoBackgroundColor
+                                              : selectedOption == 2
+                                              ? [
+                                            widget.questionDetails.color1,
+                                            widget.questionDetails.color2
+                                          ]
+                                              : optionTwoBackgroundColor,
+                                          isOptionTwoSelected,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: 1,
+                                          width: getDynamicWidth(350),
+                                          child: Container(
+                                            color: Colors.white,
+                                          )),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          if (!isPolled) {
+                                            if (await Vibration
+                                                .hasAmplitudeControl()) {
+                                              Vibration.vibrate(amplitude: 128);
+                                            }
+                                            setState(() {
+                                              polledCount = polledCount + 1;
+                                              optionThreeBackgroundColor = [
+                                                widget.questionDetails.color1,
+                                                widget.questionDetails.color2
+                                              ];
+                                              isPolled = true;
+                                              optionThreePolledCount =
+                                                  optionThreePolledCount + 1;
+                                              isOptionThreeSelected = true;
+                                              addPollCount = true;
+                                            });
+                                            updateInsights(3);
+                                          }
+                                        },
+                                        child: optionsStyle(
+                                          2,
+                                          '${optionThreePolledCount.toString()} votes',
+                                          selectedOption == 0
+                                              ? optionThreeBackgroundColor
+                                              : selectedOption == 3
+                                              ? [
+                                            widget.questionDetails.color1,
+                                            widget.questionDetails.color2
+                                          ]
+                                              : optionThreeBackgroundColor,
+                                          isOptionThreeSelected,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: 1,
+                                          width: getDynamicWidth(350),
+                                          child: Container(
+                                            color: Colors.white,
+                                          )),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          if (!isPolled) {
+                                            if (await Vibration
+                                                .hasAmplitudeControl()) {
+                                              Vibration.vibrate(amplitude: 128);
+                                            }
+                                            setState(() {
+                                              polledCount = polledCount + 1;
+                                              optionFourBackgroundColor = [
+                                                widget.questionDetails.color1,
+                                                widget.questionDetails.color2
+                                              ];
+                                              isPolled = true;
+                                              optionFourPolledCount =
+                                                  optionFourPolledCount + 1;
+                                              isOptionFourSelected = true;
+                                              addPollCount = true;
+                                            });
+                                            updateInsights(4);
+                                          }
+                                        },
+                                        child: optionsStyle(
+                                          3,
+                                          '${optionFourPolledCount.toString()} votes',
+                                          selectedOption == 0
+                                              ? optionFourBackgroundColor
+                                              : selectedOption == 4
+                                              ? [
+                                            widget.questionDetails.color1,
+                                            widget.questionDetails.color2
+                                          ]
+                                              : optionFourBackgroundColor,
+                                          isOptionFourSelected,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      getDynamicWidth(10.0),
+                                      getDynamicHeight(20.0),
+                                      getDynamicWidth(10.0),
+                                      getDynamicHeight(15.0)),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        '${viewCount.toString()} views',
+                                        style: smallTextStyleDark,
+                                      ),
+
+
+                                      GestureDetector(
+                                        onTap: () {
+
+                                          GoToPage(context, RevealIdentity(
+                                            gangID: widget.gangID,
+                                            questionID:
+                                            widget.questionDetails.questionID,
+                                          ));
+                                        },
+                                        child: Text(
+                                          '${polledCount.toString()} votes',
+                                          style: smallTextStyleDark,
+                                        ),
+                                      ),
+
+
+                                      Text(
+                                        '30 votes',
+                                        style: smallTextStyleLight,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          screenshotController
+                                              .capture()
+                                              .then((File image) {
+                                            setState(() async {
+                                              await ImageGallerySaver.saveImage(
+                                                  image.readAsBytesSync());
+
+                                              showFancyCustomDialogShare(
+                                                  context, image);
+                                            });
+                                          }).catchError((onError) {
+                                            print(onError);
+                                          });
+                                        },
+                                        child: Text(
+                                          'share',
+                                          style: smallTextStyleDark,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        )
-                      : Container(
-                          height: 0,
-                          width: 0,
-                        ),
-
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: getDynamicWidth(25.0),
-                        right: getDynamicWidth(25.0)),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(getDynamicWidth(25.0),
-                            getDynamicHeight(15.0), getDynamicWidth(25.0), 0.0),
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  getDynamicWidth(10.0),
-                                  getDynamicHeight(10.0),
-                                  getDynamicWidth(10.0),
-                                  getDynamicHeight(5.0)),
-                              child: AutoSizeText(
-                                widget.questionDetails.question,
-                                style: mediumTextStyleDark,
-                                maxLines: 2,
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () async {
-                                      if (!isPolled) {
-                                        if (await Vibration
-                                            .hasAmplitudeControl()) {
-                                          Vibration.vibrate(amplitude: 128);
-                                        }
-                                        setState(() {
-                                          polledCount = polledCount + 1;
-                                          optionOneBackgroundColor = [
-                                            widget.questionDetails.color1,
-                                            widget.questionDetails.color2
-                                          ];
-                                          isPolled = true;
-                                          optionOnePolledCount =
-                                              optionOnePolledCount + 1;
-                                          isOptionOneSelected = true;
-                                          addPollCount = true;
-                                        });
-                                        updateInsights(1);
-                                      }
-                                    },
-                                    child: optionsStyle(
-                                      0,
-                                      '${optionOnePolledCount.toString()} votes',
-                                      selectedOption == 0
-                                          ? optionOneBackgroundColor
-                                          : selectedOption == 1
-                                              ? [
-                                                  widget.questionDetails.color1,
-                                                  widget.questionDetails.color2
-                                                ]
-                                              : optionOneBackgroundColor,
-                                      isOptionOneSelected,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height: 1,
-                                      width: getDynamicWidth(350),
-                                      child: Container(
-                                        color: Colors.white,
-                                      )),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      if (!isPolled) {
-                                        if (await Vibration
-                                            .hasAmplitudeControl()) {
-                                          Vibration.vibrate(amplitude: 128);
-                                        }
-                                        setState(() {
-                                          polledCount = polledCount + 1;
-                                          optionTwoBackgroundColor = [
-                                            widget.questionDetails.color1,
-                                            widget.questionDetails.color2
-                                          ];
-                                          isPolled = true;
-                                          optionTwoPolledCount =
-                                              optionTwoPolledCount + 1;
-                                          isOptionTwoSelected = true;
-                                          addPollCount = true;
-                                        });
-                                        updateInsights(2);
-                                      }
-                                    },
-                                    child: optionsStyle(
-                                      1,
-                                      '${optionTwoPolledCount.toString()} votes',
-                                      selectedOption == 0
-                                          ? optionTwoBackgroundColor
-                                          : selectedOption == 2
-                                              ? [
-                                                  widget.questionDetails.color1,
-                                                  widget.questionDetails.color2
-                                                ]
-                                              : optionTwoBackgroundColor,
-                                      isOptionTwoSelected,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height: 1,
-                                      width: getDynamicWidth(350),
-                                      child: Container(
-                                        color: Colors.white,
-                                      )),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      if (!isPolled) {
-                                        if (await Vibration
-                                            .hasAmplitudeControl()) {
-                                          Vibration.vibrate(amplitude: 128);
-                                        }
-                                        setState(() {
-                                          polledCount = polledCount + 1;
-                                          optionThreeBackgroundColor = [
-                                            widget.questionDetails.color1,
-                                            widget.questionDetails.color2
-                                          ];
-                                          isPolled = true;
-                                          optionThreePolledCount =
-                                              optionThreePolledCount + 1;
-                                          isOptionThreeSelected = true;
-                                          addPollCount = true;
-                                        });
-                                        updateInsights(3);
-                                      }
-                                    },
-                                    child: optionsStyle(
-                                      2,
-                                      '${optionThreePolledCount.toString()} votes',
-                                      selectedOption == 0
-                                          ? optionThreeBackgroundColor
-                                          : selectedOption == 3
-                                              ? [
-                                                  widget.questionDetails.color1,
-                                                  widget.questionDetails.color2
-                                                ]
-                                              : optionThreeBackgroundColor,
-                                      isOptionThreeSelected,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height: 1,
-                                      width: getDynamicWidth(350),
-                                      child: Container(
-                                        color: Colors.white,
-                                      )),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      if (!isPolled) {
-                                        if (await Vibration
-                                            .hasAmplitudeControl()) {
-                                          Vibration.vibrate(amplitude: 128);
-                                        }
-                                        setState(() {
-                                          polledCount = polledCount + 1;
-                                          optionFourBackgroundColor = [
-                                            widget.questionDetails.color1,
-                                            widget.questionDetails.color2
-                                          ];
-                                          isPolled = true;
-                                          optionFourPolledCount =
-                                              optionFourPolledCount + 1;
-                                          isOptionFourSelected = true;
-                                          addPollCount = true;
-                                        });
-                                        updateInsights(4);
-                                      }
-                                    },
-                                    child: optionsStyle(
-                                      3,
-                                      '${optionFourPolledCount.toString()} votes',
-                                      selectedOption == 0
-                                          ? optionFourBackgroundColor
-                                          : selectedOption == 4
-                                              ? [
-                                                  widget.questionDetails.color1,
-                                                  widget.questionDetails.color2
-                                                ]
-                                              : optionFourBackgroundColor,
-                                      isOptionFourSelected,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  getDynamicWidth(10.0),
-                                  getDynamicHeight(20.0),
-                                  getDynamicWidth(10.0),
-                                  getDynamicHeight(15.0)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    '${viewCount.toString()} views',
-                                    style: smallTextStyleDark,
-                                  ),
-
-
-                                  GestureDetector(
-                                    onTap: () {
-
-                                      GoToPage(context, RevealIdentity(
-                                        gangID: widget.gangID,
-                                        questionID:
-                                        widget.questionDetails.questionID,
-                                      ));
-                                    },
-                                    child: Text(
-                                      '${polledCount.toString()} votes',
-                                      style: smallTextStyleDark,
-                                    ),
-                                  ),
-
-
-                                  Text(
-                                    '30 votes',
-                                    style: smallTextStyleLight,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      screenshotController
-                                          .capture()
-                                          .then((File image) {
-                                        setState(() async {
-                                          await ImageGallerySaver.saveImage(
-                                              image.readAsBytesSync());
-
-                                          showFancyCustomDialogShare(
-                                              context, image);
-                                        });
-                                      }).catchError((onError) {
-                                        print(onError);
-                                      });
-                                    },
-                                    child: Text(
-                                      'share',
-                                      style: smallTextStyleDark,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
                         ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      final updateInsightDetails =
+                      GestureDetector(
+                        onTap: () {
+                          final updateInsightDetails =
                           InsightsDetails(isAnonymous: !isAnswerAnonymos);
-                      DBreference.updateInsights(updateInsightDetails,
-                          widget.gangID, widget.questionDetails.questionID);
-                      setState(() {
-                        isAnswerAnonymos = !isAnswerAnonymos;
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
-                      child: Text(
-                        isAnswerAnonymos
-                            ? 'Answered anonymous'
-                            : '${USER_NAME}\'s answer',
-                        style: mediumTextStyleLight,
+                          DBreference.updateInsights(updateInsightDetails,
+                              widget.gangID, widget.questionDetails.questionID);
+                          setState(() {
+                            isAnswerAnonymos = !isAnswerAnonymos;
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(top: getDynamicHeight(15.0)),
+                          child: Text(
+                            isAnswerAnonymos
+                                ? 'Answered anonymous'
+                                : '${USER_NAME}\'s answer',
+                            style: mediumTextStyleLight,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
 //                  SizedBox(height: 60,),
-                ],
-              ),
-            ),
+
+
+                    ],
+                  ),
+                ),
+              )
+
+
+             // Container(),
+            ],
           ),
-         // Container(),
-        ],
+        ),
       ),
     );
   }
@@ -757,10 +767,20 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
           )),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: AutoSizeText(
-          '${widget.questionDetails.options[optionIndex]}'.capitalize(),
-          style: smallTextStyleLight,
-          maxLines: 2,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            AutoSizeText(
+              '${widget.questionDetails.options[optionIndex]}'.capitalize(),
+              style: smallTextStyleLight,
+              maxLines: 2,
+            ),
+            AutoSizeText(
+              '20%'.capitalize(),
+              style: smallTextStyleLight,
+              maxLines: 2,
+            ),
+          ],
         ),
       ),
     );
@@ -776,13 +796,14 @@ class TimerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: 10,),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Colors.white,
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        //mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           GradientText(
             '${convertSeconds(secondsLeft > 0 ? secondsLeft : 0)[0].toString().padLeft(2, '0')} : ${convertSeconds(secondsLeft > 0 ? secondsLeft : 0)[1].toString().padLeft(2, '0')} : ${convertSeconds(secondsLeft > 0 ? secondsLeft : 0)[2].toString().padLeft(2, '0')}',

@@ -93,7 +93,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                     ),
                     // The content inside the overlay.
                     child: Container(
-                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 200 : 155),
+                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 220 : 155),
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(

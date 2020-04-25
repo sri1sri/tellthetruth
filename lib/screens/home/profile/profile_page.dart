@@ -79,7 +79,7 @@ class _F_ProfileState extends State<F_Profile> {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(335)),
+                  preferredSize: Size.fromHeight(getDynamicHeight(355)),
                   child: ControlledAnimation(
                     playback: Playback.MIRROR,
                     tween: tween,

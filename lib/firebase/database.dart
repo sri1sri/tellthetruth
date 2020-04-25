@@ -167,7 +167,7 @@ class FirestoreDatabase implements Database {
   Stream<List<InsightsDetails>> readQuestionsInsights(String gangID, String questionID) => _service.collectionStream(
     path: APIPath.questionInsightDetails(gangID, questionID),
     builder: (data, documentId) => InsightsDetails.fromMap(data, documentId),
-    queryBuilder: (query) => query.where('is_anonyous', isEqualTo: false),
+    queryBuilder: (query) => query.where('is_anonymous', isEqualTo: false),
   );
 
   @override

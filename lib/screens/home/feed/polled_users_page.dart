@@ -82,6 +82,11 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
           stream: DBreference.getUserDetails(insightData.userID),
           builder: (context, snapshot) {
             final userDetails = snapshot.data;
+
+
+
+
+
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,

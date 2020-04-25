@@ -15,6 +15,7 @@ import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_
 
 import 'add_question_page.dart';
 import 'add_gang_name_page.dart';
+import 'content_preview_page.dart';
 import 'join_gang_page.dart';
 
 class AddPage extends StatelessWidget {
@@ -148,7 +149,7 @@ class _F_AddPageState extends State<F_AddPage> {
             BackForeText(
               backText: ["Tell The Truth", "నిజమ్ చెప్పు", "सच बताओ","உண்மையை கூறவும்","സത്യം പറയൂ","ನಿಜ ಹೇಳು"],
               foreText: 'Wanna ask a question?',
-              route:  AddQuestion(),
+              route: ContentPreview(),
             ),
             BackForeText(
               backText: ["Create Gang", "గ్యాంగ్ సృష్టించండి", "गैंग बनाएं","கும்பலை உருவாக்குங்கள்","ഗാംഗ് സൃഷ്ടിക്കുക","ಗ್ಯಾಂಗ್ ರಚಿಸಿ"],

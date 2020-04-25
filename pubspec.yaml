@@ -35,6 +35,8 @@ dependencies:
   cloud_firestore: 0.13.5
   firebase_storage: 3.1.3
   firebase_core: 0.4.4
+  firebase_admob: 0.9.3+2
+  firebase_analytics: 5.0.11
   flare_flutter: ^2.0.3
   gender_selection: ^1.0.0
   gradient_text: ^1.0.2
@@ -46,13 +48,8 @@ dependencies:
   simple_animations: ^1.3.11
   animated_text_kit: 2.0.0
   finite_coverflow: ^1.0.0
-  firebase_admob: ^0.9.3+2
-  firebase_analytics: ^5.0.11
-  animated_widgets: ^1.0.3
   auto_size_text: ^2.1.0
   fab_circular_menu: ^1.0.0
-  flutter_slidable: ^0.5.4
-  flutter_boom_menu: ^1.0.2
   screenshot: ^0.1.1
   image_gallery_saver: ^1.2.2
   url_launcher: ^5.4.2
@@ -72,13 +69,6 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   fonts:
-    - family: Montserrat
-      fonts:
-        - asset: fonts/Montserrat-Bold.ttf
-        - asset: fonts/Montserrat-Light.ttf
-        - asset: fonts/Montserrat-Medium.ttf
-        - asset: fonts/Montserrat-Regular.ttf
-        - asset: fonts/Montserrat-SemiBold.ttf
     - family: FingerPaint
       fonts:
         - asset: fonts/FingerPaint-Regular.ttf
@@ -127,7 +117,6 @@ flutter:
     - images/instagram.png
     - images/settingsPrivacy.png
     - images/dice.png
-
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

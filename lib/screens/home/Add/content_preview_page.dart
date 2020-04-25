@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:animated_widgets/widgets/translation_animated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:tellthetruth/database_model/question_details.dart';

@@ -2,18 +2,12 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_page_transition/flutter_page_transition.dart';
-import 'package:gradient_text/gradient_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
-import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/button_widget/backForeText.dart';
-import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
-
-import 'add_question_page.dart';
 import 'add_gang_name_page.dart';
 import 'content_preview_page.dart';
 import 'join_gang_page.dart';

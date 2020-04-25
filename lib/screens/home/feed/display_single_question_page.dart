@@ -718,10 +718,10 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                     ],
                   ),
                 ),
-              )
+              ),
 
 
-             // Container(),
+              Container(height: 60,color: Colors.transparent,width: 300,),
             ],
           ),
         ),
@@ -776,7 +776,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
               maxLines: 2,
             ),
             AutoSizeText(
-              '20%'.capitalize(),
+              getCount(optionIndex),
               style: smallTextStyleLight,
               maxLines: 2,
             ),
@@ -785,7 +785,28 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
       ),
     );
   }
+
+  String getCount(int index){
+    switch(index){
+      case 0:
+        return optionOnePolledCount.toString();
+        break;
+      case 1:
+        return optionTwoPolledCount.toString();
+        break;
+      case 2:
+        return optionThreePolledCount.toString();
+        break;
+      case 3:
+        return optionFourPolledCount.toString();
+        break;
+    }
+    return 'f';
+  }
+
 }
+
+
 
 class TimerText extends StatelessWidget {
   TimerText({this.secondsLeft});

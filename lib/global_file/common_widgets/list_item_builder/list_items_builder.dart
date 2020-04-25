@@ -9,12 +9,13 @@ import 'empty_feed_content.dart';
 typedef ItemWidgetBuilder<T> = Widget Function(BuildContext context, T item);
 
 class ListItemsBuilder<T> extends StatelessWidget {
-  const ListItemsBuilder(
-      {Key key, @required this.snapshot, @required this.itemBuilder})
+  ListItemsBuilder(
+      {Key key, @required this.snapshot, @required this.itemBuilder, @required this.emptyContent })
       : super(key: key);
 
   final AsyncSnapshot<List<T>> snapshot;
   final ItemWidgetBuilder<T> itemBuilder;
+  final Widget emptyContent;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class ListItemsBuilder<T> extends StatelessWidget {
       if (items.isNotEmpty) {
         return _buildList(items);
       } else {
-        return EmptyFeedContent();
+        return emptyContent;
       }
     } else if (snapshot.hasError) {
       print('error => ${snapshot.error}');

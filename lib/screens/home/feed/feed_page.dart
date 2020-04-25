@@ -12,6 +12,7 @@ import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_feed_content.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
@@ -225,6 +226,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
         print(USER_ID);
 
         return ListItemsBuilder<GangDetails>(
+          emptyContent: EmptyFeedContent(),
           snapshot: snapshot,
           itemBuilder: (context, data) => Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

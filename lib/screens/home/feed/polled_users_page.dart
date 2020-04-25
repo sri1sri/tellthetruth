@@ -8,6 +8,7 @@ import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_appbar_widget/custom_app_bar.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_content.dart';
+import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_polled_users.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
@@ -76,15 +77,13 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
       stream: DBreference.readQuestionsInsights(widget.gangID, widget.questionID),
       builder: (context, snapshot) {
 
-        return snapshot.hasData ? ListItemsBuilder<InsightsDetails>(
+        return ListItemsBuilder<InsightsDetails>(
+            emptyContent : EmptyPolledContent(),
           snapshot: snapshot,
           itemBuilder: (context, insightData) => insightData.userID != null ? StreamBuilder<UserDetails>(
           stream: DBreference.getUserDetails(insightData.userID),
           builder: (context, snapshot) {
             final userDetails = snapshot.data;
-
-
-
 
 
             return Column(
@@ -105,7 +104,7 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
               ],
             );
           }) : Container(height: 0, width: 0,)
-        ) : EmptyContent();
+        );
       },
     );
   }

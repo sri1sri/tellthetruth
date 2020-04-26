@@ -142,6 +142,7 @@ class _F_AddPageState extends State<F_AddPage> {
               backText: ["Join Gang", "ముఠాలో చేరండి", "गिरोह में शामिल हों","கும்பலில் சேருங்கள்","സംഘത്തിൽ ചേരുക","ಗ್ಯಾಂಗ್ ಸೇರಲು"],
               foreText: 'Join your gang',
               route: JoinGang(),
+              isError: false,
             ),
             BackForeText(
               backText: ["Tell The Truth", "నిజమ్ చెప్పు", "सच बताओ","உண்மையை கூறவும்","സത്യം പറയൂ","ನಿಜ ಹೇಳು"],
@@ -153,6 +154,8 @@ class _F_AddPageState extends State<F_AddPage> {
               backText: ["Create Gang", "గ్యాంగ్ సృష్టించండి", "गैंग बनाएं","கும்பலை உருவாக்குங்கள்","ഗാംഗ് സൃഷ്ടിക്കുക","ಗ್ಯಾಂಗ್ ರಚಿಸಿ"],
               foreText: 'Create a new gang & have fun',
               route: AddGangName(),
+              isError: false,
+
             ),
 //            Container(
 //              height: getDynamicHeight(60),

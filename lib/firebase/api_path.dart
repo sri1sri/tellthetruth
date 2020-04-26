@@ -7,12 +7,14 @@ class APIPath {
   static String gangDetails(String gangID) => '${API_SUFFIX}gangs/$gangID';
   static String gangsList() => '${API_SUFFIX}gangs';
 
+  static String gangMembersDetails(String gangID) => '${API_SUFFIX}gangs/$gangID/members/';
+  static String gangMemberDetails(String gangID, String uid) => '${API_SUFFIX}gangs/$gangID/members/$uid';
+
   static String questionDetails(String gangID, String questionID) => '${API_SUFFIX}gangs/$gangID/questions/$questionID';
   static String questionsList(String gangID) => '${API_SUFFIX}gangs/$gangID/questions/';
 
   static String myInsightDetails(String gangID, String questionID, String userID) => '${API_SUFFIX}gangs/$gangID/questions/$questionID/insights/$userID';
   static String questionInsightDetails(String gangID, String questionID) => '${API_SUFFIX}gangs/$gangID/questions/$questionID/insights/';
-
 
   static String insights() => '${API_SUFFIX}common_files/insights';
   static String animationsURL() => '${API_SUFFIX}common_files/animation_file_url';

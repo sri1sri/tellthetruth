@@ -1,4 +1,3 @@
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_page_transition/page_transition_type.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+import '../custom_alert_box.dart';
 
 class BackForeText extends StatelessWidget {
 
@@ -14,17 +14,31 @@ class BackForeText extends StatelessWidget {
         this.backText,
         this.foreText,
         this.route,
+        this.isError,
       });
 
   final Widget route;
   final List backText;
   final String foreText;
+  final bool isError;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightUp, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: route));
+        if(isError){
+          CustomAlertBox(
+              context,
+              'Oops...',
+              "Seems like you don't have any gangs. Please create or join gang to add questions.",
+              false, () {
+            Navigator.pop(context);
+          });
+        }else{
+          Navigator.push(context, PageTransition(type: PageTransitionType.rippleRightUp, duration: Duration(seconds: 1),alignment: Alignment.bottomCenter, child: route));
+
+        }
+
 
       },
       child: Stack(

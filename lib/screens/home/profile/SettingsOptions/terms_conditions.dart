@@ -27,7 +27,7 @@ class _F_TermsAndServices extends State<F_TermsAndServices> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 

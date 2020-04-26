@@ -13,30 +13,11 @@ import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_
 import '../../../landing_page.dart';
 
 class ContentPreview extends StatelessWidget {
-//  ContentPreview({
-//    @required this.question,
-//    @required this.optionOne,
-//    @required this.optionTwo,
-//    @required this.optionThree,
-//    @required this.optionFour,
-//  });
-//
-//  String question;
-//  String optionOne;
-//  String optionTwo;
-//  String optionThree;
-//  String optionFour;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_ContentPreview(
-//        question: question,
-//        optionOne: optionOne,
-//        optionTwo: optionTwo,
-//        optionThree: optionThree,
-//        optionFour: optionFour,
-      ),
+      child: F_ContentPreview(),
     );
   }
 }
@@ -187,7 +168,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     setState(() {
       selectedGangID = gangIDs[0];
     });
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 

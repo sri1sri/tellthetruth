@@ -63,7 +63,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 //    show_interstitial_ad += show_interstitial_ad;
 //    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
 //
-//    Ads.showBannerAd();
+    Ads.showBannerAd();
     Firestore.instance
         .collection('${API_SUFFIX}gangs')
         .document(widget.gangDetails.gangID)
@@ -101,7 +101,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
               ),
               color: Colors.white,
               onPressed: () {
-                _toggleDropdown();
+                setState(() {
+                  _dropdownShown = false;
+                });
                 Navigator.pop(context, true);
               },
             ),
@@ -298,7 +300,9 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
             return FlatButton(
               disabledColor: Colors.white,
               onPressed: (){
-                _toggleDropdown();
+                setState(() {
+                  _dropdownShown = false;
+                });
                 openContainer();
               },
               padding: EdgeInsets.only(left: 0.0, right: 0.0),

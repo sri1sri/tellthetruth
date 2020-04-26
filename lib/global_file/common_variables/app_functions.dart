@@ -98,13 +98,13 @@ List<int> convertSeconds(int seconds) {
 String greeting() {
   var hour = DateTime.now().hour;
 
-  if (hour > 6 && hour < 12) {
+  if (hour >= 6 && hour < 12) {
     return 'Good Morning';
   }
-  if (hour > 12 && hour < 16) {
+  if (hour >= 12 && hour < 16) {
     return 'Good Afternoon';
   }
-  if (hour > 16 && hour < 20) {
+  if (hour >= 16 && hour < 21) {
     return 'Good Evening';
   }
   return 'Good Night';

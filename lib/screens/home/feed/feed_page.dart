@@ -50,7 +50,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
 //    show_interstitial_ad = show_interstitial_ad + 1;
 //    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
 //
-//    Ads.showBannerAd();
+    Ads.showBannerAd();
 
 //    String appId = getAppId();
 //    print('hello world admob test$appId');
@@ -70,8 +70,6 @@ class _F_FeedPageState extends State<F_FeedPage> {
 
   @override
   void dispose() {
-    print('disposed is called');
-//    bannerAd?.dispose();
     super.dispose();
   }
 
@@ -217,13 +215,10 @@ class _F_FeedPageState extends State<F_FeedPage> {
           USER_GANG_NAMES = gName;
           USER_GANG_ID = gId;
           USER_GANG_NAMES.forEach((f) {
-            print(" USER GANG NAME : $f");
           });
           USER_GANG_ID.forEach((f) {
-            print(" USER GANG ID : $f");
           });
         }
-        print(USER_ID);
 
         return ListItemsBuilder<GangDetails>(
           emptyContent: EmptyFeedContent(),

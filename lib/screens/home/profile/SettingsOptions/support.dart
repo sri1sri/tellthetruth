@@ -38,7 +38,7 @@ class _F_Support extends State<F_Support> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 

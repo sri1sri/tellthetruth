@@ -22,7 +22,7 @@ class EmptyPolledContent extends StatelessWidget {
             children: <Widget>[
               Lottie.network("https://assets10.lottiefiles.com/packages/lf20_EHugAD.json",height: getDynamicHeight(300),width: getDynamicWidth(300)),
               GradientText(
-                "No user's has revealed their status",
+                "No user's has revealed their identity.",
                 style: foregroundTextStyleDark,
                 textAlign: TextAlign.center,
                 gradient: LinearGradient(
@@ -35,24 +35,19 @@ class EmptyPolledContent extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              SizedBox(height: getDynamicHeight(40.0),),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('How to reveal indentity :', style: mediumTextStyleDark),
+                  Text('How to reveal indentity?', style: mediumTextStyleDark),
                   SizedBox(height: getDynamicHeight(10.0),),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        Text('- ', style: smallTextStyleMedium,),
+                        Text('- Click on Answered anonymous, It will disable anonymous mode.', style: smallTextStyleMedium,),
                         SizedBox(height: getDynamicHeight(10.0),),
-                        Text('- ', style: smallTextStyleMedium),
+                        Text("- Click on ${USER_NAME}'s answer, It will enable anonymous mode.", style: smallTextStyleMedium),
                         SizedBox(height: getDynamicHeight(10.0),),
-                        Text('- ', style: smallTextStyleMedium),
-                        SizedBox(height: getDynamicHeight(10.0),),
-                        Text('- ', style: smallTextStyleMedium,),
-                        SizedBox(height: getDynamicHeight(40.0),),
                       ],
                     ),
                   )

@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_text/gradient_text.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
-import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
-import 'package:tellthetruth/global_file/common_widgets/custom_appbar_widget/custom_app_bar.dart';
-import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_content.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_polled_users.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_items_builder.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
@@ -38,7 +37,12 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
+  }
 
+  @override
+  void initState() {
+    Ads.showBannerAd();
+    super.initState();
   }
 
   Widget offlineWidget (BuildContext context){
@@ -47,25 +51,34 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80),
-            child: CustomAppBar(
-              leftActionBar: Container(
-                child: Icon(Icons.arrow_back_ios,color: subBackgroundColor,),
-              ),
-              leftAction: () {
-                Navigator.pop(context, true);
-              },
-              rightActionBar: Container(
-                  child: Text("......",style: TextStyle(color: Colors.white),)
-              ),
-              rightAction: () {
-                print('right action bar is pressed in appbar');
-              },
-              primaryText: "Polled Users",
-              secondaryText: null,
-            ),
-          ),
+          appBar: AppBar(
+        leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: Colors.black,
+        ),
+        color: Colors.white,
+        onPressed: () {
+          Navigator.pop(context, true);
+        },
+      ),
+      centerTitle: true,
+      title: GradientText(
+        'Revealed identities',
+        style: foregroundTextStyleLight,
+        gradient: LinearGradient(
+          colors: [
+            Color(0XffFD8B1F),
+            Color(0XffD152E0),
+            Color(0Xff30D0DB),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      elevation: 0,
+      backgroundColor: Colors.white,
+    ),
           body: _buildContent(context),
         ),
       ),

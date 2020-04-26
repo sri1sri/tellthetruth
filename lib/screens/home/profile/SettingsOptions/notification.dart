@@ -26,7 +26,7 @@ class _F_Notifications extends State<F_Notifications> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 

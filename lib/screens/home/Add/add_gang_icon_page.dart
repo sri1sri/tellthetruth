@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -86,6 +87,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
   @override
   void initState() {
+    Ads.hideBannerAd();
     super.initState();
   }
 

@@ -47,7 +47,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 

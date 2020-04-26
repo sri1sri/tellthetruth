@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:overlay_container/overlay_container.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/landing_page.dart';
 import 'package:vector_math/vector_math.dart' as math;
@@ -53,8 +54,9 @@ class _F_GangMembersState extends State<F_GangMembers> {
 
   @override
   void initState() {
-//    gangUsersID = widget.gangDetails.gangUserIDS;
+    //    gangUsersID = widget.gangDetails.gangUserIDS;
     getUsersDetails(widget.gangDetails.gangUserIDS);
+    Ads.showBannerAd();
     super.initState();
   }
 
@@ -73,14 +75,25 @@ class _F_GangMembersState extends State<F_GangMembers> {
             slivers: <Widget>[
               SliverAppBar(
                 actions: [
-                  IconButton(
+                  widget.gangDetails.createBy == USER_ID ? IconButton(
                     icon: Icon(
                       Icons.more_vert,
                       color: Colors.black,
                     ),
                     onPressed: _toggleDropdown,
                     color: Colors.white,
+                  ) : Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: GestureDetector(
+                      onTap: (){
+                        widget.gangDetails.gangUserIDS.remove(USER_ID);
+                        final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
+                        DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+                        GoToPage(context, LandingPage());
+                      },
+                        child: Text('Leave', style: mediumTextStyleDark)),
                   ),
+
                   OverlayContainer(
                     show: _dropdownShown,
                     // Let's position this overlay to the right of the button.
@@ -92,7 +105,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                     ),
                     // The content inside the overlay.
                     child: Container(
-                      height: getDynamicHeight(widget.gangDetails.createBy == USER_ID ? 220 : 155),
+                      height: getDynamicHeight(150),
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
@@ -159,34 +172,34 @@ class _F_GangMembersState extends State<F_GangMembers> {
                               ],
                             ),
                           ) : Container(height: 0, width: 0,),
-                          Divider(
-                            thickness: 1,
-                            color: Colors.black54,
-                          ),
-                          GestureDetector(
-                            onTap: () async {
-                              widget.gangDetails.gangUserIDS.remove(USER_ID);
-                              setState(() {
-                                _dropdownShown = false;
-                              });
-                              final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
-                              DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
-
-                              GoToPage(context, LandingPage());
-                              },
-                            child: Row(
-                              children: [
-                                Icon(Icons.clear),
-                                SizedBox(
-                                  width: getDynamicWidth(5),
-                                ),
-                                Text(
-                                  "Leave Group",
-                                  style: smallTextStyleDark,
-                                ),
-                              ],
-                            ),
-                          ),
+//                          Divider(
+//                            thickness: 1,
+//                            color: Colors.black54,
+//                          ),
+//                          GestureDetector(
+//                            onTap: () async {
+//                              widget.gangDetails.gangUserIDS.remove(USER_ID);
+//                              setState(() {
+//                                _dropdownShown = false;
+//                              });
+//                              final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
+//                              DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+//
+//                              GoToPage(context, LandingPage());
+//                              },
+//                            child: Row(
+//                              children: [
+//                                Icon(Icons.clear),
+//                                SizedBox(
+//                                  width: getDynamicWidth(5),
+//                                ),
+//                                Text(
+//                                  "Leave Group",
+//                                  style: smallTextStyleDark,
+//                                ),
+//                              ],
+//                            ),
+//                          ),
                           Divider(
                             thickness: 1,
                             color: Colors.black54,

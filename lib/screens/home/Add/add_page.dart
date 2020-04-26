@@ -1,8 +1,11 @@
 
+//import 'dart:html';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -36,7 +39,7 @@ class _F_AddPageState extends State<F_AddPage> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -144,6 +147,7 @@ class _F_AddPageState extends State<F_AddPage> {
               backText: ["Tell The Truth", "నిజమ్ చెప్పు", "सच बताओ","உண்மையை கூறவும்","സത്യം പറയൂ","ನಿಜ ಹೇಳು"],
               foreText: 'Wanna ask a question?',
               route: ContentPreview(),
+              isError: USER_GANG_ID.length == 0 ? true : false,
             ),
             BackForeText(
               backText: ["Create Gang", "గ్యాంగ్ సృష్టించండి", "गैंग बनाएं","கும்பலை உருவாக்குங்கள்","ഗാംഗ് സൃഷ്ടിക്കുക","ಗ್ಯಾಂಗ್ ರಚಿಸಿ"],

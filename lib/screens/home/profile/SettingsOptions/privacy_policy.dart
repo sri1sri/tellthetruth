@@ -26,7 +26,7 @@ class _F_PrivacyPolicy extends State<F_PrivacyPolicy> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 

@@ -1,8 +1,13 @@
+import 'dart:io';
+
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -42,7 +47,7 @@ class _F_ProfileState extends State<F_Profile> {
 
   @override
   void initState() {
-//    Ads.hideBannerAd();
+    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -104,9 +109,10 @@ class _F_ProfileState extends State<F_Profile> {
                                         style: backgroundTextStyleMedium,),
                                     height: 80,
                                   ),
-                                  Text(
-                                    USER_EMAIL,
-                                    style: foregroundTextStyleLight,
+
+                                    Text(
+                                      USER_EMAIL,
+                                      style: foregroundTextStyleLight,
                                   ),
 //                                  Row(
 //                                    mainAxisAlignment: MainAxisAlignment.center,

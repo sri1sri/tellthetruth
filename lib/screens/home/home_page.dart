@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -61,11 +62,12 @@ class _F_HomePageState extends State<F_HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
+
+    Ads.hideBannerAd();
     setState(() {
       DBreference = Provider.of<Database>(context, listen: false);
     });
+    super.initState();
   }
 
   @override

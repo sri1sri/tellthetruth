@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
@@ -376,6 +377,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         true, () {
                       DBreference.deleteQuestion(widget.gangID,
                           widget.questionDetails.questionID);
+                      DBreference.deleteInsights(widget.gangID,
+                          widget.questionDetails.questionID);
                       GoToPage(context, LandingPage());
                     });
                   },
@@ -672,8 +675,16 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                               .capture()
                                               .then((File image) {
                                             setState(() async {
+
+                                              var status = await Permission.storage.status;
+                                              if (status.isUndetermined) {
+                                                Permission.storage.request();
+                                              }
+
                                               await ImageGallerySaver.saveImage(
                                                   image.readAsBytesSync());
+
+
 
                                               showFancyCustomDialogShare(
                                                   context, image);

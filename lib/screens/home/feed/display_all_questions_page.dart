@@ -73,8 +73,11 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
         .snapshots()
         .listen(
           (data) => data.documents.forEach(
-            (element) {
-              DBreference.deleteQuestion(
+            (element) async{
+
+              await DBreference.deleteInsights(widget.gangDetails.gangID,
+                  element.documentID);
+              await DBreference.deleteQuestion(
                   widget.gangDetails.gangID, element.documentID);
             },
           ),

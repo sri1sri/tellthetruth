@@ -23,13 +23,20 @@ class FirestoreService {
     await reference.updateData(data);
   }
 
-  Future<void> deleteData({@required String path}) async {
+  Future<void> deleteDocument({@required String path}) async {
     final reference = Firestore.instance.document(path);
     print('delete: $path');
     await reference.delete();
   }
 
 
+  Future<void> deleteCollection({@required String path}) async {
+    Firestore.instance.collection(path).getDocuments().then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.documents) {
+        ds.reference.delete();
+      }
+      });
+  }
   
 
   Stream<List<T>> collectionStream<T>({

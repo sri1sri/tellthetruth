@@ -25,11 +25,12 @@ abstract class Database {
   Stream<InsightsDetails> myInsight(String gangID, String questionID);
   Future<void> updateInsights(InsightsDetails insightDetails, String gangID, String questionID);
   Future<void> deleteQuestion(String gangID, String questionID);
-  Stream<List<QuestionDetails>> deleteQuestionsList(String gangID);
   Future<void> updateAppInsights(CommonFiles commonFiles);
   Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS);
   Stream<List<InsightsDetails>> readQuestionsInsights(String gangID, String questionID);
   Future<void> deleteGang(String gangID);
+  Future<void> deleteQuestions(String gangID);
+  Future<void> deleteInsights(String gangID, String questionID);
 }
 
 Database DBreference;
@@ -138,22 +139,26 @@ class FirestoreDatabase implements Database {
   @override
   Future<void> deleteQuestion(
       String gangID, String questionID) async =>
-      await _service.deleteData(
+      await _service.deleteDocument(
         path: APIPath.questionDetails(gangID, questionID),
       );
 
   @override
   Future<void> deleteGang(String gangID) async =>
-      await _service.deleteData(
+      await _service.deleteDocument(
         path: APIPath.gangDetails(gangID),
+      );
+  @override
+  Future<void> deleteQuestions(String gangID) async =>
+      await _service.deleteCollection(
+        path: APIPath.questionsList(gangID),
       );
 
   @override
-  Stream<List<QuestionDetails>> deleteQuestionsList(String gangID) => _service.collectionStream(
-    path: APIPath.questionsList(gangID),
-    builder: (data, documentId) => QuestionDetails.fromMap(data, documentId),
-    queryBuilder: (query) => query.where('delete_at', isLessThan: Timestamp.fromDate(DateTime.now())),
-    );
+  Future<void> deleteInsights(String gangID, String questionID) async =>
+      await _service.deleteCollection(
+        path: APIPath.questionInsightDetails(gangID, questionID),
+      );
 
   @override
   Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS) => _service.collectionStream(

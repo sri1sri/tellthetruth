@@ -7,6 +7,7 @@ import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
+import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/landing_page.dart';
 import 'package:vector_math/vector_math.dart' as math;
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -153,11 +154,20 @@ class _F_GangMembersState extends State<F_GangMembers> {
 
                           widget.gangDetails.createBy == USER_ID ? GestureDetector(
                             onTap: () {
-                              DBreference.deleteGang(widget.gangDetails.gangID);
+
                               setState(() {
                                 _dropdownShown = false;
                               });
-                              GoToPage(context, LandingPage());
+
+                              CustomAlertBox(context, 'Success', 'Your gang has been removed successfully.', true, (){
+                                DBreference.deleteGang(widget.gangDetails.gangID);
+                                DBreference.deleteQuestions(widget.gangDetails.gangID);
+                                GoToPage(context, LandingPage());
+
+                              });
+
+
+
                             },
                             child: Row(
                               children: [
@@ -166,7 +176,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                   width: getDynamicWidth(5),
                                 ),
                                  Text(
-                                  "Delete Group",
+                                  "Delete Gang",
                                   style: smallTextStyleDark,
                                 ),
                               ],

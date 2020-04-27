@@ -383,9 +383,9 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                     femaleText: "Female", //default Female
                                     //linearGradient: pinkRedGradient,
                                     femaleImage: NetworkImage(
-                                        "https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_female_user-512.png"),
+                                        "https://cdn2.iconfinder.com/data/icons/avatar-2/512/laly_face_woman-128.png"),
                                     maleImage: NetworkImage(
-                                        "https://icon-library.net/images/avatar-icon/avatar-icon-4.jpg"),
+                                        "https://cdn2.iconfinder.com/data/icons/avatar-2/512/profile_boy-512.png"),
                                     selectedGenderIconBackgroundColor:
                                         Colors.green, // default red
                                     checkIconAlignment: Alignment

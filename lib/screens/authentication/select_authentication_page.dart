@@ -81,9 +81,9 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 0.0,left: 20),
-                child: Row(
+                child: Column(
                   children: [
-                    SizedBox(height: getDynamicHeight(70),),
+                    SizedBox(height: getDynamicHeight(40),),
                     Row(
                       children: [
                         GradientText(
@@ -190,7 +190,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                       alignment: AlignmentDirectional.topStart,
                       children: <Widget>[
                         Container(
-                          margin: const EdgeInsets.only(bottom: 35),
+                          margin: const EdgeInsets.only(bottom: 5),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -297,9 +297,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: getDynamicHeight(20),
-              ),
+
             ],
           ),
         ),

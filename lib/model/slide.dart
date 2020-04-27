@@ -21,7 +21,7 @@ final slideList = [
   Slide(
     imageUrl: 'https://assets4.lottiefiles.com/packages/lf20_y1wVa2.json',
     title: 'Polling',
-    description: 'Poll questions, the words will move and grow as more responses are entered, creating a lively interactive presentation. The cluster of words and colors are a fun way to illustrate your audience’s thoughts.',
+    description: 'Poll questions, the words will move and grow as more responses are entered, creating a lively interactive presentation.',
   ),
   Slide(
     imageUrl: 'https://assets8.lottiefiles.com/packages/lf20_bb4Swi.json',

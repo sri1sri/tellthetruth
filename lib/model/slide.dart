@@ -14,7 +14,7 @@ class Slide {
 
 final slideList = [
   Slide(
-    imageUrl: 'https://assets10.lottiefiles.com/packages/lf20_M9wchH.json',
+    imageUrl: 'https://assets3.lottiefiles.com/packages/lf20_4kA0aR.json',
     title: 'Anonymous Q&A',
     description: "- Add polls\n- Make friends\n- Reveal identity\n- Share your Q&A result",
   ),

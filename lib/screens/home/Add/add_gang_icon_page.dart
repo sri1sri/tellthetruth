@@ -62,12 +62,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         gangUserIDS: [USER_ID],
       );
 
-      final updateInsights = CommonFiles(
-        groupsCount: int.parse(widget.gangCode)
-      );
-
       await DBreference.createGang(createGang);
-      await DBreference.updateAppInsights(updateInsights);
 
       CustomAlertBox(context, 'code- ${widget.gangCode}', 'Gang has been successfully created. Please share this gang code with your friends to join.',true, (){
         GoToPage(context, LandingPage());

@@ -1,8 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -70,22 +72,80 @@ class _F_HomePageState extends State<F_HomePage> {
     super.initState();
   }
 
+  static Future deleteCurrectUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    user.delete();
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
     return StreamBuilder<UserDetails>(
         stream: DBreference.getUserDetails(USER_ID),
         builder: (context, snapshot) {
           final userDetails = snapshot.data;
+
           USER_NAME =
-              userDetails != null ? userDetails.username : 'fetching...';
+          userDetails != null ? userDetails.username : 'fetching...';
           USER_GENDER =
-              userDetails != null ? userDetails.gender : 'fetching...';
+          userDetails != null ? userDetails.gender : 'fetching...';
           USER_EMAIL =
-              userDetails != null ? userDetails.emailID : 'fetching...';
+          userDetails != null ? userDetails.emailID : 'fetching...';
 
           return offlineWidget(context);
         });
-  }
+//    return StreamBuilder<CommonFiles>(
+//        stream: DBreference.getAppProperties(),
+//        builder: (context, snapshot) {
+//          final appProperties = snapshot.data;
+//
+//
+//          if(appProperties.underMaintenance != null ? appProperties.underMaintenance == true : true == false){
+//
+//          }else{
+//            StreamBuilder<UserDetails>(
+//                stream: DBreference.getUserDetails(USER_ID),
+//                builder: (context, snapshot) {
+//                  final userDetails = snapshot.data;
+//
+//                  USER_NAME =
+//                  userDetails != null ? userDetails.username : 'fetching...';
+//                  USER_GENDER =
+//                  userDetails != null ? userDetails.gender : 'fetching...';
+//                  USER_EMAIL =
+//                  userDetails != null ? userDetails.emailID : 'fetching...';
+//
+//                  return offlineWidget(context);
+//                });
+//          }
+//
+//          if(appProperties.isAppUpdated && appProperties.appVersion != '0.0.1'){
+//
+//          }else{
+//            StreamBuilder<UserDetails>(
+//                stream: DBreference.getUserDetails(USER_ID),
+//                builder: (context, snapshot) {
+//                  final userDetails = snapshot.data;
+//
+//                  USER_NAME =
+//                  userDetails != null ? userDetails.username : 'fetching...';
+//                  USER_GENDER =
+//                  userDetails != null ? userDetails.gender : 'fetching...';
+//                  USER_EMAIL =
+//                  userDetails != null ? userDetails.emailID : 'fetching...';
+//
+//                  return offlineWidget(context);
+//                });
+//          }
+//
+//          return Container(height: 0,width: 0,);
+
+
+//        });
+
+    }
+
 
   Widget offlineWidget(BuildContext context) {
     return CustomOfflineWidget(

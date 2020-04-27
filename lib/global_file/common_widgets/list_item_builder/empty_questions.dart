@@ -34,7 +34,7 @@ class EmptyQuestions extends StatelessWidget {
               SizedBox(height: getDynamicHeight(20.0),),
               Container(
                 height: getDynamicHeight(55),
-                width: getDynamicWidth(190),
+                width: getDynamicWidth(290),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -58,12 +58,8 @@ class EmptyQuestions extends StatelessWidget {
                       children: <Widget>[
                         Center(
                           child: Text(
-                            "Add Questions",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: mainFontFamily,
-                                fontWeight: FontWeight.w700,
-                                fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                            "Click here to add questions",
+                            style: mediumTextStyleLight,
                           ),
                         )
                       ],

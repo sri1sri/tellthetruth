@@ -34,6 +34,8 @@ double IPHONE_11_PRO_MAX_Width = 414;
 String maleIcon = 'https://assets6.lottiefiles.com/packages/lf20_bRHk7X.json';
 String femaleIcon = 'https://assets6.lottiefiles.com/packages/lf20_4iPre3.json';
 
+
+
 //int show_interstitial_ad = 0;
 
 

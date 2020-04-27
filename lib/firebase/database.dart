@@ -11,7 +11,6 @@ import 'api_path.dart';
 import 'firestore_service.dart';
 
 abstract class Database {
-  Stream<CommonFiles> getInsights();
   Stream<UserDetails> getUserDetails(String userId);
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
@@ -25,12 +24,13 @@ abstract class Database {
   Stream<InsightsDetails> myInsight(String gangID, String questionID);
   Future<void> updateInsights(InsightsDetails insightDetails, String gangID, String questionID);
   Future<void> deleteQuestion(String gangID, String questionID);
-  Future<void> updateAppInsights(CommonFiles commonFiles);
   Stream<List<UserDetails>> readGangUsers(List<dynamic> usersIDS);
   Stream<List<InsightsDetails>> readQuestionsInsights(String gangID, String questionID);
   Future<void> deleteGang(String gangID);
   Future<void> deleteQuestions(String gangID);
   Future<void> deleteInsights(String gangID, String questionID);
+  Stream<CommonFiles> getAppProperties();
+
 }
 
 Database DBreference;
@@ -42,15 +42,15 @@ class FirestoreDatabase implements Database {
   final _service = FirestoreService.instance;
 
   @override
+  Stream<CommonFiles> getAppProperties() => _service.documentStream(
+    path: APIPath.appProperties(),
+    builder: (data, documentId) => CommonFiles.fromMap(data, documentId),
+  );
+
+  @override
   Stream<UserDetails> getUserDetails(String userId) => _service.documentStream(
         path: APIPath.userDetails(userId),
         builder: (data, documentId) => UserDetails.fromMap(data, documentId),
-      );
-
-  @override
-  Stream<CommonFiles> getInsights() => _service.documentStream(
-        path: APIPath.insights(),
-        builder: (data, documentId) => CommonFiles.fromMap(data, documentId),
       );
 
   @override
@@ -175,10 +175,5 @@ class FirestoreDatabase implements Database {
     queryBuilder: (query) => query.where('is_anonymous', isEqualTo: false),
   );
 
-  @override
-  Future<void> updateAppInsights(CommonFiles commonFiles) async =>
-      await _service.updateData(
-        path: APIPath.insights(),
-        data: commonFiles.toMap(),
-      );
+
 }

@@ -19,26 +19,29 @@ import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/global_file/common_widgets/loading_page.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 import 'package:tellthetruth/global_file/common_widgets/platform_alert/platform_exception_alert_dialog.dart';
+import 'package:tellthetruth/model/register_account_page_model.dart';
 import '../../landing_page.dart';
 
 
 class RegisterDetails extends StatelessWidget {
-  RegisterDetails({@required this.email, @required this.password});
+  RegisterDetails({@required this.email, @required this.password, @required this.model});
   String email;
   String password;
+  RegisterAccountPageModel model;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_RegisterDetails(email: email, password: password),
+      child: F_RegisterDetails(email: email, password: password, model:model),
     );
   }
 }
 
 class F_RegisterDetails extends StatefulWidget {
-  F_RegisterDetails({@required this.email, @required this.password});
+  F_RegisterDetails({@required this.email, @required this.password, @required this.model});
   String email;
   String password;
+  RegisterAccountPageModel model;
 
   @override
   _F_RegisterDetailsState createState() => _F_RegisterDetailsState();
@@ -86,6 +89,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   }
 
   Future<void> _saveData() async {
+    await widget.model.submit();
     final userDetails = UserDetails(
       userID: USER_ID,
       emailID: widget.email,

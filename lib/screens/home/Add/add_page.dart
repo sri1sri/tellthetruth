@@ -4,6 +4,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
@@ -71,7 +72,7 @@ class _F_AddPageState extends State<F_AddPage> {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: PreferredSize(
-                  preferredSize: Size.fromHeight(getDynamicHeight(342)),
+                  preferredSize: Size.fromHeight(getDynamicHeight(362)),
                   child: ControlledAnimation(
                     playback: Playback.MIRROR,
                     tween: tween,
@@ -81,17 +82,7 @@ class _F_AddPageState extends State<F_AddPage> {
                         color: Colors.transparent,
                         child:  Column(
                           children: <Widget>[
-                            Center(
-                              child: SizedBox(
-                                width: getDynamicWidth(180),
-                                height: getDynamicHeight(180),
-                                child: Container(
-                                    child: FlareActor("images/welcome.flr",
-                                        alignment: Alignment.center,
-                                        fit: BoxFit.contain,
-                                        animation: 'Animations')),
-                              ),
-                            ),
+                            Lottie.network("https://assets3.lottiefiles.com/packages/lf20_4kA0aR.json",height: getDynamicHeight(240),width: getDynamicWidth(240)),
                             Padding(
                               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                               child: TyperAnimatedTextKit(
@@ -137,7 +128,6 @@ class _F_AddPageState extends State<F_AddPage> {
         color: Colors.white,
         child: Column(
           children: [
-            SizedBox(height: getDynamicHeight(20),),
             BackForeText(
               backText: ["Join Gang", "ముఠాలో చేరండి", "गिरोह में शामिल हों","கும்பலில் சேருங்கள்","സംഘത്തിൽ ചേരുക","ಗ್ಯಾಂಗ್ ಸೇರಲು"],
               foreText: 'Join your gang',

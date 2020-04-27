@@ -48,8 +48,8 @@ class CustomOfflinePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: getDynamicWidth(400.0),
-              height: getDynamicHeight(500.0),
+              width: getDynamicWidth(350.0),
+              height: getDynamicHeight(450.0),
               child: FlareActor("images/no internet.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:'no_netwrok'),
             ),
             //Splash(),

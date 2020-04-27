@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -144,15 +145,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
 //                    Text("Please register with your details.",style: mediumStyle,),
 
                       Center(
-                        child: SizedBox(
-                          width: getDynamicWidth(300),
-                          height: getDynamicHeight(300),
-                          child: Container(
-                              child: FlareActor("images/walk.flr",
-                                  alignment: Alignment.center,
-                                  fit: BoxFit.contain,
-                                  animation: 'Animations')),
-                        ),
+                        child:  Lottie.network("https://assets9.lottiefiles.com/packages/lf20_u8o7BL.json",height: getDynamicHeight(320),width: getDynamicWidth(320)),
                       ),
                     ]),
 

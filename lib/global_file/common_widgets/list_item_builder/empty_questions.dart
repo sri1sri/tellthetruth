@@ -4,6 +4,7 @@ import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+import 'package:tellthetruth/screens/home/Add/content_preview_page.dart';
 
 class EmptyQuestions extends StatelessWidget {
 
@@ -30,7 +31,47 @@ class EmptyQuestions extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              SizedBox(height: getDynamicHeight(40.0),),
+              SizedBox(height: getDynamicHeight(20.0),),
+              Container(
+                height: getDynamicHeight(55),
+                width: getDynamicWidth(190),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ContentPreview(),),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft, end: Alignment.bottomRight,
+                          colors: [
+                            Color(0XffFD8B1F),
+                            Color(0XffD152E0),
+                            Color(0Xff30D0DB),
+                          ]),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Center(
+                          child: Text(
+                            "Add Questions",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: mainFontFamily,
+                                fontWeight: FontWeight.w700,
+                                fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: getDynamicHeight(20.0),),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

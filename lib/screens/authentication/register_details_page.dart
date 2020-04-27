@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gender_selection/gender_selection.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
@@ -218,14 +219,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: getDynamicWidth(250),
-                      height: getDynamicHeight(250),
-                      child: FlareActor("images/welcome.flr",
-                          alignment: Alignment.center,
-                          fit: BoxFit.contain,
-                          animation: 'Animations'),
-                    ),
+                    Lottie.network("https://assets3.lottiefiles.com/packages/lf20_4kA0aR.json",height: getDynamicHeight(320),width: getDynamicWidth(320)),
+
                     Form(
                       key: _formKey,
                       child: Row(

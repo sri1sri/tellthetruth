@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
@@ -137,22 +138,18 @@ class _F_LoginPageState extends State<F_LoginPage> {
                         ),
                       ),
 //                        SizedBox(height: dynamicHeight(15), ),
-//                        Text("Please enter your login details.",style: mediumStyle,),
-                      Center(
-                        child: SizedBox(
-                          width: getDynamicWidth(300),
-                          height: getDynamicHeight(300),
-                          child: Container(
-                              child: FlareActor("images/welcome.flr",
-                                  alignment: Alignment.center,
-                                  fit: BoxFit.contain,
-                                  animation: 'Animations')),
-                        ),
-                      ),
+//                        Text("Please enter your login details.",style: mediumStyle,)
                     ]),
 
 //                SizedBox(height: dynamicHeight(15)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
+                  Lottie.network("https://assets5.lottiefiles.com/private_files/lf30_ONrIKs.json",height: getDynamicHeight(300),width: getDynamicWidth(300)),
+                ],
+              ),
+SizedBox(height: getDynamicHeight(40),),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

@@ -6,6 +6,7 @@ import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:overlay_container/overlay_container.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_share/social_share.dart';
@@ -360,24 +361,31 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                                         Container(),
                                         Row(
                                           children: [
-                                            CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              backgroundImage: questionData !=
-                                                      null
-                                                  ? questionData
-                                                              .createByGender ==
-                                                          'male'
-                                                      ? AssetImage(
-                                                          'images/boy.png')
-                                                      : AssetImage(
-                                                          'images/girl.png')
-                                                  : Container(
-                                                      height: 0,
-                                                      width: 0,
-                                                    ),
-                                              radius: 15,
-                                            ),
+                                            Lottie.network(
+                                                questionData !=
+                                                    null
+                                                    ? questionData
+                                                    .createByGender == 'Male' ? maleIcon : femaleIcon : maleIcon,
+                                                height: getDynamicHeight(50),
+                                                width: getDynamicWidth(50)),
+//                                            CircleAvatar(
+//                                              backgroundColor:
+//                                                  Colors.transparent,
+//                                              backgroundImage: questionData !=
+//                                                      null
+//                                                  ? questionData
+//                                                              .createByGender ==
+//                                                          'male'
+//                                                      ? AssetImage(
+//                                                          'images/boy.png')
+//                                                      : AssetImage(
+//                                                          'images/girl.png')
+//                                                  : Container(
+//                                                      height: 0,
+//                                                      width: 0,
+//                                                    ),
+//                                              radius: 15,
+//                                            ),
                                           ],
                                         ),
                                       ],

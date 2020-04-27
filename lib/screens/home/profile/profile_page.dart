@@ -91,7 +91,7 @@ class _F_ProfileState extends State<F_Profile> {
                         child: Column(
                           children: <Widget>[
                             Lottie.network(
-                                'https://assets6.lottiefiles.com/packages/lf20_bRHk7X.json',
+                                USER_GENDER == 'Male' ? maleIcon : femaleIcon,
                                 height: getDynamicHeight(200),
                                 width: getDynamicWidth(200)),
                             SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
@@ -41,6 +42,8 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
 
   @override
   void initState() {
+//    Ads.showInterstitialAd();
+//    Ads.showRewardedVideoAd();
     Ads.showBannerAd();
     super.initState();
   }
@@ -137,10 +140,17 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage(userData.gender == 'Male' ? 'images/boy.png' : 'images/girl.png'),
-                      radius: 25,
-                    ),
+
+                    Lottie.network(
+                        userData.gender != null ? userData.gender == 'Male' ? maleIcon : femaleIcon : maleIcon,
+                        height: getDynamicHeight(50),
+                        width: getDynamicWidth(50)),
+
+
+//                    CircleAvatar(
+//                      backgroundImage: AssetImage(userData.gender != null ? userData.gender == 'Male' ? 'images/boy.png' : 'images/girl.png' : 'images/girl.png'),
+//                      radius: 25,
+//                    ),
                   ],
                 ),
                 SizedBox(width: getDynamicWidth(15) ,),

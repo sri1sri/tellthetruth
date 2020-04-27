@@ -94,7 +94,7 @@ class Ads {
       _isGoingToBeShown = true;
       _bannerAd
         ..load()
-        ..show(anchorOffset: 50.0, anchorType: AnchorType.bottom);
+        ..show(anchorOffset: 70.0, anchorType: AnchorType.bottom);
     }
   }
 
@@ -120,15 +120,15 @@ class Ads {
       ..show(anchorOffset: 0.0, anchorType: AnchorType.bottom);
   }
 
-//  static void showRewardedVideoAd() {
-//    RewardedVideoAd.instance.listener = (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
-//      if (event == RewardedVideoAdEvent.loaded) {
-//        RewardedVideoAd.instance.show();
-//      }
-//    };
-//    RewardedVideoAd.instance.load(adUnitId: getRewardAdUnitId(), targetingInfo: _getMobileAdTargetingInfo());
-//  }
-//
+  static void showRewardedVideoAd() {
+    RewardedVideoAd.instance.listener = (RewardedVideoAdEvent event, {String rewardType, int rewardAmount}) {
+      if (event == RewardedVideoAdEvent.loaded) {
+        RewardedVideoAd.instance.show();
+      }
+    };
+    RewardedVideoAd.instance.load(adUnitId: RewardedVideoAd.testAdUnitId, targetingInfo: _getMobileAdTargetingInfo());
+  }
+
   static MobileAdTargetingInfo _getMobileAdTargetingInfo() {
     return MobileAdTargetingInfo(
       keywords: <String>['flower', 'identify flower', 'plant', 'tree', 'botany', 'identification key'],

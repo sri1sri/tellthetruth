@@ -55,9 +55,12 @@ class _F_GangMembersState extends State<F_GangMembers> {
 
   @override
   void initState() {
+    Ads.showInterstitialAd();
+
     //    gangUsersID = widget.gangDetails.gangUserIDS;
     getUsersDetails(widget.gangDetails.gangUserIDS);
-    Ads.showBannerAd();
+
+//    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -278,7 +281,13 @@ class _F_GangMembersState extends State<F_GangMembers> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
-              leading: Image.asset(users[index].gender == 'Male' ? "images/boy.png" : "images/girl.png"),
+              leading: Lottie.network(
+                  users[index].gender != null ? users[index].gender == 'Male' ? maleIcon : femaleIcon : maleIcon,
+                  height: getDynamicHeight(50),
+                  width: getDynamicWidth(50)),
+
+
+              //Image.asset(users[index].gender != null ? users[index].gender == 'Male' ? "images/boy.png" : "images/girl.png" : "images/girl.png"),
               title: Text(users[index].username,style: smallTextStyleDark,),
               trailing: showRemove ?
               GestureDetector(

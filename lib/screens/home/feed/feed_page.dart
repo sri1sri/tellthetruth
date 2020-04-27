@@ -152,13 +152,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                               ),
                               color: Colors.white,
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.rippleRightDown,
-                                      duration: Duration(seconds: 1),
-                                      child: GangMembers()),
-                                );
+
                               },
                             ),
                           ],

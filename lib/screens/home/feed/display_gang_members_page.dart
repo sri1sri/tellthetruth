@@ -109,7 +109,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                     ),
                     // The content inside the overlay.
                     child: Container(
-                      height: getDynamicHeight(150),
+                      height: getDynamicHeight(155),
                       padding: const EdgeInsets.all(20),
                       margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
@@ -486,13 +486,13 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  height: getDynamicHeight(300.0),
+                  height: getDynamicHeight(330.0),
                   width: getDynamicWidth(400.0),
                   child: Stack(
                     children: <Widget>[
                       Container(
                         width: double.infinity,
-                        height: getDynamicHeight(300),
+                        height: getDynamicHeight(330),
                         decoration: BoxDecoration(
                           color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(12.0),

@@ -275,7 +275,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                         ],
                       ),
                     ]),
-                SizedBox(height: getDynamicHeight(45)),
+                SizedBox(height: getDynamicHeight(35)),
 
 
                 Column(
@@ -290,8 +290,9 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                         ),
                         GestureDetector(
                           child: Container(
-                            width: getDynamicHeight(200.0),
-                            padding: EdgeInsets.all(15.0),
+                            width: getDynamicWidth(170.0),
+                            height: getDynamicHeight(60),
+                            padding: EdgeInsets.all(7.0),
                             child: Center(
                                 child: Row(
                                     mainAxisAlignment:
@@ -314,7 +315,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                                   Icon(
                                     Icons.arrow_forward_ios,
                                     color: Colors.blue,
-                                    size: 30,
+                                    size: 25,
                                   ),
                                   Container(),
                                 ])),
@@ -337,7 +338,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
                       ],
                     ),
                     SizedBox(
-                      height: getDynamicHeight(15.0),
+                      height: getDynamicHeight(20.0),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

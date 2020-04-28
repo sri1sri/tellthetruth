@@ -308,8 +308,9 @@ SizedBox(height: getDynamicHeight(40),),
                         ),
                         GestureDetector(
                           child: Container(
-                            width: getDynamicWidth(200.0),
-                            padding: EdgeInsets.all(15.0),
+                            width: getDynamicWidth(170.0),
+                            height: getDynamicHeight(60),
+                            padding: EdgeInsets.all(7.0),
                             child: Center(
                                 child: Row(
                                     mainAxisAlignment:
@@ -332,7 +333,7 @@ SizedBox(height: getDynamicHeight(40),),
                                   Icon(
                                     Icons.arrow_forward_ios,
                                     color: Colors.blue,
-                                    size: getDynamicTextSize(30),
+                                    size: getDynamicTextSize(25),
                                   ),
                                   Container(),
                                 ])),

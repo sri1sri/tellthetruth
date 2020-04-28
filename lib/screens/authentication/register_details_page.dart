@@ -429,8 +429,9 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                     ),
                     GestureDetector(
                       child: Container(
-                        width: getDynamicWidth(200),
-                        padding: EdgeInsets.all(15.0),
+                        width: getDynamicWidth(170.0),
+                        height: getDynamicHeight(60),
+                        padding: EdgeInsets.all(7.0),
                         child: Center(
                             child: Row(
                                 mainAxisAlignment:
@@ -453,7 +454,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                               Icon(
                                 Icons.arrow_forward_ios,
                                 color: Colors.blue,
-                                size: 30,
+                                size: 25,
                               ),
                               Container(),
                             ])),

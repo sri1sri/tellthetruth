@@ -392,7 +392,7 @@ class MyFlexiableAppBar extends StatelessWidget {
       height: statusBarHeight + appBarHeight,
       child: new Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: getDynamicHeight(30),
@@ -414,22 +414,21 @@ class MyFlexiableAppBar extends StatelessWidget {
             ),
             Text(
               gangDetails.gangCode,
-              style: smallTextStyleDark,
+              style: mediumTextStyleMedium,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.art_track,
-                      size: 30,
-                      color: Colors.black54,
-                    ),
+                    Lottie.network("https://assets6.lottiefiles.com/packages/lf20_n39Pco.json",
+                        height: getDynamicHeight(40), width: getDynamicWidth(40)),
                     Text(
                       gangDetails.gangUserIDS.length.toString(),
                       style: foregroundTextStyleDark,
-                    )
+                    ),
+                    Text("Questions",style: smallTextStyleMedium,),
                   ],
                 ),
                 SizedBox(
@@ -437,15 +436,13 @@ class MyFlexiableAppBar extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Icon(
-                      Icons.account_circle,
-                      size: 30,
-                      color: Colors.black54,
-                    ),
+                    Lottie.network("https://assets5.lottiefiles.com/packages/lf20_2ZvKfd.json",
+                        height: getDynamicHeight(40), width: getDynamicWidth(40)),
                     Text(
                       usersCount.toString(),
                       style: foregroundTextStyleDark,
-                    )
+                    ),
+                    Text("Users",style: smallTextStyleMedium,),
                   ],
                 )
               ],

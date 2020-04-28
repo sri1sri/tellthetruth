@@ -389,8 +389,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(10)
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30)
                 ),
                child: Form(
                  child: Column(
@@ -458,7 +458,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                            children: [
                              Container(
                                decoration: BoxDecoration(
-                                   borderRadius: BorderRadius.only(topLeft: const Radius.circular(20.0),topRight: const Radius.circular(20.0)),
+                                   borderRadius: BorderRadius.only(topLeft: const Radius.circular(30.0),topRight: const Radius.circular(30.0)),
                                  color: Colors.grey.withOpacity(0.4),
                                ),
 
@@ -599,7 +599,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                              SizedBox(height: getDynamicHeight(2),),
                              Container(
                                decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.only(bottomRight: const Radius.circular(20.0),bottomLeft: const Radius.circular(20.0)),
+                                 borderRadius: BorderRadius.only(bottomRight: const Radius.circular(30.0),bottomLeft: const Radius.circular(30.0)),
                                  color: Colors.grey.withOpacity(0.4),
                                ),
 
@@ -668,8 +668,8 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                   SizedBox(height: getDynamicHeight(10),),
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
                     ),
                     height: getDynamicHeight(140),
                     width: getDynamicWidth(380),
@@ -775,7 +775,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(gangName,style:mediumTextStyleMedium)
+              Text(gangName,style:mediumTextStyleDark)
             ]),
       ),
     );

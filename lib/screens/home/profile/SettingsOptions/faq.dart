@@ -140,7 +140,7 @@ class _F_FAQ extends State<F_FAQ> {
             ),
             SizedBox(height: getDynamicHeight(10),),
             Text(description,
-              style: smallTextStyleDark,)
+              style: smallTextStyleMedium,)
           ],
         ),
       ),

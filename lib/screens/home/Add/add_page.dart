@@ -82,7 +82,8 @@ class _F_AddPageState extends State<F_AddPage> {
                         color: Colors.transparent,
                         child:  Column(
                           children: <Widget>[
-                            Lottie.network("https://assets3.lottiefiles.com/packages/lf20_4kA0aR.json",height: getDynamicHeight(240),width: getDynamicWidth(240)),
+                            SizedBox(height: getDynamicHeight(40),),
+                            Lottie.network("https://assets3.lottiefiles.com/packages/lf20_4kA0aR.json",height: getDynamicHeight(220),width: getDynamicWidth(220)),
                             Padding(
                               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                               child: TyperAnimatedTextKit(
@@ -90,7 +91,7 @@ class _F_AddPageState extends State<F_AddPage> {
                                   print("Tap Event");
                                 },
                                 text: [
-                                  "${greeting()} $USER_NAME, ready to do something exiciting ?",
+                                  "Hi $USER_NAME, Ready to do something exiciting ?",
                                 ],
                                 textStyle:foregroundTextStyleLight,
                                 textAlign: TextAlign.center,
@@ -98,7 +99,6 @@ class _F_AddPageState extends State<F_AddPage> {
                                 isRepeatingAnimation: false,// or Alignment.topLeft
                               ),
                             ),
-                            SizedBox(height: getDynamicHeight(20),),
 
                           ],
                         ),

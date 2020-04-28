@@ -110,7 +110,7 @@ class _F_PrivacyPolicy extends State<F_PrivacyPolicy> {
             ),
             SizedBox(height: getDynamicHeight(10),),
             Text(description,
-              style: smallTextStyleDark,)
+              style: smallTextStyleMedium,)
           ],
         ),
       ),

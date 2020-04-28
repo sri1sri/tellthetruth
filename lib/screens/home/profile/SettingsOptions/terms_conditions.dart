@@ -111,7 +111,7 @@ class _F_TermsAndServices extends State<F_TermsAndServices> {
             ),
             SizedBox(height: getDynamicHeight(10),),
             Text(description,
-              style: smallTextStyleDark,)
+              style: smallTextStyleMedium,)
           ],
         ),
       ),

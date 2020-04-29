@@ -27,7 +27,6 @@ const MaterialColor white = const MaterialColor(
 
 void main(){
 //  bannerAd = createBannerAd();
-CustomCloudMessaging().settingCallbackForPayloads();
   runApp(MyApp());
 }
 
@@ -35,6 +34,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CustomCloudMessaging().settingCallbackForPayloads();
+
     return Provider<AuthBase>(
       create: (context) => Auth(),
       child: MaterialApp(

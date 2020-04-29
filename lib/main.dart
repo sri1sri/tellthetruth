@@ -2,6 +2,7 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'firebase/admobs.dart';
 import 'firebase/auth.dart';
 import 'global_file/common_variables/app_functions.dart';
@@ -26,6 +27,7 @@ const MaterialColor white = const MaterialColor(
 
 void main(){
 //  bannerAd = createBannerAd();
+CustomCloudMessaging().settingCallbackForPayloads();
   runApp(MyApp());
 }
 

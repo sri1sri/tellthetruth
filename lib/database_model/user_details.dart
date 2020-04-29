@@ -8,6 +8,7 @@ class UserDetails{
     this.emailID,
     this.password,
     this.dateOfBirth,
+    this.deviceToken,
     this.empty,
 
   });
@@ -18,6 +19,7 @@ class UserDetails{
   final String userID;
   final String emailID;
   final String password;
+  final String deviceToken;
   final Timestamp dateOfBirth;
   final Null empty;
 
@@ -35,6 +37,7 @@ class UserDetails{
     final Timestamp joinedDate = data['join_date'];
     final String emailID = data['email_id'];
     final String password = data['password'];
+    final String deviceToken = data['device_token'];
     final Null empty = data['empty'];
 
 
@@ -46,6 +49,7 @@ class UserDetails{
       userID: userID,
       emailID: emailID,
       password: password,
+      deviceToken: deviceToken,
       empty: empty,
 
     );
@@ -60,6 +64,8 @@ class UserDetails{
       joinedDate != null ? 'join_date': 'empty' : joinedDate,
       emailID != null ? 'email_id':'empty' :  emailID,
       password != null ? 'password':'empty' :  password,
+      deviceToken != null ? 'device_token':'empty' :  deviceToken,
+
     };
   }
 

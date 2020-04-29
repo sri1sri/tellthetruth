@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
+import 'package:tellthetruth/database_model/gang_notification_model.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
+import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:flutter/material.dart';
@@ -248,6 +250,10 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       isLoading = true;
     });
 
+    final cloudMessaging = CustomCloudMessaging();
+    final gangNotifications = GangNotifications(name: USER_GENDER, topic: cloudMessaging.getDeviceToken().toString());
+
+
     final createQuestion = QuestionDetails(
       createdAt: Timestamp.fromDate(DateTime.now()),
       createdBy: USER_ID,
@@ -272,9 +278,12 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     );
 
     await DBreference.createQuestion(createQuestion, selectedGangID);
+    await DBreference.createNotification(gangNotifications);
+
     setState(() {
       isLoading = false;
     });
+
 
     CustomAlertBox(context, 'Success', 'Question posted !!!!!', true, () {
       GoToPage(context, LandingPage());

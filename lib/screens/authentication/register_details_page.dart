@@ -7,11 +7,13 @@ import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/api_path.dart';
+import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/firebase/firestore_service.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:intl/intl.dart';
-import 'package:flare_flutter/flare_actor.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -90,6 +92,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 
   Future<void> _saveData() async {
     await widget.model.submit();
+
+    final cloudMessaging = CustomCloudMessaging();
     final userDetails = UserDetails(
       userID: USER_ID,
       emailID: widget.email,
@@ -98,6 +102,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
       username: _username,
       gender: selectedGender,
       dateOfBirth: Timestamp.fromDate(selectedDate),
+      deviceToken: cloudMessaging.getDeviceToken().toString(),
     );
 
     FirestoreService.instance.setData(
@@ -173,6 +178,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   @override
   void initState() {
 //    Ads.hideBannerAd();
+
     super.initState();
   }
 

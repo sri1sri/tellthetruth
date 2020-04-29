@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -1021,9 +1020,8 @@ void showFancyCustomDialogShare(BuildContext context, File image) {
                                     children: [
                                       GestureDetector(
                                         onTap: () async{
-
                                           final ByteData bytess = await rootBundle.load(image.path);
-                                          await Share.file('Tell The Truth', 'tellthetruth.png', bytess.buffer.asUint8List(), 'image/png');
+                                              await Share.file('Tell The Truth', 'tellthetruth.png', bytess.buffer.asUint8List(), 'image/png');
 
                                           Navigator.pop(context);
                                         },

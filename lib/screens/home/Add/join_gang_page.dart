@@ -5,7 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:tellthetruth/database_model/gang_notification_model.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
+import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -61,6 +63,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
     });
 
     if (_validateAndSaveForm()) {
+
       await Firestore.instance
           .collection('${API_SUFFIX}gangs')
           .where('gang_code', isEqualTo: _gangCode)
@@ -87,6 +90,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                             gangUserIDS:
                                 usersList.cast<String>().toSet().toList()),
                         DBreference.updateGang(gangDetails, gangID),
+
                       setState(() {
                       check = false;
                       }),

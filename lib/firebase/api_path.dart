@@ -16,6 +16,8 @@ class APIPath {
   static String myInsightDetails(String gangID, String questionID, String userID) => '${API_SUFFIX}gangs/$gangID/questions/$questionID/insights/$userID';
   static String questionInsightDetails(String gangID, String questionID) => '${API_SUFFIX}gangs/$gangID/questions/$questionID/insights/';
 
+  static String gangNotifications(String notificationID) => 'gang_notification/$notificationID';
+
   static String appProperties() => '${API_SUFFIX}common_files/properties';
   static String animationsURL() => '${API_SUFFIX}common_files/animation_file_url';
 

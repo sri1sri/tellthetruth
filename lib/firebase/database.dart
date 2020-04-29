@@ -1,17 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
+import 'package:tellthetruth/database_model/gang_notification_model.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
+import 'package:tellthetruth/firebase/auth.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'api_path.dart';
 import 'firestore_service.dart';
 
 abstract class Database {
   Stream<UserDetails> getUserDetails(String userId);
+  Future<void> updateUserDetails(UserDetails userDetails);
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Stream<List<GangDetails>> readGangs();
@@ -30,10 +34,12 @@ abstract class Database {
   Future<void> deleteQuestions(String gangID);
   Future<void> deleteInsights(String gangID, String questionID);
   Stream<CommonFiles> getAppProperties();
+  Future<void> createNotification(GangNotifications gangNotifications);
 
 }
 
 Database DBreference;
+
 
 class FirestoreDatabase implements Database {
   FirestoreDatabase({@required this.uid}) : assert(uid != null);
@@ -46,6 +52,13 @@ class FirestoreDatabase implements Database {
     path: APIPath.appProperties(),
     builder: (data, documentId) => CommonFiles.fromMap(data, documentId),
   );
+
+  @override
+  Future<void> updateUserDetails(UserDetails userDetails) async =>
+      await _service.updateData(
+        path: APIPath.userDetails(uid),
+        data: userDetails.toMap(),
+      );
 
   @override
   Stream<UserDetails> getUserDetails(String userId) => _service.documentStream(
@@ -174,6 +187,13 @@ class FirestoreDatabase implements Database {
     builder: (data, documentId) => InsightsDetails.fromMap(data, documentId),
     queryBuilder: (query) => query.where('is_anonymous', isEqualTo: false),
   );
+
+  @override
+  Future<void> createNotification(GangNotifications gangNotifications) async =>
+      await _service.setData(
+        path: APIPath.gangNotifications(DateTime.now().toString()),
+        data: gangNotifications.toMap(),
+      );
 
 
 }

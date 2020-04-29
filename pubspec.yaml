@@ -58,6 +58,10 @@ dependencies:
   esys_flutter_share: ^1.0.2
   vibration: ^1.2.4
   overlay_container: ^0.0.4+1
+  firebase_messaging: ^6.0.13
+  random_string: ^2.0.1
+  flutter_local_notifications: ^1.4.2
+
 
 
 dev_dependencies:

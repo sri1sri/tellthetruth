@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/auth.dart';
+import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
+import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -63,6 +66,11 @@ class _F_LoginPageState extends State<F_LoginPage> {
 
   Future<void> _submit() async {
     try {
+
+      final cloudMessaging = CustomCloudMessaging();
+      final userDetails = UserDetails(deviceToken: cloudMessaging.getDeviceToken().toString());
+      DBreference.updateUserDetails(userDetails);
+
       await model.submit();
       GoToPage(context, LandingPage());
     } on PlatformException catch (e) {

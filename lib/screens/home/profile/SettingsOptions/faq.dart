@@ -26,7 +26,7 @@ class _F_FAQ extends State<F_FAQ> {
 
   @override
   void initState() {
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 

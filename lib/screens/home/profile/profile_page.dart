@@ -47,7 +47,7 @@ class _F_ProfileState extends State<F_Profile> {
 
   @override
   void initState() {
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 

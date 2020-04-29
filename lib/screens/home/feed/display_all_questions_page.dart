@@ -61,10 +61,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
 
   @override
   void initState() {
-//    show_interstitial_ad += show_interstitial_ad;
-//    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
-//
-    Ads.showBannerAd();
+//    Ads.showBannerAd();
     Firestore.instance
         .collection('${API_SUFFIX}gangs')
         .document(widget.gangDetails.gangID)

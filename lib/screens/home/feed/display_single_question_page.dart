@@ -205,9 +205,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   @override
   void initState() {
-//    show_interstitial_ad += show_interstitial_ad;
-//    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
-    Ads.showBannerAd();
+
+//    Ads.showBannerAd();
     secondsLeft =
         ((widget.questionDetails.endsAt.toDate().millisecondsSinceEpoch -
                     DateTime.now().millisecondsSinceEpoch) ~/

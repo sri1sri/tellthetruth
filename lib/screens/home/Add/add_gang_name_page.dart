@@ -98,7 +98,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
 
   @override
   void initState() {
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 

@@ -91,133 +91,22 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
   List _colors1 = [
     //Get list of colors
-    '0XffFD8B1F',
-    '0XffD152E0',
-    '0Xff30D0DB',
-    '0Xff0F2027',
-    '0Xff1f4037',
-    '0Xffc31432',
-    '0Xfff953c6',
-    '0Xff009FFF',
-    '0Xff654ea3',
-    '0Xffa8ff78',
-    '0XffED213A',
-    '0Xff00B4DB',
-    '0Xff005AA7',
-    '0Xff636363',
-    '0Xffad5389',
-    '0Xff3E5151',
-    '0Xff11998e',
-    '0XffFC466B',
-    '0Xffc94b4b',
-    '0Xff00F260',
-    '0Xff6D6027',
-    '0Xffff9966',
-    '0Xff7F00FF',
-    '0Xff000000',
-    '0Xff45a247',
-    '0Xff159957',
-    '0Xff000046',
-    '0Xffcbb4d4',
-    '0Xff34e89e',
-    '0Xff000428',
-    '0Xff5a3f37',
-    '0Xffba8b02',
-    '0XffFDFC47',
-    '0Xffb6fbff',
-    '0Xff9D50BB',
-    '0Xff780206',
-    '0XffADD100',
-    '0Xff649173',
-    '0Xffff9472',
-    '0Xff5D4157',
-    '0Xffe4e4d9',
-    '0Xffc21500',
-    '0Xffcbad6d',
-    '0Xff4b6cb7',
-    '0Xff0ABFBC',
-    '0Xff5f2c82',
-    '0XffED4264',
-    '0Xff283048',
-    '0XffD7DDE8',
-    '0Xff5C258D',
-    '0Xff8E54E9',
-    '0XffFF8008',
-    '0XffF45C43',
-    '0Xff4CB8C4',
-    '0Xff1A2980',
-    '0XffAA076B',
-    '0XffFF512F',
-    '0Xff314755',
-    '0Xff1488CC',
-    '0XffFF0099',
-    '0Xffec2F4B',
+    '0XffFD8B1F', '0XffD152E0', '0Xff30D0DB', '0Xff0F2027', '0Xff1f4037', '0Xffc31432', '0Xfff953c6', '0Xff009FFF', '0Xff654ea3', '0Xffa8ff78', '0XffED213A', '0Xff00B4DB', '0Xff005AA7',
+    '0Xff636363', '0Xffad5389', '0Xff3E5151', '0Xff11998e', '0XffFC466B', '0Xffc94b4b', '0Xff00F260', '0Xff6D6027', '0Xffff9966', '0Xff7F00FF', '0Xff000000', '0Xff45a247', '0Xff159957',
+    '0Xff000046', '0Xffcbb4d4', '0Xff34e89e', '0Xff000428', '0Xff5a3f37', '0Xffba8b02', '0XffFDFC47', '0Xffb6fbff', '0Xff9D50BB', '0Xff780206', '0XffADD100', '0Xff649173', '0Xffff9472',
+    '0Xff5D4157', '0Xffe4e4d9', '0Xffc21500', '0Xffcbad6d', '0Xff4b6cb7', '0Xff0ABFBC', '0Xff5f2c82', '0XffED4264', '0Xff283048', '0XffD7DDE8', '0Xff5C258D', '0Xff8E54E9', '0XffFF8008',
+    '0XffF45C43', '0Xff4CB8C4', '0Xff1A2980', '0XffAA076B', '0XffFF512F', '0Xff314755', '0Xff1488CC', '0XffFF0099', '0Xffec2F4B',
 
   ];
 
   List _colors2 = [
     //Get list of colors
-    '0Xff30DD76',
-    '0XffFF871F',
-    '0XffFF3FE0',
-    '0Xff2C5364',
-    '0Xff99f2c8',
-    '0Xff240b36',
-    '0Xffb91d73',
-    '0Xffec2F4B',
-    '0Xffeaafc8',
-    '0Xff78ffd6',
-    '0Xff93291E',
-    '0Xff0083B0',
-    '0XffFFFDE4',
-    '0Xffa2ab58',
-    '0Xff3c1053',
-    '0XffDECBA4',
-    '0Xff38ef7d',
-    '0Xff3F5EFB',
-    '0Xff4b134f',
-    '0Xff0575E6',
-    '0XffD3CBB8',
-    '0Xffff5e62',
-    '0XffE100FF',
-    '0Xff0f9b0f',
-    '0Xff283c86',
-    '0Xff155799',
-    '0Xff1CB5E0',
-    '0Xff20002c',
-    '0Xff0f3443',
-    '0Xff004e92',
-    '0Xff2c7744',
-    '0Xff181818',
-    '0Xff24FE41',
-    '0Xff83a4d4',
-    '0Xff6E48AA',
-    '0Xff061161',
-    '0Xff7B920A',
-    '0XffDBD5A4',
-    '0Xfff2709c',
-    '0XffA8CABA',
-    '0Xff215f00',
-    '0Xffffc500',
-    '0Xffd53369',
-    '0Xff182848',
-    '0XffFC354C',
-    '0Xff49a09d',
-    '0XffFFEDBC',
-    '0Xff859398',
-    '0Xff757F9A',
-    '0Xff4389A2',
-    '0Xff4776E6',
-    '0XffFFC837',
-    '0XffEB3349',
-    '0Xff3CD3AD',
-    '0Xff26D0CE',
-    '0Xff61045F',
-    '0XffDD2476',
-    '0Xff26a0da',
-    '0Xff2B32B2',
-    '0Xff493240',
-    '0Xff009FFF',
+    '0Xff30DD76', '0XffFF871F', '0XffFF3FE0', '0Xff2C5364', '0Xff99f2c8', '0Xff240b36', '0Xffb91d73', '0Xffec2F4B', '0Xffeaafc8', '0Xff78ffd6', '0Xff93291E', '0Xff0083B0',
+    '0XffFFFDE4', '0Xffa2ab58', '0Xff3c1053', '0XffDECBA4', '0Xff38ef7d', '0Xff3F5EFB', '0Xff4b134f', '0Xff0575E6', '0XffD3CBB8', '0Xffff5e62',
+    '0XffE100FF', '0Xff0f9b0f', '0Xff283c86', '0Xff155799', '0Xff1CB5E0', '0Xff20002c', '0Xff0f3443', '0Xff004e92', '0Xff2c7744', '0Xff181818',
+    '0Xff24FE41', '0Xff83a4d4', '0Xff6E48AA', '0Xff061161', '0Xff7B920A', '0XffDBD5A4', '0Xfff2709c', '0XffA8CABA', '0Xff215f00',
+    '0Xffffc500', '0Xffd53369', '0Xff182848', '0XffFC354C', '0Xff49a09d', '0XffFFEDBC', '0Xff859398', '0Xff757F9A', '0Xff4389A2', '0Xff4776E6', '0XffFFC837',
+    '0XffEB3349', '0Xff3CD3AD', '0Xff26D0CE', '0Xff61045F', '0XffDD2476', '0Xff26a0da', '0Xff2B32B2', '0Xff493240', '0Xff009FFF',
 
   ];
 //
@@ -226,7 +115,12 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
   List gangIDs = USER_GANG_ID;
   List gangName = USER_GANG_NAMES;
+  List gangNotificationTokens = USER_GANG_NOTIFICATION_TOKENS;
+
+
   String selectedGangID = '';
+  String selectedGangNotificationTokens = '';
+
 
   Color selectGangBackgroundColor = Colors.black54;
 
@@ -250,9 +144,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       isLoading = true;
     });
 
-    final cloudMessaging = CustomCloudMessaging();
-    final gangNotifications = GangNotifications(name: USER_GENDER, topic: cloudMessaging.getDeviceToken().toString());
-
+    final gangNotifications = GangNotifications(name: USER_GENDER, topic: selectedGangNotificationTokens);
 
     final createQuestion = QuestionDetails(
       createdAt: Timestamp.fromDate(DateTime.now()),
@@ -294,8 +186,9 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   void initState() {
     setState(() {
       selectedGangID = gangIDs[0];
+      selectedGangNotificationTokens = gangNotificationTokens[0];
     });
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 
@@ -761,6 +654,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       onPageChanged: (index){
         setState(() {
           selectedGangID = gangIDs[index];
+          selectedGangNotificationTokens = gangNotificationTokens[index];
         });
         print(selectedGangID);
       },

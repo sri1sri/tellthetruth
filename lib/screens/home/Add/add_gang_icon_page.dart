@@ -62,6 +62,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         createdAt: Timestamp.fromDate(DateTime.now()),
         createBy: USER_ID,
         gangUserIDS: [USER_ID],
+        gangNotificationToken: CustomCloudMessaging().registerToGroup(widget.gangName),
       );
 
       await DBreference.createGang(createGang);
@@ -85,7 +86,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
   @override
   void initState() {
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 

@@ -9,6 +9,7 @@ class GangDetails{
     this.createBy,
     this.createdAt,
     this.gangUserIDS,
+    this.gangNotificationToken,
 
     this.empty,
   });
@@ -19,6 +20,7 @@ class GangDetails{
   final String gangIconURL;
   final String createBy;
   final Timestamp createdAt;
+  final String gangNotificationToken;
   final List<dynamic> gangUserIDS;
 
   final Null empty;
@@ -37,7 +39,7 @@ class GangDetails{
     final String createdBy = data['created_by'];
     final Timestamp createdAt = data['created_at'];
     final List<dynamic> gangUserIDS = data['gang_user_ids'];
-
+    final String gangNotificationToken = data['gang_notification_token'];
     final Null empty = data['empty'];
 
 
@@ -49,6 +51,7 @@ class GangDetails{
       createBy: createdBy,
       createdAt: createdAt,
       gangUserIDS: gangUserIDS,
+      gangNotificationToken: gangNotificationToken,
       empty: empty,
 
     );
@@ -62,7 +65,7 @@ class GangDetails{
       createBy != null ? 'created_by': 'empty' : createBy,
       createdAt != null ? 'created_at': 'empty' : createdAt,
       gangUserIDS != null ? 'gang_user_ids': 'empty' : gangUserIDS,
-
+      gangNotificationToken != null ? 'gang_notification_token': 'empty' : gangNotificationToken,
     };
   }
 }

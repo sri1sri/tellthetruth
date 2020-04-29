@@ -64,48 +64,48 @@ class Ads {
   static bool _isGoingToBeShown = false;
   static BannerAd _bannerAd;
 
-  static void initialize() {
-    FirebaseAdMob.instance.initialize(appId: Platform.isIOS ? 'ca-app-pub-9543395526409232~1075008136' : 'ca-app-pub-9543395526409232~7748868325');
-  }
+//  static void initialize() {
+//    FirebaseAdMob.instance.initialize(appId: Platform.isIOS ? 'ca-app-pub-9543395526409232~1075008136' : 'ca-app-pub-9543395526409232~7748868325');
+//  }
 
-  static void setBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
-      //Platform.isIOS ? 'ca-app-pub-9543395526409232/1973797468' : 'ca-app-pub-9543395526409232/9656205735',
-      size: AdSize.smartBanner,
-      targetingInfo: _getMobileAdTargetingInfo(),
-      listener: (MobileAdEvent event) {
-        if (event == MobileAdEvent.loaded) {
-          isShown = true;
-          _isGoingToBeShown = false;
-        } else if (event == MobileAdEvent.failedToLoad) {
-          isShown = false;
-          _isGoingToBeShown = false;
-        }
-        print("BannerAd event is $event");
-      },
-    );
-  }
+//  static void setBannerAd() {
+//    _bannerAd = BannerAd(
+//      adUnitId: BannerAd.testAdUnitId,
+//      //Platform.isIOS ? 'ca-app-pub-9543395526409232/1973797468' : 'ca-app-pub-9543395526409232/9656205735',
+//      size: AdSize.smartBanner,
+//      targetingInfo: _getMobileAdTargetingInfo(),
+//      listener: (MobileAdEvent event) {
+//        if (event == MobileAdEvent.loaded) {
+//          isShown = true;
+//          _isGoingToBeShown = false;
+//        } else if (event == MobileAdEvent.failedToLoad) {
+//          isShown = false;
+//          _isGoingToBeShown = false;
+//        }
+//        print("BannerAd event is $event");
+//      },
+//    );
+//  }
 
-  static void showBannerAd([State state]) {
-    if (state != null && !state.mounted) return;
-    if (_bannerAd == null) setBannerAd();
-    if (!isShown && !_isGoingToBeShown) {
-      _isGoingToBeShown = true;
-      _bannerAd
-        ..load()
-        ..show(anchorOffset: 70.0, anchorType: AnchorType.bottom);
-    }
-  }
-
-  static void hideBannerAd() {
-    if (_bannerAd != null && !_isGoingToBeShown) {
-      _bannerAd.dispose().then((disposed) {
-        isShown = !disposed;
-      });
-      _bannerAd = null;
-    }
-  }
+//  static void showBannerAd([State state]) {
+//    if (state != null && !state.mounted) return;
+//    if (_bannerAd == null) setBannerAd();
+//    if (!isShown && !_isGoingToBeShown) {
+//      _isGoingToBeShown = true;
+//      _bannerAd
+//        ..load()
+//        ..show(anchorOffset: 70.0, anchorType: AnchorType.bottom);
+//    }
+//  }
+//
+//  static void hideBannerAd() {
+//    if (_bannerAd != null && !_isGoingToBeShown) {
+//      _bannerAd.dispose().then((disposed) {
+//        isShown = !disposed;
+//      });
+//      _bannerAd = null;
+//    }
+//  }
 
   static void showInterstitialAd() {
     var interstitialAd = InterstitialAd(

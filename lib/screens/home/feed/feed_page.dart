@@ -47,24 +47,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
   @override
   void initState() {
 
-//    show_interstitial_ad = show_interstitial_ad + 1;
-//    show_interstitial_ad == 5 ? Ads.showInterstitialAd() : Container(height: 0, width: 0,);
-//
-    Ads.showBannerAd();
-
-//    String appId = getAppId();
-//    print('hello world admob test$appId');
-    // FirebaseAdMob.instance.initialize(appId: getAppId());
-
-//    bannerAd
-//      ..load().then((loaded) {
-//        if (loaded && this.mounted) {
-//          bannerAd
-//            ..show(
-//              anchorOffset: 80.0,
-//            );
-//        }
-//      });
+//    Ads.showBannerAd();
     super.initState();
   }
 
@@ -202,15 +185,21 @@ class _F_FeedPageState extends State<F_FeedPage> {
           List<GangDetails> data = snapshot.data;
           List<String> gName = [];
           List<String> gId = [];
+          List<String> gToken = [];
           data.forEach((f) {
             gName.add(f.gangName ?? '0');
             gId.add(f.gangID ?? '0');
+            gToken.add(f.gangNotificationToken ?? '0');
           });
           USER_GANG_NAMES = gName;
           USER_GANG_ID = gId;
+          USER_GANG_NOTIFICATION_TOKENS = gToken;
+
           USER_GANG_NAMES.forEach((f) {
           });
           USER_GANG_ID.forEach((f) {
+          });
+          USER_GANG_NOTIFICATION_TOKENS.forEach((f) {
           });
         }
 
@@ -240,8 +229,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
   }
 
   Widget _buildImage(GangDetails data) {
-//    USER_GANG_NAMES.add(data != null ? data.gangName : 'null');
-//    USER_GANG_ID.add(data != null ? data.gangCode:'null');
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(

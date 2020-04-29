@@ -42,9 +42,9 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
 
   @override
   void initState() {
-//    Ads.showInterstitialAd();
+    Ads.showInterstitialAd();
 //    Ads.showRewardedVideoAd();
-    Ads.showBannerAd();
+//    Ads.showBannerAd();
     super.initState();
   }
 

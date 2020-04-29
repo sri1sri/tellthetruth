@@ -6,6 +6,7 @@ import 'package:overlay_container/overlay_container.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
+import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_widgets/custom_alert_box.dart';
 import 'package:tellthetruth/landing_page.dart';
@@ -93,6 +94,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                         widget.gangDetails.gangUserIDS.remove(USER_ID);
                         final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
                         DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+                        CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
                         GoToPage(context, LandingPage());
                       },
                         child: Text('Leave', style: mediumTextStyleDark)),

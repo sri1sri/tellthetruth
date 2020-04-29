@@ -40,7 +40,7 @@ class _F_AddPageState extends State<F_AddPage> {
 
   @override
   void initState() {
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 

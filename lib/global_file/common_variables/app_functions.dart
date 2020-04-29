@@ -25,6 +25,7 @@ String USER_POINTS = '0';
 
 List<String> USER_GANG_NAMES = [];
 List<String> USER_GANG_ID = [];
+List<String> USER_GANG_NOTIFICATION_TOKENS = [];
 
 //ImageSource IMAGE_SOURCE = ImageSource.gallery;
 Size SCREEN_SIZE;

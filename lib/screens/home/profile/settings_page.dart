@@ -27,7 +27,7 @@ class _F_SettingsState extends State<F_Settings> {
 
   @override
   void initState() {
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     super.initState();
   }
 

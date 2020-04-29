@@ -65,7 +65,7 @@ class _F_HomePageState extends State<F_HomePage> {
   @override
   void initState() {
 
-    Ads.hideBannerAd();
+//    Ads.hideBannerAd();
     setState(() {
       DBreference = Provider.of<Database>(context, listen: false);
     });

@@ -68,7 +68,7 @@ class _F_AddGangNameState extends State<F_AddGangName> {
                       isLoading = false;
                       check = false;
                     }),
-                    GoToPage(context, AddGangIcon(gangName: _gangName, gangCode: gangCode,))
+                    GoToPage(context, AddGangIcon(gangName: _gangName, gangCode: gangCode,), false)
                   }
                 else
                   {

@@ -72,7 +72,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
       DBreference.updateUserDetails(userDetails);
 
       await model.submit();
-      GoToPage(context, LandingPage());
+      GoToPage(context, LandingPage(), true);
     } on PlatformException catch (e) {
       if (_emailController.text != '' && _passwordController.text != '') {
         PlatformExceptionAlertDialog(

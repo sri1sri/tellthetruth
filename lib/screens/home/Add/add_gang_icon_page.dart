@@ -69,7 +69,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
 
       CustomAlertBox(context, 'code- ${widget.gangCode}', 'Gang has been successfully created. Please share this gang code with your friends to join.',true, (){
-        GoToPage(context, LandingPage());
+        GoToPage(context, LandingPage(), true);
       });
 
 

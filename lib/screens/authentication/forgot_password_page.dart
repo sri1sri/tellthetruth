@@ -61,8 +61,8 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
         });
 
 
-        CustomAlertBox(context, 'Success...', 'Reset password link has been sent to ${_email}.',true, (){
-          GoToPage(context, LandingPage());
+        CustomAlertBox(context, 'Success...', 'Reset password link has been sent to $_email.',true, (){
+          GoToPage(context, LandingPage(), true);
         });
 
       } on PlatformException catch (e) {

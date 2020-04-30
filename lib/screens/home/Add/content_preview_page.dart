@@ -178,7 +178,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
 
     CustomAlertBox(context, 'Success', 'Question posted !!!!!', true, () {
-      GoToPage(context, LandingPage());
+      GoToPage(context, LandingPage(), true);
     });
   }
 

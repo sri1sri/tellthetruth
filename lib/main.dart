@@ -1,6 +1,8 @@
 
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'firebase/admobs.dart';
@@ -32,9 +34,59 @@ void main(){
 
 class MyApp extends StatelessWidget {
 
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+
+  String token;
+
+  Future<String> getToken() async {
+    token = await firebaseMessaging.getToken();
+    return token;
+  }
+
+//  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+//
+//
+//  @override
+//  initState() {
+//    super.initState();
+//
+//    var initializationSettingsAndroid =
+//    new AndroidInitializationSettings('app_icon');
+//    var initializationSettingsIOS = new IOSInitializationSettings();
+//    var initializationSettings = new InitializationSettings(
+//        initializationSettingsAndroid, initializationSettingsIOS);
+//    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+//    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+//        selectNotification: onSelectNotification);
+//  }
+//
+//  Future onSelectNotification(String payload) async {
+//    showDialog(
+//      context: context,
+//      builder: (_) {
+//        return new AlertDialog(
+//          title: Text("PayLoad"),
+//          content: Text("Payload : $payload"),
+//        );
+//      },
+//    );
+//  }
+
   @override
   Widget build(BuildContext context) {
+
+    getToken();
+    print("Token: " + token);
     CustomCloudMessaging().settingCallbackForPayloads();
+    String newTopic = CustomCloudMessaging().registerToGroup('test_portal');
+    print("Topic: " + newTopic);
+
+    var initializationSettingsAndroid =
+    new AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+
 
     return Provider<AuthBase>(
       create: (context) => Auth(),

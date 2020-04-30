@@ -109,7 +109,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
       path: APIPath.userDetails(USER_ID),
       data: userDetails.toMap(),
     );
-    GoToPage(context, LandingPage());
+    GoToPage(context, LandingPage(), true);
   }
 
   Future<void> _submit() async {

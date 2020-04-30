@@ -99,7 +99,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                             'Success...',
                             'You have entered into this gang.',
                             true, () {
-                          GoToPage(context, LandingPage());
+                          GoToPage(context, LandingPage(), true);
                         }),
 
                       }

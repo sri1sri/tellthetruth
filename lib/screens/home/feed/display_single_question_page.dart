@@ -9,7 +9,6 @@ import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
-import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -356,7 +355,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           updateInsightDetails,
                           widget.gangID,
                           widget.questionDetails.questionID);
-                      GoToPage(context, LandingPage());
+                      GoToPage(context, LandingPage(), true);
                     });
                   },
                   color: Colors.white,
@@ -377,7 +376,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           widget.questionDetails.questionID);
                       DBreference.deleteInsights(widget.gangID,
                           widget.questionDetails.questionID);
-                      GoToPage(context, LandingPage());
+                      GoToPage(context, LandingPage(), true);
                     });
                   },
                   color: Colors.white,
@@ -654,7 +653,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                             gangID: widget.gangID,
                                             questionID:
                                             widget.questionDetails.questionID,
-                                          ));
+                                          ), false);
                                         },
                                         child: Text(
                                           '${polledCount.toString()} votes',

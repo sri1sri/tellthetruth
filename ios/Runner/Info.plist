@@ -22,6 +22,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>168006534448917</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>NO</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9543395526409232~1075008136</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -40,8 +42,11 @@
 	<string>This app requires access to the photo library to save the question into your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires access to the photo library to upload your profile photo.</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<string>NO</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

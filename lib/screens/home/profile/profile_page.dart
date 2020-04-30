@@ -253,7 +253,7 @@ class _F_ProfileState extends State<F_Profile> {
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signOut();
-      GoToPage(context, LandingPage());
+      GoToPage(context, LandingPage(), true);
     } catch (e) {
       print(e.toString());
     }
@@ -276,7 +276,7 @@ class _F_ProfileState extends State<F_Profile> {
       width: double.infinity,
       child: FlatButton(
         onPressed: () {
-          route == null ? _confirmSignOut(context) : GoToPage(context, route);
+          route == null ? _confirmSignOut(context) : GoToPage(context, route, false);
         },
         padding: EdgeInsets.only(left: 40.0, top: 50),
         shape: RoundedRectangleBorder(

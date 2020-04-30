@@ -95,7 +95,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                         final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
                         DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
                         CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
-                        GoToPage(context, LandingPage());
+                        GoToPage(context, LandingPage(), true);
                       },
                         child: Text('Leave', style: mediumTextStyleDark)),
                   ),
@@ -167,7 +167,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                               CustomAlertBox(context, 'Success', 'Your gang has been removed successfully.', true, (){
                                 DBreference.deleteGang(widget.gangDetails.gangID);
                                 DBreference.deleteQuestions(widget.gangDetails.gangID);
-                                GoToPage(context, LandingPage());
+                                GoToPage(context, LandingPage(), true);
 
                               });
 
@@ -570,7 +570,7 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                                       final updatedGangDetails  = GangDetails(gangName: _updatedGangName);
                                       DBreference.updateGang(updatedGangDetails, gangDetails.gangID);
 
-                                      GoToPage(context, LandingPage());
+                                      GoToPage(context, LandingPage(), true);
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(

@@ -69,7 +69,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
             email: _emailController.text,
             password: _passwordController.text,
             model: model,
-          ));
+          ), false);
     } on PlatformException catch (e) {
       if (_emailController.text != '' && _passwordController.text != '') {
         PlatformExceptionAlertDialog(

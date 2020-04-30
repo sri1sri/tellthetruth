@@ -26,24 +26,24 @@ import '../../landing_page.dart';
 
 
 class RegisterDetails extends StatelessWidget {
-  RegisterDetails({@required this.email, @required this.password, @required this.model});
+  RegisterDetails({@required this.email, @required this.password});
   String email;
   String password;
-  RegisterAccountPageModel model;
+//  RegisterAccountPageModel model;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_RegisterDetails(email: email, password: password, model:model),
+      child: F_RegisterDetails(email: email, password: password),
     );
   }
 }
 
 class F_RegisterDetails extends StatefulWidget {
-  F_RegisterDetails({@required this.email, @required this.password, @required this.model});
+  F_RegisterDetails({@required this.email, @required this.password,});
   String email;
   String password;
-  RegisterAccountPageModel model;
+//  RegisterAccountPageModel model;
 
   @override
   _F_RegisterDetailsState createState() => _F_RegisterDetailsState();
@@ -91,7 +91,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   }
 
   Future<void> _saveData() async {
-    await widget.model.submit();
+//    await widget.model.submit();
 
     final cloudMessaging = CustomCloudMessaging();
     final userDetails = UserDetails(

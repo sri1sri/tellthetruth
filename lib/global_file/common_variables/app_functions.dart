@@ -42,10 +42,6 @@ String femaleIcon = 'https://assets6.lottiefiles.com/packages/lf20_4iPre3.json';
 String DEVICE_TOKEN = '0';
 
 
-
-//int show_interstitial_ad = 0;
-
-
 String getDateTime(int timestamp) {
   var format = new DateFormat('dd MMM yyyy, hh:mm a');
   var date = new DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);

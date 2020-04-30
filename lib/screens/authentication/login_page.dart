@@ -66,12 +66,12 @@ class _F_LoginPageState extends State<F_LoginPage> {
 
   Future<void> _submit() async {
     try {
+      await model.submit();
 
       final cloudMessaging = CustomCloudMessaging();
       final userDetails = UserDetails(deviceToken: cloudMessaging.getDeviceToken().toString());
       DBreference.updateUserDetails(userDetails);
 
-      await model.submit();
       GoToPage(context, LandingPage(), true);
     } on PlatformException catch (e) {
       if (_emailController.text != '' && _passwordController.text != '') {
@@ -130,7 +130,7 @@ class _F_LoginPageState extends State<F_LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(
-                        height: getDynamicHeight(70),
+                        height: getDynamicHeight(40),
                       ),
                       GradientText(
                         'LogIn',

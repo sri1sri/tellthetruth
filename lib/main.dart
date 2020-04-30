@@ -74,12 +74,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    getToken();
-    print("Token: " + token);
-    CustomCloudMessaging().settingCallbackForPayloads();
-    String newTopic = CustomCloudMessaging().registerToGroup('test_portal');
-    print("Topic: " + newTopic);
+//
+//    getToken();
+//    print("Token: " + token);
+//    CustomCloudMessaging().settingCallbackForPayloads();
+//    String newTopic = CustomCloudMessaging().registerToGroup('test_portal');
+//    print("Topic: " + newTopic);
 
     var initializationSettingsAndroid =
     new AndroidInitializationSettings('app_icon');

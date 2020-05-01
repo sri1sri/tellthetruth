@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
@@ -755,8 +756,17 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 ),
               ),
 
-
               Container(height: 60,color: Colors.transparent,width: 300,),
+              TyperAnimatedTextKit(
+                text: [
+                  "Note : Please click on votes, to view who revealed their identity.",
+                ],
+                textStyle: mediumTextStyleLight,
+                textAlign: TextAlign.center,
+                alignment: AlignmentDirectional.topCenter,
+                isRepeatingAnimation:
+                false, // or Alignment.topLeft
+              ),
             ],
           ),
         ),
@@ -788,8 +798,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                       topRight: Radius.circular(0.0),
                     ),
           gradient: new LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
             colors: isOptionSelected
                 ? <Color>[
                     Color(int.tryParse(backgroundColorCode[0])),

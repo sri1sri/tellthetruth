@@ -23,7 +23,7 @@
 	<key>FacebookAppID</key>
 	<string>168006534448917</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
-	<string>NO</string>
+	<false/>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9543395526409232~1075008136</string>
 	<key>LSApplicationQueriesSchemes</key>

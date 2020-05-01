@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/database_model/gang_notification_model.dart';
+import 'package:tellthetruth/database_model/notification_topic_model.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
@@ -53,10 +54,26 @@ class _F_JoinGangState extends State<F_JoinGang> {
     super.initState();
   }
 
+  Future<void> getNotificationsTokenList(String topic) async {
+    var updateNotificationTopic;
+    List<dynamic> keysSubscribed;
+
+    Firestore.instance
+        .collection('topic_')
+        .where('topic', isEqualTo: topic).getDocuments().then((topicData) async {
+            keysSubscribed = topicData.documents[0]['keysSubscribed'];
+            keysSubscribed.add(USER_DEVICE_TOKEN);
+
+            updateNotificationTopic = NotificationTopic(keysSubscribed: keysSubscribed);
+          await DBreference.updateTopic(updateNotificationTopic,topicData.documents[0].documentID);
+          });
+  }
+
   Future<void> _submit() async {
     List usersList;
     var gangDetails;
     String gangID;
+
 
     setState(() {
       isLoading = true;
@@ -64,11 +81,11 @@ class _F_JoinGangState extends State<F_JoinGang> {
 
     if (_validateAndSaveForm()) {
 
-      await Firestore.instance
+      Firestore.instance
           .collection('${API_SUFFIX}gangs')
           .where('gang_code', isEqualTo: _gangCode)
           .snapshots()
-          .listen((data) => {
+          .listen((data) async => {
                 if (data.documents.length == 1)
                   {
                     usersList = data.documents[0]['gang_user_ids'],
@@ -89,7 +106,9 @@ class _F_JoinGangState extends State<F_JoinGang> {
                         gangDetails = GangDetails(
                             gangUserIDS:
                                 usersList.cast<String>().toSet().toList()),
-                        DBreference.updateGang(gangDetails, gangID),
+                        await DBreference.updateGang(gangDetails, gangID),
+
+                        await getNotificationsTokenList(data.documents[0]['gang_notification_token']),
 
                       setState(() {
                       check = false;
@@ -142,7 +161,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
     );
   }
 
-  @override
+
   Widget _buildContent(BuildContext context) {
     return TransparentLoading(
       loading: isLoading,

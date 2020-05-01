@@ -6,6 +6,7 @@ import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/common_files_model.dart';
 import 'package:tellthetruth/database_model/gang_notification_model.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
+import 'package:tellthetruth/database_model/notification_topic_model.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/auth.dart';
@@ -15,7 +16,7 @@ import 'firestore_service.dart';
 
 abstract class Database {
   Stream<UserDetails> getUserDetails(String userId);
-  Future<void> updateUserDetails(UserDetails userDetails);
+  Future<void> updateUserDetails(UserDetails userDetails, String userID);
   Future<void> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Stream<List<GangDetails>> readGangs();
@@ -36,6 +37,10 @@ abstract class Database {
   Stream<CommonFiles> getAppProperties();
   Future<void> createNotification(GangNotifications gangNotifications);
 
+  Future<void> createTopic(NotificationTopic notificationTopic);
+  Future<void> updateTopic(NotificationTopic notificationTopic, String topicID);
+  Stream<List<NotificationTopic>> readTopic(String topicID);
+
 }
 
 Database  DBreference;
@@ -54,9 +59,9 @@ class FirestoreDatabase implements Database {
   );
 
   @override
-  Future<void> updateUserDetails(UserDetails userDetails) async =>
+  Future<void> updateUserDetails(UserDetails userDetails, String userID) async =>
       await _service.updateData(
-        path: APIPath.userDetails(uid),
+        path: APIPath.userDetails(userID),
         data: userDetails.toMap(),
       );
 
@@ -195,5 +200,25 @@ class FirestoreDatabase implements Database {
         data: gangNotifications.toMap(),
       );
 
+  @override
+  Future<void> createTopic(NotificationTopic notificationTopic) async =>
+      await _service.setData(
+        path: APIPath.notificationsTopicDetails(DateTime.now().toString()),
+        data: notificationTopic.toMap(),
+      );
+
+  @override
+  Future<void> updateTopic(NotificationTopic notificationTopic, String topicID) async =>
+      await _service.updateData(
+        path: APIPath.notificationsTopicDetails(topicID),
+        data: notificationTopic.toMap(),
+      );
+
+  @override
+  Stream<List<NotificationTopic>> readTopic(String topicID) => _service.collectionStream(
+    path: APIPath.notificationsTopicsList(),
+    builder: (data, documentId) => NotificationTopic.fromMap(data, documentId),
+    queryBuilder: (query) => query.where('topic', isEqualTo: topicID),
+  );
 
 }

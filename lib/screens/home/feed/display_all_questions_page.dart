@@ -21,6 +21,7 @@ import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
 import 'package:tellthetruth/global_file/common_widgets/ExpandPageTransition.dart';
 import 'package:tellthetruth/global_file/common_widgets/list_item_builder/empty_questions.dart';
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
+import 'package:tellthetruth/landing_page.dart';
 import 'display_single_question_page.dart';
 import 'display_gang_members_page.dart';
 
@@ -105,7 +106,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                 setState(() {
                   _dropdownShown = false;
                 });
-                Navigator.pop(context, true);
+                GoToPage(context, LandingPage(), true);
               },
             ),
             actions: [
@@ -292,7 +293,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
         final insightsData = snapshot.data;
         return ExpandPageTransition(
           navigateToPage: SingleQuestion(
-            gangID: widget.gangDetails.gangID,
+            gangDetails: widget.gangDetails,
             questionDetails: questionData,
             insightsDetails: insightsData,
           ),

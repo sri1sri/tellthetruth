@@ -4,6 +4,7 @@ import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:overlay_container/overlay_container.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
+import 'package:tellthetruth/database_model/notification_topic_model.dart';
 import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
@@ -65,6 +66,25 @@ class _F_GangMembersState extends State<F_GangMembers> {
     super.initState();
   }
 
+  Future<void> getNotificationsTokenList() async {
+    var updateNotificationTopic;
+    List<dynamic> keysSubscribed;
+
+    Firestore.instance
+        .collection('topic_')
+        .where('topic', isEqualTo: widget.gangDetails.gangNotificationToken).getDocuments().then((topicData) async {
+
+
+      keysSubscribed = topicData.documents[0]['keysSubscribed'];
+      print(keysSubscribed);
+      keysSubscribed.remove(USER_DEVICE_TOKEN);
+
+      print(keysSubscribed);
+      updateNotificationTopic = NotificationTopic(keysSubscribed: keysSubscribed);
+      await DBreference.updateTopic(updateNotificationTopic,topicData.documents[0].documentID);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return offlineWidget(context);
@@ -90,12 +110,17 @@ class _F_GangMembersState extends State<F_GangMembers> {
                   ) : Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () async{
                         widget.gangDetails.gangUserIDS.remove(USER_ID);
                         final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
-                        DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
-                        CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
-                        GoToPage(context, LandingPage(), true);
+                        await DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+
+                        await getNotificationsTokenList();
+//                        CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
+
+                        CustomAlertBox(context, 'Success', 'You have been removed successfully from the group.', true, (){
+                          GoToPage(context, LandingPage(), true);
+                        });
                       },
                         child: Text('Leave', style: mediumTextStyleDark)),
                   ),
@@ -164,15 +189,14 @@ class _F_GangMembersState extends State<F_GangMembers> {
                                 _dropdownShown = false;
                               });
 
+                              CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
+
                               CustomAlertBox(context, 'Success', 'Your gang has been removed successfully.', true, (){
                                 DBreference.deleteGang(widget.gangDetails.gangID);
                                 DBreference.deleteQuestions(widget.gangDetails.gangID);
                                 GoToPage(context, LandingPage(), true);
 
                               });
-
-
-
                             },
                             child: Row(
                               children: [

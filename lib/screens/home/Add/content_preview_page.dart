@@ -119,6 +119,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
 
   String selectedGangID = '';
+  String selectedGangName = '';
   String selectedGangNotificationTokens = '';
 
 
@@ -144,7 +145,11 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       isLoading = true;
     });
 
-    final gangNotifications = GangNotifications(name: USER_GENDER, topic: selectedGangNotificationTokens);
+    final gangNotifications = GangNotifications(
+        topic: selectedGangNotificationTokens,
+        title: 'New question has been added to $selectedGangName',
+        message: "It's a ${USER_GENDER == 'Male' ? 'boy' : 'girl'}",
+        navigateTo: 'questtion asked');
 
     final createQuestion = QuestionDetails(
       createdAt: Timestamp.fromDate(DateTime.now()),
@@ -167,10 +172,12 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       color1: _colors1[_currentColorIndex].toString(),
       color2: _colors2[_currentColorIndex].toString(),
       createByGender: USER_GENDER,
+      createdByUsername: USER_NAME,
     );
 
     await DBreference.createQuestion(createQuestion, selectedGangID);
     await DBreference.createNotification(gangNotifications);
+
 
     setState(() {
       isLoading = false;
@@ -186,6 +193,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
   void initState() {
     setState(() {
       selectedGangID = gangIDs[0];
+      selectedGangName = gangName[0];
       selectedGangNotificationTokens = gangNotificationTokens[0];
     });
 //    Ads.hideBannerAd();
@@ -654,6 +662,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
       onPageChanged: (index){
         setState(() {
           selectedGangID = gangIDs[index];
+          selectedGangName = gangName[index];
           selectedGangNotificationTokens = gangNotificationTokens[index];
         });
         print(selectedGangID);

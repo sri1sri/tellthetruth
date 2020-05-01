@@ -7,6 +7,7 @@ import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/database_model/gang_notification_model.dart';
+import 'package:tellthetruth/database_model/notification_topic_model.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/custom_cloud_messaging.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
@@ -55,6 +56,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
 
     if (selectedIcon != null) {
 
+      final topic = CustomCloudMessaging().registerToGroup(widget.gangName.replaceAll(' ', ''));
+
       final createGang = GangDetails(
         gangCode: widget.gangCode,
         gangIconURL: selectedIcon,
@@ -62,10 +65,13 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         createdAt: Timestamp.fromDate(DateTime.now()),
         createBy: USER_ID,
         gangUserIDS: [USER_ID],
-        gangNotificationToken: CustomCloudMessaging().registerToGroup(widget.gangName),
+        gangNotificationToken: topic,
       );
 
+      final notificationTopic = NotificationTopic(topic: topic, keysSubscribed: [USER_DEVICE_TOKEN]);
+
       await DBreference.createGang(createGang);
+      await DBreference.createTopic(notificationTopic);
 
 
       CustomAlertBox(context, 'code- ${widget.gangCode}', 'Gang has been successfully created. Please share this gang code with your friends to join.',true, (){

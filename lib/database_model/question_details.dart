@@ -18,6 +18,7 @@ class QuestionDetails{
     this.color1,
     this.color2,
     this.createByGender,
+    this.createdByUsername,
 
     this.empty,
   });
@@ -35,6 +36,7 @@ class QuestionDetails{
   final String color1;
   final String color2;
   final String createByGender;
+  final String createdByUsername;
 
   final int optionOnePolledCount;
   final int optionTwoPolledCount;
@@ -62,7 +64,7 @@ class QuestionDetails{
     final int optionTwo = data['option_two_count'];
     final int optionThree = data['option_three_count'];
     final int optionFour = data['option_four_count'];
-
+    final String createdByUsername = data['created_by_username'];
     final String color1 = data['color1'];
     final String color2 = data['color2'];
     final String createByGender = data['create_by_gender'];
@@ -87,6 +89,7 @@ class QuestionDetails{
       color1: color1,
       color2: color2,
       createByGender: createByGender,
+      createdByUsername: createdByUsername,
       empty: empty,
 
     );
@@ -100,6 +103,7 @@ class QuestionDetails{
       optionFourPolledCount != null ? 'option_four_count': 'empty' : optionFourPolledCount,
       createdAt != null ? 'created_at': 'empty' : createdAt,
       deleteAt != null ? 'delete_at': 'empty' : deleteAt,
+      createdByUsername != null ? 'created_by_username': 'empty' : createdByUsername,
 
       endsAt != null ? 'ends_at': 'empty' : endsAt,
       createdBy != null ? 'created_by': 'empty' : createdBy,

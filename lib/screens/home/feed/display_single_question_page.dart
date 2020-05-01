@@ -7,6 +7,8 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
+import 'package:tellthetruth/database_model/gang_details.dart';
+import 'package:tellthetruth/database_model/gang_notification_model.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
 import 'package:tellthetruth/firebase/database.dart';
@@ -24,9 +26,9 @@ import 'package:vibration/vibration.dart';
 class SingleQuestion extends StatelessWidget {
   SingleQuestion(
       {@required this.questionDetails,
-      @required this.gangID,
+      @required this.gangDetails,
       @required this.insightsDetails});
-  String gangID;
+  GangDetails gangDetails;
   QuestionDetails questionDetails;
   InsightsDetails insightsDetails;
 
@@ -35,7 +37,7 @@ class SingleQuestion extends StatelessWidget {
     return Container(
       child: F_SingleQuestion(
           questionDetails: questionDetails,
-          gangID: gangID,
+          gangDetails: gangDetails,
           insightsDetails: insightsDetails),
     );
   }
@@ -44,9 +46,9 @@ class SingleQuestion extends StatelessWidget {
 class F_SingleQuestion extends StatefulWidget {
   F_SingleQuestion(
       {@required this.questionDetails,
-      @required this.gangID,
+      @required this.gangDetails,
       @required this.insightsDetails});
-  String gangID;
+  GangDetails gangDetails;
   QuestionDetails questionDetails;
   InsightsDetails insightsDetails;
 
@@ -125,8 +127,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
           InsightsDetails(isViewed: true, isReported: false);
 
       await DBreference.updateQuestionDetails(updateQuestionDetails,
-          widget.gangID, widget.questionDetails.questionID);
-      await DBreference.createInsights(createInsightDetails, widget.gangID,
+          widget.gangDetails.gangID, widget.questionDetails.questionID);
+      await DBreference.createInsights(createInsightDetails, widget.gangDetails.gangID,
           widget.questionDetails.questionID);
 
       setState(() {
@@ -239,14 +241,14 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         final updateQuestionDetails = QuestionDetails(
           optionOnePolledCount: widget.questionDetails.optionOnePolledCount + 1,
         );
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangDetails.gangID,
             widget.questionDetails.questionID);
         break;
       case 2:
         final updateQuestionDetails = QuestionDetails(
           optionTwoPolledCount: widget.questionDetails.optionTwoPolledCount + 1,
         );
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangDetails.gangID,
             widget.questionDetails.questionID);
         break;
       case 3:
@@ -254,7 +256,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
           optionThreePolledCount:
               widget.questionDetails.optionThreePolledCount + 1,
         );
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangDetails.gangID,
             widget.questionDetails.questionID);
         break;
       case 4:
@@ -262,7 +264,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
           optionFourPolledCount:
               widget.questionDetails.optionFourPolledCount + 1,
         );
-        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangID,
+        DBreference.updateQuestionDetails(updateQuestionDetails, widget.gangDetails.gangID,
             widget.questionDetails.questionID);
         break;
     }
@@ -270,7 +272,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
     final updateInsightDetails =
         InsightsDetails(optionSelected: optionSelected, isAnonymous: true);
     DBreference.updateInsights(
-        updateInsightDetails, widget.gangID, widget.questionDetails.questionID);
+        updateInsightDetails, widget.gangDetails.gangID, widget.questionDetails.questionID);
 
     super.initState();
   }
@@ -353,7 +355,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                       InsightsDetails(isReported: true);
                       DBreference.updateInsights(
                           updateInsightDetails,
-                          widget.gangID,
+                          widget.gangDetails.gangID,
                           widget.questionDetails.questionID);
                       GoToPage(context, LandingPage(), true);
                     });
@@ -372,9 +374,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         'Delete',
                         'Are you sure what to delete this question ?',
                         true, () {
-                      DBreference.deleteQuestion(widget.gangID,
+                      DBreference.deleteQuestion(widget.gangDetails.gangID,
                           widget.questionDetails.questionID);
-                      DBreference.deleteInsights(widget.gangID,
+                      DBreference.deleteInsights(widget.gangDetails.gangID,
                           widget.questionDetails.questionID);
                       GoToPage(context, LandingPage(), true);
                     });
@@ -398,32 +400,46 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                     children: [
                       widget.questionDetails.createdBy == USER_ID
                           ? GestureDetector(
-                        onTap: () {
+                        onTap: () async{
                           final updateQuestionDetails = QuestionDetails(
                               isAnonymous: !isQuestionAnonymos);
-                          DBreference.updateQuestionDetails(
+                          final gangNotifications = GangNotifications(
+                              topic: widget.gangDetails.gangNotificationToken,
+                              title: 'Question identity has been revealed for this question.',
+                              message: widget.questionDetails.question,
+                              navigateTo: 'answer identity revealed');
+                          
+                          
+                         await DBreference.updateQuestionDetails(
                               updateQuestionDetails,
-                              widget.gangID,
+                              widget.gangDetails.gangID,
                               widget.questionDetails.questionID);
                           setState(() {
                             isQuestionAnonymos = !isQuestionAnonymos;
                           });
+                          !isQuestionAnonymos ? await DBreference.createNotification(gangNotifications) : null;
                         },
                         child: Padding(
                           padding:
                           EdgeInsets.only(bottom: getDynamicHeight(15.0)),
                           child: Text(
                             isQuestionAnonymos
-                                ? 'Questioned anonymous'
+                                ? "Questioned anonymous"
                                 : '${USER_NAME}\'s question',
                             style: mediumTextStyleLight,
                           ),
                         ),
                       )
-                          : Container(
-                        height: 0,
-                        width: 0,
-                      ),
+                          : Padding(
+              padding:
+              EdgeInsets.only(bottom: getDynamicHeight(15.0)),
+      child: Text(
+        isQuestionAnonymos
+            ? "Anonymou's question"
+            : 'Question identity revealed',
+        style: mediumTextStyleLight,
+      ),
+    ),
 
                       Padding(
                         padding: EdgeInsets.only(
@@ -648,11 +664,11 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
                                       GestureDetector(
                                         onTap: () {
-
                                           GoToPage(context, RevealIdentity(
-                                            gangID: widget.gangID,
+                                            gangID: widget.gangDetails.gangID,
                                             questionID:
                                             widget.questionDetails.questionID,
+                                            pageTitle: isQuestionAnonymos ? "Anonymou's question" : "${widget.questionDetails.createdByUsername}'s question",
                                           ), false);
                                         },
                                         child: Text(
@@ -704,14 +720,22 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async{
                           final updateInsightDetails =
                           InsightsDetails(isAnonymous: !isAnswerAnonymos);
-                          DBreference.updateInsights(updateInsightDetails,
-                              widget.gangID, widget.questionDetails.questionID);
+                          final gangNotifications = GangNotifications(
+                              topic: widget.gangDetails.gangNotificationToken,
+                              title: 'Answer identity has been revealed for this question.',
+                              message: widget.questionDetails.question,
+                              navigateTo: 'answer identity revealed');
+
+                          await DBreference.updateInsights(updateInsightDetails,
+                              widget.gangDetails.gangID, widget.questionDetails.questionID);
+
                           setState(() {
                             isAnswerAnonymos = !isAnswerAnonymos;
                           });
+                          !isAnswerAnonymos ? await DBreference.createNotification(gangNotifications) : null;
                         },
                         child: Padding(
                           padding: EdgeInsets.only(top: getDynamicHeight(15.0)),

@@ -54,7 +54,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
   @override
   void dispose() {
     _emailController.dispose();
-    _emailController.dispose();
+    _emailFocusNode.dispose();
     _passwordController.dispose();
     _passwordFocusNode.dispose();
     super.dispose();
@@ -63,7 +63,7 @@ class _F_SignUpPageState extends State<F_SignUpPage> {
 
   Future<void> _submit() async {
     try {
-//      await model.submit();
+      await model.submit();
       GoToPage(
           context,
           RegisterDetails(

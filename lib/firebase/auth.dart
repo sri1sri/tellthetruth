@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tellthetruth/database_model/user_details.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
+
+import 'database.dart';
 
 class User {
   User({@required this.uid});
@@ -46,6 +49,9 @@ class Auth implements AuthBase {
   @override
   Future<User> signInWithEmail(String email, String password) async {
     final authResult = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    final userDetails = UserDetails(deviceToken: '$USER_DEVICE_TOKEN');
+
+    DBreference.updateUserDetails(userDetails, authResult.user.uid.toString());
     return _userFromFirebase(authResult.user);
   }
 

@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,21 @@ import 'global_file/common_variables/app_functions.dart';
 
 class LandingPage extends StatelessWidget {
 
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging();
+  String token;
+
+  Future<void> getToken() async {
+    token = await firebaseMessaging.getToken();
+    print("Token: " + token);
+    USER_DEVICE_TOKEN = token;
+    print("USER_DEVICE_TOKEN: " + USER_DEVICE_TOKEN);
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    getToken();
+
     final auth = Provider.of<AuthBase>(context, listen: false);
     SCREEN_SIZE = MediaQuery.of(context).size;
 

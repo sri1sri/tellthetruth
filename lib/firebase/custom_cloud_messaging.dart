@@ -58,17 +58,17 @@ class CustomCloudMessaging {
   }
 
   // Get Token
-  Future<String> getDeviceToken() {
-    if (Platform.isIOS) {
-      firebaseMessaging.onIosSettingsRegistered.listen((event) {
-        return firebaseMessaging.getToken();
-      });
-
-      firebaseMessaging
-          .requestNotificationPermissions(IosNotificationSettings());
-    }
-    return firebaseMessaging.getToken();
-  }
+//  Future<String> getDeviceToken() {
+//    if (Platform.isIOS) {
+//      firebaseMessaging.onIosSettingsRegistered.listen((event) {
+//        return firebaseMessaging.getToken();
+//      });
+//
+//      firebaseMessaging
+//          .requestNotificationPermissions(IosNotificationSettings());
+//    }
+//    return firebaseMessaging.getToken();
+//  }
 
   // Pass a unique topic name for each gang or make sure that each gang has a unique name
   String registerToGroup(String groupName) {

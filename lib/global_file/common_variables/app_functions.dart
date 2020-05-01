@@ -26,6 +26,7 @@ String USER_GENDER;
 String USER_EMAIL;
 String USER_QUESTION_COUNT = '0';
 String USER_POINTS = '0';
+String USER_DEVICE_TOKEN;
 
 List<String> USER_GANG_NAMES = [];
 List<String> USER_GANG_ID = [];

@@ -13,22 +13,24 @@ import 'package:tellthetruth/global_file/common_widgets/list_item_builder/list_i
 import 'package:tellthetruth/global_file/common_widgets/offline_widgets/offline_widget.dart';
 
 class RevealIdentity extends StatelessWidget {
-  RevealIdentity({@required this.gangID, @required this.questionID});
+  RevealIdentity({@required this.gangID, @required this.questionID, @required this.pageTitle});
   String gangID;
   String questionID;
+  String pageTitle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: F_RevealIdentity(gangID: gangID, questionID: questionID),
+      child: F_RevealIdentity(gangID: gangID, questionID: questionID, pageTitle: pageTitle,),
     );
   }
 }
 
 class F_RevealIdentity extends StatefulWidget {
-  F_RevealIdentity({@required this.gangID, @required this.questionID});
+  F_RevealIdentity({@required this.gangID, @required this.questionID, @required this.pageTitle});
   String gangID;
   String questionID;
+  String pageTitle;
 
   @override
   _F_RevealIdentity createState() => _F_RevealIdentity();
@@ -67,8 +69,8 @@ class _F_RevealIdentity extends State<F_RevealIdentity> {
       ),
       centerTitle: true,
       title: GradientText(
-        'Revealed identities',
-        style: foregroundTextStyleLight,
+        widget.pageTitle,
+        style: mediumTextStyleLight,
         gradient: LinearGradient(
           colors: [
             Color(0XffFD8B1F),

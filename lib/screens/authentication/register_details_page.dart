@@ -78,6 +78,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
 
   @override
   void dispose() {
+    _usernameFocusNode.dispose();
     super.dispose();
   }
 
@@ -93,7 +94,6 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
   Future<void> _saveData() async {
 //    await widget.model.submit();
 
-    final cloudMessaging = CustomCloudMessaging();
     final userDetails = UserDetails(
       userID: USER_ID,
       emailID: widget.email,
@@ -102,7 +102,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
       username: _username,
       gender: selectedGender,
       dateOfBirth: Timestamp.fromDate(selectedDate),
-      deviceToken: cloudMessaging.getDeviceToken().toString(),
+      deviceToken: USER_DEVICE_TOKEN,
     );
 
     FirestoreService.instance.setData(

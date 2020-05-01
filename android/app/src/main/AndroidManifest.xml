@@ -13,8 +13,10 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name=".Application"
         android:label="tellthetruth"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -58,6 +60,9 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9543395526409232~7748868325"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="default_notification_channel_id"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.com.shekarmudaliyar.social_share"
@@ -68,5 +73,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
     </application>
 </manifest>

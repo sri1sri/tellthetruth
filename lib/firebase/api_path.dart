@@ -18,6 +18,9 @@ class APIPath {
 
   static String gangNotifications(String notificationID) => 'gang_notification/$notificationID';
 
+  static String notificationsTopicDetails(String topicID) => 'topic_/$topicID';
+  static String notificationsTopicsList() => 'topic_';
+
   static String appProperties() => '${API_SUFFIX}common_files/properties';
   static String animationsURL() => '${API_SUFFIX}common_files/animation_file_url';
 

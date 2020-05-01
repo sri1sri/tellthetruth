@@ -67,11 +67,6 @@ class _F_LoginPageState extends State<F_LoginPage> {
   Future<void> _submit() async {
     try {
       await model.submit();
-
-      final cloudMessaging = CustomCloudMessaging();
-      final userDetails = UserDetails(deviceToken: cloudMessaging.getDeviceToken().toString());
-      DBreference.updateUserDetails(userDetails);
-
       GoToPage(context, LandingPage(), true);
     } on PlatformException catch (e) {
       if (_emailController.text != '' && _passwordController.text != '') {

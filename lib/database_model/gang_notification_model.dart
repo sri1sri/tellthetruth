@@ -1,14 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 class GangNotifications{
   GangNotifications({
-    this.name,
     this.topic,
+    this.title,
+    this.message,
+    this.navigateTo,
     this.empty,
 
   });
 
-  final String name;
   final String topic;
+  final String title;
+  final String message;
+  final String navigateTo;
   final Null empty;
 
 
@@ -16,16 +20,19 @@ class GangNotifications{
     if(data == null){
       return null;
     }
-
-    final String name = data['name'];
     final String topic = data['topic'];
+    final String title = data['title'];
+    final String message = data['message'];
+    final String navigateTo = data['navigate_to'];
     final Null empty = data['empty'];
 
 
 
     return GangNotifications(
-      name: name,
       topic: topic,
+      title: title,
+      message: message,
+      navigateTo: navigateTo,
         empty:empty,
 
     );
@@ -33,9 +40,10 @@ class GangNotifications{
 
   Map<String, dynamic> toMap(){
     return {
-      name != null ? 'name': 'empty' : name,
       topic != null ? 'topic': 'empty' : topic,
-
+      title != null ? 'title': 'empty' : title,
+      message != null ? 'message': 'empty' : message,
+      navigateTo != null ? 'navigate_to': 'navigateTo' : title,
     };
   }
 

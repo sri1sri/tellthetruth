@@ -105,7 +105,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
       deviceToken: USER_DEVICE_TOKEN,
     );
 
-    FirestoreService.instance.setData(
+    FirestoreService.instance.setDataWithID(
       path: APIPath.userDetails(USER_ID),
       data: userDetails.toMap(),
     );

@@ -17,7 +17,7 @@ import 'firestore_service.dart';
 abstract class Database {
   Stream<UserDetails> getUserDetails(String userId);
   Future<void> updateUserDetails(UserDetails userDetails, String userID);
-  Future<void> createGang(GangDetails gangDetails, String gangID);
+  Future<String> createGang(GangDetails gangDetails);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Stream<List<GangDetails>> readGangs();
   Stream<CommonFiles> getAnimations();
@@ -78,11 +78,12 @@ class FirestoreDatabase implements Database {
       );
 
   @override
-  Future<void> createGang(GangDetails gangDetails, String gangID) async =>
-      await _service.setData(
-        path: APIPath.gangDetails(gangID),
-        data: gangDetails.toMap(),
-      );
+  Future<String> createGang(GangDetails gangDetails) async {
+    return await _service.setData(
+      path: APIPath.gangsList(),
+      data: gangDetails.toMap(),
+    );
+  }
 
   @override
   Future<void> updateGang(GangDetails gangDetails, String gangID) async =>
@@ -103,7 +104,7 @@ class FirestoreDatabase implements Database {
   Future<void> createQuestion(
           QuestionDetails questionDetails, String gangID) async =>
       await _service.setData(
-        path: APIPath.questionDetails(gangID, DateTime.now().toString()),
+        path: APIPath.questionsList(gangID),
         data: questionDetails.toMap(),
       );
 
@@ -142,7 +143,7 @@ class FirestoreDatabase implements Database {
   @override
   Future<void> createInsights(
       InsightsDetails insightDetails, String gangID, String questionID) async =>
-      await _service.setData(
+      await _service.setDataWithID(
         path: APIPath.myInsightDetails(gangID, questionID, USER_ID),
         data: insightDetails.toMap(),
       );
@@ -196,14 +197,14 @@ class FirestoreDatabase implements Database {
   @override
   Future<void> createNotification(GangNotifications gangNotifications) async =>
       await _service.setData(
-        path: APIPath.gangNotifications(DateTime.now().toString()),
+        path: APIPath.gangNotificationsList(),
         data: gangNotifications.toMap(),
       );
 
   @override
   Future<void> createTopic(NotificationTopic notificationTopic) async =>
       await _service.setData(
-        path: APIPath.notificationsTopicDetails(DateTime.now().toString()),
+        path: APIPath.notificationsTopicsList(),
         data: notificationTopic.toMap(),
       );
 

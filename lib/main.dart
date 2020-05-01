@@ -70,12 +70,12 @@
 
 
 import 'dart:convert';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:random_string/random_string.dart';
+import 'package:tellthetruth/screens/home/feed/display_single_question_page.dart';
 
 import 'firebase/auth.dart';
 import 'global_file/common_variables/app_functions.dart';
@@ -127,6 +127,11 @@ class MyApp extends StatelessWidget {
 
   Future selectNotification(String payload) async {
     if (payload != null) {
+//      GoToPage(context,  SingleQuestion(
+//        gangDetails: widget.gangDetails,
+//        questionDetails: questionData,
+//        insightsDetails: insightsData,
+//      ), true);
       debugPrint('notification payload: ' + payload);
     }
     print("selectNotification: called");

@@ -5,7 +5,7 @@ class FirestoreService {
   FirestoreService._();
   static final instance = FirestoreService._();
 
-  Future<void> setData({
+  Future<void> setDataWithID({
     @required String path,
     @required Map<String, dynamic> data,
   }) async {
@@ -13,6 +13,18 @@ class FirestoreService {
     print('$path: $data');
     await reference.setData(data);
   }
+
+  Future<String> setData({
+    @required String path,
+    @required Map<String, dynamic> data,
+  }) async {
+    final reference = Firestore.instance.collection(path).document();
+    print('$path: $data');
+    await reference.setData(data);
+    return reference.documentID;
+  }
+
+
 
   Future<void> updateData({
     @required String path,

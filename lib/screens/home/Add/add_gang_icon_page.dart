@@ -57,7 +57,8 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
     if (selectedIcon != null) {
 
       final topic = CustomCloudMessaging().registerToGroup(widget.gangName.replaceAll(' ', ''));
-      final gangId = DateTime.now().toString();
+      var notificationTopic;
+//      final gangId = DateTime.now().toString();
 
       final createGang = GangDetails(
         gangCode: widget.gangCode,
@@ -69,11 +70,12 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         gangNotificationToken: topic,
       );
 
-      final notificationTopic = NotificationTopic(topic: topic, keysSubscribed: [USER_DEVICE_TOKEN], gangID: gangId);
 
-      await DBreference.createGang(createGang, gangId);
-      await DBreference.createTopic(notificationTopic);
+      await DBreference.createGang(createGang).then((gangID) async => {
 
+        notificationTopic = NotificationTopic(topic: topic, keysSubscribed: [USER_DEVICE_TOKEN], gangID: gangID),
+      await DBreference.createTopic(notificationTopic),
+      });
 
       CustomAlertBox(context, 'code- ${widget.gangCode}', 'Gang has been successfully created. Please share this gang code with your friends to join.',true, (){
         GoToPage(context, LandingPage(), true);

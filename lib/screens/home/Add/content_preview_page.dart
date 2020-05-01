@@ -176,6 +176,9 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     );
 
     await DBreference.createQuestion(createQuestion, selectedGangID);
+
+
+
     await DBreference.createNotification(gangNotifications);
 
 

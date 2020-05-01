@@ -39,7 +39,7 @@ class NotificationTopic{
     return {
       keysSubscribed != null ? 'keysSubscribed': 'empty' : keysSubscribed,
       topic != null ? 'topic': 'empty' : topic,
-      gangID != null ? '${API_SUFFIX}_gang_id': 'empty' : gangID,
+      gangID != null ? '${API_SUFFIX}gang_id': 'empty' : gangID,
     };
   }
 }

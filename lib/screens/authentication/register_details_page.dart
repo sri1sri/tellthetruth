@@ -125,8 +125,8 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
           Firestore.instance
               .collection('${API_SUFFIX}users')
               .where('username', isEqualTo: _username)
-              .snapshots()
-              .listen((data) => {
+              .getDocuments()
+              .then((data) => {
                     if (isLoading)
                       {
                         if (data.documents.length == 0)

@@ -1,14 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 class NotificationTopic{
   NotificationTopic({
     this.keysSubscribed,
     this.topic,
+    this.gangID,
     this.empty,
 
   });
 
   final List<dynamic> keysSubscribed;
   final String topic;
+  final String gangID;
   final Null empty;
 
 
@@ -19,6 +22,7 @@ class NotificationTopic{
 
     final List<dynamic> keysSubscribed = data['keysSubscribed'];
     final String topic = data['topic'];
+    final String gangID = data['${API_SUFFIX}gang_id'];
     final Null empty = data['empty'];
 
 
@@ -26,6 +30,7 @@ class NotificationTopic{
     return NotificationTopic(
       keysSubscribed: keysSubscribed,
       topic: topic,
+      gangID: gangID,
       empty:empty,
     );
   }
@@ -34,6 +39,7 @@ class NotificationTopic{
     return {
       keysSubscribed != null ? 'keysSubscribed': 'empty' : keysSubscribed,
       topic != null ? 'topic': 'empty' : topic,
+      gangID != null ? '${API_SUFFIX}_gang_id': 'empty' : gangID,
     };
   }
 }

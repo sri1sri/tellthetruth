@@ -60,8 +60,8 @@ class _F_AddGangNameState extends State<F_AddGangName> {
           .collection('${API_SUFFIX}gangs')
           .where('gang_name', isEqualTo: _gangName)
           .where('gang_user_ids', arrayContains: USER_ID)
-          .snapshots()
-          .listen((data) => {
+          .getDocuments()
+          .then((data) => {
                 if (data.documents.length != 1)
                   {
                     setState(() {

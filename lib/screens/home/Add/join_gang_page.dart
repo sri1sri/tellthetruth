@@ -54,6 +54,16 @@ class _F_JoinGangState extends State<F_JoinGang> {
     super.initState();
   }
 
+  Future<void> addUserToNotificatios() async{
+    Firestore.instance
+        .collection('${API_SUFFIX}gangs')
+        .where('gang_code', isEqualTo: _gangCode).getDocuments().then((gangData) async {
+
+          final topic = await gangData.documents[0]['gang_notification_token'];
+          CustomCloudMessaging().registerToGroupNotCreate(topic);
+    });
+  }
+
   Future<void> getNotificationsTokenList(String topic) async {
     var updateNotificationTopic;
     List<dynamic> keysSubscribed;
@@ -66,6 +76,9 @@ class _F_JoinGangState extends State<F_JoinGang> {
 
             updateNotificationTopic = NotificationTopic(keysSubscribed: keysSubscribed);
           await DBreference.updateTopic(updateNotificationTopic,topicData.documents[0].documentID);
+
+            await addUserToNotificatios();
+
           });
   }
 
@@ -84,8 +97,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
       Firestore.instance
           .collection('${API_SUFFIX}gangs')
           .where('gang_code', isEqualTo: _gangCode)
-          .snapshots()
-          .listen((data) async => {
+          .getDocuments().then((data) async => {
                 if (data.documents.length == 1)
                   {
                     usersList = data.documents[0]['gang_user_ids'],

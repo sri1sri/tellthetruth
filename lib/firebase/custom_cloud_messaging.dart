@@ -82,4 +82,8 @@ class CustomCloudMessaging {
   void unregisterToGroup(String groupName) {
     firebaseMessaging.unsubscribeFromTopic(groupName);
   }
+
+  void registerToGroupNotCreate(String topicName) {
+    firebaseMessaging.subscribeToTopic(topicName);
+  }
 }

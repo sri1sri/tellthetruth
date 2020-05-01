@@ -57,6 +57,7 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
     if (selectedIcon != null) {
 
       final topic = CustomCloudMessaging().registerToGroup(widget.gangName.replaceAll(' ', ''));
+      final gangId = DateTime.now().toString();
 
       final createGang = GangDetails(
         gangCode: widget.gangCode,
@@ -68,9 +69,9 @@ class _F_AddGangIconState extends State<F_AddGangIcon> {
         gangNotificationToken: topic,
       );
 
-      final notificationTopic = NotificationTopic(topic: topic, keysSubscribed: [USER_DEVICE_TOKEN]);
+      final notificationTopic = NotificationTopic(topic: topic, keysSubscribed: [USER_DEVICE_TOKEN], gangID: gangId);
 
-      await DBreference.createGang(createGang);
+      await DBreference.createGang(createGang, gangId);
       await DBreference.createTopic(notificationTopic);
 
 

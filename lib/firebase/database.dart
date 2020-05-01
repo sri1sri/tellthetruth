@@ -17,7 +17,7 @@ import 'firestore_service.dart';
 abstract class Database {
   Stream<UserDetails> getUserDetails(String userId);
   Future<void> updateUserDetails(UserDetails userDetails, String userID);
-  Future<void> createGang(GangDetails gangDetails);
+  Future<void> createGang(GangDetails gangDetails, String gangID);
   Future<void> updateGang(GangDetails gangDetails, String gangID);
   Stream<List<GangDetails>> readGangs();
   Stream<CommonFiles> getAnimations();
@@ -78,9 +78,9 @@ class FirestoreDatabase implements Database {
       );
 
   @override
-  Future<void> createGang(GangDetails gangDetails) async =>
+  Future<void> createGang(GangDetails gangDetails, String gangID) async =>
       await _service.setData(
-        path: APIPath.gangDetails(DateTime.now().toString()),
+        path: APIPath.gangDetails(gangID),
         data: gangDetails.toMap(),
       );
 

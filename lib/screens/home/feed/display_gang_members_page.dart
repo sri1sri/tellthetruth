@@ -76,11 +76,11 @@ class _F_GangMembersState extends State<F_GangMembers> {
 
 
       keysSubscribed = topicData.documents[0]['keysSubscribed'];
-      print(keysSubscribed);
+      print('gg${keysSubscribed}');
       keysSubscribed.remove(USER_DEVICE_TOKEN);
 
-      print(keysSubscribed);
-      updateNotificationTopic = NotificationTopic(keysSubscribed: keysSubscribed);
+      print('geg${keysSubscribed}');
+            updateNotificationTopic = NotificationTopic(keysSubscribed: keysSubscribed);
       await DBreference.updateTopic(updateNotificationTopic,topicData.documents[0].documentID);
     });
   }
@@ -110,15 +110,19 @@ class _F_GangMembersState extends State<F_GangMembers> {
                   ) : Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
-                      onTap: () async{
-                        widget.gangDetails.gangUserIDS.remove(USER_ID);
-                        final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
-                        await DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+                      onTap: () {
+                        print('ids ${widget.gangDetails.gangUserIDS}');
 
-                        await getNotificationsTokenList();
-//                        CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
+                        widget.gangDetails.gangUserIDS.remove(USER_ID);
+                        print('ids ${widget.gangDetails.gangUserIDS}');
+                        final updateGangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
+                        DBreference.updateGang(updateGangDetails, widget.gangDetails.gangID);
+
+                        getNotificationsTokenList();
+                        CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
 
                         CustomAlertBox(context, 'Success', 'You have been removed successfully from the group.', true, (){
+                          GoToPage(context, LandingPage(), true);
                           GoToPage(context, LandingPage(), true);
                         });
                       },
@@ -155,41 +159,12 @@ class _F_GangMembersState extends State<F_GangMembers> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-//                          widget.gangDetails.createBy == USER_ID ? GestureDetector(
-//                            onTap: () {
-//                              setState(() {
-//                                showRemove = true;
-//                                _dropdownShown = false;
-//                              });
-//                            },
-//                            child: Row(
-//                              children: [
-//                                Icon(Icons.delete_forever),
-//                                SizedBox(
-//                                  width: getDynamicWidth(5),
-//                                ),
-//                                Text(
-//                                  "Remove people",
-//                                  style: answerStyleBlur,
-//                                ),
-//                              ],
-//                            ),
-//                          ) : Container(height: 0, width: 0,),
-//                          Divider(
-//                            thickness: 1,
-//                            color: Colors.black54,
-//                          ),
-
-
-
                           widget.gangDetails.createBy == USER_ID ? GestureDetector(
                             onTap: () {
 
                               setState(() {
                                 _dropdownShown = false;
                               });
-
-                              CustomCloudMessaging().unregisterToGroup(widget.gangDetails.gangNotificationToken);
 
                               CustomAlertBox(context, 'Success', 'Your gang has been removed successfully.', true, (){
                                 DBreference.deleteGang(widget.gangDetails.gangID);
@@ -248,7 +223,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                               setState(() {
                                 _dropdownShown = false;
                               });
-                              editNameDialogue(context, widget.gangDetails);
+                              editNameDialogue(context, widget.gangDetails, _dropdownShown);
                             },
                             child: Row(
                               children: [
@@ -315,23 +290,23 @@ class _F_GangMembersState extends State<F_GangMembers> {
 
               //Image.asset(users[index].gender != null ? users[index].gender == 'Male' ? "images/boy.png" : "images/girl.png" : "images/girl.png"),
               title: Text(users[index].username,style: smallTextStyleDark,),
-              trailing: showRemove ?
-              GestureDetector(
-                onTap: (){
-
-                  widget.gangDetails.gangUserIDS.remove(users[index].userID);
-
-                  final gangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
-                  DBreference.updateGang(gangDetails, widget.gangDetails.gangID);
-
-//                  setState(() {
-//                    gangUsersID = widget.gangDetails.gangUserIDS;
-//                  });
-
-                },
-                  child: Text('remove'))
-                  :
-              Container(height: 0, width: 0,),
+              trailing: widget.gangDetails.createBy == users[index].userID ? Text('Admin') : Container(height: 0, width: 0,),
+//              GestureDetector(
+//                onTap: (){
+//
+//                  widget.gangDetails.gangUserIDS.remove(users[index].userID);
+//
+//                  final gangDetails = GangDetails(gangUserIDS: widget.gangDetails.gangUserIDS);
+//                  DBreference.removeUsersFromGang(gangDetails, widget.gangDetails.gangID);
+//
+////                  setState(() {
+////                    gangUsersID = widget.gangDetails.gangUserIDS;
+////                  });
+//
+//                },
+//                  child: Text('remove'))
+//                  :
+//              Container(height: 0, width: 0,),
             ),
           );
         },
@@ -483,7 +458,7 @@ class MyFlexiableAppBar extends StatelessWidget {
   }
 }
 
-void editNameDialogue(BuildContext context, GangDetails gangDetails) {
+void editNameDialogue(BuildContext context, GangDetails gangDetails, bool dropDown) {
 
   final _formKey = GlobalKey<FormState>();
   String _updatedGangName;
@@ -635,6 +610,7 @@ void editNameDialogue(BuildContext context, GangDetails gangDetails) {
                         alignment: Alignment(1.05, -1.05),
                         child: InkWell(
                           onTap: () {
+                            dropDown = false;
                             Navigator.pop(context);
                           },
                           child: Container(

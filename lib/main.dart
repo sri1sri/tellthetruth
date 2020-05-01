@@ -158,9 +158,30 @@ class MyApp extends StatelessWidget {
         payload: 'item x');
   }
 
+  void dailyNotification(int hour) async{
+    var time = Time(hour, 00, 00);
+    var androidPlatformChannelSpecifics =
+    AndroidNotificationDetails('repeatDailyAtTime channel id',
+        'repeatDailyAtTime channel name', 'repeatDailyAtTime description');
+    var iOSPlatformChannelSpecifics =
+    IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.showDailyAtTime(
+        0,
+        hour == 09 ? 'Good morning, ${USER_NAME}' : hour == 16 ? 'Good evening, ${USER_NAME}' : 'Good night, ${USER_NAME}',
+        hour == 09 ? 'Daily notification shown at approximately' : hour == 16 ? 'Daily notification shown at approximately' : 'Daily notification shown at approximately',
+        time,
+        platformChannelSpecifics);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     print("Token: Taken");
+    dailyNotification(09);
+    dailyNotification(16);
+    dailyNotification(21);
     _settingUpLocalNotification();
     firebaseMessaging.configure(
       // This will be called when app is in foreground

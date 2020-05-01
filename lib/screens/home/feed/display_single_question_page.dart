@@ -406,9 +406,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               isAnonymous: !isQuestionAnonymos);
                           final gangNotifications = GangNotifications(
                               topic: widget.gangDetails.gangNotificationToken,
-                              title: 'Question identity has been revealed for this question.',
-                              message: widget.questionDetails.question,
-                              navigateTo: 'answer identity revealed');
+                              title: 'Wow..!! Question identity revealed',
+                              message: "${widget.questionDetails.question} \nGo check who questioned this",
+                              navigateTo: 'question identity revealed');
                           
                           
                          await DBreference.updateQuestionDetails(
@@ -726,8 +726,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                           InsightsDetails(isAnonymous: !isAnswerAnonymos);
                           final gangNotifications = GangNotifications(
                               topic: widget.gangDetails.gangNotificationToken,
-                              title: 'Answer identity has been revealed for this question.',
-                              message: widget.questionDetails.question,
+                              title: 'Yahooo..!! Someone revealed thier answer',
+                              message: "${ widget.questionDetails.question} \nGo check who answered this",
                               navigateTo: 'answer identity revealed');
 
                           await DBreference.updateInsights(updateInsightDetails,

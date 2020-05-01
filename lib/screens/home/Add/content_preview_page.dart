@@ -62,9 +62,17 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
   List<String> questions = [
     "",
-    "who is the father of nation ?",
-    "Can u touch ur feet ??",
-    "Do u have corona ?",
+    "What are your plans for spring?",
+    "How to keep your immune system healthy?",
+    "How do you spen your weekends?",
+    "How do you feel around me?",
+    "Which of these three followings things would you do?",
+    "When was your last kiss?",
+    "Would you date someone younger than you?",
+    "What do you ike about me?",
+    "What do you prefer?",
+    "How are you feeling about 2020?",
+    "which is your favorite game?",
   ];
 
 
@@ -147,9 +155,9 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
 
     final gangNotifications = GangNotifications(
         topic: selectedGangNotificationTokens,
-        title: 'New question has been added to $selectedGangName',
-        message: "It's a ${USER_GENDER == 'Male' ? 'boy' : 'girl'}",
-        navigateTo: 'questtion asked');
+        title: "Hurray..!! It's a ${USER_GENDER == 'Male' ? 'boy' : 'girl'}",
+        message: 'New question has been added to $selectedGangName',
+        navigateTo: 'question asked');
 
     final createQuestion = QuestionDetails(
       createdAt: Timestamp.fromDate(DateTime.now()),

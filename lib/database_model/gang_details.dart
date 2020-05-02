@@ -40,6 +40,7 @@ class GangDetails{
     final Timestamp createdAt = data['created_at'];
     final List<dynamic> gangUserIDS = data['gang_user_ids'];
     final String gangNotificationToken = data['gang_notification_token'];
+
     final Null empty = data['empty'];
 
 

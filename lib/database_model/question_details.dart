@@ -7,9 +7,10 @@ class QuestionDetails{
     this.createdBy,
     this.deleteAt,
     this.options,
+    this.viewedBy,
     this.isAnonymous,
     this.endsAt,
-    this.viewCount,
+//    this.viewCount,
     this.optionFourPolledCount,
     this.optionThreePolledCount,
     this.optionTwoPolledCount,
@@ -30,9 +31,10 @@ class QuestionDetails{
   final Timestamp deleteAt;
   final String createdBy;
   final List options;
+  final List<dynamic> viewedBy;
   final bool isAnonymous;
   final String question;
-  final int viewCount;
+//  final int viewCount;
   final String color1;
   final String color2;
   final String createByGender;
@@ -57,9 +59,10 @@ class QuestionDetails{
     final Timestamp deleteAt = data['delete_at'];
     final String createdBy = data['created_by'];
     final List options = data['options'];
+    final List<dynamic> viewedBy = data['viewed_by'];
     final bool isAnonymous = data['is_anonymous'];
     final String question = data['question'];
-    final int viewCount = data['view_count'];
+//    final int viewCount = data['view_count'];
     final int optionOne = data['option_one_count'];
     final int optionTwo = data['option_two_count'];
     final int optionThree = data['option_three_count'];
@@ -81,7 +84,8 @@ class QuestionDetails{
       options:options,
       isAnonymous:isAnonymous,
       question: question,
-      viewCount: viewCount,
+      viewedBy: viewedBy,
+//      viewCount: viewCount,
       optionOnePolledCount:optionOne,
       optionFourPolledCount: optionFour,
       optionThreePolledCount: optionThree,
@@ -104,12 +108,12 @@ class QuestionDetails{
       createdAt != null ? 'created_at': 'empty' : createdAt,
       deleteAt != null ? 'delete_at': 'empty' : deleteAt,
       createdByUsername != null ? 'created_by_username': 'empty' : createdByUsername,
-
+      viewedBy != null ? 'viewed_by': 'empty' : viewedBy,
       endsAt != null ? 'ends_at': 'empty' : endsAt,
       createdBy != null ? 'created_by': 'empty' : createdBy,
       options != null ? 'options': 'empty' : options,
       question != null ? 'question': 'empty' : question,
-      viewCount != null ? 'view_count': 'empty' : viewCount,
+//      viewCount != null ? 'view_count': 'empty' : viewCount,
       isAnonymous != null ? 'is_anonymous': 'empty' : isAnonymous,
       color1 != null ? 'color1': 'empty' : color1,
       color2 != null ? 'color2': 'empty' : color2,

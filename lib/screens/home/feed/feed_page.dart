@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_page_transition/flutter_page_transition.dart';
@@ -8,7 +9,9 @@ import 'package:lottie/lottie.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
+import 'package:tellthetruth/firebase/api_path.dart';
 import 'package:tellthetruth/firebase/database.dart';
+import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
 import 'package:tellthetruth/global_file/common_variables/app_functions.dart';
@@ -43,10 +46,8 @@ class F_FeedPage extends StatefulWidget {
 }
 
 class _F_FeedPageState extends State<F_FeedPage> {
-
   @override
   void initState() {
-
 //    Ads.showBannerAd();
     super.initState();
   }
@@ -79,11 +80,11 @@ class _F_FeedPageState extends State<F_FeedPage> {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            animation["color1"],
-                            animation["color2"],
-                            animation["color3"],
-                            // animation["color4"]
-                          ])),
+                        animation["color1"],
+                        animation["color2"],
+                        animation["color3"],
+                        // animation["color4"]
+                      ])),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -134,9 +135,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                                 size: 30,
                               ),
                               color: Colors.white,
-                              onPressed: () {
-
-                              },
+                              onPressed: () {},
                             ),
                           ],
                         ),
@@ -170,7 +169,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
                 topRight: Radius.circular(40.0),
                 topLeft: Radius.circular(40.0)),
             child:
-            Container(color: Colors.white, child: _buildContent(context)),
+                Container(color: Colors.white, child: _buildContent(context)),
           ),
         ),
       ),
@@ -195,14 +194,10 @@ class _F_FeedPageState extends State<F_FeedPage> {
           USER_GANG_ID = gId;
           USER_GANG_NOTIFICATION_TOKENS = gToken;
 
-          USER_GANG_NAMES.forEach((f) {
-          });
-          USER_GANG_ID.forEach((f) {
-          });
-          USER_GANG_NOTIFICATION_TOKENS.forEach((f) {
-          });
+          USER_GANG_NAMES.forEach((f) {});
+          USER_GANG_ID.forEach((f) {});
+          USER_GANG_NOTIFICATION_TOKENS.forEach((f) {});
         }
-
         return ListItemsBuilder<GangDetails>(
           emptyContent: EmptyFeedContent(),
           snapshot: snapshot,
@@ -220,7 +215,6 @@ class _F_FeedPageState extends State<F_FeedPage> {
                   ),
                 ),
               ),
-              // AdmobBanner(adUnitId: 'ca-app-pub-9543395526409232/9656205735',adSize: AdmobBannerSize.BANNER,)
             ],
           ),
         );
@@ -229,7 +223,6 @@ class _F_FeedPageState extends State<F_FeedPage> {
   }
 
   Widget _buildImage(GangDetails data) {
-
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -262,7 +255,9 @@ class _F_FeedPageState extends State<F_FeedPage> {
                         Positioned(
                           top: 7,
                           child: Text(
-                            data != null ? '${data.gangCode}' : 'fetching...',
+                            data != null
+                                ? '${viewedUsersCount(data.gangID)}'
+                                : 'fetching...',
                             style: backgroundTextStyleMedium,
                           ),
                           //Text("Question",style: backgroundText,),
@@ -293,5 +288,25 @@ class _F_FeedPageState extends State<F_FeedPage> {
         ),
       ),
     );
+  }
+
+  Future<String> viewedUsersCount(String gangID) async {
+    final dbRef =
+        Firestore.instance.collection("${API_SUFFIX}gangs/$gangID/questions");
+    int unViewedQuestionsCount = 0;
+
+    await dbRef.getDocuments().then((questionsData) async => {
+          await dbRef
+              .where('viewed_by', arrayContains: USER_ID)
+              .getDocuments()
+              .then((viewedData) async => {
+                    setState(() {
+                      unViewedQuestionsCount = questionsData.documents.length -
+                          viewedData.documents.length;
+                    }),
+                  }),
+        });
+    print('count $unViewedQuestionsCount');
+    return unViewedQuestionsCount.toString();
   }
 }

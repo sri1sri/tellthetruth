@@ -5,7 +5,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
@@ -114,18 +113,24 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   Future<bool> updateData() async {
 
-    viewCount = widget.questionDetails.viewCount;
+    viewCount = widget.questionDetails.viewedBy.length;
     polledCount = widget.questionDetails.optionOnePolledCount +
         widget.questionDetails.optionTwoPolledCount +
         widget.questionDetails.optionThreePolledCount +
         widget.questionDetails.optionFourPolledCount;
 
     if (widget.insightsDetails == null) {
+
+      List<dynamic> viewers = widget.questionDetails.viewedBy;
+      viewers.add(USER_ID);
+
       final updateQuestionDetails = QuestionDetails(
-        viewCount: widget.questionDetails.viewCount + 1,
+        //viewCount: widget.questionDetails.viewedBy.length + 1,
+        viewedBy: viewers,
       );
       final createInsightDetails =
           InsightsDetails(isViewed: true, isReported: false);
+
 
       await DBreference.updateQuestionDetails(updateQuestionDetails,
           widget.gangDetails.gangID, widget.questionDetails.questionID);
@@ -229,7 +234,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
             : true;
     isQuestionAnonymos = widget.questionDetails.isAnonymous;
 
-    viewCount = widget.questionDetails.viewCount;
+    viewCount = widget.questionDetails.viewedBy.length;
     polledCount = widget.questionDetails.optionOnePolledCount +
         widget.questionDetails.optionTwoPolledCount +
         widget.questionDetails.optionThreePolledCount +
@@ -690,10 +695,10 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                               .then((File image) {
                                             setState(() async {
 
-                                              var status = await Permission.storage.status;
-                                              if (status.isUndetermined) {
-                                                Permission.storage.request();
-                                              }
+//                                              var status = await Permission.storage.status;
+//                                              if (status.isUndetermined) {
+//                                                Permission.storage.request();
+//                                              }
 
                                               await ImageGallerySaver.saveImage(
                                                   image.readAsBytesSync());

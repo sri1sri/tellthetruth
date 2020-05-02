@@ -78,225 +78,282 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+//              Expanded(
+//                child: Stack(
+//                  alignment: AlignmentDirectional.bottomCenter,
+//                  children: <Widget>[
+//                    PageView.builder(
+//                      scrollDirection: Axis.horizontal,
+//                      controller: _pageController,
+//                      onPageChanged: _onPageChanged,
+//                      itemCount: slideList.length,
+//                      itemBuilder: (ctx, i) => SlideItem(i),
+//                    ),
+//                    Stack(
+//                      alignment: AlignmentDirectional.topStart,
+//                      children: <Widget>[
+//                        Container(
+//                          margin: const EdgeInsets.only(bottom: 5),
+//                          child: Row(
+//                            mainAxisSize: MainAxisSize.min,
+//                            mainAxisAlignment: MainAxisAlignment.center,
+//                            children: <Widget>[
+//                              for(int i = 0; i<slideList.length; i++)
+//                                if( i == _currentPage )
+//                                  SlideDots(true)
+//                                else
+//                                  SlideDots(false)
+//                            ],
+//                          ),
+//                        )
+//                      ],
+//                    )
+//                  ],
+//                ),
+//              ),
               Padding(
-                padding: const EdgeInsets.only(top: 0.0,left: 20),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    SizedBox(height: getDynamicHeight(40),),
-                    Row(
+                    SizedBox(height: getDynamicHeight(70),),
+                    Column(
                       children: [
-                        GradientText(
-                          'T',
-                          style: logoStyle1,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
+                        Container(
+                          color: Colors.transparent,
+                          child: Image.asset("images/logo1.png",height: getDynamicHeight(100),width: getDynamicWidth(200),),
                         ),
-                        GradientText(
-                          'ell',
-                          style: logoStyle2,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        SizedBox(
-                          width: getDynamicWidth(5),
-                        ),
-                        GradientText(
-                          'T',
-                          style: logoStyle1,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        GradientText(
-                          'he',
-                          style: logoStyle2,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        SizedBox(
-                          width: getDynamicWidth(5),
-                        ),
-                        GradientText(
-                          'T',
-                          style: logoStyle1,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        GradientText(
-                          'ruth',
-                          style: logoStyle2,
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0XffFD8B1F),
-                              Color(0XffD152E0),
-                              Color(0Xff30D0DB),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GradientText(
+                              'T',
+                              style: logoStyle1,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            GradientText(
+                              'ell',
+                              style: logoStyle2,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            SizedBox(
+                              width: getDynamicWidth(5),
+                            ),
+                            GradientText(
+                              'T',
+                              style: logoStyle1,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            GradientText(
+                              'he',
+                              style: logoStyle2,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            SizedBox(
+                              width: getDynamicWidth(5),
+                            ),
+                            GradientText(
+                              'T',
+                              style: logoStyle1,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            GradientText(
+                              'ruth',
+                              style: logoStyle2,
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0XffFD8B1F),
+                                  Color(0XffD152E0),
+                                  Color(0Xff30D0DB),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                child: Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: <Widget>[
-                    PageView.builder(
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
-                      itemCount: slideList.length,
-                      itemBuilder: (ctx, i) => SlideItem(i),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset("images/int1.png",height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                        SizedBox(width: getDynamicWidth(20),),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Anonymous Q&A",style: mediumTextStyleDark,),
+                            Text("Shoot questions anonymously\n& share with people.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
+                                fontWeight: FontWeight.w600,fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),)
+                          ],
+                        )
+                      ],
                     ),
-                    Stack(
-                      alignment: AlignmentDirectional.topStart,
-                      children: <Widget>[
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 5),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              for(int i = 0; i<slideList.length; i++)
-                                if( i == _currentPage )
-                                  SlideDots(true)
-                                else
-                                  SlideDots(false)
-                            ],
-                          ),
+                    SizedBox(height: getDynamicHeight(20),),
+                    Row(
+                      children: [
+                        Image.asset("images/int2.png",height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                        SizedBox(width: getDynamicWidth(20),),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Polling",style: mediumTextStyleDark,),
+                            Text("The words will move and grow\nas more responses are entered.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
+                                fontWeight: FontWeight.w600,fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),)
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: getDynamicHeight(20),),
+                    Row(
+                      children: [
+                        Image.asset("images/int3.png",height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                        SizedBox(width: getDynamicWidth(20),),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Create Group",style: mediumTextStyleDark,),
+                            Text("Create own gang with multiple\nfriends,families and others.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
+                                fontWeight: FontWeight.w600,fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),)
+                          ],
                         )
                       ],
                     )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(),
-                    Container(
-                      height: getDynamicHeight(55),
-                      width: getDynamicWidth(180),
-                      child: GestureDetector(
-                        onTap: () {
+              Column(
+                children: [
+                  Container(
+                    height: getDynamicHeight(55),
+                    width: getDynamicWidth(180),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage(),),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft, end: Alignment.bottomRight,
+                              colors: [
+                                Color(0XffFD8B1F),
+                                Color(0XffD152E0),
+                                Color(0Xff30D0DB),
+                              ]),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Center(
+                              child: Text(
+                                "Log In",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: mainFontFamily,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("___________________",style: smallTextStyleDark,),
+                        Text(" Or ",style: smallTextStyleDark,),
+                        Text("___________________",style: smallTextStyleDark,),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Don't have an account?", style: mediumTextStyleDark),
+                      FlatButton(
+                        child: GradientText(
+                          'Sign Up',
+                          style: mediumTextStyleDark,
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0XffFD8B1F),
+                              Color(0XffD152E0),
+                              Color(0Xff30D0DB),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                        onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage(),),
+                            MaterialPageRoute(
+                              builder: (context) => SignUpPage(),
+                            ),
                           );
                         },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft, end: Alignment.bottomRight,
-                                colors: [
-                                  Color(0XffFD8B1F),
-                                  Color(0XffD152E0),
-                                  Color(0Xff30D0DB),
-                                ]),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Center(
-                                child: Text(
-                                  "Log In",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: mainFontFamily,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getDynamicTextSize(26),decoration: TextDecoration.none),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                   Text("___________________",style: smallTextStyleDark,),
-                   Text(" Or ",style: smallTextStyleDark,),
-                    Text("___________________",style: smallTextStyleDark,),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text("Don't have an account?", style: mediumTextStyleDark),
-                  FlatButton(
-                    child: GradientText(
-                      'Sign Up',
-                      style: mediumTextStyleDark,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0XffFD8B1F),
-                          Color(0XffD152E0),
-                          Color(0Xff30D0DB),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignUpPage(),
-                        ),
-                      );
-                    },
+                    ],
                   ),
+                  SizedBox(height: getDynamicHeight(20),)
                 ],
-              ),
+              )
 
             ],
           ),

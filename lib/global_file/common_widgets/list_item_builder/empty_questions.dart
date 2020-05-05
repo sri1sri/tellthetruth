@@ -37,10 +37,7 @@ class EmptyQuestions extends StatelessWidget {
                 width: getDynamicWidth(290),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ContentPreview(),),
-                    );
+                    GoToPage(context, ContentPreview(), false);
                   },
                   child: Container(
                     decoration: BoxDecoration(

@@ -23,6 +23,9 @@ import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:vibration/vibration.dart';
 
+import 'package:permission_handler/permission_handler.dart';
+
+
 class SingleQuestion extends StatelessWidget {
   SingleQuestion(
       {@required this.questionDetails,
@@ -413,7 +416,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               topic: widget.gangDetails.gangNotificationToken,
                               title: 'Wow..!! Question identity revealed',
                               message: "${widget.questionDetails.question} \nGo check who questioned this",
-                              navigateTo: 'question identity revealed');
+                              navigateTo: 'question identity revealed',
+                              from : USER_DEVICE_TOKEN,
+                          );
                           
                           
                          await DBreference.updateQuestionDetails(
@@ -695,10 +700,10 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                               .then((File image) {
                                             setState(() async {
 
-//                                              var status = await Permission.storage.status;
-//                                              if (status.isUndetermined) {
-//                                                Permission.storage.request();
-//                                              }
+                                              var status = await Permission.storage.status;
+                                              if (status.isUndetermined) {
+                                                Permission.storage.request();
+                                              }
 
                                               await ImageGallerySaver.saveImage(
                                                   image.readAsBytesSync());
@@ -733,7 +738,9 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                               topic: widget.gangDetails.gangNotificationToken,
                               title: 'Yahooo..!! Someone revealed thier answer',
                               message: "${ widget.questionDetails.question} \nGo check who answered this",
-                              navigateTo: 'answer identity revealed');
+                              navigateTo: 'answer identity revealed',
+                              from : USER_DEVICE_TOKEN,
+                          );
 
                           await DBreference.updateInsights(updateInsightDetails,
                               widget.gangDetails.gangID, widget.questionDetails.questionID);

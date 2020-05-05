@@ -2,8 +2,6 @@ import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fab_circular_menu/fab_circular_menu.dart';
-import 'package:finite_coverflow/finite_coverflow.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_text/gradient_text.dart';
 import 'package:lottie/lottie.dart';
@@ -13,7 +11,6 @@ import 'package:social_share/social_share.dart';
 import 'package:tellthetruth/database_model/gang_details.dart';
 import 'package:tellthetruth/database_model/insights_details.dart';
 import 'package:tellthetruth/database_model/question_details.dart';
-import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/firebase/database.dart';
 import 'package:tellthetruth/firebase/firebase_common_variables.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -49,8 +46,6 @@ class F_AllQuestions extends StatefulWidget {
 
 class _F_AllQuestionsState extends State<F_AllQuestions> {
   bool _dropdownShown = false;
-  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
-
   void _toggleDropdown() {
     setState(() {
       _dropdownShown = !_dropdownShown;

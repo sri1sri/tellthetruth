@@ -25,19 +25,6 @@ class ContentPreview extends StatelessWidget {
 }
 
 class F_ContentPreview extends StatefulWidget {
-//  F_ContentPreview({
-//    @required this.question,
-//    @required this.optionOne,
-//    @required this.optionTwo,
-//    @required this.optionThree,
-//    @required this.optionFour,
-//  });
-
-//  String question;
-//  String optionOne;
-//  String optionTwo;
-//  String optionThree;
-//  String optionFour;
 
   @override
   _F_ContentPreviewState createState() => _F_ContentPreviewState();
@@ -66,15 +53,16 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
     "How to keep your immune system healthy?",
     "How do you spend your weekends?",
     "How do you feel around me?",
-    "Which of these three followings things would you do?",
+    "Which of these four followings things would you do?",
     "When was your last kiss?",
     "Would you date someone younger than you?",
-    "What do you ike about me?",
+    "What do you like about me?",
     "What do you prefer?",
     "How are you feeling about 2020?",
     "which is your favorite game?",
+    "How much time you spend washing your hands?"
+    "Are you afraid of CORONAVIRUS/?"
   ];
-
 
 
 
@@ -157,7 +145,9 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
         topic: selectedGangNotificationTokens,
         title: "Hurray..!! It's a ${USER_GENDER == 'Male' ? 'boy' : 'girl'}",
         message: 'New question has been added to $selectedGangName',
-        navigateTo: 'question asked');
+        navigateTo: 'question asked',
+        from : USER_DEVICE_TOKEN,
+    );
 
     final createQuestion = QuestionDetails(
       createdAt: Timestamp.fromDate(DateTime.now()),

@@ -15,9 +15,9 @@ class LandingPage extends StatelessWidget {
 
   Future<void> getToken() async {
     token = await firebaseMessaging.getToken();
-    print("Token: " + token);
+//    print("Token: " + token);
     USER_DEVICE_TOKEN = token;
-    print("USER_DEVICE_TOKEN: " + USER_DEVICE_TOKEN);
+//    print("USER_DEVICE_TOKEN: " + USER_DEVICE_TOKEN);
   }
 
   @override

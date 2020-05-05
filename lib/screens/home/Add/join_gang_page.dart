@@ -259,7 +259,7 @@ class _F_JoinGangState extends State<F_JoinGang> {
                           autocorrect: true,
                           obscureText: false,
                           keyboardType: TextInputType.number,
-                          keyboardAppearance: Brightness.dark,
+                          keyboardAppearance: Brightness.light,
                           autofocus: true,
                           cursorColor: Colors.white,
                           onEditingComplete: _submit,

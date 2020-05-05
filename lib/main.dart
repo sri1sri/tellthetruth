@@ -70,6 +70,7 @@
 
 
 import 'dart:convert';
+import 'dart:math';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -104,6 +105,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+  Random random = new Random();
   FirebaseMessaging firebaseMessaging = FirebaseMessaging();
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
@@ -170,7 +173,7 @@ class MyApp extends StatelessWidget {
     await flutterLocalNotificationsPlugin.showDailyAtTime(
         0,
         hour == 09 ? 'Good morning, ${USER_NAME}' : hour == 16 ? 'Good evening, ${USER_NAME}' : 'Good night, ${USER_NAME}',
-        hour == 09 ? 'Daily notification shown at approximately' : hour == 16 ? 'Daily notification shown at approximately' : 'Daily notification shown at approximately',
+        hour == 09 ? GOODMORNINGMSG[random.nextInt(10).toInt()] : hour == 16 ? "Check out what's going on in your squads..." : GOODNIGHTMSG[random.nextInt(10).toInt()],
         time,
         platformChannelSpecifics);
   }

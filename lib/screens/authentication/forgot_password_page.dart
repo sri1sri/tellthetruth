@@ -204,7 +204,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                                         fontFamily: "Poppins",
                                       ),
                                       keyboardType: TextInputType.text,
-                                      keyboardAppearance: Brightness.dark,
+                                      keyboardAppearance: Brightness.light,
                                       validator: (value) {
                                         print(value);
                                         if (value.isEmpty) {

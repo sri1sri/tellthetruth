@@ -252,14 +252,28 @@ class _F_FeedPageState extends State<F_FeedPage> {
                           height: getDynamicHeight(100),
                           width: getDynamicWidth(270),
                         ),
-                        Positioned(
+//
+//                        Positioned(
+//                          top: 7,
+//                          child: Text(
+//                            data != null
+//                                ? '${viewedUsersCount(data.gangID)}'
+//                                : 'fetching...',
+//                            style: backgroundTextStyleMedium,
+//                          ),
+
+                          Positioned(
                           top: 7,
-                          child: Text(
-                            data != null
-                                ? '${viewedUsersCount(data.gangID)}'
-                                : 'fetching...',
-                            style: backgroundTextStyleMedium,
-                          ),
+                          child: data != null ?
+                          FutureBuilder(
+                            future: viewedUsersCount(data.gangID),
+                            builder: (context,snapshot) {
+                              if(!snapshot.hasData){
+                                return Text('...',style: backgroundTextStyleMedium,);
+                              }
+                              return Text("${snapshot.data} new Q",style: backgroundTextStyleMedium,);
+                              },
+                          ) : Container(),
                           //Text("Question",style: backgroundText,),
                         ),
                         Positioned(
@@ -300,10 +314,11 @@ class _F_FeedPageState extends State<F_FeedPage> {
               .where('viewed_by', arrayContains: USER_ID)
               .getDocuments()
               .then((viewedData) async => {
-                    setState(() {
+
+
                       unViewedQuestionsCount = questionsData.documents.length -
-                          viewedData.documents.length;
-                    }),
+                          viewedData.documents.length,
+
                   }),
         });
     print('count $unViewedQuestionsCount');

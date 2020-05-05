@@ -45,10 +45,10 @@ class BackForeText extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            height: getDynamicHeight(140),
+            height: getDynamicHeight(135),
           ),
           Positioned(
-            top: 18,
+            top: 20,
             child:FadeAnimatedTextKit(
                 text: backText,
                 textStyle: backgroundTextStyleMedium,

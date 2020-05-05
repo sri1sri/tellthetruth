@@ -117,12 +117,12 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    SizedBox(height: getDynamicHeight(70),),
+                    SizedBox(height: getDynamicHeight(50),),
                     Column(
                       children: [
                         Container(
                           color: Colors.transparent,
-                          child: Image.asset("images/logo1.png",height: getDynamicHeight(100),width: getDynamicWidth(200),),
+                          child: Image.asset("images/logo1.png",height: getDynamicHeight(90),width: getDynamicWidth(130),),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -219,48 +219,48 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Image.asset("images/int1.png",height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                        Image.asset("images/anonymousIntro.png",height: getDynamicHeight(50),width: getDynamicWidth(50),),
                         SizedBox(width: getDynamicWidth(20),),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Anonymous Q&A",style: mediumTextStyleDark,),
-                            Text("Shoot questions anonymously\n& share with people.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
+                            Text("Question & Answer anonymously\nLater reveal your identity if you\nchange your mind.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
                                 fontWeight: FontWeight.w600,fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),)
                           ],
                         )
                       ],
                     ),
-                    SizedBox(height: getDynamicHeight(20),),
+                    SizedBox(height: getDynamicHeight(40),),
                     Row(
                       children: [
-                        Image.asset("images/int2.png",height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                        Image.asset("images/groupsIntro.png",height: getDynamicHeight(50),width: getDynamicWidth(50),),
                         SizedBox(width: getDynamicWidth(20),),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Polling",style: mediumTextStyleDark,),
-                            Text("The words will move and grow\nas more responses are entered.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
+                            Text("Create Squads",style: mediumTextStyleDark,),
+                            Text("Create you own squads and\nshare the squad code with\nyour friends to join.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
                                 fontWeight: FontWeight.w600,fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),)
                           ],
                         )
                       ],
                     ),
-                    SizedBox(height: getDynamicHeight(20),),
+                    SizedBox(height: getDynamicHeight(40),),
                     Row(
                       children: [
-                        Image.asset("images/int3.png",height: getDynamicHeight(60),width: getDynamicWidth(60),),
+                        Image.asset("images/timelimitIntro.png",height: getDynamicHeight(50),width: getDynamicWidth(50),),
                         SizedBox(width: getDynamicWidth(20),),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Create Group",style: mediumTextStyleDark,),
-                            Text("Create own gang with multiple\nfriends,families and others.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
+                            Text("Timelimit",style: mediumTextStyleDark,),
+                            Text("Answer it in 24hrs, Else you\nwil miss the chance.",textAlign: TextAlign.start,style: TextStyle(color: Colors.black54,
                                 fontWeight: FontWeight.w600,fontSize: getDynamicTextSize(16),decoration: TextDecoration.none),)
                           ],
                         )
@@ -276,10 +276,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                     width: getDynamicWidth(180),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage(),),
-                        );
+                        GoToPage(context, LoginPage(), false);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -310,17 +307,18 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("___________________",style: smallTextStyleDark,),
-                        Text(" Or ",style: smallTextStyleDark,),
-                        Text("___________________",style: smallTextStyleDark,),
-                      ],
-                    ),
-                  ),
+SizedBox(height: 10,),
+//                  Padding(
+//                    padding: const EdgeInsets.all(20.0),
+//                    child: Row(
+//                      mainAxisAlignment: MainAxisAlignment.center,
+//                      children: [
+//                        Text("___________________",style: smallTextStyleDark,),
+//                        Text(" Or ",style: smallTextStyleDark,),
+//                        Text("___________________",style: smallTextStyleDark,),
+//                      ],
+//                    ),
+//                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -341,12 +339,7 @@ class _SelectAuthenticationState extends State<SelectAuthentication> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpPage(),
-                            ),
-                          );
+                          GoToPage(context, SignUpPage(), false);
                         },
                       ),
                     ],

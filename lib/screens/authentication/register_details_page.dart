@@ -287,7 +287,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                                         fontFamily: "Poppins",
                                       ),
                                       keyboardType: TextInputType.text,
-                                      keyboardAppearance: Brightness.dark,
+                                      keyboardAppearance: Brightness.light,
                                       validator: (value) {
                                         print(value);
                                         if (value.isEmpty) {

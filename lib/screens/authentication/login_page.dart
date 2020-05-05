@@ -281,12 +281,7 @@ SizedBox(height: getDynamicHeight(40),),
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ForgotPasswordPage(),
-                                      ),
-                                    );
+                                    GoToPage(context, ForgotPasswordPage(), false);
                                   },
                                 ),
                               ],
@@ -387,19 +382,11 @@ SizedBox(height: getDynamicHeight(40),),
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUpPage(),
-                              ),
-                            );
+                            Navigator.pop(context);
                           },
                         ),
                       ],
                     ),
-//                  SizedBox(
-//                    height: dynamicHeight(20),
-//                  ),
                   ],
                 ),
               ],

@@ -796,7 +796,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                 text: [
                   "Note : Please click on votes, to view who revealed their identity.",
                 ],
-                textStyle: mediumTextStyleLight,
+                textStyle: smallTextStyleLight,
                 textAlign: TextAlign.center,
                 alignment: AlignmentDirectional.topCenter,
                 isRepeatingAnimation:

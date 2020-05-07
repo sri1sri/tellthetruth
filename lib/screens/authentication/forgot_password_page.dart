@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_text/gradient_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tellthetruth/firebase/admobs.dart';
 import 'package:tellthetruth/global_file/common_variables/app_colors.dart';
 import 'package:tellthetruth/global_file/common_variables/app_fonts.dart';
@@ -124,7 +125,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                         height: getDynamicHeight(70),
                       ),
                       GradientText(
-                        'Forgot Password',
+                        'Reset Password',
                         style: backgroundTextStyleLight,
                         gradient: LinearGradient(
                           colors: [
@@ -136,16 +137,15 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                           end: Alignment.bottomRight,
                         ),
                       ),
-                      Center(
-                        child: SizedBox(
-                          width: getDynamicWidth(300),
-                          height: getDynamicHeight(300),
-                          child: Container(
-                              child: FlareActor("images/welcome.flr",
-                                  alignment: Alignment.center,
-                                  fit: BoxFit.contain,
-                                  animation: 'Animations')),
-                        ),
+                      SizedBox(
+                        height: getDynamicHeight(50),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+
+                          Lottie.network("https://assets6.lottiefiles.com/private_files/lf30_GjhcdO.json",height: getDynamicHeight(300),width: getDynamicWidth(300)),
+                        ],
                       ),
                     ]),
                 Column(
@@ -240,8 +240,9 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                         ),
                         GestureDetector(
                           child: Container(
-                            width: getDynamicWidth(200.0),
-                            padding: EdgeInsets.all(15.0),
+                            width: getDynamicWidth(170.0),
+                            height: getDynamicHeight(70),
+                            padding: EdgeInsets.all(7.0),
                             child: Center(
                                 child: Row(
                                     mainAxisAlignment:
@@ -264,7 +265,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                                       Icon(
                                         Icons.arrow_forward_ios,
                                         color: Colors.blue,
-                                        size: getDynamicTextSize(30),
+                                        size: getDynamicTextSize(20),
                                       ),
                                       Container(),
                                     ])),
@@ -286,7 +287,7 @@ class _F_ForgotPasswordPageState extends State<F_ForgotPasswordPage> {
                       ],
                     ),
                     SizedBox(
-                      height: getDynamicHeight(15.0),
+                      height: getDynamicHeight(40.0),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -228,7 +228,7 @@ class _F_FeedPageState extends State<F_FeedPage> {
         Navigator.of(context).push(
           PageTransition(
             type: PageTransitionType.rippleLeftUp,
-            duration: Duration(seconds: 1),
+            duration: Duration(milliseconds: 500 ),
             child: AllQuestions(gangDetails: data),
           ),
         );

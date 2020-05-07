@@ -60,6 +60,7 @@ dependencies:
   firebase_messaging: ^6.0.13
   random_string: ^2.0.1
   flutter_local_notifications: ^1.4.2
+  flutter_sliding_up_panel: ^1.0.0
 
 
 dev_dependencies:

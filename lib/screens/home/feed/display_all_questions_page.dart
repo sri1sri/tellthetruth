@@ -120,7 +120,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                   -50,
                 ),
                 child: Container(
-                  height: 150,
+                  height: getDynamicHeight(170),
                   padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(
@@ -195,10 +195,6 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                             )
                           ],
                         ),
-                      ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.black54,
                       ),
 //                      GestureDetector(
 //                        onTap: () {

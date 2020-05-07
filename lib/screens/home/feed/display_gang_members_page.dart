@@ -247,7 +247,7 @@ class _F_GangMembersState extends State<F_GangMembers> {
                 elevation: 0,
                 centerTitle: true,
                 pinned: true,
-                expandedHeight: getDynamicHeight(400.0),
+                expandedHeight: getDynamicHeight(445.0),
                 flexibleSpace: FlexibleSpaceBar(
                   background: MyFlexiableAppBar(
                     gangDetails: widget.gangDetails,

@@ -4,6 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:social_share/social_share.dart';
@@ -60,6 +61,13 @@ class F_SingleQuestion extends StatefulWidget {
 }
 
 class _F_SingleQuestionState extends State<F_SingleQuestion> {
+
+  ScrollController scrollController;
+
+  ///The controller of sliding up panel
+  SlidingUpPanelController panelController = SlidingUpPanelController();
+
+
   static const duration = const Duration(seconds: 1);
 
   bool isActive = true;
@@ -215,6 +223,21 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
   @override
   void initState() {
+
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.offset >=
+          scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange) {
+        panelController.expand();
+      } else if (scrollController.offset <=
+          scrollController.position.minScrollExtent &&
+          !scrollController.position.outOfRange) {
+        panelController.anchor();
+      } else {}
+    });
+    super.initState();
+
 
 //    Ads.showBannerAd();
     secondsLeft =
@@ -454,8 +477,8 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
 
                       Padding(
                         padding: EdgeInsets.only(
-                            left: getDynamicWidth(25.0),
-                            right: getDynamicWidth(25.0)),
+                            left: getDynamicWidth(20.0),
+                            right: getDynamicWidth(20.0)),
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -709,7 +732,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
                                                   image.readAsBytesSync());
 
 
-
+                                              panelController.anchor();
                                               showFancyCustomDialogShare(
                                                   context, image);
                                             });
@@ -792,7 +815,7 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
   Widget optionsStyle(int optionIndex, String polledCount,
       List<String> backgroundColorCode, bool isOptionSelected) {
     return Container(
-      width: getDynamicWidth(350),
+      width: getDynamicWidth(400),
       //height: getDynamicHeight(55),
       decoration: BoxDecoration(
           borderRadius: optionIndex == 0
@@ -827,10 +850,13 @@ class _F_SingleQuestionState extends State<F_SingleQuestion> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            AutoSizeText(
-              '${widget.questionDetails.options[optionIndex]}'.capitalize(),
-              style: smallTextStyleLight,
-              maxLines: 2,
+            Container(
+              width: getDynamicWidth(270),
+              child: AutoSizeText(
+                '${widget.questionDetails.options[optionIndex]}'.capitalize(),
+                style: smallTextStyleLight,
+                maxLines: 2,
+              ),
             ),
             AutoSizeText(
               getCount(optionIndex),

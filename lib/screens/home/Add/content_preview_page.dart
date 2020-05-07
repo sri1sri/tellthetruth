@@ -610,7 +610,7 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
               children: <Widget>[
                 GestureDetector(
                   child: Container(
-                    width: getDynamicWidth(180.0),
+                    width: getDynamicWidth(150.0),
                     padding: EdgeInsets.only(left: 15.0, right: 15.0,top: 5, bottom: 5),
                     child: Center(
                         child: Row(
@@ -622,18 +622,12 @@ class _F_ContentPreviewState extends State<F_ContentPreview> {
                                 style: foregroundTextStyleLight,
                                 gradient: LinearGradient(
                                   colors: [
-                                    Color(0XffFD8B1F),
-                                    Color(0XffD152E0),
-                                    Color(0Xff30D0DB),
+                                    Color(int.parse(_colors1[_currentColorIndex])),
+                                    Color(int.parse(_colors2[_currentColorIndex])),
                                   ],
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                 ),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.blue,
-                                size: getDynamicTextSize(15),
                               ),
                               Container(),
                             ])),

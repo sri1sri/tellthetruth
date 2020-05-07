@@ -436,7 +436,7 @@ class _F_RegisterDetailsState extends State<F_RegisterDetails> {
                     GestureDetector(
                       child: Container(
                         width: getDynamicWidth(170.0),
-                        height: getDynamicHeight(60),
+                        height: getDynamicHeight(70),
                         padding: EdgeInsets.all(7.0),
                         child: Center(
                             child: Row(

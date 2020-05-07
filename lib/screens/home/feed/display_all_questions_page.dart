@@ -52,8 +52,8 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
     });
   }
 
-  String whtsAppMessage =
-      "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!";
+  //String whtsAppMessage =
+    //  "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 .Click on ‘+’ go to join gang and enter gang code '12345'.Believe me this is awesome game!";
 
   @override
   void initState() {
@@ -142,7 +142,7 @@ class _F_AllQuestionsState extends State<F_AllQuestions> {
                         onTap: () {
                           _toggleDropdown();
                           SocialShare.shareWhatsapp(
-                              "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.ludo.king iOS: https://itunes.apple.com/in/app/ludo-king/id993090598 Click on ‘+’ go to join gang and enter gang code '${widget.gangDetails.gangCode}'. Believe me this is awesome game");
+                              "I want you to join our gang in Tell The Truth! Please install from Android: https://play.google.com/store/apps/details?id=com.kondasri.tellthetruth Click on ‘+’ go to join gang and enter gang code '${widget.gangDetails.gangCode}'. Believe me this is awesome game");
                         },
                         child: Row(
                           children: [
